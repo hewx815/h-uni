@@ -2609,7 +2609,7 @@ map-obj@^4.0.0:
 
 mark.js@8.11.1:
   version "8.11.1"
-  resolved "https://registry.yarnpkg.com/mark.js/-/mark.js-8.11.1.tgz#180f1f9ebef8b0e638e4166ad52db879beb2ffc5"
+  resolved "https://registry.npmmirror.com/mark.js/-/mark.js-8.11.1.tgz#180f1f9ebef8b0e638e4166ad52db879beb2ffc5"
   integrity sha512-1I+1qpDt4idfgLQG+BNWmrqku+7/2bi5nLf4YwF8y8zXvmfiTBY3PV3ZibfrjBueCByROpuBjLLFCajqkgYoLQ==
 
 meow@^8.0.0:
@@ -3686,7 +3686,7 @@ validate-npm-package-license@^3.0.1:
 
 vite@^4.3.0:
   version "4.3.1"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-4.3.1.tgz#9badb1377f995632cdcf05f32103414db6fbb95a"
+  resolved "https://registry.npmmirror.com/vite/-/vite-4.3.1.tgz#9badb1377f995632cdcf05f32103414db6fbb95a"
   integrity sha512-EPmfPLAI79Z/RofuMvkIS0Yr091T2ReUoXQqc5ppBX/sjFRhHKiPPF/R46cTdoci/XgeQpB23diiJxq5w30vdg==
   dependencies:
     esbuild "^0.17.5"
@@ -3695,7 +3695,11 @@ vite@^4.3.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
+<<<<<<< HEAD
 vitepress@^1.0.0-alpha.73:
+=======
+vitepress@1.0.0-alpha.73:
+>>>>>>> development
   version "1.0.0-alpha.73"
   resolved "https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.73.tgz#d5b459299ab294507de2dea4f6f0b0592535a359"
   integrity sha512-BWK7b5yYxdA3SeBnUV+ly8vJU2MFcQhjooycLDc2AsSd07uGp+WO6J6gBmjwHuOz5hgcNa+/VxGWKKwBycdbnA==

@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
+import fs from 'fs';
 import {
   choiceDevConfig,
   choiceDevFolder,
@@ -76,5 +77,11 @@ export const startBuild = async () => {
   delDir(vue3Package.destDir);
   copyPackages(vue2Package.srcDir, vue2Package.destDir);
   copyPackages(vue3Package.srcDir, vue3Package.destDir);
+  const vue2PackagePath = path.resolve(CurrentPath, '../for-vue2/node_modules/vue');
+  const newVue2PackagePath = path.resolve(CurrentPath, '../for-vue2/node_modules/vue_old');
+  if (fs.existsSync(vue2PackagePath)) {
+    fs.renameSync(vue2PackagePath, newVue2PackagePath);
+  }
   spawn('yarn vitepress build', { shell: true, stdio: 'inherit' });
+  fs.renameSync(newVue2PackagePath, newVue2PackagePath);
 };
