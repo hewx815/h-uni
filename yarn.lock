@@ -3695,9 +3695,9 @@ vite@^4.3.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitepress@^1.0.0-alpha.71:
+vitepress@^1.0.0-alpha.73:
   version "1.0.0-alpha.73"
-  resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-1.0.0-alpha.73.tgz#d5b459299ab294507de2dea4f6f0b0592535a359"
+  resolved "https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.73.tgz#d5b459299ab294507de2dea4f6f0b0592535a359"
   integrity sha512-BWK7b5yYxdA3SeBnUV+ly8vJU2MFcQhjooycLDc2AsSd07uGp+WO6J6gBmjwHuOz5hgcNa+/VxGWKKwBycdbnA==
   dependencies:
     "@docsearch/css" "^3.3.3"
