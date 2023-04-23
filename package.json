@@ -5,6 +5,7 @@
   "author": "hewx",
   "license": "ISC",
   "main": "index.js",
+  "type": "module",
   "keywords": [
     "h-uni",
     "uniapp"
