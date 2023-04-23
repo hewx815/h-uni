@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import inquirer from 'inquirer';
 import fs from 'fs';
 import path from 'path';
