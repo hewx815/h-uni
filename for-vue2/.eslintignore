@@ -1,0 +1,9 @@
+/node_modules
+/dist
+/src/static
+
+babel.config.js
+postcss.config.js
+shime-uni.d.ts
+shime-vue.d.ts
+vue.config.js

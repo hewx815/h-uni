@@ -1,0 +1,12 @@
+:root {
+  --color: rgb(95, 95, 205);
+  --color-light: rgb(115, 115, 205);
+  --color-lighter: rgb(145, 145, 205);
+  --color-dark: rgb(75, 75, 205);
+  --color-darker: rgb(45, 45, 205);
+  --vp-c-green: var(--color);
+  --vp-c-green-light: var(--color-light);
+  --vp-c-green-lighter: var(--color-lighter);
+  --vp-c-green-dark: var(--color-dark);
+  --vp-c-green-darker: var(--color-darker);
+}

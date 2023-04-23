@@ -1,0 +1,35 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// 存储文件绝对路径
+const StorageFilePath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), './index.json');
+
+/**
+ * @name setStorageSync
+ * @description 存储数据 (相同的键会覆盖)
+ * @param {String} key 要存储数据的键
+ * @param {Any} value 要存储数据内容
+ * @return {Promise}
+*/
+export const setStorageSync = async (key, value) => {
+  const oldData = await fs.readFileSync(StorageFilePath, 'utf-8');
+  const data = oldData ? JSON.parse(oldData) : {};
+  data[key] = {
+    updataTime: String(new Date()),
+    data: value,
+  };
+  await fs.writeFileSync(StorageFilePath, JSON.stringify(data), 'utf-8');
+};
+
+/**
+ * @name getStorageSync
+ * @description 读取数据
+ * @param {String} key 要读取数据的键
+ * @return {Promise} resolve 读取到的数据内容
+*/
+export const getStorageSync = async (key) => {
+  const oldData = await fs.readFileSync(StorageFilePath, 'utf-8');
+  const data = oldData ? JSON.parse(oldData) : undefined;
+  return data ? data[key].data : undefined;
+};
