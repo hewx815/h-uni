@@ -1,6 +1,6 @@
 {
   "name": "h-uni",
-  "version": "1.1.2",
+  "version": "1.0.0",
   "description": "uniapp 工具库，组件库",
   "author": "hewx",
   "license": "ISC",
@@ -14,9 +14,7 @@
     "build": "cross-env NODE_ENV=production node index.js",
     "docs:preview": "vitepress preview",
     "commit": "cz",
-    "release": "standard-version",
-    "prepare": "husky install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "standard-version"
   },
   "config": {
     "commitizen": {
