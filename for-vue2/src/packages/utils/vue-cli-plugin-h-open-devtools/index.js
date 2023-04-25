@@ -1,9 +1,9 @@
-const { err } = require('./utils.cjs');
+const { spawn } = require('child_process');
+const { err, log, getCommandPath } = require('./utils');
 
-const main = (api, options) => {
-  console.log(options);
+const main = async (api, options) => {
   // 获取配置
-  const userConfig = options['h-open-devtools'];
+  const userConfig = options.pluginOptions['h-open-devtools'];
 
   if (!userConfig) {
     err('缺少配置！');
@@ -11,8 +11,12 @@ const main = (api, options) => {
 
   const config = {
     projectPath: userConfig.projectPath || options.outputDir,
-    wxPath: userConfig.projectPath,
+    wxPath: userConfig.wxPath,
   };
+
+  // 获取命令文件路径
+  const commandPath = await getCommandPath();
+  const child = spawn('cmd.exe', ['/c', `node ${commandPath}`], { cwd: config.wxPath, stdio: 'inherit' });
 };
 
 module.exports = (api, options) => {
@@ -21,5 +25,5 @@ module.exports = (api, options) => {
 
   serve.fn = (...args) => serveFn(...args)
     .then(() => main(api, options))
-    .catch((errs) => err(errs));
+    .catch((errs) => { err(errs); });
 };

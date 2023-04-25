@@ -1,7 +1,7 @@
 module.exports = {
   pluginOptions: {
     'h-open-devtools': {
-      dd: 1,
+      wxPath: 'E:\\微信web开发者工具',
     },
   },
 };
