@@ -47,7 +47,10 @@ const main = async (projectPath) => {
 };
 
 if (Number(isExit) === 1) {
-  exit();
+  // eslint-disable-next-line promise/catch-or-return, promise/always-return
+  exit().then(() => {
+    process.exit();
+  });
 } else {
   main(projectPath);
 }

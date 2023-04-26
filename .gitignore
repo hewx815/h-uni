@@ -9,4 +9,4 @@ dist/npm/*
 cli/storage/index.json
 .vitepress/cache
 
-*.log
+yarn-error.log

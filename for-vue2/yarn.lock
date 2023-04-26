@@ -11057,7 +11057,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npmmirror.com/vm-browserify/-/vm-browserify-1.1.2.tgz"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-"vue-cli-plugin-h-open-devtools@file:src/packages/utils/vue-cli-plugin-h-open-devtools":
+"vue-cli-plugin-h-open-devtools@file:src/packages/utils/vue-cli-plugin-h-run-devtools":
+  version "0.0.1"
+
+"vue-cli-plugin-h-run-devtools@file:src/packages/utils/vue-cli-plugin-h-run-devtools":
   version "0.0.1"
 
 vue-eslint-parser@^9.0.1:

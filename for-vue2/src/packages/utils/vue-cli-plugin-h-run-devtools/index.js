@@ -23,8 +23,10 @@ const main = async (api, options) => {
 
   // 退出：发送了第四个参数
   process.on('SIGINT', () => {
-    spawn('cmd.exe', ['/c', `node ${commandPath} ${config.projectPath} 1`], { cwd: config.cwd, stdio: 'inherit' });
-    process.exit();
+    const exitCmd = spawn('cmd.exe', ['/c', `node ${commandPath} ${config.projectPath} 1`], { cwd: config.cwd });
+    exitCmd.on('exit', () => {
+      process.exit();
+    });
   });
 };
 
