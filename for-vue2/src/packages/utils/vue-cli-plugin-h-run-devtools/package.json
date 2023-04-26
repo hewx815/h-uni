@@ -1,5 +1,5 @@
 {
-  "name": "vue-cli-plugin-h-open-devtools",
+  "name": "vue-cli-plugin-h-run-devtools",
   "version": "0.0.1",
   "description": "vue-cli plugin to Open Devtools"
 }

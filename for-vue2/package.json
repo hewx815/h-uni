@@ -96,7 +96,7 @@
     "mini-types": "*",
     "miniprogram-api-typings": "*",
     "postcss-comment": "^2.0.0",
-    "vue-cli-plugin-h-open-devtools": "file:src/packages/utils/vue-cli-plugin-h-open-devtools",
+    "vue-cli-plugin-h-open-devtools": "file:src/packages/utils/vue-cli-plugin-h-run-devtools",
     "vue-template-compiler": ">= 2.6.14 < 2.7"
   },
   "browserslist": [
