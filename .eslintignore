@@ -1,3 +1,11 @@
 /node_modules
 /.vitepress/cache
 /dist
+
+/for-vue2/babel.config.js
+/for-vue2/postcss.config.js
+/for-vue2/shime-uni.d.ts
+/for-vue2/shime-vue.d.ts
+/for-vue2/src/static
+
+/for-vue3/dist
