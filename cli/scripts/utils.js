@@ -46,7 +46,7 @@ export const choiceDevFolder = async (folderList) => {
 */
 export const getScriptsList = async (devFolder) => {
   const CurrentPath = path.dirname(fileURLToPath(import.meta.url));
-  const data = await fs.promises.readFile(path.resolve(CurrentPath, '../', devFolder, 'package.json'), 'utf-8');
+  const data = await fs.promises.readFile(path.resolve(CurrentPath, '../../', devFolder, 'package.json'), 'utf-8');
   const { scripts } = JSON.parse(data);
   return Object.keys(scripts).map((key) => key);
 };

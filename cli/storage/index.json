@@ -1,1 +1,9 @@
-{"USER_LAST_MODE":{"updataTime":"Sun Apr 23 2023 21:34:29 GMT+0800 (中国标准时间)","data":{"devFolder":"for-vue2","script":"build:h5"}}}
+{
+  "USER_LAST_MODE": {
+    "updataTime": "Thu Apr 27 2023 13:16:34 GMT+0800 (中国标准时间)",
+    "data": {
+      "devFolder": "for-vue2",
+      "script": "build:h5"
+    }
+  }
+}

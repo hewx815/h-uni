@@ -70,6 +70,7 @@
     "core-js": "^3.8.3",
     "flyio": "^0.6.2",
     "vue": "2.6.14",
+    "vue-cli-plugin-h-run-devtools": "file:src/packages/utils/vue-cli-plugin-h-run-devtools",
     "vue-server-renderer": "^2.7.14",
     "vuex": "^3.2.0"
   },
@@ -96,6 +97,7 @@
     "mini-types": "*",
     "miniprogram-api-typings": "*",
     "postcss-comment": "^2.0.0",
+    "vue-cli-plugin-h-open-devtools": "file:src/packages/utils/vue-cli-plugin-h-run-devtools",
     "vue-template-compiler": ">= 2.6.14 < 2.7"
   },
   "browserslist": [
