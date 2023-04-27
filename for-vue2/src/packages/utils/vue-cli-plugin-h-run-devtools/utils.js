@@ -34,11 +34,15 @@ const getConfig = (userConfig, options) => {
 const getCommandPath = () => {
   const platFrom = process.env.UNI_PLATFORM;
   const filePath = path.resolve(__dirname, `./command/${platFrom}.js`);
-  const stats = fs.statSync(filePath).isFile();
-  if (stats) {
-    return filePath;
+  try {
+    const stats = fs.statSync(filePath).isFile();
+    if (stats) {
+      return filePath;
+    }
+    return log(`${platFrom}---暂未支持`);
+  } catch (e) {
+    return log(`${platFrom}---暂未支持`);
   }
-  return log(`${platFrom}---暂未支持`);
 };
 
 /**

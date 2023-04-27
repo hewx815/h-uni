@@ -14,6 +14,7 @@
     "./dist",
     "./bin"
   ],
+  "bin": "./bin/h-uni.js",
   "scripts": {
     "dev": " node ./cli/scripts/dev.js",
     "build": "node  ./cli/scripts/build.js",

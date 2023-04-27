@@ -7,11 +7,14 @@ const main = async (api, options) => {
   // 获取用户配置
   const userConfig = options.pluginOptions['h-open-devtools'];
 
-  // 获取配置
-  const config = getConfig(userConfig, options);
-
   // 获取命令文件路径
   const commandPath = getCommandPath();
+
+  if (!commandPath) {
+    return;
+  }
+  // 获取配置
+  const config = getConfig(userConfig, options);
 
   // 检测路径是否存在
   Object.keys(config).forEach((key) => {
