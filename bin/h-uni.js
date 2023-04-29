@@ -1,4 +1,4 @@
-// #!/usr/bin/env node
+#!/usr/bin/env node
 import columnify from 'columnify';
 import * as argvs from './argvs/index.js';
 
