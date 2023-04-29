@@ -1,4 +1,18 @@
 h-uni
+### [1.1.1](https://github.com/hewx815/h-uni/compare/v1.1.0...v1.1.1) (2023-04-29)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* h-uni 命令行修复 ([33bfcc6](https://github.com/hewx815/h-uni/commit/33bfcc60f07dee3fb8a90eded383dd0de7d2cd68))
+
+## [1.1.0](https://github.com/hewx815/h-uni/compare/v1.0.3...v1.1.0) (2023-04-29)
+
+
+### ✨ Features | 新功能
+
+* vue-cli-plugin-h-run-devtools 插件新增 ([15573a8](https://github.com/hewx815/h-uni/commit/15573a8109bec1c04c0174011fa9d2acc2cc68bd))
+
 ### [1.0.4](https://github.com/hewx815/h-uni/compare/v1.0.3...v1.0.4) (2023-04-27)
 
 
