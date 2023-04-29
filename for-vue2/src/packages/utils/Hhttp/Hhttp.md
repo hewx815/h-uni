@@ -2,9 +2,13 @@
 outline: 'deep'
 ---
 
-## Hhttp
+# Hhttp
 
-### 示例
+## 兼容性
+
+<SupportTable WEIXIN APP H5 ALIPAY BAIDU TOUTIAO QQ KUAISHOU JD VUE2 />
+
+## 示例
 
 
 ```js
@@ -33,7 +37,7 @@ async function request(){
 }
 ```
 
-### 实例方法
+## 实例方法
 
 `get` :hhttp.get(url[, data[, config]])
 
@@ -49,7 +53,7 @@ async function request(){
 
 `request`hhttp.request(config)
 
-### 请求配置
+## 请求配置
 
 ```js
 //base配置规则
@@ -79,10 +83,10 @@ export default hhttp
 
 
 
-### 拦截器
+## 拦截器
 
 
-#### 请求拦截器
+### 请求拦截器
 ```js
 //request.js
 import Hhttp from 'uni-h-http'
@@ -106,7 +110,7 @@ hhttp.interceptor.request = async function(req){
    return req
 }
 ```
-#### 响应拦截器
+### 响应拦截器
 ```js
 //响应拦截器
 hhttp.interceptor.response = async function(res){

@@ -1,4 +1,11 @@
 h-uni
+### [1.0.4](https://github.com/hewx815/h-uni/compare/v1.0.3...v1.0.4) (2023-04-27)
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 调整 调整项目结构 ([54f8c55](https://github.com/hewx815/h-uni/commit/54f8c556602e280dafb9b20858992d5e10b1efab))
+
 ### [1.0.3](https://github.com/hewx815/h-uni/compare/v1.0.2...v1.0.3) (2023-04-23)
 
 

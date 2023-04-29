@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "types": [
-      "@dcloudio/types",
-      "miniprogram-api-typings",
-      "mini-types"
-    ]
+    "types": ["@dcloudio/types", "miniprogram-api-typings", "mini-types"]
+  },
+  "vueCompilerOptions": {
+    "target": 2 //volar vue2配置
   }
 }
