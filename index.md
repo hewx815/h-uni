@@ -1,7 +1,6 @@
 ---
 layout: home
 
-
 hero:
   name: "h-uni"
   text: "uniapp工具库"
@@ -11,11 +10,11 @@ hero:
       text: 开始
       link: README.md
     - theme: alt
-      text: vue2文档
+      text: 组件库文档
       link: /for-vue2/components/HButton
     - theme: alt
-      text: vue3文档
-      link: /for-vue3/components/HButton
+      text: 工具库文档
+      link: /for-vue2/utils/Hhttp
 
 features:
   - title: 鸡

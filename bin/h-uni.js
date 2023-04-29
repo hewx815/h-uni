@@ -1,15 +1,21 @@
 // #!/usr/bin/env node
+import columnify from 'columnify';
 import * as argvs from './argvs/index.js';
 
-const argv = process.argv[0];
+const argv = process.argv[2];
 
+// 输入可用命令参数
 const help = () => {
-  let content = '';
-  Object.keys(argvs).forEach((key) => {
-    content += `${key}------${argv[key]}`;
-  });
-  // eslint-disable-next-line no-console
-  console.log(content);
+  const columns = Object.keys(argvs).map((key) => ({
+    Parameter: key,
+    Description: argvs[key].description,
+  }));
+
+  const content = columnify(columns, { minWidth: 30 });
+
+  console.log(`
+[h-uni]：可用命令如下：
+${content}`);
 };
 
 const mian = () => {
@@ -18,11 +24,12 @@ const mian = () => {
   }
 
   const item = Object.keys(argvs).find((key) => key === argv);
-  if (item === -1) {
+
+  if (!item) {
     return help();
   }
-  console.log(item);
-  // return item.fn();
+
+  return argvs[item].fn();
 };
 
 mian();
