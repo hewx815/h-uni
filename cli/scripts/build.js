@@ -6,16 +6,8 @@ import {
   copyPackages,
   delDir,
   checkoutDir,
-<<<<<<< HEAD
-<<<<<<< HEAD
-} from './utils.js';
-=======
-} from './utils';
->>>>>>> development
-=======
 // eslint-disable-next-line import/extensions
 } from './utils.js';
->>>>>>> development
 
 const startBuild = async () => {
   const CurrentPath = path.dirname(fileURLToPath(import.meta.url));

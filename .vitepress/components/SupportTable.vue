@@ -56,6 +56,7 @@
  * @event
  * @slot
 */
+
 const props = defineProps({
   APP: [Boolean, String],
   H5: [Boolean, String],

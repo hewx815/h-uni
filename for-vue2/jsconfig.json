@@ -1,14 +1,10 @@
 {
   "compilerOptions": {
-<<<<<<< HEAD
-    "types": ["@dcloudio/types", "miniprogram-api-typings", "mini-types"]
-=======
     "types": ["@dcloudio/types", "miniprogram-api-typings", "mini-types"],
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
     }
->>>>>>> development
   },
   "vueCompilerOptions": {
     "target": 2 //volar vue2配置
