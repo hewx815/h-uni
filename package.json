@@ -1,6 +1,6 @@
 {
   "name": "h-uni",
-  "version": "1.1.2",
+  "version": "1.1.1",
   "description": "uniapp 工具库，组件库",
   "author": "hewx",
   "license": "ISC",
@@ -31,15 +31,15 @@
     "axios": "^1.3.5",
     "commitizen": "^4.3.0",
     "eslint": "^8.39.0",
-    "eslint-config-hewx": "1.0.6",
+    "eslint-config-hewx": "^1.0.6",
     "inquirer": "^9.1.5",
     "standard-version": "^9.5.0",
-    "vitepress": "1.0.0-alpha.74"
+    "vitepress": "1.0.0-alpha.73"
   },
   "dependencies": {
     "columnify": "^1.6.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=16.0.0"
   }
 }

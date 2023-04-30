@@ -1,11 +1,4 @@
 h-uni
-### [1.1.2](https://github.com/hewx815/h-uni/compare/v1.1.1...v1.1.2) (2023-04-30)
-
-
-### 👷 Continuous Integration | CI 配置
-
-* 项目eslint 配置导入，vitepress 升级 74 ([15125a9](https://github.com/hewx815/h-uni/commit/15125a9b04aef156f2beef53a732f3090701ac45))
-
 ### [1.1.1](https://github.com/hewx815/h-uni/compare/v1.1.0...v1.1.1) (2023-04-29)
 
 

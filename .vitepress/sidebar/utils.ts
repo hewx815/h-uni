@@ -1,7 +1,11 @@
 export default [
   {
 <<<<<<< HEAD
+<<<<<<< HEAD
     text: "for-vue2",
+=======
+    text: 'for-vue2',
+>>>>>>> development
 =======
     text: 'for-vue2',
 >>>>>>> development
@@ -9,6 +13,7 @@ export default [
     items: [
       { text: '网络请求 Hhttp', link: '/for-vue2/utils/Hhttp' },
       { text: '开发者工具启动 h-run-devtools', link: '/for-vue2/utils/vue-cli-plugin-h-run-devtools' },
+<<<<<<< HEAD
 <<<<<<< HEAD
     ]
   },
@@ -21,6 +26,8 @@ export default [
   },
 ]
 =======
+=======
+>>>>>>> development
     ],
   },
   {
@@ -31,4 +38,7 @@ export default [
     ],
   },
 ];
+<<<<<<< HEAD
+>>>>>>> development
+=======
 >>>>>>> development

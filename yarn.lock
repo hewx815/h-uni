@@ -475,9 +475,15 @@
 
 "@types/node@*":
 <<<<<<< HEAD
+<<<<<<< HEAD
   version "18.16.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.16.1.tgz#5db121e9c5352925bb1f1b892c4ae620e3526799"
   integrity sha512-DZxSZWXxFfOlx7k7Rv4LAyiMroaxa3Ly/7OOzZO8cBNho0YzAi4qlbrx8W27JGqG57IgR/6J7r+nOJWw6kcvZA==
+=======
+  version "18.16.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.16.3.tgz#6bda7819aae6ea0b386ebc5b24bdf602f1b42b01"
+  integrity sha512-OPs5WnnT1xkCBiuQrZA4+YAV4HEJejmHneyraIaxsbev5yCEr6KMwINNFP9wQeFIw8FWcoTqF3vQsa5CDaI+8Q==
+>>>>>>> development
 =======
   version "18.16.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.16.3.tgz#6bda7819aae6ea0b386ebc5b24bdf602f1b42b01"
@@ -1666,7 +1672,11 @@ eslint-config-airbnb-base@^15.0.0:
     object.entries "^1.1.5"
     semver "^6.3.0"
 
+<<<<<<< HEAD
 eslint-config-hewx@1.0.6:
+=======
+eslint-config-hewx@^1.0.6:
+>>>>>>> development
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/eslint-config-hewx/-/eslint-config-hewx-1.0.6.tgz#b1148492b4b9d1b8a8eea35f947bf4448e3a4c8c"
   integrity sha512-mmTEfyRgoxYoHD+dpEipZab61kyZslhAiwRiikJC9O3i4+AU6PPdK/OuRtOaGwPQGrRieupQiNDrvq2mkMLiwQ==
@@ -3253,7 +3263,10 @@ pify@^3.0.0:
   integrity sha512-C3FsVNH1udSEX48gGX1xfvwTWfsYWj5U+8/uK15BGzIGrKoUpghX8hWZwa/OFnakBiiVNmBvemTJR5mcy7iPcg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> development
 postcss-selector-parser@^6.0.9:
   version "6.0.12"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.0.12.tgz#2efae5ffab3c8bfb2b7fbf0c426e3bca616c4abb"
@@ -3262,6 +3275,9 @@ postcss-selector-parser@^6.0.9:
     cssesc "^3.0.0"
     util-deprecate "^1.0.2"
 
+<<<<<<< HEAD
+>>>>>>> development
+=======
 >>>>>>> development
 postcss@^8.1.10, postcss@^8.4.23:
   version "8.4.23"
@@ -3466,9 +3482,15 @@ rimraf@^3.0.2:
 
 rollup@^3.21.0:
 <<<<<<< HEAD
+<<<<<<< HEAD
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.21.0.tgz#0a71517db56e150222670f88e5e7acfa4fede7c8"
   integrity sha512-ANPhVcyeHvYdQMUyCbczy33nbLzI7RzrBje4uvNiTDJGIMtlKoOStmympwr9OtS1LZxiDmE2wvxHyVhoLtf1KQ==
+=======
+  version "3.21.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.21.1.tgz#d56f32ee041383b60909e3d3195b54b69912dbb0"
+  integrity sha512-GpUgqWCw56OSiBKf7lcAITstYiBV1/EKaKYPl9r8HgAxc6/qYAVw1PaHWnvHWFziRaf4HsVCDLq/IGtBi1K/Zw==
+>>>>>>> development
 =======
   version "3.21.1"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.21.1.tgz#d56f32ee041383b60909e3d3195b54b69912dbb0"
@@ -3977,8 +3999,11 @@ validate-npm-package-license@^3.0.1:
 
 <<<<<<< HEAD
 vite@^4.3.0:
+<<<<<<< HEAD
 =======
 vite@^4.3.1:
+>>>>>>> development
+=======
 >>>>>>> development
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/vite/-/vite-4.3.3.tgz#26adb4aa01439fc4546c480ea547674d87289396"
@@ -3991,9 +4016,12 @@ vite@^4.3.1:
     fsevents "~2.3.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> development
 vitepress@1.0.0-alpha.73:
   version "1.0.0-alpha.73"
-  resolved "https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.73.tgz#d5b459299ab294507de2dea4f6f0b0592535a359"
+  resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-1.0.0-alpha.73.tgz#d5b459299ab294507de2dea4f6f0b0592535a359"
   integrity sha512-BWK7b5yYxdA3SeBnUV+ly8vJU2MFcQhjooycLDc2AsSd07uGp+WO6J6gBmjwHuOz5hgcNa+/VxGWKKwBycdbnA==
 =======
 vitepress@1.0.0-alpha.74:

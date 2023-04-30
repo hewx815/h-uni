@@ -1,11 +1,17 @@
 #!/usr/bin/env node
 <<<<<<< HEAD
+<<<<<<< HEAD
 import columnify from 'columnify';
 import * as argvs from './argvs/index.js';
 =======
 // eslint-disable-next-line node/no-unpublished-bin
 import columnify from 'columnify';
 import * as argvs from './argvs';
+>>>>>>> development
+=======
+// eslint-disable-next-line node/no-unpublished-bin
+import columnify from 'columnify';
+import * as argvs from './argvs/index';
 >>>>>>> development
 
 const argv = process.argv[2];
@@ -15,6 +21,10 @@ const help = () => {
   const columns = Object.keys(argvs).map((key) => ({
     Parameter: key,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    // eslint-disable-next-line import/namespace
+>>>>>>> development
 =======
     // eslint-disable-next-line import/namespace
 >>>>>>> development
@@ -24,6 +34,10 @@ const help = () => {
   const content = columnify(columns, { minWidth: 30 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  // eslint-disable-next-line no-console
+>>>>>>> development
 =======
   // eslint-disable-next-line no-console
 >>>>>>> development
@@ -44,6 +58,10 @@ const mian = () => {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  // eslint-disable-next-line import/namespace
+>>>>>>> development
 =======
   // eslint-disable-next-line import/namespace
 >>>>>>> development

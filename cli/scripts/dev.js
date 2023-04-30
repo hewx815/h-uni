@@ -5,6 +5,7 @@ import {
   choiceScript,
   runStart,
 <<<<<<< HEAD
+<<<<<<< HEAD
 } from './utils.js';
 
 import { setStorageSync, getStorageSync } from '../storage/index.js';
@@ -12,6 +13,12 @@ import { setStorageSync, getStorageSync } from '../storage/index.js';
 } from './utils';
 
 import { setStorageSync, getStorageSync } from '../storage/index';
+>>>>>>> development
+=======
+// eslint-disable-next-line import/extensions
+} from './utils.js';
+// eslint-disable-next-line import/extensions
+import { setStorageSync, getStorageSync } from '../storage/index.js';
 >>>>>>> development
 
 const lastModeKey = 'USER_LAST_MODE';

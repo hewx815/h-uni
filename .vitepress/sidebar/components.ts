@@ -1,6 +1,7 @@
 export default [
   {
 <<<<<<< HEAD
+<<<<<<< HEAD
     text: "for-vue2",
     collapsed: false,
     items: [
@@ -16,6 +17,8 @@ export default [
   },
 ]
 =======
+=======
+>>>>>>> development
     text: 'for-vue2',
     collapsed: false,
     items: [
@@ -30,4 +33,7 @@ export default [
     ],
   },
 ];
+<<<<<<< HEAD
+>>>>>>> development
+=======
 >>>>>>> development
