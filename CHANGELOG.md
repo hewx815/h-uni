@@ -2,20 +2,8 @@ h-uni
 ### [1.1.3](https://github.com/hewx815/h-uni/compare/v1.1.2...v1.1.3) (2023-04-30)
 
 
-### 👷 Continuous Integration | CI 配置
-
-* 调整 调整项目结构 ([54f8c55](https://github.com/hewx815/h-uni/commit/54f8c556602e280dafb9b20858992d5e10b1efab))
-
-
-### 🚀 Chore | 构建/工程依赖/工具
-
-* **release:** 1.0.4 ([f34c21a](https://github.com/hewx815/h-uni/commit/f34c21a6a69848803070f2373497217325976732))
-
-
 ### 🐛 Bug Fixes | Bug 修复
 
-* 同步master分支 ([6269dbf](https://github.com/hewx815/h-uni/commit/6269dbf3162b87b82c89bd9ea576970dd71d7293))
-* 修复：yarn build时vite的vue目录寻找出错问题 ([9205600](https://github.com/hewx815/h-uni/commit/9205600e62ba04b1bb46208391edce4da43c3371))
 * eslint 配置 bug 修复 ([999faca](https://github.com/hewx815/h-uni/commit/999facaa9bdebabb414b591f9ef16e32b70d53ac))
 
 ### [1.1.2](https://github.com/hewx815/h-uni/compare/v1.1.1...v1.1.2) (2023-04-30)
