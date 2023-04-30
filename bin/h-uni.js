@@ -1,6 +1,7 @@
 #!/usr/bin/env node
+// eslint-disable-next-line node/no-unpublished-bin
 import columnify from 'columnify';
-import * as argvs from './argvs/index.js';
+import * as argvs from './argvs/index';
 
 const argv = process.argv[2];
 
@@ -8,11 +9,13 @@ const argv = process.argv[2];
 const help = () => {
   const columns = Object.keys(argvs).map((key) => ({
     Parameter: key,
+    // eslint-disable-next-line import/namespace
     Description: argvs[key].description,
   }));
 
   const content = columnify(columns, { minWidth: 30 });
 
+  // eslint-disable-next-line no-console
   console.log(`
 [h-uni]：可用命令如下：
 ${content}`);
@@ -29,6 +32,7 @@ const mian = () => {
     return help();
   }
 
+  // eslint-disable-next-line import/namespace
   return argvs[item].fn();
 };
 

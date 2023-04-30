@@ -6,6 +6,7 @@ import {
   copyPackages,
   delDir,
   checkoutDir,
+// eslint-disable-next-line import/extensions
 } from './utils.js';
 
 const startBuild = async () => {

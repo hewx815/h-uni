@@ -1,9 +1,0 @@
-{
-  "env": {
-    "es2021": true
-  },
-  "extends": ["airbnb-base"],
-  "overrides": [],
-  "parserOptions": {},
-  "rules": {}
-}

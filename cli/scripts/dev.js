@@ -4,8 +4,9 @@ import {
   getScriptsList,
   choiceScript,
   runStart,
+// eslint-disable-next-line import/extensions
 } from './utils.js';
-
+// eslint-disable-next-line import/extensions
 import { setStorageSync, getStorageSync } from '../storage/index.js';
 
 const lastModeKey = 'USER_LAST_MODE';
