@@ -4,9 +4,15 @@ import {
   getScriptsList,
   choiceScript,
   runStart,
+<<<<<<< HEAD
 } from './utils.js';
 
 import { setStorageSync, getStorageSync } from '../storage/index.js';
+=======
+} from './utils';
+
+import { setStorageSync, getStorageSync } from '../storage/index';
+>>>>>>> development
 
 const lastModeKey = 'USER_LAST_MODE';
 

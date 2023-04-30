@@ -1,6 +1,12 @@
 #!/usr/bin/env node
+<<<<<<< HEAD
 import columnify from 'columnify';
 import * as argvs from './argvs/index.js';
+=======
+// eslint-disable-next-line node/no-unpublished-bin
+import columnify from 'columnify';
+import * as argvs from './argvs';
+>>>>>>> development
 
 const argv = process.argv[2];
 
@@ -8,11 +14,19 @@ const argv = process.argv[2];
 const help = () => {
   const columns = Object.keys(argvs).map((key) => ({
     Parameter: key,
+<<<<<<< HEAD
+=======
+    // eslint-disable-next-line import/namespace
+>>>>>>> development
     Description: argvs[key].description,
   }));
 
   const content = columnify(columns, { minWidth: 30 });
 
+<<<<<<< HEAD
+=======
+  // eslint-disable-next-line no-console
+>>>>>>> development
   console.log(`
 [h-uni]：可用命令如下：
 ${content}`);
@@ -29,6 +43,10 @@ const mian = () => {
     return help();
   }
 
+<<<<<<< HEAD
+=======
+  // eslint-disable-next-line import/namespace
+>>>>>>> development
   return argvs[item].fn();
 };
 

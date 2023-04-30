@@ -6,7 +6,11 @@ import {
   copyPackages,
   delDir,
   checkoutDir,
+<<<<<<< HEAD
 } from './utils.js';
+=======
+} from './utils';
+>>>>>>> development
 
 const startBuild = async () => {
   const CurrentPath = path.dirname(fileURLToPath(import.meta.url));
