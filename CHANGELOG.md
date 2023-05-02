@@ -1,4 +1,11 @@
 h-uni
+### [1.1.5](https://github.com/hewx815/h-uni/compare/v1.1.4...v1.1.5) (2023-05-02)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 命令行 bug 修复 ([bdfdcbc](https://github.com/hewx815/h-uni/commit/bdfdcbcadb60e43777e30b1eec777e67e26404cc))
+
 ### [1.1.4](https://github.com/hewx815/h-uni/compare/v1.1.3...v1.1.4) (2023-05-02)
 
 
