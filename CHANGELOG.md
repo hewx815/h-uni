@@ -1,4 +1,11 @@
 h-uni
+### [1.1.4](https://github.com/hewx815/h-uni/compare/v1.1.3...v1.1.4) (2023-05-02)
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* hhttp for-vue2 代码重构 ([efbda91](https://github.com/hewx815/h-uni/commit/efbda912e625f37166e89abe2ac389a6131f9b06))
+
 ### [1.1.3](https://github.com/hewx815/h-uni/compare/v1.1.2...v1.1.3) (2023-04-30)
 
 
