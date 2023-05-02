@@ -3,8 +3,7 @@ node_modules/
 for-vue2/dist
 for-vue3/dist
 
-dist/doc/*
-dist/npm/*
+doc/*
 
 cli/storage/index.json
 .vitepress/cache

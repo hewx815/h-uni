@@ -11,7 +11,7 @@ import utils from './sidebar/utils';
 const CurrentPath = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   lang: 'zh-CN',
-  outDir: path.resolve(CurrentPath, '../dist/doc'),
+  outDir: path.resolve(CurrentPath, '../doc'),
   srcExclude: ['dist/npm/**/*'],
   title: 'h-uni',
   lastUpdated: true,
@@ -25,7 +25,7 @@ export default defineConfig({
   },
   // 路径重写
   rewrites: {
-    ":for/src/packages/:type/:dd/:dd.md": ":for/:type/:dd.md",
+    ':for/src/packages/:type/:dd/:dd.md': ':for/:type/:dd.md',
   },
   themeConfig: {
     search: {
