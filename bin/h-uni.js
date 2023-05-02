@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // eslint-disable-next-line node/no-unpublished-bin
 import columnify from 'columnify';
-import * as argvs from './argvs/index';
+// eslint-disable-next-line import/extensions
+import * as argvs from './argvs/index.js';
 
 const argv = process.argv[2];
 
