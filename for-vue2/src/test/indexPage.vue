@@ -13,8 +13,19 @@ export default {
     };
   },
   async onLoad() {
-    const request = new this.$h.Hhttp({ data: { dd: 1 } });
-    console.log(request);
+    const request = new this.$h.Hhttp({
+      baseUrl: 'http://hewxing.cn:8000/api/dd',
+    });
+    request.interceptor.request = (config) => config;
+    request.interceptor.response = (res) => res;
+    await request.get('test/helloWorld');
+
+    try {
+      const data = await request.get('test/helloWorld');
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
   },
   methods: {
 

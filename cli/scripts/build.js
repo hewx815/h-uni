@@ -16,12 +16,12 @@ const startBuild = async () => {
 
   const vue2Package = {
     srcDir: getPath('../../for-vue2/src/packages'),
-    destDir: getPath('../../dist/npm/for-vue2'),
+    destDir: getPath('../../dist/for-vue2'),
   };
 
   const vue3Package = {
     srcDir: getPath('../../for-vue3/src/packages'),
-    destDir: getPath('../../dist/npm/for-vue3'),
+    destDir: getPath('../../dist/for-vue3'),
   };
 
   checkoutDir(vue2Package.destDir);
