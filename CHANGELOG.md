@@ -1,4 +1,11 @@
 h-uni
+### [1.1.7](https://github.com/hewx815/h-uni/compare/v1.1.6...v1.1.7) (2023-05-03)
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 新增：fot-vue2 组件工具安装文档，for-vue2 Hhttp bug 修复 ([7e6dbdf](https://github.com/hewx815/h-uni/commit/7e6dbdf019039cad0f9cd67a25d39f56a1a70f9c))
+
 ### [1.1.6](https://github.com/hewx815/h-uni/compare/v1.1.5...v1.1.6) (2023-05-02)
 
 
