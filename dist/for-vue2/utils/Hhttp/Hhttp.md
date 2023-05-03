@@ -19,7 +19,7 @@ outline: 'deep'
 
 ### 使用全局挂载的方法
 
-参考:[全局安装](/README.md)
+参考:[全局安装](/README.html#全局注册)
 
 ```js
 const Hhttp = this.$h.Hhttp;
@@ -162,42 +162,58 @@ request.post('https://www.baidu.com/s', { wd='哈哈哈' })
 
 
 ::: warning 实例方法返回值均为 [promise](https://javascript.info/promise-basics)
-promise resolve: `Object`
+promise resolve:[`requestInfo`](/for-vue2/utils/Hhttp.html#请求信息-requestinfo)
 
-promise reject: `Object`
-:::
-
-::: warning  `Object`数据结构
-`config`:当前实例
-
-`request`:请求信息
-
-`response`:响应信息
-
-`errMeaasge`:错误信息
+promise reject:[`requestInfo`](/for-vue2/utils/Hhttp.html#请求信息-requestinfo)
 :::
 
 ## 拦截器(interceptors)
 
 在请求或响应被 then 或 catch 处理前拦截它们。
 
+拦截器参数:[`requestInfo`](/for-vue2/utils/Hhttp.html#请求信息-requestinfo)
+
 ```js
 // 添加请求拦截器
-request.interceptors.request=(config)=>{
+request.interceptors.request=(info)=>{
   // 给每一条请求添加 的 header 添加 token
-  config.header={ ...config.header,token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'};
-  return config;
+  info.request.header={ ...info.request.header , token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' };
+  return info;
 };
 
 // 添加响应拦截器
-request.interceptors.response=(response)=>{
-  if(response.statusCode!==200){
+request.interceptors.response=(info)=>{
+  if(info.response.statusCode !== 200){
     // 返回失败响应
     return Promise.reject(`请求失败`);
   }else{
     // 返回成功响应
-    return response;
+    return info;
   }
 };
 
 ```
+
+## 请求信息 (requestInfo)
+
+请求对象从调用实例方法开始被创建，最终通过实例方法 promise 返回
+
+**以下位置可以拿到`requestInfo`**
+
+1.实例方法 promise 返回值
+
+2.请求拦截器、响应拦截器参数
+
+**请求不同阶段`requestInfo`会发生变化**
+
+`调用实例方法`=>`请求拦截器`=>`发起请求`=>`响应拦截器`=>`promise 结果`
+
+### 数据结构
+
+`config`:[当前实例](/for-vue2/utils/Hhttp.html#实例属性-实例化配置-baseoptions)
+
+`request`:请求信息
+
+`response`:响应信息
+
+`errMeaasge`:错误信息

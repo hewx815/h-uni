@@ -17,19 +17,21 @@ export default class Hhttp {
 
   // 配置实例
   constructor(options) {
-    this.baseUrl = options.baseUrl || null;
+    this.baseUrl = options ? options.baseUrl || null : null;
 
-    this.baseData = options.baseData || null;
+    this.baseData = options ? options.baseData || null : null;
 
-    this.baseHeader = options.baseHeader || null;
+    this.baseHeader = options ? options.baseHeader || null : null;
 
-    this.baseMethod = options.baseHeader || null;
+    this.baseMethod = options ? options.baseMethod || null : null;
 
-    this.baseTimeout = options.baseTimeout || null;
+    this.baseTimeout = options ? options.baseTimeout || null : null;
 
-    this.interceptor.request = options.interceptor ? options.interceptor.request || null : null;
+    // eslint-disable-next-line no-nested-ternary
+    this.interceptor.request = options ? options.interceptor ? options.interceptor.request || null : null : null;
 
-    this.interceptor.response = options.interceptor ? options.interceptor.response || null : null;
+    // eslint-disable-next-line no-nested-ternary
+    this.interceptor.response = options ? options.interceptor ? options.interceptor.response || null : null : null;
   }
 
   // 请求配置策略
@@ -94,7 +96,7 @@ export default class Hhttp {
 
   // 请求主函数
   async request(...args) {
-    const info = {
+    let info = {
       config: this,
       request: null,
       response: null,
@@ -114,7 +116,7 @@ export default class Hhttp {
     // 请求拦截器
     if (this.interceptor.request) {
       try {
-        info.request = await this.interceptor.request(info.request);
+        info = await this.interceptor.request(info);
       } catch (err) {
         // eslint-disable-next-line no-console
         console.error(err);
@@ -135,7 +137,7 @@ export default class Hhttp {
     // 响应拦截器
     if (this.interceptor.response) {
       try {
-        info.response = await this.interceptor.response(info.response);
+        info = await this.interceptor.response(info);
       } catch (err) {
         // eslint-disable-next-line no-console
         console.error(err);
