@@ -33,6 +33,7 @@
       <td colspan="5">{{ dd('VUE3') }}</td>
     </tr>
   </table>
+
   <div class="info ">
     <div class="warning custom-block" v-if="typeof props.APP === 'string'">APP：{{ ddd('APP') }}</div>
     <div class="warning custom-block" v-if="typeof props.H5 === 'string'">H5：{{ ddd('H5') }}</div>
