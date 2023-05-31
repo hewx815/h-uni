@@ -1,5 +1,6 @@
 <template>
   <table class="table">
+
     <tr>
       <td>平台</td>
       <td>APP</td>
