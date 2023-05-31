@@ -25,6 +25,7 @@
       <td>{{ dd('KUAISHOU') }}</td>
       <td>{{ dd('JD') }}</td>
     </tr>
+
     <tr>
       <td colspan="5">for-vue2</td>
       <td colspan="5">for-vue3</td>
