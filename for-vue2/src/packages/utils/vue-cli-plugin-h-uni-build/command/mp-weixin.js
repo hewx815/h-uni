@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { spawn } = require('child_process');
 
 const projectPath = process.argv[2];
@@ -33,14 +34,11 @@ const exit = () => new Promise((resolve, reject) => {
 const main = async (projectPath) => {
   const loginStatus = await isLogin();
   if (loginStatus) {
-    // eslint-disable-next-line no-console
     console.log('已登录微信开发者工具');
     await openProject(projectPath);
   } else {
-    // eslint-disable-next-line no-console
     console.log('未登录微信开发者工具');
     await login();
-    // eslint-disable-next-line no-console
     console.log('请使用微信扫描二维码登录');
     await openProject(projectPath);
   }

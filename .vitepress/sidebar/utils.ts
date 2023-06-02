@@ -4,7 +4,7 @@ export default [
     collapsed: false,
     items: [
       { text: 'Hhttp(网络请求)', link: '/for-vue2/utils/Hhttp' },
-      { text: 'h-run-devtools(开发者工具启动插件)', link: '/for-vue2/utils/vue-cli-plugin-h-run-devtools' },
+      { text: 'h-uni-build(扩展uni-build)', link: '/for-vue2/utils/vue-cli-plugin-h-uni-build' },
     ],
   },
   {

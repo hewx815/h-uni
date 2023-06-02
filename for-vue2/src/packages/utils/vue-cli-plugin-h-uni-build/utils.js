@@ -3,14 +3,14 @@ const path = require('path');
 
 const err = (message) => {
   throw new Error(`
-[h-open-devtools]:${message}
+[h-uni-build]:${message}
 `);
 };
 
 const log = (message) => {
   // eslint-disable-next-line no-console
   console.log(`
-[h-open-devtools]:${message}
+[h-uni-builds]:${message}
 `);
 };
 
