@@ -1,11 +1,8 @@
-/* eslint-disable import/extensions */
+/* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { defineConfig } from 'vitepress';
 import { fileURLToPath } from 'url';
-// eslint-disable-next-line import/no-unresolved, node/no-missing-import
 import components from './sidebar/components';
-// eslint-disable-next-line import/no-unresolved, node/no-missing-import
 import utils from './sidebar/utils';
 
 const CurrentPath = path.dirname(fileURLToPath(import.meta.url));
@@ -15,6 +12,7 @@ export default defineConfig({
   srcExclude: ['dist/npm/**/*'],
   title: 'h-uni',
   lastUpdated: true,
+  cleanUrls: true,
   // Vite config options
   vite: {
     resolve: {
@@ -25,7 +23,7 @@ export default defineConfig({
   },
   // 路径重写
   rewrites: {
-    ':for/src/packages/:type/:dd/:dd.md': ':for/:type/:dd.md',
+    ':for/src/packages/:type/:dd/README.md': ':for/:type/:dd.md',
   },
   themeConfig: {
     search: {

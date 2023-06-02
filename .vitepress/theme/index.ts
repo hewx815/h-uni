@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-unresolved, node/no-missing-import
+/* eslint-disable import/no-extraneous-dependencies */
 import DefaultTheme from 'vitepress/theme';
 import './custom.css';
 import * as components from '../components';
