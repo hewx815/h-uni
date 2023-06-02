@@ -34,7 +34,7 @@
     "eslint-config-hewx": "^1.0.6",
     "inquirer": "^9.1.5",
     "standard-version": "^9.5.0",
-    "vitepress": "1.0.0-alpha.73"
+    "vitepress": "^1.0.0-beta.1"
   },
   "dependencies": {
     "columnify": "^1.6.0"
