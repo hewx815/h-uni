@@ -8,7 +8,6 @@ const {
 */
 module.exports = async (api, options) => {
   const { openDevTools, afterBuild } = options.pluginOptions['h-uni-build'] ? options.pluginOptions['h-uni-build'] : {};
-
   /**
    * @name openDevTools
   */
