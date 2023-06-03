@@ -1,4 +1,17 @@
 h-uni
+### [1.1.9](https://github.com/hewx815/h-uni/compare/v1.1.8...v1.1.9) (2023-06-03)
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* vitepress 升级 1.0.0-beta.1 ([4f6ef8b](https://github.com/hewx815/h-uni/commit/4f6ef8bbc232464132d4babc8bcb915bc332d112))
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* 项目文档 README 路径调整 ([e804046](https://github.com/hewx815/h-uni/commit/e8040464e09572706f5af8de109e2278eb25244f))
+* vue-cli-plugin-h-run-devtools => vue-cli-plugin-h-uni-build ([b902580](https://github.com/hewx815/h-uni/commit/b902580965e8071d87f3a7af867a879db68cb612))
+
 ### [1.1.8](https://github.com/hewx815/h-uni/compare/v1.1.7...v1.1.8) (2023-05-03)
 
 
