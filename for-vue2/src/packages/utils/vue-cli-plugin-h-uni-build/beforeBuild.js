@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line import/no-extraneous-dependencies
-const inquirer = require('inquirer');
+// const inquirer = require('inquirer');
 
 module.exports = async (api, options) => {
-  console.log(1111111111);
   const { setMode, beforeBuild } = options.pluginOptions['h-uni-build'] ? options.pluginOptions['h-uni-build'] : {};
 
   if (beforeBuild) {
