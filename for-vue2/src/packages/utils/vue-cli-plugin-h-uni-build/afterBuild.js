@@ -1,37 +1,56 @@
 const { spawn } = require('child_process');
 const {
-  getCommandPath, validPath, getConfig,
+  getCommandPath, validPath, err,
 } = require('./utils');
 
 /**
  * @description uni-build 之后运行的函数
 */
 module.exports = async (api, options) => {
-  // 获取用户配置
-  const userConfig = options.pluginOptions['h-uni-build'];
+  const { openDevTools, afterBuild } = options.pluginOptions['h-uni-build'] ? options.pluginOptions['h-uni-build'] : {};
 
-  // 获取命令文件路径
-  const commandPath = getCommandPath();
+  /**
+   * @name openDevTools
+  */
+  if (openDevTools) {
+    // 获取命令文件路径
+    const commandPath = getCommandPath();
+    if (!commandPath) {
+      return;
+    }
 
-  if (!commandPath) {
-    return;
+    // 获取开发者路径
+    const platFrom = process.env.UNI_PLATFORM;
+    const devToolPath = openDevTools.path[platFrom];
+    if (!validPath(devToolPath)) {
+      err(`没有这样的文件夹：${devToolPath}`);
+      return;
+    }
+
+    // 项目路径
+    const projectDir = openDevTools.projectDir || options.outputDir;
+
+    // 退出时是否关闭开发者工具
+    const { exitClose } = openDevTools;
+
+    // 运行：在开发者工具目录下执行cmd，运行对应平台对应的js，发送了第三个参数：传递项目路径
+    spawn('cmd.exe', ['/c', `node ${commandPath} ${projectDir} 0`], { cwd: devToolPath, stdio: 'inherit' });
+
+    if (exitClose) {
+      // 退出：第四个参数为 1
+      process.on('SIGINT', () => {
+        const exitCmd = spawn('cmd.exe', ['/c', `node ${commandPath} ${projectDir} 1`], { cwd: devToolPath });
+        exitCmd.on('exit', () => {
+          process.exit();
+        });
+      });
+    }
   }
-  // 获取配置
-  const config = getConfig(userConfig, options);
 
-  // 检测路径是否存在
-  Object.keys(config).forEach((key) => {
-    validPath(config[key]);
-  });
-
-  // 运行：在开发者工具目录下执行cmd，运行对应平台对应的js，发送了第三个参数：传递项目路径
-  spawn('cmd.exe', ['/c', `node ${commandPath} ${config.projectPath} 0`], { cwd: config.cwd, stdio: 'inherit' });
-
-  // 退出：第四个参数为 1
-  process.on('SIGINT', () => {
-    const exitCmd = spawn('cmd.exe', ['/c', `node ${commandPath} ${config.projectPath} 1`], { cwd: config.cwd });
-    exitCmd.on('exit', () => {
-      process.exit();
-    });
-  });
+  /**
+   * @name afterBuild
+  */
+  if (afterBuild) {
+    await afterBuild(api, options);
+  }
 };

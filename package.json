@@ -32,12 +32,12 @@
     "commitizen": "^4.3.0",
     "eslint": "^8.39.0",
     "eslint-config-hewx": "^1.1.2",
-    "inquirer": "^9.1.5",
     "standard-version": "^9.5.0",
     "vitepress": "^1.0.0-beta.1"
   },
   "dependencies": {
-    "columnify": "^1.6.0"
+    "columnify": "^1.6.0",
+    "inquirer": "^9.2.6"
   },
   "engines": {
     "node": ">=16.0.0"

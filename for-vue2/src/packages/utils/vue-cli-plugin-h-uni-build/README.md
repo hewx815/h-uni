@@ -20,7 +20,7 @@ outline: 'deep'
 
 简单三步完成`vue-cli-plugin-h-uni-build`的安装
 
-#### 1.首先确保您已经成功安装了`h-uni`
+**1.首先确保您已经成功安装了`h-uni`**
 
 在您的项目根目录运行以下命令：
 
@@ -38,7 +38,7 @@ npm run h-uni
 
 如果没有，请移步至：[h-uni 安装](/README.html#安装)
 
-#### 2.内置的`vue-cli-plugin-h-uni-build`插件默认是没有启用的，我们需要手动启用
+**2.内置的`vue-cli-plugin-h-uni-build`插件默认是没有启用的，我们需要手动启用**
 
 在您的项目根目录运行以下命令：
 
@@ -54,7 +54,7 @@ npm run h-uni initHUniBuild
 
 成功后您会看到成功提示
 
-#### 3.配置插件
+**3.配置插件**
 
 [`配置项`](#配置项)应该在项目根目录的`vue.config.js`文件中的`pluginOptions`中的`h-uni-build`中配置
 
@@ -74,67 +74,94 @@ module.exports = {
 
 ### openDevTools
 
-- 类型  `Object || false`
-
 项目编译后自动打开开发者工具，适用于使用cli搭建的uniapp项目
 
-`false`代表着不启用此插件`Object`反之
+在项目中运行你的启动命令，如：
+
+```shell
+yarn dev:mp-weixin
+```
+
+在uniapp打包编译`完成后`会自动打开对微信开发者工具
+
+**启用或关闭此功能**
+
+把`openDevTools`配置成`false`,或者将此配置项置空,此功能即关闭
 
 ---
 
-#### openDevTools.open
-- 类型 `Boolean`
+#### openDevTools.paths
+- **类型:** `Object`
 
-此扩展是否启用
+`Object<key>`:开发者工具标识
 
----
+`Object<value>`:开发者工具的安装路径(绝对路径)
 
-#### openDevTools.path
-- 类型 `Array`
+```javascript
 
-开发者工具的安装路径
+module.exports = {
+  pluginOptions: {
+    openDevTools:{
+      paths:{
+        'mp-weixin':'D:\\wechatDev\\微信web开发者工具',
+        // ... 其他开发者工具目录
+      },
+    },
+  },
+};
+```
 
 ---
 
 #### openDevTools.exitClose
-- type `Boolean`
+- **类型:** `Boolean`
+- **默认:** `false`
 
 退出时是否关闭开发者工具
+
+::: info 微信平台：
+
+1.如果`未登录`会在控制台打印登录二维码，扫码登录
+
+2.`ctrl+c`退出进程时会提示：是否阻止关闭开发者工具，3s未选择后自动关闭
+
+:::
 
 ---
 
 #### openDevTools.projectDir
-- type `Object`
+- **类型:** `String`
+- **默认:** `uniapp` 默认编译输出文件夹
 
-编译后项目的路径
+编译后项目的路径(绝对路径)
 
 ---
 
-### setMode
-- type `Array<object> || false`
+### setMode(此功能开发中。。。)
+- **类型:** `Array<object> || false`
 
 项目编译前以指定的模式启动，模式中可配置该模式使用的 `manifest.json` 文件、`pages.json` 文件、`env` 环境变量，或者只更改部分选择，
 
 `false`:不启用此插件，`Array`反之
 
----
+<!-- ---
 
 #### setModeitem.name
-- type `String`
+- **类型:** `String`
 
 模式的名称
 
 ---
 
 #### setModeitem.env
-- env `Any`
+- **类型:** `Any`
 
 为此模式设置的环境变量
 
 ---
 
 #### setModeitem.manifestJson
-- type `String || Object`
+- **类型:** `String || Object`
 
 该模式的`manifest.json`文件
 
@@ -145,7 +172,7 @@ module.exports = {
 ---
 
 #### setModeitem.pagesJson
-- type `String || Object`
+- **类型:** `String || Object`
 
 该模式的`pages.json`文件
 
@@ -156,18 +183,18 @@ module.exports = {
 ---
 
 #### setModeitem.callback
-- type `function`
+- **类型:** `function`
 
 以此模式构建时可以在插件运行前在此处发起异步任务
 
 ::: warning
-`setModeitem.callback`在`beforeBuild`之后执行
+`setModeitem.callback`在`beforeBuild`之后`uni-build`之前执行
 :::
 
 ---
 
 ### beforeBuild 和 afterBuild
-- type `function`
+- **类型:** `function`
 
 构建前运行`beforeBuild`,比内置插件更早
 
@@ -175,27 +202,9 @@ module.exports = {
 
 可处理异步任务
 
----
+--- -->
 
-## TODO:
 
-如果您成功安装并启用了`vue-cli-plugin-h-run-devtools`
-
-接下来在项目中运行你的启动命令，如：
-
-```shell
-yarn dev:mp-weixin
-```
-
-在uniapp打包编译`完成后`会自动打开对应平台的开发者工具
-
-::: info 微信平台：
-
-1.如果`未登录`会在控制台打印登录二维码，扫码登录
-
-2.`ctrl+c`退出进程时会提示：是否阻止关闭开发者工具，3s未选择后自动关闭
-
-:::
 
 
 

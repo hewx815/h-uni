@@ -15,20 +15,6 @@ const log = (message) => {
 };
 
 /**
- * 获取配置
-*/
-const getConfig = (userConfig, options) => {
-  const platFrom = process.env.UNI_PLATFORM;
-  if (!userConfig[platFrom]) {
-    err(`缺少配置： ${platFrom}`);
-  }
-  return {
-    cwd: userConfig[platFrom],
-    projectPath: userConfig.projectPath || options.outputDir,
-  };
-};
-
-/**
  * 获取运行命令文件
 */
 const getCommandPath = () => {
@@ -48,13 +34,8 @@ const getCommandPath = () => {
 /**
  * 校验路径
 */
-const validPath = (pathD) => {
-  const dd = fs.statSync(pathD).isDirectory();
-  if (!dd) {
-    err(`没有这样的文件夹：${pathD}`);
-  }
-};
+const validPath = (pathD) => fs.statSync(pathD).isDirectory();
 
 module.exports = {
-  err, log, getCommandPath, validPath, getConfig,
+  err, log, getCommandPath, validPath,
 };
