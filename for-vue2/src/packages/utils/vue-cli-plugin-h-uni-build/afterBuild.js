@@ -12,6 +12,9 @@ module.exports = async (api, options) => {
    * @name openDevTools
   */
   if (openDevTools) {
+    if (!openDevTools.paths) {
+      err('缺少\'paths\'配置');
+    }
     // 获取命令文件路径
     const commandPath = getCommandPath();
     if (!commandPath) {
@@ -20,7 +23,11 @@ module.exports = async (api, options) => {
 
     // 获取开发者路径
     const platFrom = process.env.UNI_PLATFORM;
-    const devToolPath = openDevTools.path[platFrom];
+    if (!openDevTools.paths[platFrom]) {
+      err(`缺少paths.${platFrom}配置`);
+      return;
+    }
+    const devToolPath = openDevTools.paths[platFrom];
     if (!validPath(devToolPath)) {
       err(`没有这样的文件夹：${devToolPath}`);
       return;

@@ -1,8 +1,6 @@
 const afterBuild = require('./afterBuild');
 const beforeBuild = require('./beforeBuild');
 
-console.log(111111111111111);
-
 module.exports = (api, options) => {
   const serve = api.service.commands['uni-build'];
   const serveFn = serve.fn;
