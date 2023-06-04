@@ -6,9 +6,9 @@ module.exports = (api, options) => {
   const serveFn = serve.fn;
 
   const fn = async (...args) => {
-    await beforeBuild(api, options);
+    await beforeBuild(api, options, args);
     await serveFn(...args);
-    await afterBuild(api, options);
+    await afterBuild(api, options, args);
   };
   serve.fn = (...args) => fn(...args);
 };

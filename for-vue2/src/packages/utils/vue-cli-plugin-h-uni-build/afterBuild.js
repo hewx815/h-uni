@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const { spawn } = require('child_process');
 const {
   getCommandPath, validPath, err,
@@ -6,15 +7,20 @@ const {
 /**
  * @description uni-build 之后运行的函数
 */
-module.exports = async (api, options) => {
+module.exports = async (api, options, args) => {
   const { openDevTools, afterBuild } = options.pluginOptions['h-uni-build'] ? options.pluginOptions['h-uni-build'] : {};
-  /**
-   * @name openDevTools
-  */
+
+  // afterBuild
+  if (typeof afterBuild === 'function') {
+    await afterBuild(api, options);
+  }
+
+  // openDevTools
   if (openDevTools) {
     if (!openDevTools.paths) {
       err('缺少\'paths\'配置');
     }
+
     // 获取命令文件路径
     const commandPath = getCommandPath();
     if (!commandPath) {
@@ -51,12 +57,5 @@ module.exports = async (api, options) => {
         });
       });
     }
-  }
-
-  /**
-   * @name afterBuild
-  */
-  if (afterBuild) {
-    await afterBuild(api, options);
   }
 };

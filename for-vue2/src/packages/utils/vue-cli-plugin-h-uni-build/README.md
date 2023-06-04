@@ -72,25 +72,41 @@ module.exports = {
 
 ## 配置项
 
-### openDevTools
+[`openDevTools`](#opendevtools):开发者工具启动器
+
+[`setMode`](#setmode):为项目设置启动模式
+
+[`beforeBuild`](#beforebuild-和-afterbuild):`uni-build`构建之前的回调函数
+
+[`afterBuild`](#beforebuild-和-afterbuild):`uni-build`构建之后的回调函数
+
+
+
+## openDevTools
+
+- **类型:** `Object || false`
 
 项目编译后自动打开开发者工具，适用于使用cli搭建的uniapp项目
 
-在项目中运行你的启动命令，如：
+-  **使用示例**
+
+正确配置后，在项目中运行你的启动命令，如：
 
 ```shell
 yarn dev:mp-weixin
+
+# 在uniapp打包编译`完成后`会自动打开对微信开发者工具
 ```
 
-在uniapp打包编译`完成后`会自动打开对微信开发者工具
 
-**启用或关闭此功能**
+
+- **启用或关闭此功能**
 
 把`openDevTools`配置成`false`,或者将此配置项置空,此功能即关闭
 
 ---
 
-#### openDevTools.paths
+### openDevTools.paths
 - **类型:** `Object`
 
 `Object<key>`:开发者工具标识
@@ -113,7 +129,7 @@ module.exports = {
 
 ---
 
-#### openDevTools.exitClose
+### openDevTools.exitClose
 - **类型:** `Boolean`
 - **默认:** `false`
 
@@ -129,7 +145,7 @@ module.exports = {
 
 ---
 
-#### openDevTools.projectDir
+### openDevTools.projectDir
 - **类型:** `String`
 - **默认:** `uniapp` 默认编译输出文件夹
 
@@ -137,30 +153,66 @@ module.exports = {
 
 ---
 
-### setMode(此功能开发中。。。)
+## setMode
 - **类型:** `Array<object> || false`
 
 项目编译前以指定的模式启动，模式中可配置该模式使用的 `manifest.json` 文件、`pages.json` 文件、`env` 环境变量，或者只更改部分选择，
 
-`false`:不启用此插件，`Array`反之
+-  **使用示例**
 
-<!-- ---
+```javascript
+// TODO:
+```
 
-#### setModeitem.name
+- **启用或关闭此功能**
+
+把`setMode`配置成`false`、空数组`[]`,或者将此配置项置空,此功能即关闭
+
+
+---
+
+### setModeitem.name
 - **类型:** `String`
 
 模式的名称
 
 ---
 
-#### setModeitem.env
-- **类型:** `Any`
+### setModeitem.env
+- **类型:** `Object`
 
 为此模式设置的环境变量
 
+`Object<key>`:环境变量名称
+
+`Object<value>`环境变量内容
+
+```javascript
+// vue.config.js
+module.exports = {
+  pluginOptions: {
+    'h-uni-build': {
+      setMode: [
+        {
+          name: '模式1',
+          env: {
+            APP_MODE: '"模式1"',
+          },
+        },
+      ],
+    },
+  },
+};
+
+// index.vue
+console.log(process.env.APP_MODE === '模式1'); // true
+
+
+```
+
 ---
 
-#### setModeitem.manifestJson
+### setModeitem.manifestJson
 - **类型:** `String || Object`
 
 该模式的`manifest.json`文件
@@ -171,7 +223,7 @@ module.exports = {
 
 ---
 
-#### setModeitem.pagesJson
+### setModeitem.pagesJson
 - **类型:** `String || Object`
 
 该模式的`pages.json`文件
@@ -182,18 +234,7 @@ module.exports = {
 
 ---
 
-#### setModeitem.callback
-- **类型:** `function`
-
-以此模式构建时可以在插件运行前在此处发起异步任务
-
-::: warning
-`setModeitem.callback`在`beforeBuild`之后`uni-build`之前执行
-:::
-
----
-
-### beforeBuild 和 afterBuild
+## beforeBuild 和 afterBuild
 - **类型:** `function`
 
 构建前运行`beforeBuild`,比内置插件更早
@@ -202,7 +243,7 @@ module.exports = {
 
 可处理异步任务
 
---- -->
+---
 
 
 
