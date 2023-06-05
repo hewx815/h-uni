@@ -48,7 +48,7 @@ module.exports = async (api, options, args) => {
     // manifestJson
     if (userConfig.manifestJson) {
       const manifestJsonPath = path.resolve(inputDir, 'manifest.json');
-      const manifestDefaultJsonPath = path.resolve(inputDir, 'manifest.json');
+      const manifestDefaultJsonPath = path.resolve(inputDir, 'manifestDefault.json');
 
       // 备份
       if (!fs.existsSync(manifestDefaultJsonPath)) {
