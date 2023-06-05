@@ -98,7 +98,7 @@ module.exports = async (api, options, args) => {
       if (typeof userConfig.pagesJson === 'object') {
         const userPages = userConfig.pagesJson;
         const pages = JSON.parse(stripJsonComments(pagesJson));
-        const userPagesJson = JSON.stringify(mergeObjects(userPages, pages));
+        const userPagesJson = JSON.stringify(mergeObjects(pages, userPages));
 
         fs.writeFileSync(pagesJsonPath, userPagesJson);
       }
