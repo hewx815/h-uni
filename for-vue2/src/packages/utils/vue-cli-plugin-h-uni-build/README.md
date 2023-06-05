@@ -72,9 +72,9 @@ module.exports = {
 
 ## 配置项
 
-[`openDevTools`](#opendevtools):开发者工具启动器
+[`openDevTools`](#opendevtools):开发者工具启动器（内置功能）
 
-[`setMode`](#setmode):为项目设置启动模式
+[`setMode`](#setmode):为项目设置启动模式（内置功能）
 
 [`beforeBuild`](#beforebuild-和-afterbuild):`uni-build`构建之前的回调函数
 
@@ -151,34 +151,74 @@ module.exports = {
 
 编译后项目的路径(绝对路径)
 
----
-
 ## setMode
 - **类型:** `Array<object> || false`
 
-项目编译前以指定的模式启动，模式中可配置该模式使用的 `manifest.json` 文件、`pages.json` 文件、`env` 环境变量，或者只更改部分选择，
+项目编译前提示选择模式启动，模式中可配置该模式使用的 `manifest.json` 文件、`pages.json` 文件、`env` 环境变量，或者只更改部分选择
+
+::: warning
+
+如果使用`setMode`并配置了`setModeItem.manifestJson`或`setModeItem.pagesJson`
+
+首次启动后，不能在原来的`manifest.json`或`pages.json`文件中配置
+
+需要在生成的`pagesDefault.json`或`manifestDefault.json`中配置默认的配置项
+
+:::
 
 -  **使用示例**
 
+配置了一个名称为：`模式1` 的启动方式
+
+以该模式启动的环境变量`APP_MODE`为`"模式1"`
+
+把`./src/manifestMode1.json`作为该模式的`manifest.json`
+
+以该模式启动的`navigationBarBackgroundColor`为黑色`(#000)`
+
 ```javascript
-// TODO:
+// vue.config.js
+const fs = require('fs');
+const path = require('path');
+
+module.exports = {
+  pluginOptions: {
+    'h-uni-build': {
+      setMode: [
+        {
+          name: '模式1',
+          env: {
+            APP_MODE: '"模式1"',
+          },
+          manifestJson: fs.readFileSync(path.resolve(__dirname,'./src/manifestMode1.json')),
+          pagesJson: {
+            globalStyle: {
+              navigationBarBackgroundColor: '#999',
+            },
+          },
+        },
+      ],
+    },
+  },
+};
+
 ```
+
 
 - **启用或关闭此功能**
 
 把`setMode`配置成`false`、空数组`[]`,或者将此配置项置空,此功能即关闭
 
-
 ---
 
-### setModeitem.name
+### setModeItem.name
 - **类型:** `String`
 
 模式的名称
 
 ---
 
-### setModeitem.env
+### setModeItem.env
 - **类型:** `Object`
 
 为此模式设置的环境变量
@@ -212,38 +252,53 @@ console.log(process.env.APP_MODE === '模式1'); // true
 
 ---
 
-### setModeitem.manifestJson
+### setModeItem.manifestJson
 - **类型:** `String || Object`
 
 该模式的`manifest.json`文件
 
 `String`:指定一个`manifest.json`文件路径
 
-`Object`:覆盖原有的`manifest.json`文件运行
+`Object`:覆盖原有的`manifest.json`中的部分配置
 
 ---
 
-### setModeitem.pagesJson
+### setModeItem.pagesJson
 - **类型:** `String || Object`
 
 该模式的`pages.json`文件
 
 `String`:指定一个`pages.json`文件路径
 
-`Object`:覆盖原有的`pages.json`文件运行
-
----
+`Object`:覆盖原有的`pages.json`中的部分配置
 
 ## beforeBuild 和 afterBuild
 - **类型:** `function`
+- **参数:** `(api, options, args)`
 
-构建前运行`beforeBuild`,比内置插件更早
+`api`:[vue-cli/config](https://cli.vuejs.org/zh/config)
 
-构建后运行`afterBuild`,比内置插件更晚
+`options`:[vue-cli/pluginoptions](https://cli.vuejs.org/zh/config/#pluginoptions)
 
-可处理异步任务
+`args`:运行命令参数
 
----
+这是两个`vue-cli-plugin-h-uni-build`构建前、后的回调函数
+
+可在此处处理异步任务，或者进行更灵活的扩展
+
+构建前运行`beforeBuild`,比内置功能更早
+
+构建后运行`afterBuild`,比内置功能更晚
+
+## pagesDefault.json 和 manifestDefault.json
+
+每次运行时都会更新`pagesDefault.json`和`manifestDefault.json`
+
+如果不存在`pagesDefault.json`和`manifestDefault.json`，则自动从`manifest.json`和`pages.json`中获取配置并生成文件
+
+如果存在，则把`pagesDefault.json`和`manifestDefault.json`作为`默认配置项`
+
+如果是覆盖模式，则把`setModeItem.manifestJson`和`setModeItem.pagesJson`中的配置项覆盖`默认配置项`并写入`manifest.json`和`pages.json`作为该模式的启动文件
 
 
 

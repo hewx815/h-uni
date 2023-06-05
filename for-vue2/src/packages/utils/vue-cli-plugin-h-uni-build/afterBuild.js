@@ -10,11 +10,6 @@ const {
 module.exports = async (api, options, args) => {
   const { openDevTools, afterBuild } = options.pluginOptions['h-uni-build'] ? options.pluginOptions['h-uni-build'] : {};
 
-  // afterBuild
-  if (typeof afterBuild === 'function') {
-    await afterBuild(api, options);
-  }
-
   // openDevTools
   if (openDevTools) {
     if (!openDevTools.paths) {
@@ -57,5 +52,10 @@ module.exports = async (api, options, args) => {
         });
       });
     }
+  }
+
+  // afterBuild
+  if (typeof afterBuild === 'function') {
+    await afterBuild(api, options, args);
   }
 };

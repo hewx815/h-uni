@@ -3,7 +3,7 @@ module.exports = {
     'h-uni-build': {
       openDevTools: {
         paths: {
-          'mp-weixin': 'E:\\微信web开发者工具',
+          'mp-weixin': 'D:\\wechatDev\\微信web开发者工具',
         },
       },
       setMode: [
@@ -15,7 +15,7 @@ module.exports = {
           manifestJson: '',
           pagesJson: {
             globalStyle: {
-              navigationBarBackgroundColor: '#00000',
+              navigationBarBackgroundColor: '#999',
             },
           },
         },

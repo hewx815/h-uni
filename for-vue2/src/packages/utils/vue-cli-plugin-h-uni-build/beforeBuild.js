@@ -3,13 +3,20 @@
 const inquirer = require('inquirer8');
 const fs = require('fs');
 const path = require('path');
+const stripJsonComments = require('strip-json-comments');
 const { validPath, mergeObjects } = require('./utils');
 
 module.exports = async (api, options, args) => {
   const { setMode, beforeBuild } = options.pluginOptions['h-uni-build'] ? options.pluginOptions['h-uni-build'] : {};
 
-  // 选择模式
+  // beforeBuild
+  if (typeof beforeBuild === 'function') {
+    await beforeBuild(api, options, args);
+  }
+
+  // setMode
   if (setMode && setMode.length !== 0) {
+    // 选择模式
     const names = setMode.map((item) => item.name);
     const { mode } = await inquirer.prompt([
       {
@@ -40,11 +47,17 @@ module.exports = async (api, options, args) => {
 
     // manifestJson
     if (userConfig.manifestJson) {
-      const manifestJsonPath = path.join(inputDir, 'manifest.json');
-      const manifestJson = fs.readFileSync(manifestJsonPath, 'utf-8');
+      const manifestJsonPath = path.resolve(inputDir, 'manifest.json');
+      const manifestDefaultJsonPath = path.resolve(inputDir, 'manifest.json');
 
-      // TODO:
-      // 覆盖manifest.json
+      // 备份
+      if (!fs.existsSync(manifestDefaultJsonPath)) {
+        fs.copyFileSync(manifestJsonPath, manifestDefaultJsonPath);
+      }
+
+      const manifestJson = fs.readFileSync(manifestDefaultJsonPath, 'utf-8');
+
+      // 覆盖
       if (typeof userConfig.manifestJson === 'string') {
         const userManifestJsonPath = userConfig.manifestJson;
         const userManifestJson = fs.readFileSync(userManifestJsonPath, 'utf-8');
@@ -52,22 +65,28 @@ module.exports = async (api, options, args) => {
         fs.writeFileSync(manifestJsonPath, userManifestJson);
       }
 
-      // 修改manifest.json
+      // 修改
       if (typeof userConfig.manifestJson === 'object') {
         const userManifest = userConfig.manifestJson;
-        const manifest = JSON.parse(manifestJson);
+        const manifest = JSON.parse(stripJsonComments(manifestJson));
         const userManifestJson = JSON.stringify(mergeObjects(userManifest, manifest));
 
         fs.writeFileSync(manifestJsonPath, userManifestJson);
       }
     }
 
-    // 设置pagesJson
+    // pagesJson
     if (userConfig.pagesJson) {
       const pagesJsonPath = path.resolve(path.resolve(inputDir, 'pages.json'));
-      const pagesJson = fs.readFileSync(pagesJsonPath, 'utf-8');
-      // TODO:
-      // 覆盖pages.json
+      const pagesDefaultPath = path.resolve(inputDir, 'pagesDefault.json');
+
+      // 备份
+      if (!fs.existsSync(pagesDefaultPath)) {
+        fs.copyFileSync(pagesJsonPath, pagesDefaultPath);
+      }
+      const pagesJson = fs.readFileSync(pagesDefaultPath, 'utf-8');
+
+      // 覆盖
       if (typeof userConfig.pagesJson === 'string') {
         const userPagesJsonPath = userConfig.pagesJson;
         const userPagesJson = fs.readFileSync(userPagesJsonPath, 'utf-8');
@@ -75,19 +94,14 @@ module.exports = async (api, options, args) => {
         fs.writeFileSync(pagesJsonPath, userPagesJson);
       }
 
-      // 修改pagesJson
+      // 修改
       if (typeof userConfig.pagesJson === 'object') {
         const userPages = userConfig.pagesJson;
-        const pages = JSON.parse(pagesJson);
+        const pages = JSON.parse(stripJsonComments(pagesJson));
         const userPagesJson = JSON.stringify(mergeObjects(pages, userPages));
 
         fs.writeFileSync(pagesJsonPath, userPagesJson);
       }
     }
-  }
-
-  // beforeBuild
-  if (typeof beforeBuild === 'function') {
-    await beforeBuild();
   }
 };
