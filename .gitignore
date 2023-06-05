@@ -7,5 +7,4 @@ doc/
 
 cli/storage/index.json
 .vitepress/cache
-
 yarn-error.log
