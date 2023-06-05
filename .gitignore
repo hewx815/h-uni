@@ -4,7 +4,6 @@ for-vue2/dist
 for-vue3/dist
 
 doc/
-dist/
 
 cli/storage/index.json
 .vitepress/cache
