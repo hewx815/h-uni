@@ -2,9 +2,7 @@
   "pages": [
     {
       "path": "test/indexPage",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
+      "style": { "navigationBarTitleText": "uni-app" }
     }
   ],
   "globalStyle": {

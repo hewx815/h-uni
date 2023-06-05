@@ -69,7 +69,7 @@ module.exports = async (api, options, args) => {
       if (typeof userConfig.manifestJson === 'object') {
         const userManifest = userConfig.manifestJson;
         const manifest = JSON.parse(stripJsonComments(manifestJson));
-        const userManifestJson = JSON.stringify(mergeObjects(userManifest, manifest));
+        const userManifestJson = JSON.stringify(mergeObjects(manifest, userManifest));
 
         fs.writeFileSync(manifestJsonPath, userManifestJson);
       }
@@ -98,7 +98,7 @@ module.exports = async (api, options, args) => {
       if (typeof userConfig.pagesJson === 'object') {
         const userPages = userConfig.pagesJson;
         const pages = JSON.parse(stripJsonComments(pagesJson));
-        const userPagesJson = JSON.stringify(mergeObjects(pages, userPages));
+        const userPagesJson = JSON.stringify(mergeObjects(userPages, pages));
 
         fs.writeFileSync(pagesJsonPath, userPagesJson);
       }
