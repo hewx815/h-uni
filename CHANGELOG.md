@@ -1,4 +1,12 @@
 h-uni
+### [1.2.4](https://github.com/hewx815/h-uni/compare/v1.2.3...v1.2.4) (2023-06-05)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* vue-cli-plugin-h-uni-build bug 修复 ([4da18c2](https://github.com/hewx815/h-uni/commit/4da18c2cd8c133091a71d979deaccca04e6c8807))
+* vue-cli-plugin-h-uni-build bug 修复 ([e7add84](https://github.com/hewx815/h-uni/commit/e7add8466ea17878176a7e91de5ae608e515403b))
+
 ### [1.2.3](https://github.com/hewx815/h-uni/compare/v1.2.2...v1.2.3) (2023-06-05)
 
 
