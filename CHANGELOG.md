@@ -1,4 +1,6 @@
 h-uni
+### [1.2.1](https://github.com/hewx815/h-uni/compare/v1.2.0...v1.2.1) (2023-06-05)
+
 ## [1.2.0](https://github.com/hewx815/h-uni/compare/v1.1.9...v1.2.0) (2023-06-05)
 
 
