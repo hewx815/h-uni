@@ -1,4 +1,11 @@
 h-uni
+## [1.2.0](https://github.com/hewx815/h-uni/compare/v1.1.9...v1.2.0) (2023-06-05)
+
+
+### ✨ Features | 新功能
+
+* vue-cli-plugin-h-uni-build 新增 setMode 功能 ([fcf1370](https://github.com/hewx815/h-uni/commit/fcf1370c2daa5f2b496d3a62f867a7c0f079b299))
+
 ### [1.1.9](https://github.com/hewx815/h-uni/compare/v1.1.8...v1.1.9) (2023-06-03)
 
 
