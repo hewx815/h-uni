@@ -1,4 +1,11 @@
 h-uni
+### [1.2.5](https://github.com/hewx815/h-uni/compare/v1.2.4...v1.2.5) (2023-06-05)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* h-uni-build beforeBuild 对象深度合并修复 ([0403d4a](https://github.com/hewx815/h-uni/commit/0403d4a472c76f14becfbfeaa6444880dc9e8bea))
+
 ### [1.2.4](https://github.com/hewx815/h-uni/compare/v1.2.3...v1.2.4) (2023-06-05)
 
 
