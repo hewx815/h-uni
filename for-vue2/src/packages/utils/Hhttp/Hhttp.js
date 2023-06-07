@@ -35,7 +35,11 @@ export default class Hhttp {
   }
 
   // 请求配置策略
-  static getUrl = (baseUrl, url = '') => baseUrl + url;
+  static getUrl = (baseUrl, url = '') => {
+    const base = baseUrl.replace(/\/+$/, ''); // 去掉baseUrl末尾的斜杠
+    const path = url.replace(/^\/+/, ''); // 去掉url开头的斜杠
+    return `${base}/${path}`;
+  };
 
   static getHeader = (baseHeader, header = {}) => ({ ...baseHeader, ...header });
 
