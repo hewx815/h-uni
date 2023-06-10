@@ -1,4 +1,11 @@
 h-uni
+### [1.2.8](https://github.com/hewx815/h-uni/compare/v1.2.7...v1.2.8) (2023-06-10)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 修复 h-uni命令行读取package.json路径错误，首页文档错误更改 ([0d5786c](https://github.com/hewx815/h-uni/commit/0d5786cd9c42270a5084e50dcf0678ea77cced9b))
+
 ### [1.2.7](https://github.com/hewx815/h-uni/compare/v1.2.6...v1.2.7) (2023-06-10)
 
 
