@@ -2,6 +2,8 @@
 // eslint-disable-next-line node/no-unpublished-bin
 import columnify from 'columnify';
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 // eslint-disable-next-line import/extensions
 import * as argvs from './argvs/index.js';
 
@@ -16,8 +18,11 @@ const help = () => {
   }));
 
   const content = columnify(columns, { minWidth: 30 });
+  const CurrentPath = path.dirname(fileURLToPath(import.meta.url));
 
-  const packageJson = JSON.parse(fs.readFileSync('../../package.json', 'utf-8'));
+  const packageJsonPath = path.resolve(CurrentPath, '../package.json');
+
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath));
 
   const homeUrl = packageJson.homepage;
 
