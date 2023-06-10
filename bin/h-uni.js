@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // eslint-disable-next-line node/no-unpublished-bin
 import columnify from 'columnify';
+import fs from 'fs';
 // eslint-disable-next-line import/extensions
 import * as argvs from './argvs/index.js';
 
@@ -16,10 +17,17 @@ const help = () => {
 
   const content = columnify(columns, { minWidth: 30 });
 
+  const packageJson = JSON.parse(fs.readFileSync('../../package.json', 'utf-8'));
+
+  const homeUrl = packageJson.homepage;
+
   // eslint-disable-next-line no-console
   console.log(`
 [h-uni]：可用命令如下：
-${content}`);
+${content}
+
+更多信息：${homeUrl}
+`);
 };
 
 const mian = () => {

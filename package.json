@@ -4,6 +4,11 @@
   "description": "uniapp 工具库，组件库",
   "author": "hewx",
   "license": "ISC",
+  "homepage": "https://h-uni.hewxing.cn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hewx815/h-uni"
+  },
   "main": "index.js",
   "type": "module",
   "keywords": [
