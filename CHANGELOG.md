@@ -1,4 +1,24 @@
 h-uni
+### [1.2.7](https://github.com/hewx815/h-uni/compare/v1.2.6...v1.2.7) (2023-06-10)
+
+
+### 👷 Continuous Integration | CI 配置
+
+* git 忽略 cli运行缓存文件cli/storage/index.json ([b3ccdf7](https://github.com/hewx815/h-uni/commit/b3ccdf72083fd05ce1daff9a98a87c0efb622f22))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 完善 文档主页、版本信息 ([cf8f6f9](https://github.com/hewx815/h-uni/commit/cf8f6f904f634bd21722339262f5f35d06e16dc8))
+* 修复 h-uni-build setMode 命令被覆盖bug，完善命令行提示 ([f80bbbf](https://github.com/hewx815/h-uni/commit/f80bbbf22212b6179421c26560c6e773382e50f2))
+* git 忽略 cli运行缓存文件cli/storage/index.json 补充 ([61526be](https://github.com/hewx815/h-uni/commit/61526bec16997336da7c483135c1383e784ac853))
+* hhttp：baseUrl和url 拼接时，多余斜杠处理 ([b02dade](https://github.com/hewx815/h-uni/commit/b02dadeb3c4e27e2a0de283801689881881e5f2f))
+
+
+### ✏️ Documentation | 文档
+
+* 文档更新 ([7203aff](https://github.com/hewx815/h-uni/commit/7203aff8a8d1720a3dcc5e290e85f1150095f1a6))
+
 ### [1.2.6](https://github.com/hewx815/h-uni/compare/v1.2.5...v1.2.6) (2023-06-05)
 
 
