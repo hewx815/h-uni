@@ -6,7 +6,7 @@ aside: false
 
 ## 介绍
 
-homepage: https://h-uni.hewxing.com
+homepage: https://h-uni.hewxing.cn
 
 github: https://github.com/hewx815/h-uni
 
