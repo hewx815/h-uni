@@ -1,4 +1,5 @@
-import fs from 'fs';
+import { execFile } from 'child_process';
+import fs, { existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -13,13 +14,20 @@ const StorageFilePath = path.resolve(path.dirname(fileURLToPath(import.meta.url)
  * @return {Promise}
 */
 export const setStorageSync = async (key, value) => {
-  const oldData = await fs.readFileSync(StorageFilePath, 'utf-8');
-  const data = oldData ? JSON.parse(oldData) : {};
+  let data = null;
+  if (existsSync(StorageFilePath)) {
+    const oldData = fs.readFileSync(StorageFilePath, 'utf-8');
+    data = oldData ? JSON.parse(oldData) : {};
+  } else {
+    data = {};
+  }
+
   data[key] = {
     updataTime: String(new Date()),
     data: value,
   };
-  await fs.writeFileSync(StorageFilePath, JSON.stringify(data), 'utf-8');
+
+  fs.writeFileSync(StorageFilePath, JSON.stringify(data), 'utf-8');
 };
 
 /**
@@ -29,7 +37,11 @@ export const setStorageSync = async (key, value) => {
  * @return {Promise} resolve 读取到的数据内容
 */
 export const getStorageSync = async (key) => {
-  const oldData = await fs.readFileSync(StorageFilePath, 'utf-8');
+  if (!existsSync(StorageFilePath)) {
+    return undefined;
+  }
+
+  const oldData = fs.readFileSync(StorageFilePath, 'utf-8');
   const data = oldData ? JSON.parse(oldData) : undefined;
   return data ? data[key].data : undefined;
 };
