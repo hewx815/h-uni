@@ -1,5 +1,7 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-console */
 const { spawn } = require('child_process');
+const { err, log } = require('../utils');
 
 const projectPath = process.argv[2];
 const isExit = process.argv[3];
@@ -36,20 +38,24 @@ const exit = () => new Promise((resolve, reject) => {
 
 // eslint-disable-next-line no-shadow
 const main = async (projectPath) => {
-  const loginStatus = await isLogin();
-  if (loginStatus) {
-    console.log('已登录微信开发者工具');
-    try {
-      await openProject(projectPath);
-    } catch (err) {
-      console.log('登录已失效,请重新登录');
+  try {
+    const loginStatus = await isLogin();
+    if (loginStatus) {
+      log('已登录微信开发者工具');
+      try {
+        await openProject(projectPath);
+      } catch (err) {
+        log('登录已失效,请重新登录');
+        await login();
+      }
+    } else {
+      log('未登录微信开发者工具');
       await login();
+      log('请使用微信扫描二维码登录');
+      await openProject(projectPath);
     }
-  } else {
-    console.log('未登录微信开发者工具');
-    await login();
-    console.log('请使用微信扫描二维码登录');
-    await openProject(projectPath);
+  } catch (e) {
+    err(e);
   }
 };
 

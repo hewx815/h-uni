@@ -10,7 +10,7 @@ const err = (message) => {
 const log = (message) => {
   // eslint-disable-next-line no-console
   console.log(`
-[h-uni-builds]:${message}
+[h-uni-build]:${message}
 `);
 };
 

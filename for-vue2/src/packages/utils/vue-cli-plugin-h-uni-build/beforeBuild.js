@@ -18,11 +18,21 @@ module.exports = async (api, options, args) => {
   if (setMode && setMode.length !== 0) {
     // 选择模式
     const names = setMode.map((item) => item.name);
+
+    // uni-build 输出后
+    const bugFix = () => new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 0);
+    });
+
+    await bugFix();
+
     const { mode } = await inquirer.prompt([
       {
         type: 'list',
         name: 'mode',
-        message: '请选择启动模式',
+        message: '[h-uni-build]:请选择启动模式',
         choices: names,
       },
     ]);
