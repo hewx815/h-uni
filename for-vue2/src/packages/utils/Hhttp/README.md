@@ -122,8 +122,6 @@ request.post('https://www.baidu.com/s', { wd='哈哈哈' })
 
 ## 实例属性/实例化配置(baseOptions)
 
-实例化配置(baseOptions)在实例化时会填充成实例属性
-
 `baseUrl`:每次请求都拼接的url
 
 `baseHeader`:每次请求都有的请求头

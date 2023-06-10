@@ -6,6 +6,10 @@ aside: false
 
 ## 介绍
 
+homepage: https://h-uni.hewxing.com
+
+github: https://github.com/hewx815/h-uni
+
 内含各种 uniapp 的组件库、工具库，您可以根据需要按需导入,或者直接去[github](https://github.com/hewx815/h-uni)复制代码
 
 ## 安装
