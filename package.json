@@ -36,6 +36,8 @@
     "commitizen": "^4.3.0",
     "eslint": "^8.39.0",
     "eslint-config-hewx": "^1.1.2",
+    "sass": "^1.63.3",
+    "sass-loader": "^13.3.2",
     "standard-version": "^9.5.0",
     "vitepress": "^1.0.0-beta.2"
   },
