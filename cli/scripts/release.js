@@ -13,7 +13,7 @@ const main = async () => {
 
 >>>请勿手动退出！！！<<<`);
 
-  const data = execSync('git name-rev --name-only HEAD ');
+  const data = execSync('git rev-parse --abbrev-ref HEAD');
 
   if (String(data) !== 'production') {
     log(`只能在production分支进行升级部署
