@@ -135,7 +135,6 @@ export default class Hhttp {
     } catch (err) {
       info.response = err;
       info.errMeaasge = '请求失败';
-      return Promise.reject(info);
     }
 
     // 响应拦截器

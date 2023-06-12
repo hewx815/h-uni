@@ -1,6 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { spawn } from 'child_process';
+import { spawnSync } from 'child_process';
 import fs from 'fs';
 import {
   copyPackages,
@@ -39,9 +39,11 @@ const startBuild = async () => {
     fs.renameSync(vue2PackagePath, newVue2PackagePath);
   }
 
-  spawn('yarn vitepress build', { shell: true, stdio: 'inherit' });
+  spawnSync('yarn vitepress build', { shell: true, stdio: 'inherit' });
 
-  fs.renameSync(newVue2PackagePath, newVue2PackagePath);
+  if (fs.existsSync(newVue2PackagePath)) {
+    fs.renameSync(newVue2PackagePath, vue2PackagePath);
+  }
 };
 
 startBuild();

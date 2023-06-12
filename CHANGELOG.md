@@ -1,4 +1,40 @@
-h-uni
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.2.11](https://github.com/hewx815/h-uni/compare/v1.2.10...v1.2.11) (2023-06-12)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* build 脚本 vue2目录修改 bug ([6ba2065](https://github.com/hewx815/h-uni/commit/6ba20658451e092c89a7eda7605843e868196d03))
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* vitepress 升级 1.0.0-beta.2 ([22be412](https://github.com/hewx815/h-uni/commit/22be412fa8821c3bb2d933750ef922907dc02805))
+
+### [1.2.10](https://github.com/hewx815/h-uni/compare/v1.2.9...v1.2.10) (2023-06-12)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* release 脚本 体验优化，build 脚本 bug 修复 ([8435253](https://github.com/hewx815/h-uni/commit/8435253343c3a46b36e435e42d1c14440813f606))
+
+### [1.2.9](https://github.com/hewx815/h-uni/compare/v1.2.8...v1.2.9) (2023-06-12)
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 部署与发布流程 脚本封装 ([418b10d](https://github.com/hewx815/h-uni/commit/418b10d81dc0f06caea897845415d824da8152a2))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* hhttp 请求出错时拦截器未能捕获错误 ([2bfaa97](https://github.com/hewx815/h-uni/commit/2bfaa9794868034d978953253c3a1672467fc5f8))
+* release 脚本 bug 修复 ([019376f](https://github.com/hewx815/h-uni/commit/019376f92169a2c1c0f4b7b9a455be7bd7ec0ff8))
+* release 脚本 bug 修复 2 ([edf8f05](https://github.com/hewx815/h-uni/commit/edf8f05da89add062c15d106811452d21c4f0c63))
+
 ### [1.2.8](https://github.com/hewx815/h-uni/compare/v1.2.7...v1.2.8) (2023-06-10)
 
 
