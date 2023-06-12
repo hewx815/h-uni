@@ -23,9 +23,8 @@
   "scripts": {
     "dev": " node ./cli/scripts/dev.js",
     "build": "node  ./cli/scripts/build.js",
-    "commit": "cz",
-    "release": "standard-version",
-    "publish": "npm publish"
+    "release": "node  ./cli/scripts/release.js",
+    "commit": "cz"
   },
   "config": {
     "commitizen": {
