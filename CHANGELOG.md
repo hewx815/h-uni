@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.11](https://github.com/hewx815/h-uni/compare/v1.2.10...v1.2.11) (2023-06-12)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* build 脚本 vue2目录修改 bug ([6ba2065](https://github.com/hewx815/h-uni/commit/6ba20658451e092c89a7eda7605843e868196d03))
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* vitepress 升级 1.0.0-beta.2 ([22be412](https://github.com/hewx815/h-uni/commit/22be412fa8821c3bb2d933750ef922907dc02805))
+
 ### [1.2.10](https://github.com/hewx815/h-uni/compare/v1.2.9...v1.2.10) (2023-06-12)
 
 
