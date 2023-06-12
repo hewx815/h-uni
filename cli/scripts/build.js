@@ -41,7 +41,9 @@ const startBuild = async () => {
 
   spawn('yarn vitepress build', { shell: true, stdio: 'inherit' });
 
-  fs.renameSync(newVue2PackagePath, newVue2PackagePath);
+  if (fs.existsSync(newVue2PackagePath)) {
+    fs.renameSync(newVue2PackagePath, vue2PackagePath);
+  }
 };
 
 startBuild();
