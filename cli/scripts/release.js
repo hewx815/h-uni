@@ -15,7 +15,7 @@ const main = async () => {
 
   const data = execSync('git rev-parse --abbrev-ref HEAD');
 
-  if (String(data) !== 'production') {
+  if (String(data).trim() !== 'production') {
     log(`只能在production分支进行升级部署
 
     当前分支:${String(data)}`);
