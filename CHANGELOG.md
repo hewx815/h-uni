@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.10](https://github.com/hewx815/h-uni/compare/v1.2.9...v1.2.10) (2023-06-12)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* release 脚本 体验优化，build 脚本 bug 修复 ([8435253](https://github.com/hewx815/h-uni/commit/8435253343c3a46b36e435e42d1c14440813f606))
+
 ### [1.2.9](https://github.com/hewx815/h-uni/compare/v1.2.8...v1.2.9) (2023-06-12)
 
 
