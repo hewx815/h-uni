@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/hewx815/h-uni/compare/v1.2.11...v1.3.0) (2023-06-13)
+
+
+### ✨ Features | 新功能
+
+* h-column-tab 组件新增 ([49b9911](https://github.com/hewx815/h-uni/commit/49b9911a4b5c31f31ed10837d0a0d57be7bb8456))
+
 ### [1.2.11](https://github.com/hewx815/h-uni/compare/v1.2.10...v1.2.11) (2023-06-12)
 
 
