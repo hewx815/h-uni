@@ -1,3 +1,5 @@
+/* eslint-disable promise/always-return */
+/* eslint-disable promise/catch-or-return */
 import Vue from 'vue';
 import App from './App.vue';
 import Huni from './packages';
