@@ -1,1 +1,1 @@
-{"pages":[{"path":"test/indexPage","style":{"navigationBarTitleText":"uni-app"}}],"globalStyle":{"navigationBarTextStyle":"black","navigationBarTitleText":"uni-app","navigationBarBackgroundColor":"#999","backgroundColor":"#F8F8F8"}}
+{"pages":[{"path":"test/indexPage","style":{"navigationBarTitleText":"uni-app"}}],"globalStyle":{"navigationBarTextStyle":"black","navigationBarTitleText":"uni-app","navigationBarBackgroundColor":"#999","backgroundColor":"#F8F8F8"},"easycom":{"autoscan":true,"custom":{"^h-(.*)":"@/packages/components/h-$1/h-$1.vue"}}}

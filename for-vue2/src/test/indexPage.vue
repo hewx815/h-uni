@@ -1,76 +1,38 @@
 <template>
   <view class="box">
-    <HColumnTab
+    <h-column-tab
       v-model="active"
       :list="list"
+      image
+      :item-style="{width:'200rpx'}"
     />
   </view>
 </template>
 
 <script>
+import logo from '@/static/logo.png';
+import dd from '@/static/dd.png';
 
 // eslint-disable-next-line import/no-unresolved
-import HColumnTab from '@/packages/components/HColumnTab/HColumnTab.vue';
-
 export default {
-  components: { HColumnTab },
   data() {
     return {
-      list: [
-        {
-          value: 1,
-          label: '选项1',
-        },
-        {
-          value: 2,
-          label: '选项2',
-        },
-        {
-          value: 3,
-          label: '选项3',
-        },
-        {
-          value: 4,
-          label: '选项3',
-        },
-        {
-          value: 5,
-          label: '选项3',
-        },
-        {
-          value: 6,
-          label: '选项3',
-        },
-        {
-          value: 7,
-          label: '选项3',
-        },
-        {
-          value: 8,
-          label: '选项3',
-        },
-        {
-          value: 9,
-          label: '选项3',
-        },
-        {
-          value: 10,
-          label: '选项3',
-        },
-        {
-          value: 11,
-          label: '选项3',
-        },
-        {
-          value: 12,
-          label: '选项3',
-        },
-
-      ],
+      list: [],
       active: 1,
     };
   },
   onLoad() {
+    const arr = [];
+    for (let index = 0; index <= 10; index += 1) {
+      arr.push({
+        value: index,
+        label: `选项${index}`,
+        src: logo,
+        activeSrc: dd,
+        image: index < 6,
+      });
+    }
+    this.list = arr;
   },
   methods: {},
 };
@@ -78,8 +40,6 @@ export default {
 
 <style lang='scss' scoped>
 .box{
-  width: 150rpx;
-  height: 100vh;
-  margin-top: 20rpx;
+
 }
 </style>
