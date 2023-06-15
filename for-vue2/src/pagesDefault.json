@@ -1,10 +1,7 @@
 {
   "pages": [
     {
-      "path": "test/indexPage",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
+      "path": "pages/HButton"
     }
   ],
   "globalStyle": {
@@ -16,7 +13,8 @@
   "easycom": {
     "autoscan": true,
     "custom": {
-      "^h-(.*)": "@/packages/components/h-$1/h-$1.vue"
+      // "^h-(.*)": "@/packages/components/h-$1/h-$1.vue"
+      "^H(.*)": "@/packages/components/H$1/H$1.vue"
     }
   }
 }

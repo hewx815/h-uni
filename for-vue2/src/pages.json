@@ -1,1 +1,19 @@
-{"pages":[{"path":"test/indexPage","style":{"navigationBarTitleText":"uni-app"}}],"globalStyle":{"navigationBarTextStyle":"black","navigationBarTitleText":"uni-app","navigationBarBackgroundColor":"#999","backgroundColor":"#F8F8F8"},"easycom":{"autoscan":true,"custom":{"^h-(.*)":"@/packages/components/h-$1/h-$1.vue"}}}
+{
+  "pages": [
+    {
+      "path": "pages/h-utton"
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "backgroundColor": "#F8F8F8"
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^H(.*)": "@/components/H$1/H$1.vue",
+      "^h(.*)": "@/components/H$1/H$1.vue"
+    }
+  }
+}

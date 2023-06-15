@@ -2,9 +2,9 @@
 /* eslint-disable promise/catch-or-return */
 import Vue from 'vue';
 import App from './App.vue';
-import Huni from './packages';
+// import Huni from './packages';
 
-Vue.use(Huni);
+// Vue.use(Huni);
 Vue.config.productionTip = false;
 
 App.mpType = 'app';

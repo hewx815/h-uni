@@ -46,7 +46,8 @@
     "cross-env": "^7.0.3",
     "inquirer": "^9.2.6",
     "inquirer8": "npm:inquirer@8.0.0",
-    "strip-json-comments": "^5.0.0"
+    "strip-json-comments": "^5.0.0",
+    "vue-cli-plugin-h-uni-build": "file:for-vue2/src/utils/vue-cli-plugin-h-uni-build"
   },
   "engines": {
     "node": ">=16.0.0"
