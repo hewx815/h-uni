@@ -4,6 +4,7 @@ export default [
     collapsed: false,
     items: [
       { text: '按钮 HButton', link: '/for-vue2/components/HButton' },
+      { text: '竖向侧边栏 HColumnTab', link: '/for-vue2/components/HColumnTab' },
     ],
   },
   {

@@ -218,6 +218,11 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@dcloudio/uni-ui@^1.4.28":
+  version "1.4.28"
+  resolved "https://registry.yarnpkg.com/@dcloudio/uni-ui/-/uni-ui-1.4.28.tgz#557a84b53722937126aff72d1ab4b56741d11937"
+  integrity sha512-e/lSbvR79KH9+d3D4ueNbvD6szigjO/5IyjBNmiTqaj0PTS324fBV3L6f3s1qpkYonM4rdOl000hVOcAg6Gh/A==
+
 "@docsearch/css@3.5.0", "@docsearch/css@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-3.5.0.tgz#5f6cb94a7c40122b21621c30a4b2460bd42d7dd0"
@@ -3805,10 +3810,10 @@ sass-loader@^13.3.2:
   dependencies:
     neo-async "^2.6.2"
 
-sass@^1.63.3:
-  version "1.63.3"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.63.3.tgz#527746aa43bf2e4eac1ab424f67f6f18a081061a"
-  integrity sha512-ySdXN+DVpfwq49jG1+hmtDslYqpS7SkOR5GpF6o2bmb1RL/xS+wvPmegMvMywyfsmAV6p7TgwXYGrCZIFFbAHg==
+sass@^1.63.4:
+  version "1.63.4"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.63.4.tgz#caf60643321044c61f6a0fe638a07abbd31cfb5d"
+  integrity sha512-Sx/+weUmK+oiIlI+9sdD0wZHsqpbgQg8wSwSnGBjwb5GwqFhYNwwnI+UWZtLjKvKyFlKkatRK235qQ3mokyPoQ==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -4328,9 +4333,6 @@ vscode-textmate@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/vscode-textmate/-/vscode-textmate-8.0.0.tgz#2c7a3b1163ef0441097e0b5d6389cd5504b59e5d"
   integrity sha512-AFbieoL7a5LMqcnOF04ji+rpXadgOXnZsxQr//r83kLPr7biP7am3g9zbaZIaBGwBRWeSvoMD4mgPdX3e4NWBg==
-
-"vue-cli-plugin-h-uni-build@file:for-vue2/src/utils/vue-cli-plugin-h-uni-build":
-  version "0.0.1"
 
 vue-demi@>=0.14.0:
   version "0.14.0"

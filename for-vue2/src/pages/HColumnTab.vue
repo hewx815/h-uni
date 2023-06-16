@@ -1,6 +1,7 @@
 <template>
   <view>
-    HColumnTab
+    <HColumnTab />
+    1
   </view>
 </template>
 
