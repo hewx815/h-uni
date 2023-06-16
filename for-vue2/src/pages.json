@@ -1,11 +1,16 @@
 {
   "pages": [
     {
+      "path": "pages/NavCom"
+    },
+    {
       "path": "pages/HButton"
+    },
+    {
+      "path": "pages/HColumnTab"
     }
   ],
   "globalStyle": {
-    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "backgroundColor": "#F8F8F8"
   },
