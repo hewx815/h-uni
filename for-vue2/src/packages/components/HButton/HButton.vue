@@ -1,6 +1,6 @@
 <template>
   <view>
-    HButton
+    HButton1
   </view>
 </template>
 
