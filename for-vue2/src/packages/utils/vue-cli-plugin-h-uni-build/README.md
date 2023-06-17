@@ -19,7 +19,7 @@ outline: 'deep'
 
 ## 兼容性
 
-<SupportTable WEIXIN VUE2 />
+<SupportTable WEIXIN VUE2 H5/>
 
 ## 安装
 
@@ -108,6 +108,12 @@ yarn dev:mp-weixin
 - **启用或关闭此功能**
 
 把`openDevTools`配置成`false`,或者将此配置项置空,此功能即关闭
+
+::: warning H5平台：
+
+不支持此功能！解决方案见：[特殊处理devh5](#特殊处理devh5)
+
+:::
 
 ---
 
@@ -305,6 +311,29 @@ console.log(process.env.APP_MODE === '模式1'); // true
 
 如果是覆盖模式，则把`setModeItem.manifestJson`和`setModeItem.pagesJson`中的配置项覆盖`默认配置项`并写入`manifest.json`和`pages.json`作为该模式的启动文件
 
+
+## 特殊处理：`dev:h5`
+
+```json
+// package.json
+{
+  "dev:h5": "cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-serve",
+}
+```
+由此不难看出执行`dev:h5`命令时并未执行`uni-build`,扩展`uni-build`并不可行
+
+未解决这个问题，插件内已同时扩展了`uni-serve`，除了[`openDevTools`](#opendevtools)功能，其余插件扩展功能和回调函数均能正常使用
+
+`dev:h5`一般情况下调试在浏览器中进行，可以直接使用`vue-cli`自带功能:[`devServer`](https://cli.vuejs.org/zh/config/#devserver),即可实现自动打开浏览器功能：
+
+```js
+// vue.config.js
+module.exports = {
+  devServer: {
+    open: true,
+  },
+};
+```
 
 
 
