@@ -1,4 +1,7 @@
 module.exports = {
+  devServer: {
+    open: true,
+  },
   pluginOptions: {
     'h-uni-build': {
       openDevTools: {
