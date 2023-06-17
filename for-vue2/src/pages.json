@@ -11,7 +11,9 @@
     }
   ],
   "globalStyle": {
-    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "h-uni",
     "backgroundColor": "#F8F8F8"
   },
   "easycom": {

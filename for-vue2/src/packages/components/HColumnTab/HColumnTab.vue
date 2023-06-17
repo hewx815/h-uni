@@ -4,32 +4,33 @@
     :style="{height:height,width:width}"
   >
     <scroll-view
+      id="h_column_tab_box"
       scroll-y
-      :scroll-with-animation="true"
+      scroll-with-animation
       :scroll-top="scrollTop"
       class="h_column_tab_box"
       :enhanced="true"
-      :bounces="true"
-      @scroll="scroll"
+      scroll-anchoring
+      :bounces="false"
     >
       <view
         v-for="(item,index) in list"
         :key="index"
         class="h_column_tab_item h_column_tab_item_default"
         :class="{'h_column_tab_item_active':item.value===value}"
-        :style="itemStyle"
+        :style="item.value===value?itemStyle+itemActiveStyle:itemStyle"
         @click="clickItem(item,index)"
       >
         <image
-          v-if="item.image&&image"
-          :style="imageStyle"
+          v-if="item.src&&image"
+          :style="item.value===value?imageStyle+imageActiveStyle:imageStyle"
           :src="item.value===value?item.src:item.activeSrc"
           class="h_column_tab_item_image"
           mode="aspectFill"
         />
         <text
+          :style="item.value===value?textStyle+textActiveStyle:textStyle"
           class="h_column_tab_item_text"
-          :style="textStyle"
         >
           {{ item.label }}
         </text>
@@ -42,15 +43,24 @@
 /**
  * @name HColumnTab
  * @description
- * @property {Number || String} value 当前列表选中的值
- * @property {Boolean} image 是否显示图片
+ * @property {Number||String} value 当前列表选中的值
  * @property {Array<Object>} list 标签数组
- *     @property {Number || String} value  标签的值
+ *     @property {Number||String} value  标签的值
  *     @property {String} label  标签显示的文本内容
  *     @property {String} src  图片的链接地址
- *     @property {String} ActiveSrc  图片选中后的链接地址
- *     @property {Boolean} image  当前item是否显示图片(组件image为true时生效)
+ *     @property {String} activeSrc  图片选中后的链接地址
+ * @property {String} width 栏目的宽度
+ * @property {String} height 栏目的高度
+ * @property {String} itemStyle item样式
+ * @property {String} imageStyle 图片样式
+ * @property {String} textStyle 文本样式
+ * @property {String} itemActiveStyle 选中时item样式
+ * @property {String} imageActiveStyle 选中时是否显示图片
+ * @property {String} textActiveStyle 选中时文本样式
+ * @property {Boolean} image 是否显示图片
+ *
  * @event input
+ * @event change tab切换时间,参数(index)
  * @slot
 */
 export default {
@@ -63,9 +73,13 @@ export default {
       type: Array,
       default: () => [],
     },
-    image: {
-      type: Boolean,
-      default: false,
+    width: {
+      type: String,
+      default: '130rpx',
+    },
+    height: {
+      type: String,
+      default: '100vh',
     },
     itemStyle: {
       type: String,
@@ -79,32 +93,50 @@ export default {
       type: String,
       default: () => '',
     },
-    width: {
+    itemActiveStyle: {
       type: String,
-      default: '130rpx',
+      default: () => '',
     },
-    height: {
+    imageActiveStyle: {
       type: String,
-      default: '100vh',
+      default: () => '',
+    },
+    textActiveStyle: {
+      type: String,
+      default: () => '',
+    },
+    image: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
     return {
       scrollTop: 0,
-      scrollTopCopy: 0,
+
+      flag: false,
     };
   },
-  onLoad() {
-
+  watch: {
+    value(newValue) {
+      const index = this.list.findIndex((item) => item.value === newValue);
+      if (index !== -1) {
+        this.setScroll(index);
+      }
+    },
   },
   methods: {
-    async clickItem(item, index) {
+    clickItem(item, index) {
+      this.$emit('change', index);
+      this.$emit('input', item.value);
+    },
+    async setScroll(index) {
       const scrollRect = await this.getScrollRect();
       const itemsRects = await this.getItemRect();
-      const itemY = itemsRects[index].top + itemsRects[index].height / 2 - scrollRect.top;
-      const centerY = scrollRect.height / 2 + scrollRect.top;
-      this.scrollTop = this.scrollTopCopy + (itemY - centerY);
-      this.$emit('input', item.value);
+      const { scrollTop } = await this.getScrollTop();
+      const itemY = itemsRects[index].top - scrollRect.top + itemsRects[index].height / 2;
+      const centerY = scrollRect.height / 2;
+      this.scrollTop = scrollTop + (itemY - centerY);
     },
     // 获取items节点信息
     getItemRect() {
@@ -124,8 +156,13 @@ export default {
           .exec();
       });
     },
-    scroll(e) {
-      this.scrollTopCopy = e.detail.scrollTop;
+    async getScrollTop() {
+      return new Promise((resolve) => {
+        uni.createSelectorQuery().in(this).select('#h_column_tab_box').scrollOffset((data) => {
+          resolve(data);
+        })
+          .exec();
+      });
     },
   },
 };

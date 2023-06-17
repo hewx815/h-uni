@@ -1,6 +1,17 @@
 <template>
   <view>
-    Home
+    <uni-list>
+      <uni-list-item
+        v-for="(item,index) in list"
+        :key="index"
+        :title="item.title"
+        :note="item.note"
+        show-arrow
+        link="navigateTo"
+        clickable
+        :to="`/pages/${item.title}`"
+      />
+    </uni-list>
   </view>
 </template>
 
@@ -8,10 +19,17 @@
 export default {
   data() {
     return {
+      list: [
+        {
+          title: 'HButton',
+          note: '按钮',
+        },
+        {
+          title: 'HColumnTab',
+          note: '竖向tab栏',
+        },
+      ],
     };
-  },
-  onLoad() {
-
   },
   methods: {
 

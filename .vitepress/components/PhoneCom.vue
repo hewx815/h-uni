@@ -22,23 +22,25 @@ const src = computed(() => {
 </script>
 
 <style scoped>
+  ::-webkit-scrollbar{display:none}
+
 .phone {
   width: 320px;
   height: 568px;
   box-shadow: 0px 0px 10px -4px var(--color-lighter);
   border-radius: 4px;
-  overflow: hidden;
   position: fixed;
   margin-top: 30px;
   top: var(--vp-nav-height);
   right: calc((100vw - var(--vp-layout-max-width)) / 2);
   transition: .3s;
+  overflow: hidden;
 }
 .phone:hover{
   box-shadow: 0px 0px 10px -4px var(--color);
 }
 .iframe{
-  width: 320px;
+  width: 333px;
   height: 568px;
   margin: 0;
   border-width: 0;
