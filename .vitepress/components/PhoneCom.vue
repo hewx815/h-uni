@@ -1,5 +1,5 @@
 <template>
-  <div class="phone">
+  <div class="phone dd">
     <iframe :src="src" class="iframe"></iframe>
   </div>
 </template>
@@ -28,21 +28,33 @@ const src = computed(() => {
   width: 320px;
   height: 568px;
   box-shadow: 0px 0px 10px -4px var(--color-lighter);
-  border-radius: 4px;
+  border-radius: 2px;
   position: fixed;
   margin-top: 30px;
   top: var(--vp-nav-height);
   right: calc((100vw - var(--vp-layout-max-width)) / 2);
-  transition: .3s;
+  transition: .2s;
   overflow: hidden;
+  z-index: 11;
 }
 .phone:hover{
-  box-shadow: 0px 0px 10px -4px var(--color);
+  box-shadow: 0px 0px 10px -2px var(--color-lighter);
 }
 .iframe{
   width: 333px;
   height: 568px;
   margin: 0;
   border-width: 0;
+  background-color: #fff;
+}
+@media screen and (max-width: 1280px) {
+  .phone{
+    display: none;
+  }
+}
+@media screen and (min-width: 1280px) and (max-width: 1400px) {
+  .phone{
+    right: 0;
+  }
 }
 </style>

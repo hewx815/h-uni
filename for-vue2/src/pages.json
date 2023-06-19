@@ -1,1 +1,27 @@
-{"pages":[{"path":"pages/HButton"}],"globalStyle":{"navigationBarTextStyle":"black","navigationBarTitleText":"uni-app","backgroundColor":"#F8F8F8","navigationBarBackgroundColor":"#999"},"easycom":{"autoscan":true,"custom":{"^H(.*)":"@/packages/components/H$1/H$1.vue","^h-(.*)":"@/packages/components+/h-$1/h-$1.vue"}}}
+{
+  "pages": [
+    {
+      "path": "pages/NavCom"
+    },
+    {
+      "path": "pages/HButton"
+    },
+    {
+      "path": "pages/HColumnTab"
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "h-uni",
+    "backgroundColor": "#FFF",
+    "navigationBarBackgroundColor": "#5F5FCD"
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^H(.*)": "@/packages/components/H$1/H$1.vue",
+      "^h-(.*)": "@/packages/components+/h-$1/h-$1.vue",
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  }
+}
