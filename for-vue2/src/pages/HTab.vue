@@ -1,10 +1,17 @@
 <template>
   <view>
-    <HColumnTab
-      v-model="value"
-      :list="list"
-      image
-    />
+    <HTab
+      v-model="active"
+      direction="y"
+    >
+      <HTabItem
+        v-for="(item,index) in list"
+        :key="index"
+        :value="item.value"
+      >
+        {{ item.label }}
+      </HTabItem>
+    </HTab>
   </view>
 </template>
 
@@ -12,7 +19,7 @@
 export default {
   data() {
     return {
-      value: 1,
+      active: 1,
       list: [
         {
           value: 1,

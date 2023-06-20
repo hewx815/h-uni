@@ -1,5 +1,0 @@
-<PhoneCom name="HColumnTab"/>
-
-# HColumnTab
-
-

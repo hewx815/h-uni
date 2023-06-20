@@ -7,7 +7,7 @@
       "path": "pages/HButton"
     },
     {
-      "path": "pages/HColumnTab"
+      "path": "pages/HTab"
     }
   ],
   "globalStyle": {

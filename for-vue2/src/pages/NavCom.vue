@@ -25,8 +25,8 @@ export default {
           note: '按钮',
         },
         {
-          title: 'HColumnTab',
-          note: '竖向tab栏',
+          title: 'HTab',
+          note: '标签栏',
         },
       ],
     };
