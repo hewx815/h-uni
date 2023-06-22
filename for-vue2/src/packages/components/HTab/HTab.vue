@@ -6,9 +6,16 @@
     :scroll-y="direction === 'y'"
     :scroll-top="scrollTop"
     :scroll-left="scrollLeft"
+    :show-scrollbar="false"
     @scroll="scroll"
   >
-    <slot />
+    <view
+      class="h_tab_container"
+      :class="`h_tab_container-${direction}`"
+    >
+      <view class="h_tab_active" />
+      <slot />
+    </view>
   </scroll-view>
 </template>
 
@@ -57,12 +64,31 @@ export default {
       scrollTop: 0,
       scrollLeft: 0,
 
-      HTabItems: this.$slots.default,
+      itemsRect: [],
     };
+  },
+  watch: {
+    value(newValue) {
+      this.setScroll(newValue);
+    },
   },
   created() {
   },
   methods: {
+    setItemsRect(value, rect) {
+      const index = this.itemsRect.findIndex((item) => item.value === value);
+      if (index !== -1) {
+        this.itemsRect[index].rect = rect;
+        return;
+      }
+      this.itemsRect.push(rect);
+    },
+    itemClick(value) {
+      this.$emit('input', value);
+    },
+    setScroll(value) {
+      console.log(value);
+    },
     scroll(e) {
       console.log(e);
     },
@@ -70,4 +96,28 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped></style>
+<style lang='scss' scoped>
+.h_tab {
+  border-right: 2rpx solid #e5e5e5;
+
+  ::-webkit-scrollbar {
+  display: none;
+}
+
+  .h_tab_container {
+    display: flex;
+  }
+
+  .h_tab_container-x {
+    flex-direction: row;
+  }
+
+  .h_tab_container-y {
+    flex-direction: column;
+  }
+
+  .h_tab_active{
+    width: 100%;
+  }
+}
+</style>
