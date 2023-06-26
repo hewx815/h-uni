@@ -714,7 +714,7 @@
     "@vue/reactivity" "3.3.4"
     "@vue/shared" "3.3.4"
 
-"@vue/runtime-dom@3.3.4":
+"@vue/runtime-dom@3.3.4", "@vue/runtime-dom@^3.3.4":
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@vue/runtime-dom/-/runtime-dom-3.3.4.tgz#992f2579d0ed6ce961f47bbe9bfe4b6791251566"
   integrity sha512-Aj5bTJ3u5sFsUckRghsNjVTtxZQ1OyMWCr5dZRAPijF/0Vy4xEoRCwLyHXcj4D0UFbJ4lbx3gPTgg06K/GnPnQ==

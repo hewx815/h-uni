@@ -1,6 +1,7 @@
 <template>
   <scroll-view
     class="h_tab"
+    :class="`h_tab-${direction}`"
     :style="{ height, width }"
     :scroll-x="direction === 'x'"
     :scroll-y="direction === 'y'"
@@ -10,10 +11,22 @@
     @scroll="scroll"
   >
     <view
+      class="h_tab_active"
+      :style="{
+        width: `${activeWidth}px`,
+        height: `${activeHeight}px`,
+        top: `${activeTop}px`,
+        left: `${activeLeft}px`,
+        transition: `${duration / 1000}s`
+      }"
+    >
+      <view class="h_tab_active_clip h_tab_active_clip_top" />
+      <view class="h_tab_active_clip h_tab_active_clip_bottom" />
+    </view>
+    <view
       class="h_tab_container"
       :class="`h_tab_container-${direction}`"
     >
-      <view class="h_tab_active" />
       <slot />
     </view>
   </scroll-view>
@@ -58,21 +71,42 @@ export default {
         return `${this.$h.sys.windowHeight - uni.upx2px(88) - this.$h.sys.safeAreaInsets.top}px`;
       },
     },
+    duration: {
+      type: Number,
+      default: 500,
+    },
   },
   data() {
     return {
+      viewScrollTop: 0,
+
       scrollTop: 0,
       scrollLeft: 0,
+
+      activeTop: 0,
+      activeLeft: 0,
 
       itemsRect: [],
     };
   },
-  watch: {
-    value(newValue) {
-      this.setScroll(newValue);
+  computed: {
+    activeWidth() {
+      const item = this.itemsRect.find((rect) => rect.value === this.value);
+      return item ? item.right - item.left : 0;
+    },
+    activeHeight() {
+      const item = this.itemsRect.find((rect) => rect.value === this.value);
+      return item ? item.bottom - item.top : 0;
     },
   },
-  created() {
+  watch: {
+    value(newValue) {
+      const index = this.itemsRect.findIndex((item) => item.value === newValue);
+      this.setScroll(index);
+      this.setActive(index);
+    },
+  },
+  mounted() {
   },
   methods: {
     setItemsRect(value, rect) {
@@ -81,16 +115,19 @@ export default {
         this.itemsRect[index].rect = rect;
         return;
       }
-      this.itemsRect.push(rect);
+      this.itemsRect.push({ ...rect, value });
     },
     itemClick(value) {
       this.$emit('input', value);
     },
-    setScroll(value) {
-      console.log(value);
+    setScroll(index) {
+      // console.log(index);
+    },
+    setActive(index) {
+      this.activeTop = this.itemsRect[index].top;
     },
     scroll(e) {
-      console.log(e);
+      this.viewScrollTop = e.detail.scrollTop;
     },
   },
 };
@@ -98,14 +135,15 @@ export default {
 
 <style lang='scss' scoped>
 .h_tab {
-  border-right: 2rpx solid #e5e5e5;
+  background-color: #ececec;
 
   ::-webkit-scrollbar {
-  display: none;
-}
+    display: none;
+  }
 
   .h_tab_container {
     display: flex;
+    position: absolute;
   }
 
   .h_tab_container-x {
@@ -116,8 +154,50 @@ export default {
     flex-direction: column;
   }
 
-  .h_tab_active{
+  .h_tab_active {
     width: 100%;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 20rpx 0 0 20rpx;
+    top: 101px;
+
+    .h_tab_active_clip {
+      display: block;
+      position: absolute;
+      background-color: #fff;
+      width: 20rpx;
+      height: 20rpx;
+      right: 0rpx;
+    }
+
+    .h_tab_active_clip_top {
+      bottom: -20rpx;
+    }
+
+    .h_tab_active_clip_bottom {
+      top: -20rpx;
+    }
+
+    .h_tab_active_clip_top {
+      &::after {
+        content: '';
+        display: block;
+        width: 20rpx;
+        height: 20rpx;
+        background-color: #ececec;
+        clip-path: circle(20rpx at 0 20rpx);
+      }
+    }
+
+    .h_tab_active_clip_bottom {
+      &::after {
+        content: '';
+        display: block;
+        width: 20rpx;
+        height: 20rpx;
+        clip-path: circle(20rpx at 0 0rpx);
+        background-color: #ececec;
+      }
+    }
   }
-}
-</style>
+}</style>

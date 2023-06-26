@@ -7,12 +7,10 @@
       <image
         v-if="icon"
         class="h_tab_item_icon"
-        :style="{...iconDefaultStyle,...iconStyle}"
         :src="icon"
+        :style="{ ...iconDefaultStyle, ...iconStyle }"
       />
-      <view
-        class="h_tab_item_label"
-      >
+      <view class="h_tab_item_label">
         {{ label || value }}
       </view>
     </slot>
@@ -104,10 +102,13 @@ export default {
 
 <style lang='scss' scoped>
 .h_tab_item {
-  .h_tab_item_icon{
+  border-right: 2rpx solid #e5e5e5;
+
+  .h_tab_item_icon {
     box-sizing: border-box;
     padding: 20rpx;
   }
+
   .h_tab_item_label {
     text-align: center;
     padding-bottom: 20rpx;

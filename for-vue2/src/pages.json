@@ -13,7 +13,7 @@
   "globalStyle": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "h-uni",
-    "backgroundColor": "#FFF",
+    "backgroundColor": "#999",
     "navigationBarBackgroundColor": "#5F5FCD"
   },
   "easycom": {
