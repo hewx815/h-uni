@@ -1,8 +1,8 @@
 <template>
   <scroll-view
     class="h_tab"
-    :class="`h_tab-${direction}`"
-    :style="{ height, width }"
+    :class="directionClassName"
+    :style="{ height: scrollHeight, width: scrollWidth }"
     :scroll-x="direction === 'x'"
     :scroll-y="direction === 'y'"
     :scroll-top="scrollTop"
@@ -25,7 +25,7 @@
     </view>
     <view
       class="h_tab_container"
-      :class="`h_tab_container-${direction}`"
+      :class="directionContainerClassName"
     >
       <slot />
     </view>
@@ -59,17 +59,11 @@ export default {
     },
     width: {
       type: String,
-      default() {
-        if (this.direction === 'x') return '100vw';
-        return '150rpx';
-      },
+      default: '',
     },
     height: {
       type: String,
-      default() {
-        if (this.direction === 'x') return '150rpx';
-        return `${this.$h.sys.windowHeight - uni.upx2px(88) - this.$h.sys.safeAreaInsets.top}px`;
-      },
+      default: '',
     },
     duration: {
       type: Number,
@@ -90,6 +84,14 @@ export default {
     };
   },
   computed: {
+    scrollWidth() {
+      if (this.width) return this.width;
+      return this.direction === 'x' ? '100vw' : '150rpx';
+    },
+    scrollHeight() {
+      if (this.height) return this.height;
+      return this.direction === 'x' ? '150rpx' : `${this.$h.sys.screenHeight - uni.upx2px(88) - this.$h.sys.safeAreaInsets.top}px`;
+    },
     activeWidth() {
       const item = this.itemsRect.find((rect) => rect.value === this.value);
       return item ? item.right - item.left : 0;
@@ -97,6 +99,12 @@ export default {
     activeHeight() {
       const item = this.itemsRect.find((rect) => rect.value === this.value);
       return item ? item.bottom - item.top : 0;
+    },
+    directionClassName() {
+      return `h_tab-${this.direction}`;
+    },
+    directionContainerClassName() {
+      return `h_tab_container-${this.direction}`;
     },
   },
   watch: {
@@ -200,4 +208,5 @@ export default {
       }
     }
   }
-}</style>
+}
+</style>

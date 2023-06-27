@@ -8,7 +8,7 @@
         v-if="icon"
         class="h_tab_item_icon"
         :src="icon"
-        :style="{ ...iconDefaultStyle, ...iconStyle }"
+        :style="iconDefaultStyle"
       />
       <view class="h_tab_item_label">
         {{ label || value }}
@@ -68,15 +68,9 @@ export default {
     },
     iconDefaultStyle() {
       if (this.HTab.direction === 'x') {
-        return {
-          width: this.HTab.height,
-          height: this.HTab.height,
-        };
+        return `width: ${this.HTab.scrollHeight};height: ${this.HTab.scrollHeight};`;
       }
-      return {
-        width: this.HTab.width,
-        height: this.HTab.width,
-      };
+      return `width: ${this.HTab.scrollWidth};height: ${this.HTab.scrollWidth};`;
     },
   },
   async mounted() {
