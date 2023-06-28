@@ -1,7 +1,6 @@
 <template>
   <scroll-view
     class="h_tab"
-    :class="directionClassName"
     :style="{ height: scrollHeight, width: scrollWidth }"
     :scroll-x="direction === 'x'"
     :scroll-y="direction === 'y'"
@@ -25,7 +24,10 @@
     </view>
     <view
       class="h_tab_container"
-      :class="directionContainerClassName"
+      :class="{
+        'h_tab_container-x': direction === 'x',
+        'h_tab_container-y': direction === 'y',
+      }"
     >
       <slot />
     </view>
@@ -84,27 +86,28 @@ export default {
     };
   },
   computed: {
+    // scroll-view 宽
     scrollWidth() {
       if (this.width) return this.width;
       return this.direction === 'x' ? '100vw' : '150rpx';
     },
+
+    // scroll-view 高
     scrollHeight() {
       if (this.height) return this.height;
       return this.direction === 'x' ? '150rpx' : `${this.$h.sys.screenHeight - uni.upx2px(88) - this.$h.sys.safeAreaInsets.top}px`;
     },
+
+    // 选中元素宽
     activeWidth() {
       const item = this.itemsRect.find((rect) => rect.value === this.value);
       return item ? item.right - item.left : 0;
     },
+
+    // 选中元素高
     activeHeight() {
       const item = this.itemsRect.find((rect) => rect.value === this.value);
       return item ? item.bottom - item.top : 0;
-    },
-    directionClassName() {
-      return `h_tab-${this.direction}`;
-    },
-    directionContainerClassName() {
-      return `h_tab_container-${this.direction}`;
     },
   },
   watch: {
