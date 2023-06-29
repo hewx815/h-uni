@@ -1,2 +1,3 @@
-export { default as HButton } from './h-button/h-button.vue';
-export { default as HColumnTab } from './h-column-tab/h-column-tab.vue';
+export { default as HButton } from './HButton/HButton.vue';
+export { default as HTab } from './HTab/HTab.vue';
+export { default as HTabItem } from './HTabItem/HTabItem.vue';

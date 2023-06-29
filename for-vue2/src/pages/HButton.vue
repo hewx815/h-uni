@@ -1,22 +1,22 @@
 <template>
   <view>
-    hbutton111111111
+    <HButton />
+    <h-button />
   </view>
 </template>
 
 <script>
+
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   onLoad() {
-
   },
-  methods: {
-
-  },
+  methods: {},
 };
 </script>
 
-<style lang='scss' scoped></style>
+<style lang='scss' scoped>
+
+</style>

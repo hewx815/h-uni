@@ -22,12 +22,14 @@ outline: 'deep'
 参考:[全局安装](/README.html#全局注册)
 
 ```js
-const Hhttp = this.$h.Hhttp;
+const { Hhttp } = this.$h;
+
+const { Hhttp } = uni.$h;
 ```
 ### 按需导入
 
 ```js
-import Hhttp from 'h-uni/dist/for-vue2/util/Hhttp';
+import { Hhttp } from 'h-uni/dist/for-vue2/utils';
 ```
 
 ## 使用
