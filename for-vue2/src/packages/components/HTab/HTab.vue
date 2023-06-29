@@ -11,13 +11,7 @@
   >
     <view
       class="h_tab_active"
-      :style="{
-        width: `${activeWidth}px`,
-        height: `${activeHeight}px`,
-        top: `${activeTop}px`,
-        left: `${activeLeft}px`,
-        transition: `${duration / 1000}s`
-      }"
+      :style="activeStyles"
     >
       <view class="h_tab_active_clip h_tab_active_clip_top" />
       <view class="h_tab_active_clip h_tab_active_clip_bottom" />
@@ -38,10 +32,13 @@
 /**
  * @name HTab 标签栏
  * @description 支持横向和纵向的标签栏
+ * @property {Any} value 选中的值
  * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向
  * @property {String} width tab宽度
  * @property {String} height tab高度
- * @event
+ * @property {Number} duration active元素的动画时间
+ * @property {Number} duration active元素的动画时间
+ * @event input .
  * @slot
 */
 export default {
@@ -70,6 +67,10 @@ export default {
     duration: {
       type: Number,
       default: 500,
+    },
+    activeStyle: {
+      type: [String, Object],
+      default: '',
     },
   },
   data() {
@@ -108,6 +109,18 @@ export default {
     activeHeight() {
       const item = this.itemsRect.find((rect) => rect.value === this.value);
       return item ? item.bottom - item.top : 0;
+    },
+
+    // 选中元素样式
+    activeStyles() {
+      return this.$h.cssConverter({
+        width: `${this.activeWidth}px`,
+        height: `${this.activeHeight}px`,
+        top: `${this.activeTop}px`,
+        left: `${this.activeLeft}px`,
+        transition: `${this.duration / 1000}s`,
+        ...this.$h.cssConverter(this.activeStyle, 'object'),
+      }, 'string');
     },
   },
   watch: {

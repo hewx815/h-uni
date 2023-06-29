@@ -26,10 +26,19 @@ export const objToCss = (obj) => {
  * @name 样式转换器
  * @description  短横线命名的css字符串<=>驼峰命名的css对象之间进行相关转换
  * @param {String||Object} value 短横线命名的css字符串|| 驼峰命名的css对象
- * @return {Object||String}  驼峰命名的css对象 || 短横线命名的css字符串
+ * @param {String} target =['string'|'object'] 指定输出类型 默认: string
+ * @return {Object||String}  依据target
 */
-export default function cssConverter(value) {
-  if (typeof value === 'string') return cssToObj(value);
-  if (typeof value === 'object') return objToCss(value);
+export default function cssConverter(value, target = 'string') {
+  if (typeof target === 'string') {
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') return objToCss(value);
+  }
+
+  if (typeof target === 'object') {
+    if (typeof value === 'string') return cssToObj(value);
+    if (typeof value === 'object') return value;
+  }
+
   return undefined;
 }
