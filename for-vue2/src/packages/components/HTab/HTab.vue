@@ -44,8 +44,8 @@
  * @description 支持横向和纵向的标签栏
  * @property {Any} value 选中的值
  * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向
- * @property {String} width tab宽度 默认: direction=100vw:   direction=y:150rpx
- * @property {String} height tab高度 默认: direction=x:150rpx  direction=y:tab栏以下高度
+ * @property {Number||String} width tab宽度 默认: direction=100vw:   direction=y:150rpx
+ * @property {Number||String} height tab高度 默认: direction=x:150rpx  direction=y:tab栏以下高度
  * @property {Number} duration active元素的动画时间
  * @property {String||Object} activeStyle active元素样式
  * @event input .
@@ -99,19 +99,26 @@ export default {
       activeLeft: 0, // 选中元素left
 
       itemsRect: [], // item组件信息
+      scrollViewRect: {}, // scroll-view rect
     };
   },
   computed: {
     // scroll-view 宽
     scrollWidth() {
-      if (this.width) return this.width;
-      return this.direction === 'x' ? '100vw' : '150rpx';
+      if (this.width) {
+        if (typeof this.width === 'number') return `${this.width}px`;
+        return this.width;
+      }
+      return this.direction === 'x' ? `${this.$h.sys.safeArea.width}px` : '150rpx';
     },
 
     // scroll-view 高
     scrollHeight() {
-      if (this.height) return this.height;
-      return this.direction === 'x' ? '150rpx' : `${this.$h.sys.screenHeight - uni.upx2px(88) - this.$h.sys.safeAreaInsets.top}px`;
+      if (this.height) {
+        if (typeof this.height === 'number') return `${this.height}px`;
+        return this.height;
+      }
+      return this.direction === 'x' ? '150rpx' : `${this.$h.sys.safeArea.height - uni.upx2px(88)}px`;
     },
 
     // 选中元素宽
@@ -145,6 +152,9 @@ export default {
       this.setActive(index);
     },
   },
+  async mounted() {
+    this.scrollViewRect = await this.getScrollViewRect();
+  },
   methods: {
     // item组件传递rect信息
     setItemsRect(value, rect) {
@@ -163,7 +173,7 @@ export default {
 
     // 滚动某一项到中间位置
     setScroll(index) {
-      const center = this.scrollHeight / 2;
+      const center = this.scrollViewRect.height / 2;
       const { top, height } = this.itemsRect[index];
       const scrollTop = top + height / 2 - center;
       this.scrollTop = scrollTop;
@@ -177,6 +187,16 @@ export default {
     // 记录高度高度
     scroll(e) {
       this.viewScrollTop = e.detail.scrollTop;
+    },
+
+    // 获取 scroll-view rect信息
+    getScrollViewRect() {
+      return new Promise((resolve) => {
+        uni.createSelectorQuery().in(this).select('.h_tab').boundingClientRect((data) => {
+          resolve(data);
+        })
+          .exec();
+      });
     },
   },
 };

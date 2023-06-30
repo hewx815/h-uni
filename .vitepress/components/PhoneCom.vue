@@ -1,6 +1,10 @@
 <template>
   <div class="phone dd">
-    <iframe :src="src" class="iframe"></iframe>
+    <iframe
+      :src="src"
+      class="iframe"
+      scrolling="no"
+    ></iframe>
   </div>
 </template>
 
@@ -22,38 +26,44 @@ const src = computed(() => {
 </script>
 
 <style scoped>
-  ::-webkit-scrollbar{display:none}
+::-webkit-scrollbar {
+  display: none
+}
 
 .phone {
-  width: 320px;
-  height: 568px;
+  width: 365px;
+  height: 667px;
   box-shadow: 0px 0px 10px -4px var(--color-lighter);
   border-radius: 2px;
   position: fixed;
   margin-top: 30px;
   top: var(--vp-nav-height);
-  right: calc((100vw - var(--vp-layout-max-width)) / 2);
+  right: calc((100vw - var(--vp-layout-max-width)) / 4);
   transition: .2s;
   overflow: hidden;
   z-index: 11;
 }
-.phone:hover{
+
+.phone:hover {
   box-shadow: 0px 0px 10px -2px var(--color-lighter);
 }
-.iframe{
-  width: 333px;
-  height: 568px;
+
+.iframe {
+  width: 365px;
+  height: 667px;
   margin: 0;
   border-width: 0;
   background-color: #fff;
 }
+
 @media screen and (max-width: 1280px) {
-  .phone{
+  .phone {
     display: none;
   }
 }
+
 @media screen and (min-width: 1280px) and (max-width: 1400px) {
-  .phone{
+  .phone {
     right: 0;
   }
 }

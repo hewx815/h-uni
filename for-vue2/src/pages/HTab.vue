@@ -1,19 +1,35 @@
 <template>
   <view>
-    <HTab
-      v-model="active"
-      direction="y"
-      :duration="1000"
-    >
-      <HTabItem
-        v-for="(item, index) in list"
+    <uni-list>
+      <uni-list-item
+        v-for="(item, index) in useList"
         :key="index"
-        :value="item.value"
-        :label="item.label"
-        :icon="item.src"
-        :active-icon="item.activeSrc"
+        :title="item.title"
+        :note="item.note"
+        show-arrow
+        clickable
+        @click="useing = item.title"
       />
-    </HTab>
+    </uni-list>
+    <!-- 基础用法 -->
+    <view
+      v-if="useing === '基础用法'"
+      class=""
+    >
+      <HTab
+        v-model="active"
+        direction="y"
+      >
+        <HTabItem
+          v-for="(item, index) in list"
+          :key="index"
+          :value="item.value"
+          :label="item.label"
+          :icon="item.src"
+          :active-icon="item.activeSrc"
+        />
+      </HTab>
+    </view>
   </view>
 </template>
 
@@ -21,6 +37,14 @@
 export default {
   data() {
     return {
+      useing: '1',
+      useList: [
+        {
+          title: '基础用法',
+          note: '一个简单的示例',
+        },
+      ],
+
       active: 1,
       list: [
         {
@@ -83,8 +107,8 @@ export default {
       ],
     };
   },
-  onLoad() {
-
+  onLoad({ anchor }) {
+    this.anchor = anchor;
   },
   methods: {
 
