@@ -3,7 +3,7 @@
     <HTab
       v-model="active"
       direction="y"
-      :duration="300"
+      :duration="1000"
     >
       <HTabItem
         v-for="(item, index) in list"
@@ -62,6 +62,21 @@ export default {
         },
         {
           value: 8,
+          label: '饮品',
+          src: '/static/logo-shadow.png',
+        },
+        {
+          value: 9,
+          label: '饮品',
+          src: '/static/logo-shadow.png',
+        },
+        {
+          value: 10,
+          label: '饮品',
+          src: '/static/logo-shadow.png',
+        },
+        {
+          value: 11,
           label: '饮品',
           src: '/static/logo-shadow.png',
         },

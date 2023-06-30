@@ -7,15 +7,25 @@
     :scroll-top="scrollTop"
     :scroll-left="scrollLeft"
     :show-scrollbar="false"
+    scroll-with-animation
     @scroll="scroll"
   >
-    <view
-      class="h_tab_active"
-      :style="activeStyles"
+    <slot
+      name="active"
+      :top="activeTop"
+      :left="activeLeft"
+      :width="activeWidth"
+      :height="activeHeight"
     >
-      <view class="h_tab_active_clip h_tab_active_clip_top" />
-      <view class="h_tab_active_clip h_tab_active_clip_bottom" />
-    </view>
+      <view
+        class="h_tab_active"
+        :style="activeStyles"
+      >
+        <view class="h_tab_active_clip h_tab_active_clip_top" />
+        <view class="h_tab_active_clip h_tab_active_clip_bottom" />
+      </view>
+    </slot>
+
     <view
       class="h_tab_container"
       :class="{
@@ -34,16 +44,21 @@
  * @description 支持横向和纵向的标签栏
  * @property {Any} value 选中的值
  * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向
- * @property {String} width tab宽度
- * @property {String} height tab高度
+ * @property {String} width tab宽度 默认: direction=100vw:   direction=y:150rpx
+ * @property {String} height tab高度 默认: direction=x:150rpx  direction=y:tab栏以下高度
  * @property {Number} duration active元素的动画时间
- * @property {Number} duration active元素的动画时间
+ * @property {String||Object} activeStyle active元素样式
  * @event input .
- * @slot
+ * @slot default <HTabItem/>
+ * @slot active 自定义active元素
+ *    @scoped top 距离顶部值 px
+ *    @scoped left 距离左侧值 px
+ *    @scoped width 宽度 px
+ *    @scoped height 高度 px
 */
 export default {
   provide() {
-    return { HTab: this };
+    return { HTab: this }; // 与item组件通信
   },
   props: {
     value: {
@@ -75,15 +90,15 @@ export default {
   },
   data() {
     return {
-      viewScrollTop: 0,
+      viewScrollTop: 0, // scroll-view 滚动高度
 
-      scrollTop: 0,
-      scrollLeft: 0,
+      scrollTop: 0, // scroll-view scrollTop
+      scrollLeft: 0, // scroll-view scrollLeft
 
-      activeTop: 0,
-      activeLeft: 0,
+      activeTop: 0, // 选中元素top
+      activeLeft: 0, // 选中元素left
 
-      itemsRect: [],
+      itemsRect: [], // item组件信息
     };
   },
   computed: {
@@ -130,9 +145,8 @@ export default {
       this.setActive(index);
     },
   },
-  mounted() {
-  },
   methods: {
+    // item组件传递rect信息
     setItemsRect(value, rect) {
       const index = this.itemsRect.findIndex((item) => item.value === value);
       if (index !== -1) {
@@ -141,15 +155,26 @@ export default {
       }
       this.itemsRect.push({ ...rect, value });
     },
+
+    // item组件点击事件
     itemClick(value) {
       this.$emit('input', value);
     },
+
+    // 滚动某一项到中间位置
     setScroll(index) {
-      // console.log(index);
+      const center = this.scrollHeight / 2;
+      const { top, height } = this.itemsRect[index];
+      const scrollTop = top + height / 2 - center;
+      this.scrollTop = scrollTop;
     },
+
+    // 选中某一项
     setActive(index) {
       this.activeTop = this.itemsRect[index].top;
     },
+
+    // 记录高度高度
     scroll(e) {
       this.viewScrollTop = e.detail.scrollTop;
     },
