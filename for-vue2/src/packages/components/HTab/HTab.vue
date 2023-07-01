@@ -181,7 +181,7 @@ export default {
 
     // 选中某一项
     setActive(index) {
-      this.activeTop = this.itemsRect[index].top;
+      this.activeTop = this.itemsRect[index].top - this.itemsRect[0].top;
     },
 
     // 记录高度高度

@@ -1,34 +1,20 @@
 <template>
-  <view>
-    <uni-list>
-      <uni-list-item
-        v-for="(item, index) in useList"
-        :key="index"
-        :title="item.title"
-        :note="item.note"
-        show-arrow
-        clickable
-        @click="useing = item.title"
-      />
-    </uni-list>
-    <!-- 基础用法 -->
-    <view
-      v-if="useing === '基础用法'"
-      class=""
+  <view class="h_tab_base">
+    <HTab
+      v-model="active"
+      direction="y"
     >
-      <HTab
-        v-model="active"
-        direction="y"
-      >
-        <HTabItem
-          v-for="(item, index) in list"
-          :key="index"
-          :value="item.value"
-          :label="item.label"
-          :icon="item.src"
-          :active-icon="item.activeSrc"
-        />
-      </HTab>
+      <HTabItem
+        v-for="( item, index ) in list "
+        :key="index"
+        :value="item.value"
+        :label="item.label"
+        :icon="item.src"
+        :active-icon="item.activeSrc"
+      />
+    </HTab>
+    <view class="box">
+      {{ list.find(item => item.value === active).label }}
     </view>
   </view>
 </template>
@@ -37,14 +23,6 @@
 export default {
   data() {
     return {
-      useing: '1',
-      useList: [
-        {
-          title: '基础用法',
-          note: '一个简单的示例',
-        },
-      ],
-
       active: 1,
       list: [
         {
@@ -107,13 +85,21 @@ export default {
       ],
     };
   },
-  onLoad({ anchor }) {
-    this.anchor = anchor;
-  },
-  methods: {
-
-  },
 };
 </script>
 
-<style lang='scss' scoped></style>
+<style lang='scss' scoped>
+.h_tab_base {
+  display: flex;
+
+  .box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bolder;
+    font-size: 100rpx;
+  }
+}
+</style>

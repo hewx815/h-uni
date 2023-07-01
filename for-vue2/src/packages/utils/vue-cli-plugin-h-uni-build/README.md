@@ -2,7 +2,7 @@
 outline: 'deep'
 ---
 
-# vue-cli-plugin-h-uni-build(扩展`uni-build`)
+# vue-cli-plugin-h-uni-build 扩展`uni-build`
 
 ## 介绍
 

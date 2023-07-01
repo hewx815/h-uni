@@ -2,7 +2,7 @@
 outline: 'deep'
 ---
 
-# cssConverter(样式转换器)
+# cssConverter 样式转换器
 
 ## 介绍
 这是一个工具函数

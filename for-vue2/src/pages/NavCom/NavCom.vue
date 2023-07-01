@@ -2,14 +2,14 @@
   <view>
     <uni-list>
       <uni-list-item
-        v-for="(item,index) in list"
+        v-for="(item, index) in list"
         :key="index"
         :title="item.title"
         :note="item.note"
         show-arrow
         link="navigateTo"
         clickable
-        :to="`/pages/${item.title}`"
+        :to="`/pages/${item.title}/${item.title}`"
       />
     </uni-list>
   </view>
@@ -37,6 +37,4 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
-
-</style>
+<style lang='scss' scoped></style>
