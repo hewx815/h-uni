@@ -4,46 +4,52 @@ outline: 'deep'
 
 # HTab 标签栏
 
-<!-- <PhoneCom name="HTab"/> -->
-
 ## 介绍
 
 ## 兼容性
 
-| 平台 | APP | H5 | 微信 | 支付宝 | 百度 | 头条 | QQ | 快手 | 京东 |
-| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| 兼容性 | ⚪ | ✅ | ✅ | ⚪ | ⚪ | ⚪ | ⚪ | ⚪ | ⚪ |
-
-✅: 支持
-❌: 不支持
-⚪: 未测试
+<SupportTable  H5  WEIXIN/>
 
 ## 安装
+
+### 使用全局公共组件
+
+参考:[全局安装](/README.html#全局注册)
+
+
+### 按需导入
+
+`HTab` 依赖于 `HTabItem`,因此你需要同时导入两个组件
+```vue
+<script>
+import { HTab, HTabItem } from 'h-uni/dist/for-vue2/components'
+</script>
+```
+
 
 ## 使用
 
 ### 基础用法
 
-```vue
-1
-```
+::: code-group
+<<< @/for-vue2/src/pages/HTab/HTabBase.vue#template {vue} [template]
+<<< @/for-vue2/src/pages/HTab/HTabBase.vue#script {vue} [script]
+<<< @/for-vue2/src/pages/HTab/HTabBase.vue#style {vue} [style]
+:::
+
+
 ### 横向布局
 
-## HTab Props
+##  Props
 
-| 属性名 | 类型 | 默认值 | 描述 |
-| :-: | :-: | :-: | :-: |
+##  Events
 
-### value
+##  Slot
 
-## HTab Events
+## Item Props
 
-## HTab Slot
+## Item Events
 
-## HTabItem Props
-
-## HTabItem Events
-
-## HTabItem Slot
+## Item Slot
 
 

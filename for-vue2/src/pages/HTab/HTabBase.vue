@@ -1,11 +1,9 @@
+<!-- #region template -->
 <template>
   <view class="h_tab_base">
-    <HTab
-      v-model="active"
-      direction="y"
-    >
+    <HTab v-model="active">
       <HTabItem
-        v-for="( item, index ) in list "
+        v-for="( item, index ) in list"
         :key="index"
         :value="item.value"
         :label="item.label"
@@ -18,7 +16,9 @@
     </view>
   </view>
 </template>
+<!-- #endregion template -->
 
+<!-- #region script -->
 <script>
 export default {
   data() {
@@ -87,7 +87,9 @@ export default {
   },
 };
 </script>
+<!-- #endregion script -->
 
+<!-- #region style -->
 <style lang='scss' scoped>
 .h_tab_base {
   display: flex;
@@ -103,3 +105,4 @@ export default {
   }
 }
 </style>
+<!-- #endregion style -->
