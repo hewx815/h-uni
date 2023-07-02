@@ -151,3 +151,18 @@ export const checkoutDir = (filePath) => {
   };
   ensureDirectoryExistence(filePath);
 };
+
+/**
+ * 递归删除指定目录及其子目录下的所有 README.md 文件
+ * @param {String} dir - 目标目录的路径
+ */
+export const deleteReadmeFiles = (dir) => {
+  fs.readdirSync(dir).forEach((file) => {
+    const filePath = path.join(dir, file);
+    if (fs.statSync(filePath).isDirectory()) {
+      deleteReadmeFiles(filePath); // 递归处理子目录
+    } else if (file === 'README.md') {
+      fs.unlinkSync(filePath);
+    }
+  });
+};
