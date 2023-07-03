@@ -1,10 +1,20 @@
-<template></template>
+<template>
+  <button @click="clickBtn">预览</button>
+</template>
 
 <script setup>
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, defineProps } from 'vue'
+const props = defineProps({
+  path: {
+    type: String,
+    required: true
+  },
+})
 const { proxy } = getCurrentInstance()
-console.log(proxy.$root.PhoneCom.path)
 
+const clickBtn = () => {
+  console.log(proxy.$root.preview(props.path));
+}
 </script>
 
 <style lang='scss' scoped></style>

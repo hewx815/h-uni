@@ -1,6 +1,6 @@
 
 <Preview path="pages/HTab/HTab"/>
-<PreviewBtn />
+<PreviewBtn path="pages/HTab/HTab1"/>
 
 # HTab 标签栏
 
@@ -49,6 +49,28 @@ import { HTab, HTabItem } from 'h-uni/dist/for-vue2/components'
 
 ## Item Events
 
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
+## Item Slot
 ## Item Slot
 
 
