@@ -1,6 +1,6 @@
----
-outline: 'deep'
----
+
+<Preview path="pages/HTab/HTab"/>
+<PreviewBtn />
 
 # HTab 标签栏
 
@@ -32,11 +32,10 @@ import { HTab, HTabItem } from 'h-uni/dist/for-vue2/components'
 ### 基础用法
 
 ::: code-group
-<<< @/for-vue2/src/pages/HTab/HTabBase.vue#template {vue} [template]
+<<< @/for-vue2/src/pages/HTab/HTabBase.vue#template {3-12 vue} [template]
 <<< @/for-vue2/src/pages/HTab/HTabBase.vue#script {vue} [script]
 <<< @/for-vue2/src/pages/HTab/HTabBase.vue#style {vue} [style]
 :::
-
 
 ### 横向布局
 

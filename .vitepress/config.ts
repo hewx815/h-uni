@@ -20,12 +20,16 @@ export default defineConfig({
         '@': path.resolve(CurrentPath),
       },
     },
+    server: {
+      port: 80,
+    },
   },
   // 路径重写
   rewrites: {
     ':for/src/packages/:type/:dd/README.md': ':for/:type/:dd.md',
   },
   themeConfig: {
+    outline: 'deep',
     search: {
       provider: 'local',
     },
@@ -74,6 +78,5 @@ export default defineConfig({
     },
     // 链接图标
     socialLinks: [{ icon: 'github', link: 'https://github.com/hewx815/h-uni' }],
-    outline: false,
   },
 });

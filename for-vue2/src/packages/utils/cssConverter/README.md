@@ -1,7 +1,3 @@
----
-outline: 'deep'
----
-
 # cssConverter 样式转换器
 
 ## 介绍
@@ -11,7 +7,7 @@ outline: 'deep'
 
 ## 兼容性
 
-<SupportTable  H5  VUE2 WEIXIN/>
+<SupportTable  H5  WEIXIN/>
 
 ## 安装
 

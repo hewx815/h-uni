@@ -1,7 +1,3 @@
----
-outline: 'deep'
----
-
 # vue-cli-plugin-h-uni-build 扩展`uni-build`
 
 ## 介绍
@@ -19,7 +15,7 @@ outline: 'deep'
 
 ## 兼容性
 
-<SupportTable WEIXIN VUE2 H5/>
+<SupportTable WEIXIN H5/>
 
 ## 安装
 

@@ -1,27 +1,35 @@
 <template>
-  <div class="phone dd">
+  <div to="body">1</div>
+  <!-- <div class="phone dd">
     <iframe
       :src="src"
       class="iframe"
       scrolling="no"
     ></iframe>
-  </div>
+  </div> -->
 </template>
 
 <script setup>
-import { defineProps, computed } from 'vue';
-console.log();
+import { defineProps, computed, getCurrentInstance } from 'vue';
 const props = defineProps({
-  name: {
+  path: {
     type: String,
     required: true
-  }
+  },
 })
 
 const src = computed(() => {
-  const baseUrl = process.env.NODE_ENV === 'production' ? '' : "http://localhost:8080/#/pages/"
-  return baseUrl + props.name
+  const baseUrl = process.env.NODE_ENV === 'production' ? '' : "http://localhost:8080/#/"
+  return baseUrl + props.path
 })
+
+const preview = (url) => {
+
+}
+
+// 挂载组件到根组件上，便于 PhonePreview 组件 之间的通信
+const { proxy } = getCurrentInstance()
+proxy.$root.PhoneCom = proxy
 
 </script>
 

@@ -19,6 +19,7 @@
 <!-- #endregion template -->
 
 <!-- #region script -->
+
 <script>
 export default {
   data() {
@@ -59,27 +60,22 @@ export default {
         },
         {
           value: 7,
-          label: '饮品',
+          label: '小吃',
           src: '/static/logo-shadow.png',
         },
         {
           value: 8,
-          label: '饮品',
+          label: '小吃1',
           src: '/static/logo-shadow.png',
         },
         {
           value: 9,
-          label: '饮品',
+          label: '小吃2',
           src: '/static/logo-shadow.png',
         },
         {
           value: 10,
-          label: '饮品',
-          src: '/static/logo-shadow.png',
-        },
-        {
-          value: 11,
-          label: '饮品',
+          label: '小吃3',
           src: '/static/logo-shadow.png',
         },
       ],
