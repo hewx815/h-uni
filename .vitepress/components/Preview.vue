@@ -1,17 +1,19 @@
 <template>
   <div
     class="preview"
+    ref="previewDom"
+    draggable="true"
     :style="{ top: `${top}px`, left: `${left}px` }"
+    :ondragstart="ondragstart"
+    :ondrag="drag"
+    :ondragend="drag"
   >
     <div
       class="preview_icon"
       :style="{
         backgroundImage: `url(${open ? closeSvg : phoneSvg})`,
-        backgroundPosition: open ? '53%' : '70%',
-        backgroundSize: open ? '50%' : '60%',
       }"
-      @mousedown="iconMouseDown"
-      @mouseup="iconMouseUp"
+      @click="open = !open;"
     />
     <iframe
       class="preview_iframe"
@@ -21,11 +23,12 @@
       frameborder="0"
     />
   </div>
+  <div ref="dragEmptyDom"></div>
 </template>
 
 <script setup>
-import closeSvg from '../static/close.svg'
-import phoneSvg from '../static/phone.svg'
+import closeSvg from '../static/close.svg';
+import phoneSvg from '../static/phone.svg';
 import { defineProps, computed, getCurrentInstance, ref } from 'vue';
 
 const props = defineProps({
@@ -33,24 +36,25 @@ const props = defineProps({
     type: String,
     required: true
   },
-})
+});
 
 
 
 // previewBtn path
-const previewBtnPath = ref('')
+const previewBtnPath = ref('');
 // iframe 打开状态
-const open = ref(false)
+const open = ref(false);
 // 是否处于拖拽中
-const inDrag = ref(false)
-const top = ref(0)
-const left = ref(0)
+const top = ref(0);
+const left = ref(0);
+const previewDom = ref(null);
+const dragEmptyDom = ref(null);
 
 // iframe src
 const url = computed(() => {
-  const baseUrl = process.env.NODE_ENV === 'production' ? '' : "http://localhost:8080/#/"
-  return baseUrl + (previewBtnPath.value ? previewBtnPath.value : props.path)
-})
+  const baseUrl = process.env.NODE_ENV === 'production' ? '' : "http://localhost:8080/#/";
+  return baseUrl + (previewBtnPath.value ? previewBtnPath.value : props.path);
+});
 
 // iframe样式
 const iframeStyle = computed(() => {
@@ -58,42 +62,63 @@ const iframeStyle = computed(() => {
     return {
       width: '375px',
       height: '667px',
-    }
+    };
   } else {
     return {
       width: '0px',
       height: '0px',
-    }
+    };
   }
-})
+});
 
-// preview跟随鼠标移动
-const move = (e) => {
-  console.log(e);
-  left.value = e.pageX >= 0 ? e.pageX : 0
-  top.value = e.pageY >= 0 ? e.pageY : 0
-}
+// 获取滚动条宽度
+const getScrollBarWidth = () => {
+  const outer = document.createElement("div");
+  outer.style.visibility = "hidden";
+  outer.style.width = "100px";
+  outer.style.position = "absolute";
+  outer.style.top = "-9999px";
+  document.body.appendChild(outer);
 
+  const widthNoScroll = outer.offsetWidth;
+  outer.style.overflow = "scroll";
 
-// 图标 鼠标按下事件
-const iconMouseDown = () => {
-  inDrag.value = true
-  document.addEventListener("mousemove", move)
-  document.addEventListener('mouseup', () => {
-    document.removeEventListener('mousemove', move)
-  })
-}
+  const inner = document.createElement("div");
+  inner.style.width = "100%";
+  outer.appendChild(inner);
 
-// 图标 鼠标弹起事件
-const iconMouseUp = () => {
-  open.value = !open.value
-}
+  const widthWithScroll = inner.offsetWidth;
+  outer.parentNode.removeChild(outer);
+  return widthNoScroll - widthWithScroll;;
+};
 
+// 移动 preview
+const drag = (e) => {
+  // 工具栏 宽高
+  const toolBarWidth = window.outerWidth - window.innerWidth;
+  const toolBarHeight = window.outerHeight - window.innerHeight;
+  // 浏览器距离屏幕 距离
+  const browserLeft = window.screenX;
+  const browserTop = window.screenY;
 
-const { proxy } = getCurrentInstance()
+  // 鼠标距离屏幕 距离
+  const mouseLeft = e.screenX;
+  const mouseTop = e.screenY;
+
+  const ScrollBarWidth = getScrollBarWidth();
+  left.value = mouseLeft - browserLeft - toolBarWidth - 25;
+  top.value = mouseTop - browserTop - toolBarHeight - 25;
+};
+
+// 开始拖动
+const ondragstart = (e) => {
+  e.dataTransfer.setDragImage(dragEmptyDom.value, 0, 0);
+};
+
+const { proxy } = getCurrentInstance();
 // PhonePreview 组件调用此方法 更改 previewPath
 proxy.$root.preview = (url) => {
-  previewPath.value = url
+  previewPath.value = url;
 }
 
 
@@ -106,8 +131,8 @@ proxy.$root.preview = (url) => {
 
 .preview {
   position: fixed;
-  left: 500px;
-  top: 50px;
+  left: 0px;
+  top: 0px;
   z-index: 20;
 }
 
@@ -122,7 +147,7 @@ proxy.$root.preview = (url) => {
   background-color: var(--color);
   background-image: url('../static/phone.svg');
   background-repeat: no-repeat;
-  background-position: 70%;
+  background-position: center;
   background-size: 60%;
   border-radius: 50%;
 
@@ -160,9 +185,9 @@ proxy.$root.preview = (url) => {
 
   &:hover {
     box-shadow:
-      0 2px 4px -1px rgba(0, 0, 0, .2),
-      0 1px 4px 0 rgba(0, 0, 0, .14),
-      0 1px 6px 0 rgba(0, 0, 0, .12);
+      0 2px 6px -1px rgba(0, 0, 0, .2),
+      0 1px 6px 0 rgba(0, 0, 0, .14),
+      0 1px 8px 0 rgba(0, 0, 0, .12);
   }
 }
 </style>
