@@ -1,6 +1,5 @@
 
 <Preview path="pages/HTab/HTab"/>
-<PreviewBtn path="pages/HTab/HTab1"/>
 
 # HTab 标签栏
 
@@ -30,6 +29,8 @@ import { HTab, HTabItem } from 'h-uni/dist/for-vue2/components'
 ## 使用
 
 ### 基础用法
+
+<PreviewBtn path="pages/HTab/HTabBase"/>
 
 ::: code-group
 <<< @/for-vue2/src/pages/HTab/HTabBase.vue#template {3-12 vue} [template]

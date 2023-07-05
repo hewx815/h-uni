@@ -8,7 +8,6 @@
         :value="item.value"
         :label="item.label"
         :icon="item.src"
-        :active-icon="item.activeSrc"
       />
     </HTab>
     <view class="box">
@@ -30,13 +29,11 @@ export default {
           value: 1,
           label: '人气热卖',
           src: '/static/logo-shadow.png',
-          activeSrc: '',
         },
         {
           value: 2,
           label: '限时优惠',
           src: '/static/logo-shadow.png',
-
         },
         {
           value: 3,

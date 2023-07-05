@@ -1,35 +1,39 @@
 <template>
   <div
     class="preview"
-    ref="previewDom"
     :style="{ top: `${top}px`, left: `${left}px` }"
-    @mousedown="mousedown"
-    @mouseup="mouseup"
   >
-    <div class="btns">
-      <div
-        class="preview_icon"
-        :style="{
-          backgroundImage: `url(${open ? closeSvg : phoneSvg})`,
-          transform: `rotateZ(${open ? '360deg' : '0deg'})`,
-        }"
-      />
-      <div class=" move_icon">移动</div>
-    </div>
+    <div
+      ref="previewIcon"
+      class="preview_icon"
+      @mousedown="mousedown"
+      @mouseup="mouseup"
+      :style="{
+        backgroundImage: `url(${open ? closeSvg : phoneSvg})`,
+        transform: `rotateZ(${open ? '360deg' : '0deg'})`,
+      }"
+    />
     <iframe
       class="preview_iframe"
       :style="iframeStyle"
       :src="url"
       scrolling="no"
       frameborder="0"
+      width=375px
+      height="667px"
     />
   </div>
 </template>
 
 <script setup>
+/**
+ * @name 组件预览悬浮组件
+ * @description 在组件md文件中挂载此组件
+ * @property {String} path 预览的路径
+*/
 import closeSvg from '../static/close.svg';
 import phoneSvg from '../static/phone.svg';
-import { defineProps, computed, getCurrentInstance, ref, watch } from 'vue';
+import { defineProps, computed, getCurrentInstance, ref, onMounted } from 'vue';
 
 const props = defineProps({
   path: {
@@ -37,6 +41,7 @@ const props = defineProps({
     required: true
   },
 });
+
 
 
 
@@ -48,7 +53,28 @@ const open = ref(false);
 const top = ref(0);
 const left = ref(0);
 
-const previewDom = ref(null);
+const previewIcon = ref(null);
+
+const { proxy } = getCurrentInstance();
+
+// PhonePreview 组件调用此方法 更改 previewBtnPath
+proxy.$root.preview = (url) => {
+  previewBtnPath.value = url;
+  open.value = true;
+};
+
+
+onMounted(() => {
+  const data = getXY();
+  if (data) {
+    left.value = data.x;
+    top.value = data.y;
+    return;
+  }
+
+  left.value = 0;
+  top.value = window.innerHeight - 667 - 50;
+});
 
 // iframe src
 const url = computed(() => {
@@ -141,15 +167,21 @@ const move = (e) => {
   left.value = x;
   top.value = y;
 
+  saveXY(x, y);
+
   open.value = open.value ? 1 : 0;
 };
 
 
 const mousedown = () => {
   document.body.style.userSelect = 'none';
+
   const timer = setTimeout(() => {
+    previewIcon.value.style.cursor = "move";
     document.addEventListener('mousemove', move);
+
     document.addEventListener('mouseup', () => {
+      previewIcon.value.style.cursor = "pointer";
       document.body.style.userSelect = 'auto';
       document.removeEventListener('mousemove', move);
       // 来自移动的抬起事件需要关闭
@@ -158,6 +190,7 @@ const mousedown = () => {
       }
     });
   }, 100);
+
   document.addEventListener('mouseup', () => {
     clearTimeout(timer);
     document.body.style.userSelect = 'auto';
@@ -171,16 +204,27 @@ const mouseup = () => {
   open.value = !open.value;
 };
 
-const { proxy } = getCurrentInstance();
-// PhonePreview 组件调用此方法 更改 previewPath
-proxy.$root.preview = (url) => {
-  previewPath.value = url;
+// 储存坐标信息
+const KEY = 'HUNI_HEWXING_CN_PREVIEW_XY';
+const saveXY = (x, y) => {
+  localStorage.setItem(KEY, JSON.stringify({ x, y }));
+};
+const getXY = () => {
+  const data = localStorage.getItem(KEY);
+  return data ? JSON.parse(data) : null;
 }
-
 
 </script>
 
 <style scoped lang="scss">
+/**
+ * @name
+ * @description
+ * @property {*}
+ * @event
+ * @slot
+*/
+
 ::-webkit-scrollbar {
   display: none
 }
@@ -202,9 +246,6 @@ proxy.$root.preview = (url) => {
   background-size: 60%;
   border-radius: 50%;
 
-  position: absolute;
-  left: 0;
-
   box-shadow:
     0 2px 4px -1px rgba(0, 0, 0, .2),
     0 4px 5px 0 rgba(0, 0, 0, .14),
@@ -219,6 +260,8 @@ proxy.$root.preview = (url) => {
       0 4px 7px 0 rgba(0, 0, 0, .14),
       0 1px 12px 0 rgba(0, 0, 0, .12);
   }
+
+  cursor: pointer;
 }
 
 
@@ -242,18 +285,6 @@ proxy.$root.preview = (url) => {
       0 2px 6px -1px rgba(0, 0, 0, .2),
       0 1px 6px 0 rgba(0, 0, 0, .14),
       0 1px 8px 0 rgba(0, 0, 0, .12);
-  }
-}
-
-.btns {
-  width: 375px;
-  height: 50px;
-  position: relative;
-
-  .move_icon {
-    width: 50px;
-    height: 50px;
-
   }
 }
 </style>

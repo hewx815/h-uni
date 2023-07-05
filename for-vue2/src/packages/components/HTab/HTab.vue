@@ -109,7 +109,7 @@ export default {
         if (typeof this.width === 'number') return `${this.width}px`;
         return this.width;
       }
-      return this.direction === 'x' ? `${this.$h.sys.safeArea.width}px` : '150rpx';
+      return this.direction === 'x' ? '100vw' : '150rpx';
     },
 
     // scroll-view 高
@@ -118,7 +118,7 @@ export default {
         if (typeof this.height === 'number') return `${this.height}px`;
         return this.height;
       }
-      return this.direction === 'x' ? '150rpx' : `${this.$h.sys.safeArea.height - uni.upx2px(88)}px`;
+      return this.direction === 'x' ? '150rpx' : '623px';
     },
 
     // 选中元素宽
