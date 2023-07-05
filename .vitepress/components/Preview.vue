@@ -2,19 +2,20 @@
   <div
     class="preview"
     ref="previewDom"
-    draggable="true"
     :style="{ top: `${top}px`, left: `${left}px` }"
-    :ondragstart="ondragstart"
-    :ondrag="drag"
-    :ondragend="drag"
+    @mousedown="mousedown"
+    @mouseup="mouseup"
   >
-    <div
-      class="preview_icon"
-      :style="{
-        backgroundImage: `url(${open ? closeSvg : phoneSvg})`,
-      }"
-      @click="open = !open;"
-    />
+    <div class="btns">
+      <div
+        class="preview_icon"
+        :style="{
+          backgroundImage: `url(${open ? closeSvg : phoneSvg})`,
+          transform: `rotateZ(${open ? '360deg' : '0deg'})`,
+        }"
+      />
+      <div class=" move_icon">移动</div>
+    </div>
     <iframe
       class="preview_iframe"
       :style="iframeStyle"
@@ -23,13 +24,12 @@
       frameborder="0"
     />
   </div>
-  <div ref="dragEmptyDom"></div>
 </template>
 
 <script setup>
 import closeSvg from '../static/close.svg';
 import phoneSvg from '../static/phone.svg';
-import { defineProps, computed, getCurrentInstance, ref } from 'vue';
+import { defineProps, computed, getCurrentInstance, ref, watch } from 'vue';
 
 const props = defineProps({
   path: {
@@ -44,11 +44,11 @@ const props = defineProps({
 const previewBtnPath = ref('');
 // iframe 打开状态
 const open = ref(false);
-// 是否处于拖拽中
+
 const top = ref(0);
 const left = ref(0);
+
 const previewDom = ref(null);
-const dragEmptyDom = ref(null);
 
 // iframe src
 const url = computed(() => {
@@ -62,14 +62,19 @@ const iframeStyle = computed(() => {
     return {
       width: '375px',
       height: '667px',
+      borderRadius: '4px',
+      opacity: 1,
     };
   } else {
     return {
       width: '0px',
       height: '0px',
+      borderRadius: '0 0 100% 0%',
+      opacity: 0,
     };
   }
 });
+
 
 // 获取滚动条宽度
 const getScrollBarWidth = () => {
@@ -92,27 +97,78 @@ const getScrollBarWidth = () => {
   return widthNoScroll - widthWithScroll;;
 };
 
-// 移动 preview
-const drag = (e) => {
+
+// 移动
+const move = (e) => {
+
+  // 鼠标距离屏幕
+  const mouseX = e.screenX;
+  const mouseY = e.screenY;
+
+  // 浏览器距离屏幕
+  const browserX = window.screenX;
+  const browserY = window.screenY;
+
   // 工具栏 宽高
   const toolBarWidth = window.outerWidth - window.innerWidth;
   const toolBarHeight = window.outerHeight - window.innerHeight;
-  // 浏览器距离屏幕 距离
-  const browserLeft = window.screenX;
-  const browserTop = window.screenY;
 
-  // 鼠标距离屏幕 距离
-  const mouseLeft = e.screenX;
-  const mouseTop = e.screenY;
+  // 元素宽高
+  const width = 50;
+  const height = 50;
 
-  const ScrollBarWidth = getScrollBarWidth();
-  left.value = mouseLeft - browserLeft - toolBarWidth - 25;
-  top.value = mouseTop - browserTop - toolBarHeight - 25;
+  // 鼠标位于页面的距离
+  let x = mouseX - browserX - toolBarWidth - width / 2;
+  let y = mouseY - browserY - toolBarHeight - height / 2;
+
+  // 滚动条宽度
+  const ScrollBarWidthX = document.body.scrollHeight > window.innerHeight ? getScrollBarWidth() : 0;
+  const ScrollBarWidthY = document.body.scrollWidth > window.innerWidth ? getScrollBarWidth() : 0;
+
+  // 最大值
+  const maxX = window.innerWidth - ScrollBarWidthX - width;
+  const maxY = window.innerHeight - ScrollBarWidthY - height;
+
+  // 最小值
+  const minX = 0;
+  const minY = 0;
+
+  if (x >= maxX) x = maxX;
+  if (y >= maxY) y = maxY;
+  if (x <= minX) x = minX;
+  if (y <= minY) y = minY;
+
+  left.value = x;
+  top.value = y;
+
+  open.value = open.value ? 1 : 0;
 };
 
-// 开始拖动
-const ondragstart = (e) => {
-  e.dataTransfer.setDragImage(dragEmptyDom.value, 0, 0);
+
+const mousedown = () => {
+  document.body.style.userSelect = 'none';
+  const timer = setTimeout(() => {
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseup', () => {
+      document.body.style.userSelect = 'auto';
+      document.removeEventListener('mousemove', move);
+      // 来自移动的抬起事件需要关闭
+      if (open.value === 0 || open.value === 1) {
+        open.value = !!open.value;
+      }
+    });
+  }, 100);
+  document.addEventListener('mouseup', () => {
+    clearTimeout(timer);
+    document.body.style.userSelect = 'auto';
+  });
+};
+
+
+const mouseup = () => {
+  // 来自移动的抬起事件忽略
+  if (open.value === 0 || open.value === 1) return;
+  open.value = !open.value;
 };
 
 const { proxy } = getCurrentInstance();
@@ -140,23 +196,21 @@ proxy.$root.preview = (url) => {
   width: 50px;
   height: 50px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   background-color: var(--color);
-  background-image: url('../static/phone.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60%;
   border-radius: 50%;
+
+  position: absolute;
+  left: 0;
 
   box-shadow:
     0 2px 4px -1px rgba(0, 0, 0, .2),
     0 4px 5px 0 rgba(0, 0, 0, .14),
     0 1px 10px 0 rgba(0, 0, 0, .12);
 
-  transition: background-color 0.2s;
+  transition: 0.2s;
 
   &:hover {
     background-color: var(--color-light);
@@ -181,13 +235,25 @@ proxy.$root.preview = (url) => {
     0 1px 2px 0 rgba(0, 0, 0, .14),
     0 1px 4px 0 rgba(0, 0, 0, .12);
 
-  transition: width, height, 0.2s;
+  transition: 0.2s;
 
   &:hover {
     box-shadow:
       0 2px 6px -1px rgba(0, 0, 0, .2),
       0 1px 6px 0 rgba(0, 0, 0, .14),
       0 1px 8px 0 rgba(0, 0, 0, .12);
+  }
+}
+
+.btns {
+  width: 375px;
+  height: 50px;
+  position: relative;
+
+  .move_icon {
+    width: 50px;
+    height: 50px;
+
   }
 }
 </style>
