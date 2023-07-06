@@ -6,7 +6,8 @@ import {
   copyPackages,
   delDir,
   checkoutDir,
-// eslint-disable-next-line import/extensions
+  deleteReadmeFiles,
+  // eslint-disable-next-line import/extensions
 } from './utils.js';
 
 const startBuild = async () => {
@@ -24,6 +25,7 @@ const startBuild = async () => {
     destDir: getPath('../../dist/for-vue3'),
   };
 
+  // 把packages文件夹拷贝至 dist
   checkoutDir(vue2Package.destDir);
   checkoutDir(vue3Package.destDir);
 
@@ -33,12 +35,16 @@ const startBuild = async () => {
   copyPackages(vue2Package.srcDir, vue2Package.destDir);
   copyPackages(vue3Package.srcDir, vue3Package.destDir);
 
+  // 删除dist目录下所有的 README.md
+  deleteReadmeFiles(getPath('../../dist'));
+
+  // 解决 vitepress vue2包 冲突问题(vitepress新版本似乎已修复,保持运行无影响)
   const vue2PackagePath = path.resolve(CurrentPath, '../../for-vue2/node_modules/vue');
   const newVue2PackagePath = path.resolve(CurrentPath, '../../for-vue2/node_modules/vue_old');
   if (fs.existsSync(vue2PackagePath)) {
     fs.renameSync(vue2PackagePath, newVue2PackagePath);
   }
-
+  // 执行vitepress打包
   spawnSync('yarn vitepress build', { shell: true, stdio: 'inherit' });
 
   if (fs.existsSync(newVue2PackagePath)) {

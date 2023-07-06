@@ -78,5 +78,6 @@ export default defineConfig({
     },
     // 链接图标
     socialLinks: [{ icon: 'github', link: 'https://github.com/hewx815/h-uni' }],
+    outline: false,
   },
 });

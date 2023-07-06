@@ -1,4 +1,5 @@
 node_modules/
+.vscode/
 
 for-vue2/dist
 for-vue3/dist
