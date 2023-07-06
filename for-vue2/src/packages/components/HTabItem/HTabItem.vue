@@ -10,7 +10,10 @@
         :src="icon"
         :style="iconDefaultStyle"
       />
-      <view class="h_tab_item_label">
+      <view
+        class="h_tab_item_label"
+        :style="labelStyle"
+      >
         {{ label || value }}
       </view>
     </slot>
@@ -21,7 +24,7 @@
 /**
  * @name HTabItem
  * @description HTab  item
- * @property {Any}  value
+ * @property {*}  value
  * @property {String}  label 显示文字
  * @property {String}  icon 显示的图标链接
  * @property {String}  activeIcon 选中时显示的图标链接
@@ -47,13 +50,17 @@ export default {
       type: String,
       default: '',
     },
-    iconWidth: {
-      type: String,
-      default: '100rpx',
+    labelStyle: {
+      type: [String, Object],
+      default: '',
     },
-    iconHeight: {
-      type: String,
-      default: '100rpx',
+    iconStyle: {
+      type: [String, Object],
+      default: '',
+    },
+    activeIconStyle: {
+      type: [String, Object],
+      default: '',
     },
   },
   data() {
@@ -62,7 +69,7 @@ export default {
     };
   },
   computed: {
-    iconStyle() {
+    iconStyles() {
       return {
       };
     },
@@ -74,10 +81,12 @@ export default {
     },
   },
   async mounted() {
+    // 向HTab发送节点信息和值
     const rect = await this.getRect();
     this.HTab.setItemsRect(this.value, rect);
   },
   methods: {
+    // 获取节点信息
     getRect() {
       return new Promise((resolve) => {
         uni.createSelectorQuery().in(this).select('.h_tab_item').boundingClientRect((data) => {
@@ -87,6 +96,8 @@ export default {
           .exec();
       });
     },
+
+    // 点击事件
     itemClick() {
       this.HTab.itemClick(this.value);
     },

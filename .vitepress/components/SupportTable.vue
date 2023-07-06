@@ -26,27 +26,45 @@
       <td>{{ dd('KUAISHOU') }}</td>
       <td>{{ dd('JD') }}</td>
     </tr>
-
-    <tr>
-      <td colspan="5">for-vue2</td>
-      <td colspan="5">for-vue3</td>
-    </tr>
-    <tr>
-      <td colspan="5">{{ dd('VUE2') }}</td>
-      <td colspan="5">{{ dd('VUE3') }}</td>
-    </tr>
   </table>
 
   <div class="info ">
-    <div class="warning custom-block" v-if="typeof props.APP === 'string'">APP：{{ ddd('APP') }}</div>
-    <div class="warning custom-block" v-if="typeof props.H5 === 'string'">H5：{{ ddd('H5') }}</div>
-    <div class="warning custom-block" v-if="typeof props.WEIXIN === 'string'">微信：{{ ddd('WEIXIN') }}</div>
-    <div class="warning custom-block" v-if="typeof props.ALIPAY === 'string'">支付宝：{{ ddd('ALIPAY') }}</div>
-    <div class="warning custom-block" v-if="typeof props.BAIDU === 'string'">百度：{{ ddd('BAIDU') }}</div>
-    <div class="warning custom-block" v-if="typeof props.TOUTIAO === 'string'">头条：{{ ddd('TOUTIAO') }}</div>
-    <div class="warning custom-block" v-if="typeof props.QQ === 'string'">QQ：{{ ddd('QQ') }}</div>
-    <div class="warning custom-block" v-if="typeof props.KUAISHOU === 'string'">快手：{{ ddd('KUAISHOU') }}</div>
-    <div class="warning custom-block" v-if="typeof props.JD === 'string'">京东：{{ ddd('JD') }}</div>
+    <div
+      class="warning custom-block"
+      v-if="typeof props.APP === 'string'"
+    >APP：{{ ddd('APP') }}</div>
+    <div
+      class="warning custom-block"
+      v-if="typeof props.H5 === 'string'"
+    >H5：{{ ddd('H5') }}</div>
+    <div
+      class="warning custom-block"
+      v-if="typeof props.WEIXIN === 'string'"
+    >微信：{{ ddd('WEIXIN') }}</div>
+    <div
+      class="warning custom-block"
+      v-if="typeof props.ALIPAY === 'string'"
+    >支付宝：{{ ddd('ALIPAY') }}</div>
+    <div
+      class="warning custom-block"
+      v-if="typeof props.BAIDU === 'string'"
+    >百度：{{ ddd('BAIDU') }}</div>
+    <div
+      class="warning custom-block"
+      v-if="typeof props.TOUTIAO === 'string'"
+    >头条：{{ ddd('TOUTIAO') }}</div>
+    <div
+      class="warning custom-block"
+      v-if="typeof props.QQ === 'string'"
+    >QQ：{{ ddd('QQ') }}</div>
+    <div
+      class="warning custom-block"
+      v-if="typeof props.KUAISHOU === 'string'"
+    >快手：{{ ddd('KUAISHOU') }}</div>
+    <div
+      class="warning custom-block"
+      v-if="typeof props.JD === 'string'"
+    >京东：{{ ddd('JD') }}</div>
   </div>
 </template>
 
@@ -71,8 +89,6 @@ const props = defineProps({
   QQ: [Boolean, String],
   KUAISHOU: [Boolean, String],
   JD: [Boolean, String],
-  VUE2: [Boolean, String],
-  VUE3: [Boolean, String],
 });
 
 const dd = (platForm) => {

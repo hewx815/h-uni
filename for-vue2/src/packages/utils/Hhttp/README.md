@@ -1,8 +1,5 @@
----
-outline: 'deep'
----
 
-# Hhttp(网络请求)
+# Hhttp 网络请求
 
 ## 介绍
 
@@ -13,7 +10,7 @@ outline: 'deep'
 ## 兼容性
 
 <!-- <SupportTable WEIXIN APP H5 ALIPAY BAIDU TOUTIAO QQ KUAISHOU JD VUE2 /> -->
-<SupportTable WEIXIN VUE2 />
+<SupportTable WEIXIN />
 
 ## 安装
 

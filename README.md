@@ -12,7 +12,7 @@ github: https://github.com/hewx815/h-uni
 
 内含各种 uniapp 的组件库、工具库，您可以根据需要按需导入,或者直接去[github](https://github.com/hewx815/h-uni)复制代码
 
-## 安装
+## 安装 npm包
 
 运行以下命令：
 
@@ -44,9 +44,9 @@ npm run h-uni
 
 如果您看到了正确的版本号证明已经成功安装
 
-## 注册 for-vue2
+## 安装 for-vue2
 
-### 全局注册
+### 全局安装
 
 **1.在项目的`main.js`中导入`Huni`,并使用`Vue`的`use`方法安装**
 
@@ -64,7 +64,7 @@ const app = new Vue({
 app.$mount();
 ```
 
-::: info 全局方法的访问
+::: tip 全局方法的访问
 
 这一步成功把`Huni`的全部方法挂载到`this.$h`和`uni.$h`
 
@@ -76,13 +76,25 @@ app.$mount();
 
 此配置需要在项目src目录的pages.json中进行。
 
+您可以依据您的组件使用习惯,选择不同的配置：
+
+- **横线分隔命名的组件(kebab-case)**
+
+使用: `"^h-(.*)": "h-uni/dist/for-vue2/components+/h-$1/h-$1.vue"`
+
+- **首字母大写命名的组件(PascalCase)**
+
+使用: `"^H(.*)": "h-uni/dist/for-vue2/components/H$1/H$1.vue"`
+
 
 ```json
 // pages.json
 {
 	"easycom": {
-      "^H(.*)": "h-uni/dist/for-vue2/components/H$1/H$1.vue",
+      // <h-button/>
       "^h-(.*)": "h-uni/dist/for-vue2/components+/h-$1/h-$1.vue"
+      // <HButton/>
+      // "^H(.*)": "h-uni/dist/for-vue2/components/H$1/H$1.vue"
 	},
 	// 此为本身已有的内容
 	"pages": [
@@ -91,10 +103,10 @@ app.$mount();
 }
 ```
 
-::: info 温馨提示
-1.uni-app为了调试性能的原因，修改easycom规则不会实时生效，配置完后，您需要重启HX或者重新编译项目才能正常使用uView的功能。
+::: tip 温馨提示
+1.uni-app为了调试性能的原因，修改easycom规则不会实时生效，配置完后，您需要重启HX或者重新编译项目才能正常使用`h-uni`的功能。
 
-2.请确保您的pages.json中只有一个easycom字段，否则请自行合并多个引入规则。
+2.您可以同时使用两种模式，不建议这样做，因为可以会有命名冲突的问题
 :::
 
 **3. Cli模式额外配置**

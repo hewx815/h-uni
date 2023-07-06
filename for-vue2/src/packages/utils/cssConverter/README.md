@@ -1,8 +1,4 @@
----
-outline: 'deep'
----
-
-# cssConverter(样式转换器)
+# cssConverter 样式转换器
 
 ## 介绍
 这是一个工具函数
@@ -11,7 +7,7 @@ outline: 'deep'
 
 ## 兼容性
 
-<SupportTable  H5  VUE2 />
+<SupportTable  H5  WEIXIN/>
 
 ## 安装
 
@@ -32,7 +28,7 @@ import { cssConverter } from 'h-uni/dist/for-vue2/utils';
 
 ## 参数 && 返回值
 
-**cssConverter(value [, target = 'object'])**
+**cssConverter(value [, target = 'string'])**
 ### value
 
 - **类型:** `String || Object`

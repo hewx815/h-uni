@@ -1,13 +1,22 @@
 {
   "pages": [
     {
-      "path": "pages/NavCom"
+      "path": "pages/NavCom/NavCom"
     },
     {
-      "path": "pages/HButton"
+      "path": "pages/HButton/HButton"
     },
     {
-      "path": "pages/HTab"
+      "path": "pages/HTab/HTab",
+      "style": {
+        "navigationBarTitleText": "HTab"
+      }
+    },
+    {
+      "path": "pages/HTab/HTabBase",
+      "style": {
+        "navigationBarTitleText": "HTab-基础用法"
+      }
     }
   ],
   "globalStyle": {
