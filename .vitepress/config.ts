@@ -29,7 +29,7 @@ export default defineConfig({
     ':for/src/packages/:type/:dd/README.md': ':for/:type/:dd.md',
   },
   themeConfig: {
-    outline: 'deep',
+    outline: false,
     search: {
       provider: 'local',
     },
@@ -78,6 +78,5 @@ export default defineConfig({
     },
     // 链接图标
     socialLinks: [{ icon: 'github', link: 'https://github.com/hewx815/h-uni' }],
-    outline: false,
   },
 });
