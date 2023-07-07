@@ -30,6 +30,7 @@ export default defineConfig({
     ':for/src/packages/:type/:dd/README.md': ':for/:type/:dd.md',
   },
   themeConfig: {
+    logo: '/.vitepress/static/logo.png',
     outline: false,
     search: {
       provider: 'local',
