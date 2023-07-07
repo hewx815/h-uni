@@ -8,7 +8,7 @@ import utils from './sidebar/utils';
 const CurrentPath = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   lang: 'zh-CN',
-  outDir: path.resolve(CurrentPath, '../doc'),
+  outDir: path.resolve(CurrentPath, '../website/doc'),
   srcExclude: ['dist/npm/**/*'],
   title: 'h-uni',
   lastUpdated: true,
@@ -21,6 +21,7 @@ export default defineConfig({
       },
     },
     server: {
+      host: '127.0.0.1',
       port: 80,
     },
   },
@@ -29,6 +30,7 @@ export default defineConfig({
     ':for/src/packages/:type/:dd/README.md': ':for/:type/:dd.md',
   },
   themeConfig: {
+    logo: '/.vitepress/static/logo.png',
     outline: false,
     search: {
       provider: 'local',

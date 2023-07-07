@@ -4,7 +4,7 @@ node_modules/
 for-vue2/dist
 for-vue3/dist
 
-doc/
+website/
 dist
 
 cli/storage/index.json

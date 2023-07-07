@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const { spawn } = require('child_process');
 const {
-  getCommandPath, validPath, err,
+  getCommandPath, validPath, err, log,
 } = require('./utils');
 
 /**
@@ -12,6 +12,15 @@ module.exports = async (api, options, args) => {
 
   // openDevTools
   if (openDevTools) {
+    const platFrom = process.env.UNI_PLATFORM;
+
+    if (platFrom === 'h5') {
+      log(`
+      h5平台请使用vue-cli功能:
+      在 vue.config.js 中 devServer.open设置为 true`);
+      return;
+    }
+
     if (!openDevTools.paths) {
       err('缺少\'paths\'配置');
     }
@@ -23,7 +32,6 @@ module.exports = async (api, options, args) => {
     }
 
     // 获取开发者路径
-    const platFrom = process.env.UNI_PLATFORM;
     if (!openDevTools.paths[platFrom]) {
       err(`缺少paths.${platFrom}配置`);
       return;
