@@ -2,6 +2,7 @@ module.exports = {
   transpileDependencies: ['@dcloudio/uni-ui'],
   devServer: {
     open: true,
+    host: '127.0.0.1',
   },
   pluginOptions: {
     'h-uni-build': {
