@@ -87,11 +87,11 @@ export const runStart = (devFolder, script) => {
 };
 
 /**
- * @description 拷贝package包
+ * @description 拷贝文件夹
  * @param {*} srcDir 要被拷贝的源文件夹
  * @param {*} destDir 拷贝操作的目标文件夹
 */
-export const copyPackages = (srcDir, destDir) => {
+export const copyDirs = (srcDir, destDir) => {
   const copyFile = async (src, dest) => {
     fs.copyFileSync(src, dest);
   };

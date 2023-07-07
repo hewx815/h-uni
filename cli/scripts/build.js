@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import { spawnSync } from 'child_process';
 import fs from 'fs';
 import {
-  copyPackages,
+  copyDirs,
   delDir,
   checkoutDir,
   deleteReadmeFiles,
@@ -15,25 +15,24 @@ const startBuild = async () => {
 
   const getPath = (pathd) => path.resolve(CurrentPath, pathd);
 
+  // 把packages文件夹拷贝至 dist
   const vue2Package = {
     srcDir: getPath('../../for-vue2/src/packages'),
     destDir: getPath('../../dist/for-vue2'),
   };
+
+  checkoutDir(vue2Package.destDir);
+  delDir(vue2Package.destDir);
+  copyDirs(vue2Package.srcDir, vue2Package.destDir);
 
   const vue3Package = {
     srcDir: getPath('../../for-vue3/src/packages'),
     destDir: getPath('../../dist/for-vue3'),
   };
 
-  // 把packages文件夹拷贝至 dist
-  checkoutDir(vue2Package.destDir);
   checkoutDir(vue3Package.destDir);
-
-  delDir(vue2Package.destDir);
   delDir(vue3Package.destDir);
-
-  copyPackages(vue2Package.srcDir, vue2Package.destDir);
-  copyPackages(vue3Package.srcDir, vue3Package.destDir);
+  copyDirs(vue3Package.srcDir, vue3Package.destDir);
 
   // 删除dist目录下所有的 README.md
   deleteReadmeFiles(getPath('../../dist'));
@@ -50,6 +49,18 @@ const startBuild = async () => {
   if (fs.existsSync(newVue2PackagePath)) {
     fs.renameSync(newVue2PackagePath, vue2PackagePath);
   }
+
+  // h5预览
+  const vue2H5 = {
+    srcDir: getPath('../../for-vue2/dist/build/h5'),
+    destDir: getPath('../../website/preview-vue2'),
+  };
+  spawnSync('cd for-vue2&&yarn build:h5', { shell: true, stdio: 'inherit' });
+  checkoutDir(vue2H5.destDir);
+  delDir(vue2H5.destDir);
+  copyDirs(vue2H5.srcDir, vue2H5.destDir);
+
+  // TODO:VUE3的打包处理
 };
 
 startBuild();

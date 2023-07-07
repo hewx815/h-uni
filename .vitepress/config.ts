@@ -8,7 +8,7 @@ import utils from './sidebar/utils';
 const CurrentPath = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   lang: 'zh-CN',
-  outDir: path.resolve(CurrentPath, '../doc'),
+  outDir: path.resolve(CurrentPath, '../website/doc'),
   srcExclude: ['dist/npm/**/*'],
   title: 'h-uni',
   lastUpdated: true,
