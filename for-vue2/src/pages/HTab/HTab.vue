@@ -23,6 +23,11 @@ export default {
           note: '一个简单的示例',
           url: 'HTab/HTabBase',
         },
+        {
+          title: '横向布局',
+          note: '更改tab栏方向',
+          url: 'HTab/HabDirection',
+        },
       ],
     };
   },

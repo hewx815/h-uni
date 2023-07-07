@@ -17,6 +17,12 @@
       "style": {
         "navigationBarTitleText": "HTab-基础用法"
       }
+    },
+    {
+      "path": "pages/HTab/HabDirection",
+      "style": {
+        "navigationBarTitleText": "HTab-横向布局"
+      }
     }
   ],
   "globalStyle": {

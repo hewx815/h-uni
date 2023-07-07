@@ -1,29 +1,22 @@
-<!-- #region template -->
 <template>
-  <view class="h_tab_base">
-    <HTab v-model="active">
-      <HTabItem
-        v-for="( item, index ) in list"
-        :key="index"
-        :value="item.value"
-        :label="item.label"
-        :icon="item.icon"
-      />
-    </HTab>
-    <view class="box">
-      {{ list.find((item) => item.value === active).label }}
-    </view>
-  </view>
+  <HTab
+    v-model="active"
+    direction="x"
+  >
+    <HTabItem
+      v-for="( item, index ) in list"
+      :key="index"
+      :value="item.value"
+      :label="item.label"
+      :icon="item.icon"
+    />
+  </HTab>
 </template>
-<!-- #endregion template -->
-
-<!-- #region script -->
 
 <script>
 export default {
   data() {
     return {
-      active: 1,
       list: [
         {
           value: 1,
@@ -80,22 +73,5 @@ export default {
   },
 };
 </script>
-<!-- #endregion script -->
 
-<!-- #region style -->
-<style lang='scss' scoped>
-.h_tab_base {
-  display: flex;
-
-  .box {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-weight: bolder;
-    font-size: 100rpx;
-  }
-}
-</style>
-<!-- #endregion style -->
+<style lang='scss' scoped></style>

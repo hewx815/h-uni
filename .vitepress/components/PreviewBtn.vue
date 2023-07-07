@@ -37,6 +37,8 @@ const clickBtn = () => {
 <style lang='scss' scoped>
 .preview_btn {
   position: relative;
+  margin-top: 1px;
+  margin: 16px 0;
 
   .btn {
     width: 100px;
@@ -49,7 +51,7 @@ const clickBtn = () => {
     position: absolute;
     right: 30px;
     z-index: 19;
-    top: 25px;
+    top: 10px;
 
     background-color: var(--color);
     color: #fff;

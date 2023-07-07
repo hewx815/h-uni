@@ -111,7 +111,6 @@ export default {
 
   .h_tab_item_icon {
     box-sizing: border-box;
-    padding: 20rpx;
   }
 
   .h_tab_item_label {
