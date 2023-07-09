@@ -160,7 +160,9 @@ export default {
     setItemsRect(value, rect) {
       const index = this.itemsRect.findIndex((item) => item.value === value);
       if (index !== -1) {
-        this.itemsRect[index].rect = rect;
+        Object.keys(rect).forEach((key) => {
+          this.itemsRect[index][key] = rect[key];
+        });
         return;
       }
       this.itemsRect.push({ ...rect, value });
@@ -213,6 +215,8 @@ export default {
   .h_tab_container {
     display: flex;
     position: absolute;
+    justify-content: center;
+    align-items: center;
   }
 
   .h_tab_container-x {

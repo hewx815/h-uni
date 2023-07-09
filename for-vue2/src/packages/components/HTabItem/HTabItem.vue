@@ -1,6 +1,7 @@
 <template>
   <view
     class="h_tab_item"
+    :style="itemStyles"
     @click="itemClick"
   >
     <slot>
@@ -8,11 +9,11 @@
         v-if="icon"
         class="h_tab_item_icon"
         :src="icon"
-        :style="iconDefaultStyle"
+        :style="iconStyles"
       />
       <view
+        v-if="label || value"
         class="h_tab_item_label"
-        :style="labelStyle"
       >
         {{ label || value }}
       </view>
@@ -50,18 +51,6 @@ export default {
       type: String,
       default: '',
     },
-    labelStyle: {
-      type: [String, Object],
-      default: '',
-    },
-    iconStyle: {
-      type: [String, Object],
-      default: '',
-    },
-    activeIconStyle: {
-      type: [String, Object],
-      default: '',
-    },
   },
   data() {
     return {
@@ -69,23 +58,39 @@ export default {
     };
   },
   computed: {
-    iconStyles() {
-      return {
-      };
+    HTabsRect() {
+      return this.HTab.scrollViewRect;
     },
-    iconDefaultStyle() {
-      if (this.HTab.direction === 'x') {
-        return `width: ${this.HTab.scrollHeight};height: ${this.HTab.scrollHeight};`;
-      }
-      return `width: ${this.HTab.scrollWidth};height: ${this.HTab.scrollWidth};`;
+    itemStyles() {
+      return this.$h.cssConverter({
+        width: `${this.HTabsRect.width}px`,
+        height: 'auto',
+      });
+    },
+    iconStyles() {
+      return this.$h.cssConverter({
+        width: `${this.HTabsRect.width * 0.8}px`,
+        height: `${this.HTabsRect.width * 0.8}px`,
+        paddingTop: '20rpx',
+      });
     },
   },
-  async mounted() {
-    // 向HTab发送节点信息和值
-    const rect = await this.getRect();
-    this.HTab.setItemsRect(this.value, rect);
+  watch: {
+    HTabsRect() {
+      this.$nextTick(async () => {
+        this.resize();
+      });
+    },
+  },
+  mounted() {
+    this.resize();
   },
   methods: {
+    async resize() {
+      // 向HTab发送节点信息和值
+      const rect = await this.getRect();
+      this.HTab.setItemsRect(this.value, rect);
+    },
     // 获取节点信息
     getRect() {
       return new Promise((resolve) => {
@@ -107,15 +112,20 @@ export default {
 
 <style lang='scss' scoped>
 .h_tab_item {
-  border-right: 2rpx solid #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   .h_tab_item_icon {
-    box-sizing: border-box;
+    display: block;
   }
 
   .h_tab_item_label {
+    padding: 20rpx 0;
     text-align: center;
-    padding-bottom: 20rpx;
+    font-size: 32rpx;
+    line-height: 32rpx;
   }
 }
 </style>

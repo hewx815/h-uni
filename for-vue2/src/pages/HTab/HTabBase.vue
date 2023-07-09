@@ -38,7 +38,6 @@ export default {
         {
           value: 3,
           label: '单人餐',
-          icon: '/static/logo-shadow.png',
         },
         {
           value: 4,
