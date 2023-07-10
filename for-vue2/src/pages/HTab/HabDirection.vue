@@ -18,6 +18,7 @@
 export default {
   data() {
     return {
+      active: 0,
       list: [
         {
           value: 1,

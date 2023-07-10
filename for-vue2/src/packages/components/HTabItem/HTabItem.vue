@@ -77,17 +77,37 @@ export default {
       });
     },
     iconStyles() {
+      let width = 0;
+      let height = 0;
+      if (this.HTab.direction === 'x') {
+        if (this.direction === 'x') {
+          width = this.HTabsRect.height * 0.4;
+          height = this.HTabsRect.height * 0.4;
+        }
+        if (this.direction === 'y') {
+          width = this.HTabsRect.height * 0.8;
+          height = this.HTabsRect.height * 0.8;
+        }
+      }
+
+      if (this.HTab.direction === 'y') {
+        if (this.direction === 'x') {
+          width = this.HTabsRect.width * 0.4;
+          height = this.HTabsRect.width * 0.4;
+        }
+        if (this.direction === 'y') {
+          width = this.HTabsRect.width * 0.8;
+          height = this.HTabsRect.width * 0.8;
+        }
+      }
+
       return this.$h.cssConverter({
-        width:
-          `${(this.HTab.direction === 'x' ? this.HTabsRect.height : this.HTabsRect.width) * 0.8}px`,
-        height:
-          `${(this.HTab.direction === 'x' ? this.HTabsRect.height : this.HTabsRect.width) * 0.8}px`,
-        padding: this.HTab.direction === 'x' ? '0 0 0 20rpx' : '20rpx 0 0 0',
+        width: `${width}px`,
+        height: `${height}px`,
       });
     },
     labelStyles() {
       return this.$h.cssConverter({
-        padding: this.direction === 'x' ? '0 20rpx' : '20rpx 0',
       });
     },
   },
@@ -131,19 +151,16 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  width: min-content;
 
   .h_tab_item_icon {
     display: block;
   }
 
   .h_tab_item_label {
-    display: flex;
+    flex: 1;
     word-break: keep-all;
-    padding: 20rpx 0;
-    text-align: center;
-    font-size: 32rpx;
-    line-height: 32rpx;
   }
 }
 </style>
