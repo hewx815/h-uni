@@ -14,6 +14,7 @@
       <view
         v-if="label || value"
         class="h_tab_item_label"
+        :style="labelStyles"
       >
         {{ label || value }}
       </view>
@@ -26,6 +27,7 @@
  * @name HTabItem
  * @description HTab  item
  * @property {*}  value
+ * @property {String}  direction =['x'|'y'] 图片与文字方向  x=横向  y=纵向
  * @property {String}  label 显示文字
  * @property {String}  icon 显示的图标链接
  * @property {String}  activeIcon 选中时显示的图标链接
@@ -42,6 +44,12 @@ export default {
     label: {
       type: String,
       default: '',
+    },
+    direction: {
+      default: 'y',
+      validator(value) {
+        return ['x', 'y'].includes(value);
+      },
     },
     icon: {
       type: String,
@@ -63,15 +71,23 @@ export default {
     },
     itemStyles() {
       return this.$h.cssConverter({
-        width: `${this.HTabsRect.width}px`,
-        height: 'auto',
+        flexDirection: this.direction === 'x' ? 'row' : 'column',
+        width: this.HTab.direction === 'x' ? 'auto' : `${this.HTabsRect.width}px`,
+        height: this.HTab.direction === 'x' ? `${this.HTabsRect.height}px` : 'auto',
       });
     },
     iconStyles() {
       return this.$h.cssConverter({
-        width: `${this.HTabsRect.width * 0.8}px`,
-        height: `${this.HTabsRect.width * 0.8}px`,
-        paddingTop: '20rpx',
+        width:
+          `${(this.HTab.direction === 'x' ? this.HTabsRect.height : this.HTabsRect.width) * 0.8}px`,
+        height:
+          `${(this.HTab.direction === 'x' ? this.HTabsRect.height : this.HTabsRect.width) * 0.8}px`,
+        padding: this.HTab.direction === 'x' ? '0 0 0 20rpx' : '20rpx 0 0 0',
+      });
+    },
+    labelStyles() {
+      return this.$h.cssConverter({
+        padding: this.direction === 'x' ? '0 20rpx' : '20rpx 0',
       });
     },
   },
@@ -122,6 +138,8 @@ export default {
   }
 
   .h_tab_item_label {
+    display: flex;
+    word-break: keep-all;
     padding: 20rpx 0;
     text-align: center;
     font-size: 32rpx;

@@ -1,11 +1,12 @@
 <template>
   <HTab
     v-model="active"
-    direction="x"
+    direction="y"
   >
     <HTabItem
       v-for="( item, index ) in list"
       :key="index"
+      direction="x"
       :value="item.value"
       :label="item.label"
       :icon="item.icon"
