@@ -10,13 +10,7 @@
     scroll-with-animation
     @scroll="scroll"
   >
-    <slot
-      name="active"
-      :top="activeTop"
-      :left="activeLeft"
-      :width="activeWidth"
-      :height="activeHeight"
-    >
+    <slot name="active">
       <view
         class="h_tab_active"
         :style="activeStyles"
@@ -115,12 +109,14 @@ export default {
         if (typeof this.height === 'number') return `${this.height}px`;
         return this.height;
       }
-      return this.direction === 'x' ? '150rpx' : '623px';
+      return this.direction === 'x' ? '160rpx' : '623px';
     },
 
     // 选中元素样式
     activeStyles() {
       const item = this.itemsRect.find((rect) => rect.value === this.value);
+
+      if (!item) return '';
 
       const width = item ? item.right - item.left : 0;
       const height = item ? item.bottom - item.top : 0;
@@ -141,6 +137,11 @@ export default {
     value(newValue) {
       const index = this.itemsRect.findIndex((item) => item.value === newValue);
       this.setScroll(index);
+    },
+    direction() {
+      this.$nextTick(async () => {
+        this.scrollViewRect = await this.getScrollViewRect();
+      });
     },
   },
   async mounted() {
@@ -166,10 +167,21 @@ export default {
 
     // 滚动某一项到中间位置
     setScroll(index) {
-      const center = this.scrollViewRect.height / 2;
-      const { top, height } = this.itemsRect[index];
-      const scrollTop = top + height / 2 - center;
+      const centerHeight = this.scrollViewRect.height / 2;
+      const centerWidth = this.scrollViewRect.width / 2;
+
+      const {
+        top,
+        height,
+        left,
+        width,
+      } = this.itemsRect[index];
+
+      const scrollTop = top + height / 2 - centerHeight;
+      const scrollLeft = left + width / 2 - centerWidth;
+
       this.scrollTop = scrollTop;
+      this.scrollLeft = scrollLeft;
     },
 
     // 记录高度高度

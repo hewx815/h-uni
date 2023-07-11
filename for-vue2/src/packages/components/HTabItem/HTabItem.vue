@@ -112,6 +112,8 @@ export default {
     },
     labelStyles() {
       return this.$h.cssConverter({
+        width: this.direction === 'x' ? '100%' : 'auto',
+        wordBreak: this.HTab.direction === 'x' ? 'keep-all' : 'break-all',
       });
     },
 
@@ -119,6 +121,7 @@ export default {
   watch: {
     HTabsRect: {
       handler() {
+        // htab尺寸发生变化，此时item也会发生变化，更新item尺寸数据
         this.$nextTick(async () => {
           this.resize();
         });
@@ -176,7 +179,9 @@ export default {
 
   .h_tab_item_label {
     flex: 1;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

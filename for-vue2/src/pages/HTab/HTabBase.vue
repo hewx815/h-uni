@@ -27,16 +27,15 @@ export default {
         {
           value: 1,
           label: '人气热卖',
-          icon: '/static/logo-shadow.png',
         },
         {
           value: 2,
           label: '限时优惠',
-          icon: '/static/logo-shadow.png',
         },
         {
           value: 3,
           label: '单人餐',
+          icon: '/static/logo-shadow.png',
         },
         {
           value: 4,
