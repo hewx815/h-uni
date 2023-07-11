@@ -24,8 +24,8 @@ export default {
           url: 'HTab/HTabBase',
         },
         {
-          title: '横向布局',
-          note: '更改tab栏方向',
+          title: '布局方向[direction]',
+          note: '更改容器以及子项布局',
           url: 'HTab/HabDirection',
         },
       ],

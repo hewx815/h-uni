@@ -18,7 +18,6 @@
 <!-- #endregion template -->
 
 <!-- #region script -->
-
 <script>
 export default {
   data() {

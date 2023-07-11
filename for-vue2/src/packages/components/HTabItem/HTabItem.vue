@@ -69,6 +69,9 @@ export default {
     HTabsRect() {
       return this.HTab.scrollViewRect;
     },
+    HTabsDirection() {
+      return this.HTab.direction;
+    },
     itemStyles() {
       return this.$h.cssConverter({
         flexDirection: this.direction === 'x' ? 'row' : 'column',
@@ -81,38 +84,48 @@ export default {
       let height = 0;
       if (this.HTab.direction === 'x') {
         if (this.direction === 'x') {
-          width = this.HTabsRect.height * 0.4;
-          height = this.HTabsRect.height * 0.4;
+          width = this.HTabsRect.height * 0.3;
+          height = this.HTabsRect.height * 0.3;
         }
         if (this.direction === 'y') {
-          width = this.HTabsRect.height * 0.8;
-          height = this.HTabsRect.height * 0.8;
+          width = this.HTabsRect.height * 0.6;
+          height = this.HTabsRect.height * 0.6;
         }
       }
 
       if (this.HTab.direction === 'y') {
         if (this.direction === 'x') {
-          width = this.HTabsRect.width * 0.4;
-          height = this.HTabsRect.width * 0.4;
+          width = this.HTabsRect.width * 0.3;
+          height = this.HTabsRect.width * 0.3;
         }
         if (this.direction === 'y') {
-          width = this.HTabsRect.width * 0.8;
-          height = this.HTabsRect.width * 0.8;
+          width = this.HTabsRect.width * 0.6;
+          height = this.HTabsRect.width * 0.6;
         }
       }
 
       return this.$h.cssConverter({
         width: `${width}px`,
         height: `${height}px`,
+        margin: this.direction === 'x' ? '0 4rpx 0 0' : '0 0 10rpx 0',
       });
     },
     labelStyles() {
       return this.$h.cssConverter({
       });
     },
+
   },
   watch: {
-    HTabsRect() {
+    HTabsRect: {
+      handler() {
+        this.$nextTick(async () => {
+          this.resize();
+        });
+      },
+      deep: true,
+    },
+    direction() {
       this.$nextTick(async () => {
         this.resize();
       });
@@ -148,11 +161,14 @@ export default {
 
 <style lang='scss' scoped>
 .h_tab_item {
+  font-size: 28rpx;
+  line-height: 28rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  width: min-content;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 10rpx;
 
   .h_tab_item_icon {
     display: block;
@@ -160,7 +176,7 @@ export default {
 
   .h_tab_item_label {
     flex: 1;
-    word-break: keep-all;
+    text-align: center;
   }
 }
 </style>

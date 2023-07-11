@@ -1,24 +1,56 @@
+<!-- #region template -->
 <template>
-  <HTab
-    v-model="active"
-    direction="y"
-  >
-    <HTabItem
-      v-for="( item, index ) in list"
-      :key="index"
-      direction="x"
-      :value="item.value"
-      :label="item.label"
-      :icon="item.icon"
-    />
-  </HTab>
+  <view class="h_tab_direction">
+    <!-- data -->
+    <view class="data">
+      HTab direction= {{ tabDirection }}
+      <uni-data-checkbox
+        v-model="tabDirection"
+        :localdata="directions"
+      />
+      HTabItem direction= {{ tabItemDirection }}
+      <uni-data-checkbox
+        v-model="tabItemDirection"
+        :localdata="directions"
+      />
+    </view>
+    <!-- tab -->
+    <HTab
+      v-model="active"
+      :direction="tabDirection"
+    >
+      <HTabItem
+        v-for="( item, index ) in list"
+        :key="index"
+        :direction="tabItemDirection"
+        :value="item.value"
+        :label="item.label"
+        :icon="item.icon"
+      />
+    </HTab>
+  </view>
 </template>
+<!-- #endregion template -->
 
+<!-- #region script -->
 <script>
 export default {
   data() {
     return {
-      active: 0,
+      tabDirection: 'y',
+      tabItemDirection: 'y',
+      directions: [
+        {
+          value: 'y',
+          text: 'y',
+        },
+        {
+          value: 'x',
+          text: 'x',
+        },
+      ],
+
+      active: 1,
       list: [
         {
           value: 1,
@@ -33,7 +65,6 @@ export default {
         {
           value: 3,
           label: '单人餐',
-          icon: '/static/logo-shadow.png',
         },
         {
           value: 4,
@@ -75,5 +106,17 @@ export default {
   },
 };
 </script>
+<!-- #endregion script -->
 
-<style lang='scss' scoped></style>
+<!-- #region style -->
+<style lang='scss' scoped>
+.h_tab_direction {
+  .data {
+    position: absolute;
+    bottom: 30rpx;
+    right: 30rpx;
+    padding: 30rpx;
+  }
+}
+</style>
+<!-- #endregion style -->

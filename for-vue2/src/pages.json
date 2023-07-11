@@ -21,7 +21,7 @@
     {
       "path": "pages/HTab/HabDirection",
       "style": {
-        "navigationBarTitleText": "HTab-横向布局"
+        "navigationBarTitleText": "HTab-布局方向"
       }
     }
   ],

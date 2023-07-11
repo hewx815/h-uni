@@ -95,9 +95,6 @@ export default {
       scrollTop: 0, // scroll-view scrollTop
       scrollLeft: 0, // scroll-view scrollLeft
 
-      activeTop: 0, // 选中元素top
-      activeLeft: 0, // 选中元素left
-
       itemsRect: [], // item组件信息
       scrollViewRect: {}, // scroll-view rect
     };
@@ -121,25 +118,20 @@ export default {
       return this.direction === 'x' ? '150rpx' : '623px';
     },
 
-    // 选中元素宽
-    activeWidth() {
-      const item = this.itemsRect.find((rect) => rect.value === this.value);
-      return item ? item.right - item.left : 0;
-    },
-
-    // 选中元素高
-    activeHeight() {
-      const item = this.itemsRect.find((rect) => rect.value === this.value);
-      return item ? item.bottom - item.top : 0;
-    },
-
     // 选中元素样式
     activeStyles() {
+      const item = this.itemsRect.find((rect) => rect.value === this.value);
+
+      const width = item ? item.right - item.left : 0;
+      const height = item ? item.bottom - item.top : 0;
+      const top = item.top - this.itemsRect[0].top;
+      const left = item.left - this.itemsRect[0].left;
+
       return this.$h.cssConverter({
-        width: `${this.activeWidth}px`,
-        height: `${this.activeHeight}px`,
-        top: `${this.activeTop}px`,
-        left: `${this.activeLeft}px`,
+        width: `${width}px`,
+        height: `${height}px`,
+        top: `${top}px`,
+        left: `${left}px`,
         transition: `${this.duration / 1000}s`,
         ...this.$h.cssConverter(this.activeStyle, 'object'),
       }, 'string');
@@ -149,7 +141,6 @@ export default {
     value(newValue) {
       const index = this.itemsRect.findIndex((item) => item.value === newValue);
       this.setScroll(index);
-      this.setActive(index);
     },
   },
   async mounted() {
@@ -179,11 +170,6 @@ export default {
       const { top, height } = this.itemsRect[index];
       const scrollTop = top + height / 2 - center;
       this.scrollTop = scrollTop;
-    },
-
-    // 选中某一项
-    setActive(index) {
-      this.activeTop = this.itemsRect[index].top - this.itemsRect[0].top;
     },
 
     // 记录高度高度
