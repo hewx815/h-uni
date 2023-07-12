@@ -26,12 +26,11 @@
 /**
  * @name HTabItem
  * @description HTab  item
- * @property {*}  value
- * @property {String}  direction =['x'|'y'] 图片与文字方向  x=横向  y=纵向
+ * @property {Any}  value
  * @property {String}  label 显示文字
+ * @property {String}  direction =['x'|'y'] 图片与文字方向  x=横向  y=纵向
  * @property {String}  icon 显示的图标链接
  * @property {String}  activeIcon 选中时显示的图标链接
- * @event
  * @slot default
 */
 export default {
@@ -171,7 +170,7 @@ export default {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 10rpx;
+  padding: 30rpx 10rpx;
 
   .h_tab_item_icon {
     display: block;

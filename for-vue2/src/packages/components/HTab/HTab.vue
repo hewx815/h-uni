@@ -10,15 +10,13 @@
     scroll-with-animation
     @scroll="scroll"
   >
-    <slot name="active">
-      <view
-        class="h_tab_active"
-        :style="activeStyles"
-      >
-        <view class="h_tab_active_clip h_tab_active_clip_top" />
-        <view class="h_tab_active_clip h_tab_active_clip_bottom" />
-      </view>
-    </slot>
+    <view
+      class="h_tab_active"
+      :style="activeStyles"
+    >
+      <view class="h_tab_active_clip h_tab_active_clip_top" />
+      <view class="h_tab_active_clip h_tab_active_clip_bottom" />
+    </view>
 
     <view
       class="h_tab_container"
@@ -35,20 +33,15 @@
 <script>
 /**
  * @name HTab 标签栏
- * @description 支持横向和纵向的标签栏
+ * @description 支持横向和纵向布局的标签栏
  * @property {Any} value 选中的值
- * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向
- * @property {Number||String} width tab宽度 默认: direction=100vw:   direction=y:150rpx
- * @property {Number||String} height tab高度 默认: direction=x:150rpx  direction=y:tab栏以下高度
- * @property {Number} duration active元素的动画时间
- * @property {String||Object} activeStyle active元素样式
+ * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向 默认：y
+ * @property {Number||String} width tab宽度 默认: direction=x:100vw:   direction=y:150rpx
+ * @property {Number||String} height tab高度 默认: direction=x:150rpx  direction=y:1246rpx
+ * @property {Number} duration 滑块过渡时间 默认:500
+ * @property {String||Object} activeStyle 滑块元素样式
  * @event input .
  * @slot default <HTabItem/>
- * @slot active 自定义active元素
- *    @scoped top 距离顶部值 px
- *    @scoped left 距离左侧值 px
- *    @scoped width 宽度 px
- *    @scoped height 高度 px
 */
 export default {
   provide() {
@@ -109,7 +102,7 @@ export default {
         if (typeof this.height === 'number') return `${this.height}px`;
         return this.height;
       }
-      return this.direction === 'x' ? '160rpx' : '623px';
+      return this.direction === 'x' ? '160rpx' : '1246rpx';
     },
 
     // 选中元素样式

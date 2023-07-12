@@ -3,15 +3,14 @@
   <view class="h_tab_base">
     <HTab v-model="active">
       <HTabItem
-        v-for="( item, index ) in list"
+        v-for="( item, index ) in 30"
         :key="index"
-        :value="item.value"
-        :label="item.label"
-        :icon="item.icon"
+        :value="index"
+        :label="`套餐${item}`"
       />
     </HTab>
     <view class="box">
-      {{ list.find((item) => item.value === active).label }}
+      套餐 {{ active + 1 }}
     </view>
   </view>
 </template>
@@ -23,56 +22,6 @@ export default {
   data() {
     return {
       active: 1,
-      list: [
-        {
-          value: 1,
-          label: '人气热卖',
-        },
-        {
-          value: 2,
-          label: '限时优惠',
-        },
-        {
-          value: 3,
-          label: '单人餐',
-          icon: '/static/logo-shadow.png',
-        },
-        {
-          value: 4,
-          label: '主食',
-          icon: '/static/logo-shadow.png',
-        },
-        {
-          value: 5,
-          label: '甜点',
-          icon: '/static/logo-shadow.png',
-        },
-        {
-          value: 6,
-          label: '饮品',
-          icon: '/static/logo-shadow.png',
-        },
-        {
-          value: 7,
-          label: '小吃',
-          icon: '/static/logo-shadow.png',
-        },
-        {
-          value: 8,
-          label: '小吃1',
-          icon: '/static/logo-shadow.png',
-        },
-        {
-          value: 9,
-          label: '小吃2',
-          icon: '/static/logo-shadow.png',
-        },
-        {
-          value: 10,
-          label: '小吃3',
-          icon: '/static/logo-shadow.png',
-        },
-      ],
     };
   },
 };
