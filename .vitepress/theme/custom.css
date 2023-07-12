@@ -42,3 +42,7 @@
   --vp-c-green-dark: var(--color-dark);
   --vp-c-green-darker: var(--color-darker);
 }
+
+table tbody tr {
+  background-color: rgba(0, 0, 0, 0) !important;
+}

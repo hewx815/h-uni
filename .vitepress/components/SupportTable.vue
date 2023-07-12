@@ -1,31 +1,36 @@
 <template>
   <table class="table">
 
-    <tr>
-      <td>平台</td>
-      <td>APP</td>
-      <td>H5</td>
-      <td>微信</td>
-      <td>支付宝</td>
-      <td>百度</td>
-      <td>头条</td>
-      <td>QQ</td>
-      <td>快手</td>
-      <td>京东</td>
-    </tr>
+    <thead>
+      <tr>
+        <th>平台</th>
+        <th>APP</th>
+        <th>H5</th>
+        <th>微信</th>
+        <th>支付宝</th>
+        <th>百度</th>
+        <th>头条</th>
+        <th>QQ</th>
+        <th>快手</th>
+        <th>京东</th>
+      </tr>
+    </thead>
 
-    <tr>
-      <td>支持性</td>
-      <td>{{ dd('APP') }}</td>
-      <td>{{ dd('H5') }}</td>
-      <td>{{ dd('WEIXIN') }}</td>
-      <td>{{ dd('ALIPAY') }}</td>
-      <td>{{ dd('BAIDU') }}</td>
-      <td>{{ dd('TOUTIAO') }}</td>
-      <td>{{ dd('QQ') }}</td>
-      <td>{{ dd('KUAISHOU') }}</td>
-      <td>{{ dd('JD') }}</td>
-    </tr>
+    <tbody>
+      <tr>
+        <td>支持性</td>
+        <td>{{ dd('APP') }}</td>
+        <td>{{ dd('H5') }}</td>
+        <td>{{ dd('WEIXIN') }}</td>
+        <td>{{ dd('ALIPAY') }}</td>
+        <td>{{ dd('BAIDU') }}</td>
+        <td>{{ dd('TOUTIAO') }}</td>
+        <td>{{ dd('QQ') }}</td>
+        <td>{{ dd('KUAISHOU') }}</td>
+        <td>{{ dd('JD') }}</td>
+      </tr>
+    </tbody>
+
   </table>
 
   <div class="info ">
@@ -92,19 +97,19 @@ const props = defineProps({
 });
 
 const dd = (platForm) => {
-  const state = props[platForm]
+  const state = props[platForm];
   if (state === false) {
-    return '⚪'
+    return '⚪';
   }
   if (state === true) {
-    return '✅'
+    return '✅';
   }
-  return '❌'
-}
+  return '❌';
+};
 
 const ddd = (platForm) => {
   return props[platForm];
-}
+};
 </script>
 
 <style  scoped>

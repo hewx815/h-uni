@@ -49,8 +49,8 @@ export default {
   },
   props: {
     value: {
+      type: [String, Number, Boolean],
       required: true,
-      validator: () => true,
     },
     direction: {
       default: 'y',
@@ -59,11 +59,11 @@ export default {
       },
     },
     width: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     height: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     duration: {

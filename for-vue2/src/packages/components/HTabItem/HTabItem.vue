@@ -37,7 +37,7 @@ export default {
   inject: ['HTab'],
   props: {
     value: {
-      validator: () => true,
+      type: [String, Number, Boolean],
       required: true,
     },
     label: {
