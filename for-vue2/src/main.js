@@ -6,9 +6,7 @@ import Huni from './packages/index';
 
 Vue.use(Huni);
 Vue.config.productionTip = false;
-
 App.mpType = 'app';
-
 function isPromise(obj) {
   return (
     !!obj

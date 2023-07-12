@@ -31,7 +31,7 @@ export default defineConfig({
   },
   themeConfig: {
     logo: '/.vitepress/static/logo.png',
-    outline: false,
+    outline: 'deep',
     search: {
       provider: 'local',
     },

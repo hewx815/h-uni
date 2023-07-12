@@ -30,17 +30,22 @@ import { HTab, HTabItem } from 'h-uni/dist/for-vue2/components'
 
 ### 基础用法
 
+1. 在`HTab`内嵌套`HTabItem`
+2. 为`HTabItem`绑定`value`和`label`值
+3. `HTab`通过`v-model`绑定变量，即可获取当前选中`HTabItem`的`value`
+
 <PreviewBtn path="pages/HTab/HTabBase"/>
 
 ::: code-group
-<<< @/for-vue2/src/pages/HTab/HTabBase.vue#template {3-12 vue} [template]
-<<< @/for-vue2/src/pages/HTab/HTabBase.vue#script {vue} [script]
+<<< @/for-vue2/src/pages/HTab/HTabBase.vue#template {3-10 vue} [template]
+<<< @/for-vue2/src/pages/HTab/HTabBase.vue#script {5 vue} [script]
 <<< @/for-vue2/src/pages/HTab/HTabBase.vue#style {vue} [style]
 :::
 
 ### 横向布局
 
 ##  Props
+<PropsTable/>
 
 ##  Events
 
@@ -51,27 +56,6 @@ import { HTab, HTabItem } from 'h-uni/dist/for-vue2/components'
 ## Item Events
 
 ## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
-## Item Slot
+
 
 

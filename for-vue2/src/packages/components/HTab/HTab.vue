@@ -10,21 +10,13 @@
     scroll-with-animation
     @scroll="scroll"
   >
-    <slot
-      name="active"
-      :top="activeTop"
-      :left="activeLeft"
-      :width="activeWidth"
-      :height="activeHeight"
+    <view
+      class="h_tab_active"
+      :style="activeStyles"
     >
-      <view
-        class="h_tab_active"
-        :style="activeStyles"
-      >
-        <view class="h_tab_active_clip h_tab_active_clip_top" />
-        <view class="h_tab_active_clip h_tab_active_clip_bottom" />
-      </view>
-    </slot>
+      <view class="h_tab_active_clip h_tab_active_clip_top" />
+      <view class="h_tab_active_clip h_tab_active_clip_bottom" />
+    </view>
 
     <view
       class="h_tab_container"
@@ -41,20 +33,15 @@
 <script>
 /**
  * @name HTab 标签栏
- * @description 支持横向和纵向的标签栏
+ * @description 支持横向和纵向布局的标签栏
  * @property {Any} value 选中的值
- * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向
- * @property {Number||String} width tab宽度 默认: direction=100vw:   direction=y:150rpx
- * @property {Number||String} height tab高度 默认: direction=x:150rpx  direction=y:tab栏以下高度
- * @property {Number} duration active元素的动画时间
- * @property {String||Object} activeStyle active元素样式
+ * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向 默认：y
+ * @property {Number||String} width tab宽度 默认: direction=x:100vw:   direction=y:150rpx
+ * @property {Number||String} height tab高度 默认: direction=x:150rpx  direction=y:1246rpx
+ * @property {Number} duration 滑块过渡时间 默认:500
+ * @property {String||Object} activeStyle 滑块元素样式
  * @event input .
  * @slot default <HTabItem/>
- * @slot active 自定义active元素
- *    @scoped top 距离顶部值 px
- *    @scoped left 距离左侧值 px
- *    @scoped width 宽度 px
- *    @scoped height 高度 px
 */
 export default {
   provide() {
@@ -95,9 +82,6 @@ export default {
       scrollTop: 0, // scroll-view scrollTop
       scrollLeft: 0, // scroll-view scrollLeft
 
-      activeTop: 0, // 选中元素top
-      activeLeft: 0, // 选中元素left
-
       itemsRect: [], // item组件信息
       scrollViewRect: {}, // scroll-view rect
     };
@@ -118,28 +102,25 @@ export default {
         if (typeof this.height === 'number') return `${this.height}px`;
         return this.height;
       }
-      return this.direction === 'x' ? '150rpx' : '623px';
-    },
-
-    // 选中元素宽
-    activeWidth() {
-      const item = this.itemsRect.find((rect) => rect.value === this.value);
-      return item ? item.right - item.left : 0;
-    },
-
-    // 选中元素高
-    activeHeight() {
-      const item = this.itemsRect.find((rect) => rect.value === this.value);
-      return item ? item.bottom - item.top : 0;
+      return this.direction === 'x' ? '160rpx' : '1246rpx';
     },
 
     // 选中元素样式
     activeStyles() {
+      const item = this.itemsRect.find((rect) => rect.value === this.value);
+
+      if (!item) return '';
+
+      const width = item ? item.right - item.left : 0;
+      const height = item ? item.bottom - item.top : 0;
+      const top = item.top - this.itemsRect[0].top;
+      const left = item.left - this.itemsRect[0].left;
+
       return this.$h.cssConverter({
-        width: `${this.activeWidth}px`,
-        height: `${this.activeHeight}px`,
-        top: `${this.activeTop}px`,
-        left: `${this.activeLeft}px`,
+        width: `${width}px`,
+        height: `${height}px`,
+        top: `${top}px`,
+        left: `${left}px`,
         transition: `${this.duration / 1000}s`,
         ...this.$h.cssConverter(this.activeStyle, 'object'),
       }, 'string');
@@ -149,7 +130,11 @@ export default {
     value(newValue) {
       const index = this.itemsRect.findIndex((item) => item.value === newValue);
       this.setScroll(index);
-      this.setActive(index);
+    },
+    direction() {
+      this.$nextTick(async () => {
+        this.scrollViewRect = await this.getScrollViewRect();
+      });
     },
   },
   async mounted() {
@@ -160,7 +145,9 @@ export default {
     setItemsRect(value, rect) {
       const index = this.itemsRect.findIndex((item) => item.value === value);
       if (index !== -1) {
-        this.itemsRect[index].rect = rect;
+        Object.keys(rect).forEach((key) => {
+          this.itemsRect[index][key] = rect[key];
+        });
         return;
       }
       this.itemsRect.push({ ...rect, value });
@@ -173,15 +160,21 @@ export default {
 
     // 滚动某一项到中间位置
     setScroll(index) {
-      const center = this.scrollViewRect.height / 2;
-      const { top, height } = this.itemsRect[index];
-      const scrollTop = top + height / 2 - center;
-      this.scrollTop = scrollTop;
-    },
+      const centerHeight = this.scrollViewRect.height / 2;
+      const centerWidth = this.scrollViewRect.width / 2;
 
-    // 选中某一项
-    setActive(index) {
-      this.activeTop = this.itemsRect[index].top - this.itemsRect[0].top;
+      const {
+        top,
+        height,
+        left,
+        width,
+      } = this.itemsRect[index];
+
+      const scrollTop = top + height / 2 - centerHeight;
+      const scrollLeft = left + width / 2 - centerWidth;
+
+      this.scrollTop = scrollTop;
+      this.scrollLeft = scrollLeft;
     },
 
     // 记录高度高度
@@ -213,6 +206,8 @@ export default {
   .h_tab_container {
     display: flex;
     position: absolute;
+    justify-content: center;
+    align-items: center;
   }
 
   .h_tab_container-x {
