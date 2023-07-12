@@ -40,56 +40,62 @@ import { HTab, HTabItem } from "h-uni/dist/for-vue2/components";
 <<< @/for-vue2/src/pages/HTab/HTabBase.vue#style {vue} [style]
 :::
 
-### 横向布局
+### 布局方向
+
+<PreviewBtn path="pages/HTab/HTabBase"/>
 
 ::: code-group
-<<< @/for-vue2/src/pages/HTab/HTabBase.vue#template {3-10 vue} [template]
-<<< @/for-vue2/src/pages/HTab/HTabBase.vue#script {5 vue} [script]
-<<< @/for-vue2/src/pages/HTab/HTabBase.vue#style {vue} [style]
+<<< @/for-vue2/src/pages/HTab/HabDirection.vue#template {17-29 vue} [template]
+<<< @/for-vue2/src/pages/HTab/HabDirection.vue#script {5-7 vue} [script]
+<<< @/for-vue2/src/pages/HTab/HabDirection.vue#style {vue} [style]
 :::
 
 
 ## Props
 
-|    属性名     |                描述                 |            类型             |        可选值         | 默认值 |
-| :-----------: | :---------------------------------: | :-------------------------: | :-------------------: | :----: |
-| value/v-model | 当前选中`HTabItem`所绑定的 value 值 | `String` `Number` `Boolean` |           -           |   -    |
-|   direction   |            标签栏的方向             |          `String`           | x:水平方向,y:垂直方向 |   y    |
-|     width     |            标签栏的宽度             |      `String` `Number`      |           -           | 100vw  |
-|    height     |            标签栏的高度             |      `String` `Number`      |           -           | 150rpx |
-|   duration    |            滑块过渡时间             |          `Number`           |           -           |  500   |
-|  activeStyle  |             滑块的样式              |      `String` `Object`      |           -           |   -    |
-
+|     属性名     |                描述                 |            类型             |        可选值         |    默认值     |
+| :------------: | :---------------------------------: | :-------------------------: | :-------------------: | :-----------: |
+| value/v-model  | 当前选中`HTabItem`所绑定的 value 值 | `String`,`Number`,`Boolean` |           -           |       -       |
+|   direction    |            标签栏的方向             |          `String`           |          x,y          |       y       |
+|     width      |            标签栏的宽度             |      `String`,`Number`      |           -           | 100vw/150rpx  |
+|     height     |            标签栏的高度             |      `String`,`Number`      |           -           | 150rpx/600rpx |
+| activeDuration |        滑块过渡时间(单位:ms)        |          `Number`           |           -           |      500      |
+|  activeAspect  |             滑块的朝向              |          `String`           | left,right,top,bottom |     left      |
+|  activeStyle   |             滑块的样式              |      `String`,`Object`      |           -           |       -       |
 ## Events
 
 | 事件名 |          描述          |             参数              |
 | :----: | :--------------------: | :---------------------------: |
-| value  | 选中`HTabItem`改变事件 | 选中`HTabItem`所绑定的`value` |
+| input  | 选中`HTabItem`改变事件 | 选中`HTabItem`所绑定的`value` |
 
 ## Slot
 
-| 插槽名 | 描述  | 插槽属性 |
-| :----: | :---: | :------: |
-|        |       |          |
+| 插槽名  |          描述          |                        插槽属性                        |
+| :-----: | :--------------------: | :----------------------------------------------------: |
+| default | 需要包含`HTabItem`组件 |                           -                            |
+| active  |       自定义滑块       | `left`,`top`,`width`,`height` 原生滑块布局信息(单位px) |
 
 ## Item Props
 
-|   属性名   | 描述  | 类型  | 可选值 | 默认值 |
-| :--------: | :---: | :---: | :----: | :----: |
-|   value    |       |       |        |        |
-|   label    |       |       |        |        |
-| direction  |       |       |        |        |
-|    icon    |       |       |        |        |
-| activeIcon |       |       |        |        |
+|   属性名    |         描述         |            类型             | 可选值 | 默认值 |
+| :---------: | :------------------: | :-------------------------: | :----: | :----: |
+|    value    |        绑定值        | `String`,`Number`,`Boolean` |   -    |   -    |
+|  direction  | 图片和文本的排列方向 |          `String`           | x , y  |   y    |
+|    label    |      显示的文本      |          `String`           |   -    |   -    |
+|    image    |       图片链接       |          `String`           |   -    |   -    |
+|   styles    |     选项卡的样式     |      `String`,`Object`      |   -    |   -    |
+| activeImage |   选中后的图片链接   |          `String`           |   -    |   -    |
+| activeLabel |     选中后的文本     |          `String`           |   -    |   -    |
+| activeStyle |  选中后选项卡的样式  |      `String`,`Object`      |   -    |   -    |
 
 ## Item Events
 
 | 事件名 | 描述  | 参数  |
 | :----: | :---: | :---: |
-|        |       |       |
+|   -    |   -   |   -   |
 
 ## Item Slot
 
-| 插槽名 | 描述  | 插槽属性 |
-| :----: | :---: | :------: |
-|        |       |          |
+| 插槽名  |     描述     | 插槽属性 |
+| :-----: | :----------: | :------: |
+| default | 自定义选项卡 |    -     |

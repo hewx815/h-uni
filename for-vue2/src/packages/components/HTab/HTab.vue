@@ -10,13 +10,18 @@
     scroll-with-animation
     @scroll="scroll"
   >
-    <view
-      class="h_tab_active"
-      :style="activeStyles"
+    <slot
+      name="active"
+      :active-styles="$h.cssConverter(activeStyles, 'object')"
     >
-      <view class="h_tab_active_clip h_tab_active_clip_top" />
-      <view class="h_tab_active_clip h_tab_active_clip_bottom" />
-    </view>
+      <view
+        class="h_tab_active"
+        :style="activeStyles"
+      >
+        <view class="h_tab_active_clip h_tab_active_clip_top" />
+        <view class="h_tab_active_clip h_tab_active_clip_bottom" />
+      </view>
+    </slot>
 
     <view
       class="h_tab_container"
@@ -38,10 +43,12 @@
  * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向 默认：y
  * @property {Number||String} width tab宽度 默认: direction=x:100vw:   direction=y:150rpx
  * @property {Number||String} height tab高度 默认: direction=x:150rpx  direction=y:1246rpx
- * @property {Number} duration 滑块过渡时间 默认:500
- * @property {String||Object} activeStyle 滑块元素样式
+ * @property {Number} activeDuration 滑块过渡时间 默认:500
+ * @property {String||Object} activeStyle 滑块的样式
+ * @property {String||Object} activeAspect 滑块的朝向 =[left,right,top,bottom]
  * @event input .
  * @slot default <HTabItem/>
+ * @slot active 自定义滑块
 */
 export default {
   provide() {
@@ -66,7 +73,7 @@ export default {
       type: [String, Number],
       default: '',
     },
-    duration: {
+    activeDuration: {
       type: Number,
       default: 500,
     },
@@ -93,7 +100,7 @@ export default {
         if (typeof this.width === 'number') return `${this.width}px`;
         return this.width;
       }
-      return this.direction === 'x' ? '100vw' : '150rpx';
+      return this.direction === 'x' ? '100vw' : '160rpx';
     },
 
     // scroll-view 高
@@ -121,7 +128,7 @@ export default {
         height: `${height}px`,
         top: `${top}px`,
         left: `${left}px`,
-        transition: `${this.duration / 1000}s`,
+        transition: `${this.activeDuration / 1000}s`,
         ...this.$h.cssConverter(this.activeStyle, 'object'),
       }, 'string');
     },

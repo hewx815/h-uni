@@ -37,8 +37,10 @@
 export default {
   data() {
     return {
+      active: 1,
       tabDirection: 'y',
       tabItemDirection: 'y',
+
       directions: [
         {
           value: 'y',
@@ -49,8 +51,6 @@ export default {
           text: 'x',
         },
       ],
-
-      active: 1,
       list: [
         {
           value: 1,

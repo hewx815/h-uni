@@ -26,7 +26,7 @@
 /**
  * @name HTabItem
  * @description HTab  item
- * @property {Any}  value
+ * @property {String||Number||Boolean}  value
  * @property {String}  label 显示文字
  * @property {String}  direction =['x'|'y'] 图片与文字方向  x=横向  y=纵向
  * @property {String}  icon 显示的图标链接
