@@ -53,15 +53,16 @@ import { HTab, HTabItem } from "h-uni/dist/for-vue2/components";
 
 ## Props
 
-|     属性名     |                描述                 |            类型             |        可选值         |    默认值     |
-| :------------: | :---------------------------------: | :-------------------------: | :-------------------: | :-----------: |
-| value/v-model  | 当前选中`HTabItem`所绑定的 value 值 | `String`,`Number`,`Boolean` |           -           |       -       |
-|   direction    |            标签栏的方向             |          `String`           |          x,y          |       y       |
-|     width      |            标签栏的宽度             |      `String`,`Number`      |           -           | 100vw/150rpx  |
-|     height     |            标签栏的高度             |      `String`,`Number`      |           -           | 150rpx/600rpx |
-| activeDuration |        滑块过渡时间(单位:ms)        |          `Number`           |           -           |      500      |
-|  activeAspect  |             滑块的朝向              |          `String`           | left,right,top,bottom |     left      |
-|  activeStyle   |             滑块的样式              |      `String`,`Object`      |           -           |       -       |
+| 属性名                | 描述                                |            类型             |          可选值          |     默认值     |
+| :-------------------- | :---------------------------------- | :-------------------------: | :----------------------: | :------------: |
+| value/v-model         | 当前选中`HTabItem`所绑定的 value 值 | `String` `Number` `Boolean` |            -             |       -        |
+| direction             | 标签栏的方向                        |          `String`           |           x,y            |       y        |
+| width                 | 标签栏的宽度                        |      `String` `Number`      |            -             |  100vw/150rpx  |
+| height                | 标签栏的高度                        |      `String` `Number`      |            -             | 150rpx/1246rpx |
+| activeAspect          | 滑块的朝向                          |          `String`           | left, right, top, bottom |      left      |
+| activeDuration        | 滑块过渡时间(单位:ms)               |          `Number`           |            -             |      500       |
+| activeBackgroundColor | 滑块的背景颜色                      |          `String`           |            -             |    #FFFFFF     |
+| activeStyle           | 滑块的样式                          |      `String` `Object`      |            -             |       -        |
 ## Events
 
 | 事件名 |          描述          |             参数              |

@@ -15,12 +15,12 @@
       :active-styles="$h.cssConverter(activeStyles, 'object')"
     >
       <view
-        class="h_tab_active"
+        class="h_tab_active h_tab_active-left"
+        :class="[
+          {},
+        ]"
         :style="activeStyles"
-      >
-        <view class="h_tab_active_clip h_tab_active_clip_top" />
-        <view class="h_tab_active_clip h_tab_active_clip_bottom" />
-      </view>
+      />
     </slot>
 
     <view
@@ -39,13 +39,14 @@
 /**
  * @name HTab 标签栏
  * @description 支持横向和纵向布局的标签栏
- * @property {Any} value 选中的值
+ * @property {String||Number||Boolean} value 选中的值
  * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向 默认：y
  * @property {Number||String} width tab宽度 默认: direction=x:100vw:   direction=y:150rpx
  * @property {Number||String} height tab高度 默认: direction=x:150rpx  direction=y:1246rpx
+ * @property {String} activeAspect 滑块的朝向 =[left,right,top,bottom]
  * @property {Number} activeDuration 滑块过渡时间 默认:500
+ * @property {String} activeBackgroundColor 滑块的背景颜色
  * @property {String||Object} activeStyle 滑块的样式
- * @property {String||Object} activeAspect 滑块的朝向 =[left,right,top,bottom]
  * @event input .
  * @slot default <HTabItem/>
  * @slot active 自定义滑块
@@ -76,6 +77,10 @@ export default {
     activeDuration: {
       type: Number,
       default: 500,
+    },
+    activeBackgroundColor: {
+      type: String,
+      default: '#FFFFFF',
     },
     activeStyle: {
       type: [String, Object],
@@ -129,6 +134,7 @@ export default {
         top: `${top}px`,
         left: `${left}px`,
         transition: `${this.activeDuration / 1000}s`,
+        backgroundColor: this.activeBackgroundColor,
         ...this.$h.cssConverter(this.activeStyle, 'object'),
       }, 'string');
     },
@@ -230,46 +236,29 @@ export default {
     position: absolute;
     background-color: #fff;
     border-radius: 20rpx 0 0 20rpx;
-    top: 101px;
 
-    .h_tab_active_clip {
-      display: block;
+    &::before {
+      content: '';
       position: absolute;
-      background-color: #fff;
+      display: block;
       width: 20rpx;
       height: 20rpx;
-      right: 0rpx;
-    }
-
-    .h_tab_active_clip_top {
-      bottom: -20rpx;
-    }
-
-    .h_tab_active_clip_bottom {
+      right: 0;
       top: -20rpx;
+      background-image: radial-gradient(circle at top left, transparent 20rpx, #fff 0);
     }
 
-    .h_tab_active_clip_top {
-      &::after {
-        content: '';
-        display: block;
-        width: 20rpx;
-        height: 20rpx;
-        background-color: #ececec;
-        clip-path: circle(20rpx at 0 20rpx);
-      }
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 20rpx;
+      height: 20rpx;
+      right: 0;
+      bottom: -20rpx;
+      background-image: radial-gradient(circle at bottom left, transparent 20rpx, #fff 0);
     }
 
-    .h_tab_active_clip_bottom {
-      &::after {
-        content: '';
-        display: block;
-        width: 20rpx;
-        height: 20rpx;
-        clip-path: circle(20rpx at 0 0rpx);
-        background-color: #ececec;
-      }
-    }
   }
 }
 </style>
