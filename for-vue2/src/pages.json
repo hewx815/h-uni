@@ -35,8 +35,7 @@
     "autoscan": true,
     "custom": {
       "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
-      "^H(.*)": "@/packages/components/H$1/H$1.vue",
-      "^h-(.*)": "@/packages/components+/h-$1/h-$1.vue"
+      "^H(.*)": "@/packages/components/H$1/H$1.vue"
     }
   }
 }
