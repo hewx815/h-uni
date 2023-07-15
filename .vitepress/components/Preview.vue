@@ -13,15 +13,20 @@
         transform: `rotateZ(${open ? '360deg' : '0deg'})`,
       }"
     />
-    <iframe
-      class="preview_iframe"
+    <div
       :style="iframeStyle"
-      :src="url"
-      scrolling="no"
-      frameborder="0"
-      width=375px
-      height="667px"
-    />
+      class="iframe_box"
+    >
+      <iframe
+        @load="open = true"
+        class="preview_iframe"
+        :src="url"
+        scrolling="no"
+        frameborder="0"
+        width=375px
+        height="667px"
+      />
+    </div>
   </div>
 </template>
 
@@ -59,7 +64,10 @@ const { proxy } = getCurrentInstance();
 
 // PhonePreview 组件调用此方法 更改 previewBtnPath
 proxy.$root.preview = (url) => {
-  previewBtnPath.value = url;
+  previewBtnPath.value = '';
+  setTimeout(() => {
+    previewBtnPath.value = url;
+  }, 0);
   open.value = true;
 };
 
@@ -217,14 +225,6 @@ const getXY = () => {
 </script>
 
 <style scoped lang="scss">
-/**
- * @name
- * @description
- * @property {*}
- * @event
- * @slot
-*/
-
 ::-webkit-scrollbar {
   display: none
 }
@@ -264,13 +264,9 @@ const getXY = () => {
   cursor: pointer;
 }
 
-
-.preview_iframe {
-  width: 375px;
-  height: 667px;
-
-  border-radius: 4px;
-
+.iframe_box {
+  transition: 0.2s ease-out;
+  overflow: hidden;
   background-color: #fff;
 
   box-shadow:
@@ -278,7 +274,6 @@ const getXY = () => {
     0 1px 2px 0 rgba(0, 0, 0, .14),
     0 1px 4px 0 rgba(0, 0, 0, .12);
 
-  transition: 0.2s;
 
   &:hover {
     box-shadow:
@@ -286,5 +281,11 @@ const getXY = () => {
       0 1px 6px 0 rgba(0, 0, 0, .14),
       0 1px 8px 0 rgba(0, 0, 0, .12);
   }
+}
+
+.preview_iframe {
+  width: 375px;
+  height: 667px;
+  background-color: #fff;
 }
 </style>
