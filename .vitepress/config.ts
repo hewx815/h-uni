@@ -34,8 +34,8 @@ export default defineConfig({
   },
   themeConfig: {
     editLink: {
-      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
-      text: '在 GitHub 上编辑此页面',
+      pattern: ({ filePath }) => `https://github.com/hewx815/h-uni/edit/development/${filePath}`,
+      text: '帮助我改善此页面',
     },
 
     logo: '/.vitepress/static/logo.png',
