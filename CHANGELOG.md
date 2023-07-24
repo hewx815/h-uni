@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/hewx815/h-uni/compare/v1.4.0...v1.4.1) (2023-07-24)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 示例文件重命名：HtabSlot.vue=>HTabSlots.vue ([c4ceaff](https://github.com/hewx815/h-uni/commit/c4ceaff3e18f7bfcfde2dd8e649df2ec0985ad1c))
+
 ## [1.4.0](https://github.com/hewx815/h-uni/compare/v1.3.0...v1.4.0) (2023-07-24)
 
 
