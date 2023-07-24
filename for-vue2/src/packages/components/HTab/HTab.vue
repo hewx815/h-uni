@@ -4,20 +4,27 @@
     :style="{ height: scrollHeight, width: scrollWidth }"
     :scroll-x="direction === 'x'"
     :scroll-y="direction === 'y'"
-    :scroll-top="scrollTop"
-    :scroll-left="scrollLeft"
+    :scroll-top="scrollXY.y"
+    :scroll-left="scrollXY.x"
     :show-scrollbar="false"
-    scroll-with-animation
-    @scroll="scroll"
+    :scroll-with-animation="scrollAnimation"
   >
+    <!-- 滑块 -->
     <view
+      v-if="showActive"
       class="h_tab_active"
+      :class="{
+        'h_tab_active-none': activeAspect === 'none',
+        'h_tab_active-left': activeAspect === 'left',
+        'h_tab_active-right': activeAspect === 'right',
+        'h_tab_active-top': activeAspect === 'top',
+        'h_tab_active-bottom': activeAspect === 'bottom',
+      }"
       :style="activeStyles"
     >
-      <view class="h_tab_active_clip h_tab_active_clip_top" />
-      <view class="h_tab_active_clip h_tab_active_clip_bottom" />
+      <slot name="active" />
     </view>
-
+    <!-- 选项卡容器 -->
     <view
       class="h_tab_container"
       :class="{
@@ -34,14 +41,17 @@
 /**
  * @name HTab 标签栏
  * @description 支持横向和纵向布局的标签栏
- * @property {Any} value 选中的值
+ * @property {String||Number||Boolean} value 选中的值
  * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向 默认：y
  * @property {Number||String} width tab宽度 默认: direction=x:100vw:   direction=y:150rpx
  * @property {Number||String} height tab高度 默认: direction=x:150rpx  direction=y:1246rpx
- * @property {Number} duration 滑块过渡时间 默认:500
- * @property {String||Object} activeStyle 滑块元素样式
+ * @property {String} activeAspect 滑块的朝向 =[default,,left,right,top,bottom]
+ * @property {Number} activeDuration 滑块过渡时间 默认:500
+ * @property {String} activeBackgroundColor 滑块的背景颜色
+ * @property {String||Object} activeStyle 滑块的样式
  * @event input .
  * @slot default <HTabItem/>
+ * @slot active 自定义滑块
 */
 export default {
   provide() {
@@ -49,8 +59,8 @@ export default {
   },
   props: {
     value: {
+      type: [String, Number, Boolean],
       required: true,
-      validator: () => true,
     },
     direction: {
       default: 'y',
@@ -59,31 +69,57 @@ export default {
       },
     },
     width: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     height: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
-    duration: {
+    activeAspect: {
+      default: 'none',
+      validator(value) {
+        return ['left', 'right', 'top', 'bottom', 'none'].includes(value);
+      },
+    },
+    activeDuration: {
       type: Number,
       default: 500,
+    },
+    activeBackgroundColor: {
+      type: String,
+      default: '#FFFFFF',
     },
     activeStyle: {
       type: [String, Object],
       default: '',
     },
+    scrollAnimation: {
+      type: Boolean,
+      default: true,
+    },
+    activeAnimation: {
+      type: Boolean,
+      default: true,
+    },
+    scrollCenter: {
+      type: Boolean,
+      default: true,
+    },
+    showActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
-      viewScrollTop: 0, // scroll-view 滚动高度
+      scrollViewScroll: {}, // scroll-view 滚动信息
 
-      scrollTop: 0, // scroll-view scrollTop
-      scrollLeft: 0, // scroll-view scrollLeft
+      scrollViewRect: {}, // scroll-view 节点信息
 
-      itemsRect: [], // item组件信息
-      scrollViewRect: {}, // scroll-view rect
+      containerRect: {}, // Container 节点信息
+
+      items: [], // items
     };
   },
   computed: {
@@ -93,9 +129,8 @@ export default {
         if (typeof this.width === 'number') return `${this.width}px`;
         return this.width;
       }
-      return this.direction === 'x' ? '100vw' : '150rpx';
+      return this.direction === 'x' ? '100vw' : '160rpx';
     },
-
     // scroll-view 高
     scrollHeight() {
       if (this.height) {
@@ -104,88 +139,119 @@ export default {
       }
       return this.direction === 'x' ? '160rpx' : '1246rpx';
     },
+    // 滚动到中间为止的坐标值
+    scrollXY() {
+      if (!this.scrollCenter) return {};
 
-    // 选中元素样式
+      const item = this.items.find((items) => items.value === this.value);
+      if (!item) return {};
+
+      if (item.dataset) {
+        item.select();
+      }
+      const {
+        top, height, left, width,
+      } = item;
+
+      const centerHeight = this.scrollViewRect.height / 2;
+      const centerWidth = this.scrollViewRect.width / 2;
+
+      return {
+        x: (left - this.items[0].left + width / 2) - centerWidth,
+        y: (top - this.items[0].top + height / 2) - centerHeight,
+      };
+    },
+    // 滑块样式
     activeStyles() {
-      const item = this.itemsRect.find((rect) => rect.value === this.value);
+      if (!this.showActive) return '';
 
+      const item = this.items.find((items) => items.value === this.value);
       if (!item) return '';
 
       const width = item ? item.right - item.left : 0;
       const height = item ? item.bottom - item.top : 0;
-      const top = item.top - this.itemsRect[0].top;
-      const left = item.left - this.itemsRect[0].left;
+
+      const top = item.top - this.containerRect.top;
+      const left = item.left - this.containerRect.left;
 
       return this.$h.cssConverter({
         width: `${width}px`,
         height: `${height}px`,
         top: `${top}px`,
         left: `${left}px`,
-        transition: `${this.duration / 1000}s`,
+        transition: `${this.activeAnimation ? (this.activeDuration / 1000) : 0}s`,
+        '--h-tab-active-background': this.activeBackgroundColor,
         ...this.$h.cssConverter(this.activeStyle, 'object'),
       }, 'string');
     },
+
   },
-  watch: {
-    value(newValue) {
-      const index = this.itemsRect.findIndex((item) => item.value === newValue);
-      this.setScroll(index);
-    },
-    direction() {
-      this.$nextTick(async () => {
-        this.scrollViewRect = await this.getScrollViewRect();
-      });
-    },
-  },
-  async mounted() {
-    this.scrollViewRect = await this.getScrollViewRect();
+  mounted() {
+    this.resize();
   },
   methods: {
-    // item组件传递rect信息
-    setItemsRect(value, rect) {
-      const index = this.itemsRect.findIndex((item) => item.value === value);
-      if (index !== -1) {
-        Object.keys(rect).forEach((key) => {
-          this.itemsRect[index][key] = rect[key];
-        });
-        return;
-      }
-      this.itemsRect.push({ ...rect, value });
+    // 设置item组件信息
+    setItem(value, resizeFn, select) {
+      this.items.push({ value, resize: resizeFn, select });
     },
-
     // item组件点击事件
     itemClick(value) {
       this.$emit('input', value);
     },
+    // 重新计算尺寸
+    resize(value) {
+      this.$nextTick(() => {
+        const arr = value
+          ? [this.items.find((item) => item.value === value).resize()]
+          : [...this.items.map((item) => item.resize())];
 
-    // 滚动某一项到中间位置
-    setScroll(index) {
-      const centerHeight = this.scrollViewRect.height / 2;
-      const centerWidth = this.scrollViewRect.width / 2;
-
-      const {
-        top,
-        height,
-        left,
-        width,
-      } = this.itemsRect[index];
-
-      const scrollTop = top + height / 2 - centerHeight;
-      const scrollLeft = left + width / 2 - centerWidth;
-
-      this.scrollTop = scrollTop;
-      this.scrollLeft = scrollLeft;
+        Promise.all([
+          this.getRect(),
+          this.getScroll(),
+          this.getContainerRect(),
+          ...arr,
+        ])
+          .then(([rect, scroll, containerRect, ...itemsRect]) => {
+            if (value) {
+              const index = this.items.find((item) => item.value === value);
+              this.$set(this.items, index, itemsRect[0]);
+            } else {
+              itemsRect.forEach((itemRect, index) => {
+                this.$set(this.items, index, { ...this.items[index], ...itemsRect[index] });
+              });
+            }
+            this.scrollViewRect = rect;
+            this.scrollViewScroll = scroll;
+            this.containerRect = containerRect;
+            return '';
+          })
+          .catch((err) => {
+            // eslint-disable-next-line no-console
+            console.error(err);
+          });
+      });
     },
-
-    // 记录高度高度
-    scroll(e) {
-      this.viewScrollTop = e.detail.scrollTop;
-    },
-
     // 获取 scroll-view rect信息
-    getScrollViewRect() {
+    getRect() {
       return new Promise((resolve) => {
         uni.createSelectorQuery().in(this).select('.h_tab').boundingClientRect((data) => {
+          resolve(data);
+        })
+          .exec();
+      });
+    },
+    // 获取 scroll-view scroll信息
+    getScroll() {
+      return new Promise((resolve) => {
+        uni.createSelectorQuery().in(this).select('.h_tab').scrollOffset((data) => {
+          resolve(data);
+        })
+          .exec();
+      });
+    },
+    getContainerRect() {
+      return new Promise((resolve) => {
+        uni.createSelectorQuery().in(this).select('.h_tab_container').boundingClientRect((data) => {
           resolve(data);
         })
           .exec();
@@ -198,6 +264,7 @@ export default {
 <style lang='scss' scoped>
 .h_tab {
   background-color: #ececec;
+  position: relative;
 
   ::-webkit-scrollbar {
     display: none;
@@ -210,58 +277,142 @@ export default {
     align-items: center;
   }
 
-  .h_tab_container-x {
-    flex-direction: row;
+  .h_tab_container-y {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
   }
 
-  .h_tab_container-y {
-    flex-direction: column;
+  .h_tab_container-x {
+    width: auto;
+    height: 100%;
+    white-space: nowrap;
+    flex-direction: row;
   }
 
   .h_tab_active {
     width: 100%;
     position: absolute;
-    background-color: #fff;
-    border-radius: 20rpx 0 0 20rpx;
-    top: 101px;
+    background-color: var(--h-tab-active-background);
 
-    .h_tab_active_clip {
-      display: block;
+    &::before {
+      content: '';
       position: absolute;
-      background-color: #fff;
+      display: block;
       width: 20rpx;
       height: 20rpx;
-      right: 0rpx;
     }
 
-    .h_tab_active_clip_top {
-      bottom: -20rpx;
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 20rpx;
+      height: 20rpx;
     }
+  }
 
-    .h_tab_active_clip_bottom {
+  .h_tab_active-left {
+    border-radius: 20rpx 0rpx 0rpx 20rpx;
+
+    &::before {
+      content: '';
+      right: 0;
       top: -20rpx;
+      background-image:
+        radial-gradient(circle at top left,
+          transparent 20rpx,
+          var(--h-tab-active-background) 0,
+        );
     }
 
-    .h_tab_active_clip_top {
-      &::after {
-        content: '';
-        display: block;
-        width: 20rpx;
-        height: 20rpx;
-        background-color: #ececec;
-        clip-path: circle(20rpx at 0 20rpx);
-      }
+    &::after {
+      content: '';
+      right: 0;
+      bottom: -20rpx;
+      background-image:
+        radial-gradient(circle at bottom left,
+          transparent 20rpx,
+          var(--h-tab-active-background) 0,
+        );
+    }
+  }
+
+  .h_tab_active-right {
+    border-radius: 0rpx 20rpx 20rpx 0rpx;
+
+    &::before {
+      content: '';
+      left: 0;
+      top: -20rpx;
+      background-image:
+        radial-gradient(circle at top right,
+          transparent 20rpx,
+          var(--h-tab-active-background) 0,
+        );
     }
 
-    .h_tab_active_clip_bottom {
-      &::after {
-        content: '';
-        display: block;
-        width: 20rpx;
-        height: 20rpx;
-        clip-path: circle(20rpx at 0 0rpx);
-        background-color: #ececec;
-      }
+    &::after {
+      content: '';
+      left: 0;
+      bottom: -20rpx;
+      background-image:
+        radial-gradient(circle at bottom right,
+          transparent 20rpx,
+          var(--h-tab-active-background) 0,
+        );
+    }
+  }
+
+  .h_tab_active-top {
+    border-radius: 20rpx 20rpx 0rpx 0rpx;
+
+    &::before {
+      content: '';
+      bottom: 0;
+      left: -20rpx;
+      background-image:
+        radial-gradient(circle at top left,
+          transparent 20rpx,
+          var(--h-tab-active-background) 0,
+        );
+    }
+
+    &::after {
+      content: '';
+      bottom: 0;
+      right: -20rpx;
+      background-image:
+        radial-gradient(circle at top right,
+          transparent 20rpx,
+          var(--h-tab-active-background) 0,
+        );
+    }
+  }
+
+  .h_tab_active-bottom {
+    border-radius: 0rpx 0rpx 20rpx 20rpx;
+
+    &::before {
+      content: '';
+      top: 0;
+      left: -20rpx;
+      background-image:
+        radial-gradient(circle at bottom left,
+          transparent 20rpx,
+          var(--h-tab-active-background) 0,
+        );
+    }
+
+    &::after {
+      content: '';
+      top: 0;
+      right: -20rpx;
+      background-image:
+        radial-gradient(circle at bottom right,
+          transparent 20rpx,
+          var(--h-tab-active-background) 0,
+        );
     }
   }
 }

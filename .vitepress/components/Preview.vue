@@ -21,10 +21,7 @@
         @load="open = true"
         class="preview_iframe"
         :src="url"
-        scrolling="no"
         frameborder="0"
-        width=375px
-        height="667px"
       />
     </div>
   </div>
@@ -96,7 +93,7 @@ const iframeStyle = computed(() => {
     return {
       width: '375px',
       height: '667px',
-      borderRadius: '4px',
+      borderRadius: '10px',
       opacity: 1,
     };
   } else {
@@ -104,7 +101,7 @@ const iframeStyle = computed(() => {
       width: '0px',
       height: '0px',
       borderRadius: '0 0 100% 0%',
-      opacity: 0,
+      opacity: 0.5,
     };
   }
 });
@@ -265,9 +262,8 @@ const getXY = () => {
 }
 
 .iframe_box {
-  transition: 0.2s ease-out;
+  transition: .2s ease-out;
   overflow: hidden;
-  background-color: #fff;
 
   box-shadow:
     0 2px 2px -1px rgba(0, 0, 0, .2),
@@ -284,6 +280,7 @@ const getXY = () => {
 }
 
 .preview_iframe {
+  border-radius: 10px;
   width: 375px;
   height: 667px;
   background-color: #fff;

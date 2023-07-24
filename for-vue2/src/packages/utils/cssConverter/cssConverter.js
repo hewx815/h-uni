@@ -30,12 +30,12 @@ export const objToCss = (obj) => {
  * @return {Object||String}  依据target
 */
 export default function cssConverter(value, target = 'string') {
-  if (typeof target === 'string') {
+  if (target === 'string') {
     if (typeof value === 'string') return value;
     if (typeof value === 'object') return objToCss(value);
   }
 
-  if (typeof target === 'object') {
+  if (target === 'object') {
     if (typeof value === 'string') return cssToObj(value);
     if (typeof value === 'object') return value;
   }

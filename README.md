@@ -1,5 +1,6 @@
 ---
-aside: false
+aside: left
+outline: deep
 ---
 
 # h-uni
@@ -12,7 +13,10 @@ github: https://github.com/hewx815/h-uni
 
 内含各种 uniapp 的组件库、工具库，您可以根据需要按需导入,或者直接去[github](https://github.com/hewx815/h-uni)复制代码
 
-## 安装 npm包
+
+## 安装
+
+### npm方式安装
 
 运行以下命令：
 
@@ -44,9 +48,14 @@ npm run h-uni
 
 如果您看到了正确的版本号证明已经成功安装
 
-## 安装 for-vue2
+## 配置
 
-### 全局安装
+根据你项目所使用的vue版本，选择不同的配置方式：
+
+- [vue2项目配置](#vue2项目配置)<br/>
+- [vue3项目配置](#vue3项目配置)
+
+### vue2项目配置
 
 **1.在项目的`main.js`中导入`Huni`,并使用`Vue`的`use`方法安装**
 
@@ -91,9 +100,9 @@ app.$mount();
 // pages.json
 {
 	"easycom": {
-      // <h-button/>
+      // kebab-case
       "^h-(.*)": "h-uni/dist/for-vue2/components+/h-$1/h-$1.vue"
-      // <HButton/>
+      // PascalCase
       // "^H(.*)": "h-uni/dist/for-vue2/components/H$1/H$1.vue"
 	},
 	// 此为本身已有的内容
@@ -120,43 +129,7 @@ module.exports = {
 }
 ```
 
-### 按需导入
-
-#### 导入组件
-
-`h-uni`组件位置:`h-uni/dist/for-vue2/components`
-
-```vue
-<template>
-  <view>
-    <HButton></HButton>
-  </view>
-</template>
-
-<script>
-import { Hbutton } from 'h-uni/dist/for-vue2/components'
-export default {
-  components:{ Hbutton },
-};
-</script>
-```
-
-#### 导入工具
-
-`h-uni`工具位置:`h-uni/dist/for-vue2/utils`
-
-```js
-import { Hhttp } from 'h-uni/dist/for-vue2/utils'
-
-const request=new Hhttp({
-  baseUrl:'https://xxxxxx.xx'
-})
-```
-::: warning 特殊工具以及组件
-某些工具以及组件因为其导入使用方式特殊性可能会有所不同，以`相关文档`为准
-:::
-
-## 使用 for-vue3
+### vue3项目配置
 
 等待更新。。。
 

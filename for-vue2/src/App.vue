@@ -8,3 +8,8 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+body::-webkit-scrollbar {
+  width: 0px;
+}
+</style>

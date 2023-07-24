@@ -1,0 +1,133 @@
+<!-- #region template -->
+<template>
+  <div>
+    <uni-section
+      title="选项卡样式"
+      type="line"
+    >
+      <HTab
+        v-model="active0"
+        direction="x"
+      >
+        <HTabItem
+          v-for="(item, index) in 20"
+          :key="index"
+          :value="index"
+          :label="`选项${item}`"
+          image="../../static/logo-shadow.png"
+          :styles="{
+            transform: 'rotateZ(0deg)',
+          }"
+          :active-style="{
+            transition: '.5s',
+            transform: 'rotateZ(360deg)',
+          }"
+        />
+      </HTab>
+    </uni-section>
+
+    <view class="flex_box">
+      <uni-section
+        title="文本样式"
+        type="line"
+      >
+        <HTab v-model="active1">
+          <HTabItem
+            v-for="(item, index) in 20"
+            :key="index"
+            :value="index"
+            :label="`选项${item}`"
+            image="../../static/logo-shadow.png"
+            :label-style="{
+              transform: 'rotateZ(0deg)',
+            }"
+            :active-label-style="{
+              transition: '.5s',
+              transform: 'rotateZ(360deg)',
+            }"
+          />
+        </HTab>
+      </uni-section>
+
+      <uni-section
+        title="图片样式"
+        type="line"
+      >
+        <HTab v-model="active2">
+          <HTabItem
+            v-for="(item, index) in 20"
+            :key="index"
+            :value="index"
+            :label="`选项${item}`"
+            image="../../static/logo-shadow.png"
+            :image-style="{
+              transform: 'rotateZ(0deg)',
+            }"
+            :active-image-style="{
+              transition: '.5s',
+              transform: 'rotateZ(360deg)',
+            }"
+          />
+        </HTab>
+      </uni-section>
+
+      <uni-section
+        title="更改文本"
+        type="line"
+      >
+        <HTab v-model="active3">
+          <HTabItem
+            v-for="(item, index) in 20"
+            :key="index"
+            :value="index"
+            :label="`选项${item}`"
+            image="../../static/logo-shadow.png"
+            active-label="选中项"
+          />
+        </HTab>
+      </uni-section>
+
+      <uni-section
+        title="更改图片"
+        type="line"
+      >
+        <HTab v-model="active4">
+          <HTabItem
+            v-for="(item, index) in 20"
+            :key="index"
+            :value="index"
+            :label="`选项${item}`"
+            image="../../static/logo-colourless.png"
+            active-image="../../static/logo-shadow.png"
+          />
+        </HTab>
+      </uni-section>
+    </view>
+  </div>
+</template>
+<!-- #endregion template -->
+
+<!-- #region script -->
+<script>
+export default {
+  data() {
+    return {
+      active0: 0,
+      active1: 0,
+      active2: 1,
+      active3: 2,
+      active4: 3,
+    };
+  },
+};
+</script>
+<!-- #endregion script -->
+
+<!-- #region style -->
+<style lang='scss' scoped>
+.flex_box {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
+<!-- #endregion style -->

@@ -1,3 +1,6 @@
+---
+outline: deep
+---
 
 # Hhttp 网络请求
 
@@ -9,22 +12,24 @@
 
 ## 兼容性
 
-<!-- <SupportTable WEIXIN APP H5 ALIPAY BAIDU TOUTIAO QQ KUAISHOU JD VUE2 /> -->
 <SupportTable WEIXIN />
 
 ## 安装
 
 ### 使用全局挂载的方法
 
-参考:[全局安装](/README.html#全局注册)
+- 完成[`h-uni`安装](/README.html#安装)
+- 完成[`h-uni`配置](/README.html#配置)
+- 使用`this.$h.Hhttp`或者`uni.$h.Hhttp`访问
 
 ```js
 const { Hhttp } = this.$h;
-
+// 或者
 const { Hhttp } = uni.$h;
 ```
 ### 按需导入
-
+- 完成[`h-uni`安装](/README.html#安装)
+- 从`h-uni/dist/for-vue2/utils`中导入`Hhttp`
 ```js
 import { Hhttp } from 'h-uni/dist/for-vue2/utils';
 ```

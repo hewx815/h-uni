@@ -1,23 +1,36 @@
 <template>
   <view
     class="h_tab_item"
+    :class="{
+      'h_tab_item-y': direction === 'y',
+      'h_tab_item-x': direction === 'x',
+      'h_tab_item-tab-y': HTabsDirection === 'y',
+      'h_tab_item-tab-x': HTabsDirection === 'x',
+    }"
     :style="itemStyles"
     @click="itemClick"
   >
     <slot>
       <image
-        v-if="icon"
-        class="h_tab_item_icon"
-        :src="icon"
-        :style="iconStyles"
+        v-if="image"
+        class="h_tab_item_image"
+        :class="{
+          'h_tab_item_image-y': direction === 'y',
+          'h_tab_item_image-x': direction === 'x',
+        }"
+        :src="imageSrc"
+        :style="imageStyles"
       />
-      <view
-        v-if="label || value"
+      <text
         class="h_tab_item_label"
+        :class="{
+          'h_tab_item_label-y': direction === 'y',
+          'h_tab_item_label-x': direction === 'x',
+        }"
         :style="labelStyles"
       >
-        {{ label || value }}
-      </view>
+        {{ labelText }}
+      </text>
     </slot>
   </view>
 </template>
@@ -26,23 +39,18 @@
 /**
  * @name HTabItem
  * @description HTab  item
- * @property {Any}  value
+ * @property {String||Number||Boolean}  value
  * @property {String}  label 显示文字
  * @property {String}  direction =['x'|'y'] 图片与文字方向  x=横向  y=纵向
- * @property {String}  icon 显示的图标链接
- * @property {String}  activeIcon 选中时显示的图标链接
+ * @property {String}  image 显示的图标链接
  * @slot default
 */
 export default {
   inject: ['HTab'],
   props: {
     value: {
-      validator: () => true,
+      type: [String, Number, Boolean],
       required: true,
-    },
-    label: {
-      type: String,
-      default: '',
     },
     direction: {
       default: 'y',
@@ -50,106 +58,93 @@ export default {
         return ['x', 'y'].includes(value);
       },
     },
-    icon: {
+    label: {
+      type: [String, Number],
+      default: '',
+    },
+    activeLabel: {
       type: String,
       default: '',
     },
-    activeIcon: {
+    labelStyle: {
+      type: [String, Object],
+      default: '',
+    },
+    activeLabelStyle: {
+      type: [String, Object],
+      default: '',
+    },
+    image: {
       type: String,
+      default: '',
+    },
+    activeImage: {
+      type: String,
+      default: '',
+    },
+    imageStyle: {
+      type: [String, Object],
+      default: '',
+    },
+    activeImageStyle: {
+      type: [String, Object],
+      default: '',
+    },
+    styles: {
+      type: [String, Object],
+      default: '',
+    },
+    activeStyle: {
+      type: [String, Object],
       default: '',
     },
   },
   data() {
     return {
-      rect: {},
     };
   },
   computed: {
-    HTabsRect() {
-      return this.HTab.scrollViewRect;
-    },
     HTabsDirection() {
       return this.HTab.direction;
     },
     itemStyles() {
       return this.$h.cssConverter({
-        flexDirection: this.direction === 'x' ? 'row' : 'column',
-        width: this.HTab.direction === 'x' ? 'auto' : `${this.HTabsRect.width}px`,
-        height: this.HTab.direction === 'x' ? `${this.HTabsRect.height}px` : 'auto',
-      });
+        ...this.$h.cssConverter(this.styles, 'object'),
+        ...this.$h.cssConverter(this.HTab.value === this.value ? this.activeStyle : {}, 'object'),
+      }, 'string');
     },
-    iconStyles() {
-      let width = 0;
-      let height = 0;
-      if (this.HTab.direction === 'x') {
-        if (this.direction === 'x') {
-          width = this.HTabsRect.height * 0.3;
-          height = this.HTabsRect.height * 0.3;
-        }
-        if (this.direction === 'y') {
-          width = this.HTabsRect.height * 0.6;
-          height = this.HTabsRect.height * 0.6;
-        }
-      }
-
-      if (this.HTab.direction === 'y') {
-        if (this.direction === 'x') {
-          width = this.HTabsRect.width * 0.3;
-          height = this.HTabsRect.width * 0.3;
-        }
-        if (this.direction === 'y') {
-          width = this.HTabsRect.width * 0.6;
-          height = this.HTabsRect.width * 0.6;
-        }
-      }
-
+    imageSrc() {
+      return this.HTab.value === this.value && this.activeImage ? this.activeImage : this.image;
+    },
+    imageStyles() {
       return this.$h.cssConverter({
-        width: `${width}px`,
-        height: `${height}px`,
-        margin: this.direction === 'x' ? '0 4rpx 0 0' : '0 0 10rpx 0',
-      });
+        ...this.$h.cssConverter(this.imageStyle, 'object'),
+        ...this.$h.cssConverter(this.HTab.value === this.value ? this.activeImageStyle : {}, 'object'),
+      }, 'string');
+    },
+    labelText() {
+      return this.HTab.value === this.value && this.activeLabel ? this.activeLabel : this.label;
     },
     labelStyles() {
       return this.$h.cssConverter({
-        width: this.direction === 'x' ? '100%' : 'auto',
-        wordBreak: this.HTab.direction === 'x' ? 'keep-all' : 'break-all',
-      });
-    },
-
-  },
-  watch: {
-    HTabsRect: {
-      handler() {
-        // htab尺寸发生变化，此时item也会发生变化，更新item尺寸数据
-        this.$nextTick(async () => {
-          this.resize();
-        });
-      },
-      deep: true,
-    },
-    direction() {
-      this.$nextTick(async () => {
-        this.resize();
-      });
+        ...this.$h.cssConverter(this.labelStyle, 'object'),
+        ...this.$h.cssConverter(this.HTab.value === this.value ? this.activeLabelStyle : {}, 'object'),
+      }, 'string');
     },
   },
-  mounted() {
-    this.resize();
+  created() {
+    this.HTab.setItem(this.value, this.resize, this.select);
   },
   methods: {
-    async resize() {
-      // 向HTab发送节点信息和值
-      const rect = await this.getRect();
-      this.HTab.setItemsRect(this.value, rect);
-    },
     // 获取节点信息
-    getRect() {
+    resize() {
       return new Promise((resolve) => {
-        uni.createSelectorQuery().in(this).select('.h_tab_item').boundingClientRect((data) => {
-          this.rect = data;
-          resolve(data);
-        })
-          .exec();
+        this.$nextTick(() => {
+          uni.createSelectorQuery().in(this).select('.h_tab_item').boundingClientRect((data) => {
+            resolve(data);
+          })
+            .exec();
+        });
       });
     },
 
@@ -157,30 +152,68 @@ export default {
     itemClick() {
       this.HTab.itemClick(this.value);
     },
+
+    select() {
+      this.$emit('select', this);
+    },
   },
 };
 </script>
 
 <style lang='scss' scoped>
 .h_tab_item {
-  font-size: 28rpx;
-  line-height: 28rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
-  padding: 30rpx 10rpx;
+  display: flex;
+  align-items: center;
+}
 
-  .h_tab_item_icon {
-    display: block;
-  }
+.h_tab_item-y {
+  flex-direction: column;
+}
 
-  .h_tab_item_label {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.h_tab_item-x {
+  flex-direction: row;
+}
+
+.h_tab_item-tab-y {
+  width: 100%;
+  height: auto;
+  padding: 20rpx 10rpx;
+  justify-content: flex-start;
+}
+
+.h_tab_item-tab-x {
+  width: auto;
+  height: 100%;
+  padding: 10rpx 20rpx;
+  justify-content: center;
+}
+
+.h_tab_item_image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.h_tab_item_image-y {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.h_tab_item_image-x {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.h_tab_item_label {
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.h_tab_item_label-y {
+  padding: 4rpx 0 0 0;
+}
+
+.h_tab_item_label-x {
+  padding: 0 0 0 4rpx;
 }
 </style>

@@ -33,8 +33,12 @@ export default defineConfig({
     ':for/src/packages/:type/:dd/README.md': ':for/:type/:dd.md',
   },
   themeConfig: {
+    editLink: {
+      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
+      text: '在 GitHub 上编辑此页面',
+    },
+
     logo: '/.vitepress/static/logo.png',
-    outline: 'deep',
     search: {
       provider: 'local',
     },

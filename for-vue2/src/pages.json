@@ -19,9 +19,33 @@
       }
     },
     {
-      "path": "pages/HTab/HabDirection",
+      "path": "pages/HTab/HTabDirection",
       "style": {
         "navigationBarTitleText": "HTab-布局方向"
+      }
+    },
+    {
+      "path": "pages/HTab/HTabActiveStyle",
+      "style": {
+        "navigationBarTitleText": "HTab-滑块样式"
+      }
+    },
+    {
+      "path": "pages/HTab/HTabItemStyle",
+      "style": {
+        "navigationBarTitleText": "HTab-选项卡样式"
+      }
+    },
+    {
+      "path": "pages/HTab/HTabSlot",
+      "style": {
+        "navigationBarTitleText": "HTab-使用插槽"
+      }
+    },
+    {
+      "path": "pages/HTab/HTabStop",
+      "style": {
+        "navigationBarTitleText": "HTab-关闭滚动或滑块"
       }
     }
   ],

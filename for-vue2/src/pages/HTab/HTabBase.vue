@@ -1,15 +1,15 @@
 <!-- #region template -->
 <template>
-  <view class="h_tab_base">
+  <view class="box">
     <HTab v-model="active">
       <HTabItem
         v-for="( item, index ) in 30"
         :key="index"
-        :value="index"
+        :value="item"
         :label="`套餐${item}`"
       />
     </HTab>
-    <view class="box">
+    <view class="container">
       套餐 {{ active + 1 }}
     </view>
   </view>
@@ -30,10 +30,10 @@ export default {
 
 <!-- #region style -->
 <style lang='scss' scoped>
-.h_tab_base {
+.box {
   display: flex;
 
-  .box {
+  .container {
     flex: 1;
     display: flex;
     justify-content: center;

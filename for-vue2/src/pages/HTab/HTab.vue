@@ -20,13 +20,27 @@ export default {
       list: [
         {
           title: '基础用法',
-          note: '一个简单的示例',
           url: 'HTab/HTabBase',
         },
         {
-          title: '布局方向[direction]',
-          note: '更改容器以及子项布局',
-          url: 'HTab/HabDirection',
+          title: '布局方向',
+          url: 'HTab/HTabDirection',
+        },
+        {
+          title: '滑块样式',
+          url: 'HTab/HTabActiveStyle',
+        },
+        {
+          title: '选项卡样式',
+          url: 'HTab/HTabItemStyle',
+        },
+        {
+          title: '使用插槽',
+          url: 'HTab/HTabSlot',
+        },
+        {
+          title: '关闭滚动或滑块',
+          url: 'HTab/HTabStop',
         },
       ],
     };
