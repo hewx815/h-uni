@@ -186,6 +186,7 @@ const mousedown = () => {
     document.addEventListener('mousemove', move);
 
     document.addEventListener('mouseup', () => {
+      if (!previewIcon.value) return;
       previewIcon.value.style.cursor = "pointer";
       document.body.style.userSelect = 'auto';
       document.removeEventListener('mousemove', move);
