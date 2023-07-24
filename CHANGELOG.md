@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/hewx815/h-uni/compare/v1.3.0...v1.4.0) (2023-07-24)
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 打包脚本：生成短横线命名的资源文件夹 ([6860a7e](https://github.com/hewx815/h-uni/commit/6860a7ec20d01fc7e9055961f14e656530b6c64b))
+* build 命令新增删除 dist 下所有 README.md ([11c1669](https://github.com/hewx815/h-uni/commit/11c16698ecc694370f02471ac6b050a7482d56d8))
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* 打包脚本增加h5预览打包，修改原有打包路径 ([273f108](https://github.com/hewx815/h-uni/commit/273f1084629a3fe4ecc03bed4fa56919995f86da))
+* 新增 vue-cli-plugin-h-uni-build `afterBuild` 功能在H5平台特殊情况的提示功能 ([a7f1b20](https://github.com/hewx815/h-uni/commit/a7f1b20a0274320b3507fe68353bad8bab16ac60))
+* vitepress 升级版本至 1.0.0-beta.5 ([f4c1b0c](https://github.com/hewx815/h-uni/commit/f4c1b0c4adfd8b7dfe8d34da86cf6c90a5b2682f))
+* vitepress升级1.0.0-beta.6 配置：在开发期间禁用 md 缓存 ([dc04c45](https://github.com/hewx815/h-uni/commit/dc04c4525683cfdddd9cae8ed1c4dab0b3bde5e2))
+
+
+### ✨ Features | 新功能
+
+* 新增 cssConverter样式转换器，安装文档更新 ([ff829e7](https://github.com/hewx815/h-uni/commit/ff829e7b153f158b75fe4895ede767bf2c9ffdc7))
+* h-column-tab 组件 => HTab 组件 ，组件基础功能完成 ([f3a92d2](https://github.com/hewx815/h-uni/commit/f3a92d28878b5c51c126f9cc84d0094fe13eef0a))
+* hTab 标签栏组件功能测试完善&&文档更新 ([b9a673b](https://github.com/hewx815/h-uni/commit/b9a673b406d5acb1df273c089292f1031ce0bbfa))
+* vue-cli-plugin-h-uni-build 对 H5 平台的支持性 ([cf2752d](https://github.com/hewx815/h-uni/commit/cf2752d36bcd7eafded4ab484e3b7dfe781bdc92))
+
+
+### ✏️ Documentation | 文档
+
+* 文档首页logo，左上方logo增加 ([2c1ca02](https://github.com/hewx815/h-uni/commit/2c1ca0255c177aee8f355671b26f27deaf40e3b2))
+* 增加 编辑链接功能（帮助我改善此页面） ([8a363df](https://github.com/hewx815/h-uni/commit/8a363dfc65feb47b1904dc22a971a2e1a8914156))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 关闭了vitepress、for-vue2 开发模式下的局域网以及网络端口 ([28a999f](https://github.com/hewx815/h-uni/commit/28a999f42aa87f2accf0fdacd2b7bf532d5bb69f))
+* 删除废弃文件、文件夹，git忽略 .vscode/ ([f3fdc5c](https://github.com/hewx815/h-uni/commit/f3fdc5cf4b552e31ddaa0f9f562c8e098bb9eaf0))
+* 新增：文档内预览悬浮窗组件：Preview和PreviewBtn组件 ([928fd95](https://github.com/hewx815/h-uni/commit/928fd953a8b9dafcab2d0dcbd374d877b9b42a62))
+* preview 组件 style 报错 ([49b2b79](https://github.com/hewx815/h-uni/commit/49b2b79d0048bc327a2cf8ab91c755ca12f3f911))
+* preview组件更换url时iframe尺寸问题 ([41377fa](https://github.com/hewx815/h-uni/commit/41377fa038b22d481672f608b9e8db37cd378392))
+* vitepress 配置文件重复键：`outline` 修复 ([00e0f75](https://github.com/hewx815/h-uni/commit/00e0f751c803b4725cd7f5c4058541a02f23c163))
+
 ## [1.3.0](https://github.com/hewx815/h-uni/compare/v1.2.11...v1.3.0) (2023-06-13)
 
 
