@@ -94,12 +94,12 @@ outline: deep
 - `HTab`默认插槽：标签栏的内容，可以和`HTabItem`穿插使用
 - `HTab`具名插槽`active`：自定义滑块的内容
 - `HTabItem`默认插槽：不使用属性指定的图片和文本，使用自定义选项卡内容
-  <PreviewBtn path="pages/HTab/HtabSlot"/>
+  <PreviewBtn path="pages/HTab/HTabSlots"/>
 
 ::: code-group
-<<< @/for-vue2/src/pages/HTab/HtabSlot.vue#template {7-47,54-70,77-86 vue} [template]
-<<< @/for-vue2/src/pages/HTab/HtabSlot.vue#script {vue} [script]
-<<< @/for-vue2/src/pages/HTab/HtabSlot.vue#style {vue} [style]
+<<< @/for-vue2/src/pages/HTab/HTabSlots.vue#template {7-47,54-70,77-86 vue} [template]
+<<< @/for-vue2/src/pages/HTab/HTabSlots.vue#script {vue} [script]
+<<< @/for-vue2/src/pages/HTab/HTabSlots.vue#style {vue} [style]
 :::
 
 ### 关闭动画或滚动

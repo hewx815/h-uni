@@ -37,7 +37,7 @@
       }
     },
     {
-      "path": "pages/HTab/HTabSlot",
+      "path": "pages/HTab/HTabSlots",
       "style": {
         "navigationBarTitleText": "HTab-使用插槽"
       }

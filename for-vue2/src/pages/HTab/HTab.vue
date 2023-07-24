@@ -36,7 +36,7 @@ export default {
         },
         {
           title: '使用插槽',
-          url: 'HTab/HTabSlot',
+          url: 'HTab/HTabSlots',
         },
         {
           title: '关闭滚动或滑块',
