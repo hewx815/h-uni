@@ -25,6 +25,9 @@ export default defineConfig({
       port: 80,
     },
   },
+  markdown: {
+    cache: false,
+  },
   // 路径重写
   rewrites: {
     ':for/src/packages/:type/:dd/README.md': ':for/:type/:dd.md',
