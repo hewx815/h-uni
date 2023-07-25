@@ -10,6 +10,7 @@ export default defineConfig({
   lang: 'zh-CN',
   outDir: path.resolve(CurrentPath, '../website/doc'),
   srcExclude: ['dist/npm/**/*'],
+  assetsDir: './static',
   title: 'h-uni',
   lastUpdated: true,
   cleanUrls: true,
