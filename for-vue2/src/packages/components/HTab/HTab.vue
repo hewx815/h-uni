@@ -272,9 +272,7 @@ export default {
 
   .h_tab_container {
     display: flex;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
+    position: relative;
   }
 
   .h_tab_container-y {

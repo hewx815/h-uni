@@ -31,7 +31,7 @@
         :direction="tabItemDirection"
         :value="item"
         :label="`套餐${item}`"
-        image="../../static/logo-shadow.png"
+        image="/static/logo-shadow.png"
       />
     </HTab>
   </view>

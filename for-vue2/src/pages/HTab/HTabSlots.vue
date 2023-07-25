@@ -11,12 +11,12 @@
         </view>
         <HTabItem
           :value="1"
-          image="../../static/logo-shadow.png"
+          image="/static/logo-shadow.png"
           label="单人餐"
         />
         <HTabItem
           :value="2"
-          image="../../static/logo-shadow.png"
+          image="/static/logo-shadow.png"
           label="双人餐"
         />
         <view class="title">
@@ -24,12 +24,12 @@
         </view>
         <HTabItem
           :value="3"
-          image="../../static/logo-shadow.png"
+          image="/static/logo-shadow.png"
           label="米饭"
         />
         <HTabItem
           :value="4"
-          image="../../static/logo-shadow.png"
+          image="/static/logo-shadow.png"
           label="馒头"
         />
         <view class="title">
@@ -37,12 +37,12 @@
         </view>
         <HTabItem
           :value="5"
-          image="../../static/logo-shadow.png"
+          image="/static/logo-shadow.png"
           label="雷碧"
         />
         <HTabItem
           :value="6"
-          image="../../static/logo-shadow.png"
+          image="/static/logo-shadow.png"
           label="勇闯天堂"
         />
       </HTab>

@@ -6,6 +6,7 @@
       type="line"
     >
       <HTab
+        ref="HTab"
         v-model="active0"
         direction="x"
       >
@@ -14,7 +15,7 @@
           :key="index"
           :value="index"
           :label="`选项${item}`"
-          image="../../static/logo-shadow.png"
+          image="/static/logo-shadow.png"
           :styles="{
             transform: 'rotateZ(0deg)',
           }"
@@ -37,7 +38,7 @@
             :key="index"
             :value="index"
             :label="`选项${item}`"
-            image="../../static/logo-shadow.png"
+            image="/static/logo-shadow.png"
             :label-style="{
               transform: 'rotateZ(0deg)',
             }"
@@ -59,7 +60,7 @@
             :key="index"
             :value="index"
             :label="`选项${item}`"
-            image="../../static/logo-shadow.png"
+            image="/static/logo-shadow.png"
             :image-style="{
               transform: 'rotateZ(0deg)',
             }"
@@ -81,7 +82,7 @@
             :key="index"
             :value="index"
             :label="`选项${item}`"
-            image="../../static/logo-shadow.png"
+            image="/static/logo-shadow.png"
             active-label="选中项"
           />
         </HTab>
@@ -97,8 +98,8 @@
             :key="index"
             :value="index"
             :label="`选项${item}`"
-            image="../../static/logo-colourless.png"
-            active-image="../../static/logo-shadow.png"
+            image="/static/logo-colourless.png"
+            active-image="/static/logo-shadow.png"
           />
         </HTab>
       </uni-section>
@@ -118,6 +119,19 @@ export default {
       active3: 2,
       active4: 3,
     };
+  },
+  mounted() {
+    /**
+     * 在小程序中：首次获取尺寸时由于第一个选项卡设置了:
+     * active-style="{
+     *       transition: '.5s',
+     *       transform: 'rotateZ(360deg)',
+     *   }"
+     * 导致获取尺寸异常,需要等待旋转结束后重新计算尺寸
+     */
+    setTimeout(() => {
+      this.$refs.HTab.resize();
+    }, 500);
   },
 };
 </script>

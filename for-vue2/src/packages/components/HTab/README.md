@@ -85,7 +85,7 @@ outline: deep
 
 ::: code-group
 <<< @/for-vue2/src/pages/HTab/HTabItemStyle.vue#template {17-23,40-46,62-68,83-84,99-100 vue} [template]
-<<< @/for-vue2/src/pages/HTab/HTabItemStyle.vue#script {vue} [script]
+<<< @/for-vue2/src/pages/HTab/HTabItemStyle.vue#script {13-23 vue} [script]
 <<< @/for-vue2/src/pages/HTab/HTabItemStyle.vue#style {vue} [style]
 :::
 
