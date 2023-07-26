@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/hewx815/h-uni/compare/v1.4.1...v1.4.2) (2023-07-26)
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* 手机预览组件生产环境域名配置 ([fffdc96](https://github.com/hewx815/h-uni/commit/fffdc96de096bd7cebe5e5c0e8751fd0bc654fa9))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 组件：HTab在微信小程序中的兼容问题 ([5292566](https://github.com/hewx815/h-uni/commit/5292566f81125078d364d32a2bf95ffdc0f111ce))
+
+
+### ✏️ Documentation | 文档
+
+* 修复文档无logo的bug ([a570562](https://github.com/hewx815/h-uni/commit/a570562aa7dea040fffba4c7ccdeb9d33f9fa881))
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 修复：文档网站图片丢失问题，模拟器访问404 ([db9bf4d](https://github.com/hewx815/h-uni/commit/db9bf4d2e47bb507da4ac55c34cf4b8ec4aff89c))
+
 ### [1.4.1](https://github.com/hewx815/h-uni/compare/v1.4.0...v1.4.1) (2023-07-24)
 
 
