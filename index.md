@@ -5,7 +5,7 @@ hero:
   name: "h-uni"
   text: "uniapp工具库"
   tagline: 内含uniapp组件，各种工具
-  image: ./.vitepress/static/logo-shadow.png
+  image: "http://static.hewxing.cn/h-uni/logo/logo-shadow.png"
   actions:
     - theme: brand
       text: 开始
@@ -17,7 +17,6 @@ hero:
       text: 工具库文档
       link: /for-vue2/utils/Hhttp
 
-
 features:
   - title: 鸡
     details: 🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀
@@ -27,8 +26,4 @@ features:
     details: 🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀
   - title: 美
     details: 🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀
-
-
-
 ---
-

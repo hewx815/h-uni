@@ -8,9 +8,8 @@ import utils from './sidebar/utils';
 const CurrentPath = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   lang: 'zh-CN',
-  outDir: path.resolve(CurrentPath, '../website/doc'),
-  srcExclude: ['dist/npm/**/*'],
-  assetsDir: './static',
+  outDir: path.resolve(CurrentPath, '../website'),
+  srcExclude: ['dist/**/*'],
   title: 'h-uni',
   lastUpdated: true,
   cleanUrls: true,
@@ -39,7 +38,7 @@ export default defineConfig({
       text: '帮助我改善此页面',
     },
 
-    logo: '/.vitepress/static/logo.png',
+    logo: 'http://static.hewxing.cn/h-uni/logo/logo.png',
     search: {
       provider: 'local',
     },
