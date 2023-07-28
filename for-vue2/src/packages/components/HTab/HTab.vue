@@ -45,10 +45,14 @@
  * @property {String} direction =['x'|'y'] 标签栏的方向  x=横向  y=纵向 默认：y
  * @property {Number||String} width tab宽度 默认: direction=x:100vw:   direction=y:150rpx
  * @property {Number||String} height tab高度 默认: direction=x:150rpx  direction=y:1246rpx
- * @property {String} activeAspect 滑块的朝向 =[default,,left,right,top,bottom]
+ * @property {String} activeAspect 滑块的朝向 =[none,left,right,top,bottom]
  * @property {Number} activeDuration 滑块过渡时间 默认:500
  * @property {String} activeBackgroundColor 滑块的背景颜色
- * @property {String||Object} activeStyle 滑块的样式
+ * @property {Boolean} activeStyle 滑块的样式
+ * @property {Boolean} scrollAnimation 是否开启滚动动画
+ * @property {Boolean} activeAnimation 是否开启滑块动画
+ * @property {Boolean} scrollCenter 是否开启选中项自动滚动至中间功能
+ * @property {Boolean} showActive 是否开启滑块
  * @event input .
  * @slot default <HTabItem/>
  * @slot active 自定义滑块

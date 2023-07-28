@@ -42,11 +42,22 @@
  * @property {String||Number||Boolean}  value
  * @property {String}  label 显示文字
  * @property {String}  direction =['x'|'y'] 图片与文字方向  x=横向  y=纵向
- * @property {String}  image 显示的图标链接
+ * @property {String}  label 文本内容
+ * @property {String}  activeLabel 选中后的文本内容
+ * @property {String||Object}  labelStyle 文本内容的样式
+ * @property {String||Object}  activeLabelStyle 选中后文本内容的样式
+ * @property {String}  image 图片链接
+ * @property {String}  activeImage 选中后的图片链接
+ * @property {String||Object}  imageStyle 图片的样式
+ * @property {String||Object}  activeImageStyle 选中后的图片的样式
+ * @property {String||Object}  styles 选项卡的样式
+ * @property {String||Object}  activeStyle 选中后选项卡的样式
  * @slot default
 */
 export default {
-  inject: ['HTab'],
+  inject: {
+    HTab: ['HTab'],
+  },
   props: {
     value: {
       type: [String, Number, Boolean],
@@ -104,31 +115,36 @@ export default {
     };
   },
   computed: {
+    HTabValue() {
+      if (!this.HTab) return '';
+      return this.HTab.value;
+    },
     HTabsDirection() {
+      if (!this.HTab) return 'x';
       return this.HTab.direction;
     },
     itemStyles() {
       return this.$h.cssConverter({
         ...this.$h.cssConverter(this.styles, 'object'),
-        ...this.$h.cssConverter(this.HTab.value === this.value ? this.activeStyle : {}, 'object'),
+        ...this.$h.cssConverter(this.HTabValue === this.value ? this.activeStyle : {}, 'object'),
       }, 'string');
     },
     imageSrc() {
-      return this.HTab.value === this.value && this.activeImage ? this.activeImage : this.image;
+      return this.HTabValue === this.value && this.activeImage ? this.activeImage : this.image;
     },
     imageStyles() {
       return this.$h.cssConverter({
         ...this.$h.cssConverter(this.imageStyle, 'object'),
-        ...this.$h.cssConverter(this.HTab.value === this.value ? this.activeImageStyle : {}, 'object'),
+        ...this.$h.cssConverter(this.HTabValue === this.value ? this.activeImageStyle : {}, 'object'),
       }, 'string');
     },
     labelText() {
-      return this.HTab.value === this.value && this.activeLabel ? this.activeLabel : this.label;
+      return this.HTabValue === this.value && this.activeLabel ? this.activeLabel : this.label;
     },
     labelStyles() {
       return this.$h.cssConverter({
         ...this.$h.cssConverter(this.labelStyle, 'object'),
-        ...this.$h.cssConverter(this.HTab.value === this.value ? this.activeLabelStyle : {}, 'object'),
+        ...this.$h.cssConverter(this.HTabValue === this.value ? this.activeLabelStyle : {}, 'object'),
       }, 'string');
     },
   },
@@ -156,6 +172,8 @@ export default {
     select() {
       this.$emit('select', this);
     },
+
+    toJSON() { },
   },
 };
 </script>

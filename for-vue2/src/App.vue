@@ -12,4 +12,8 @@ export default {
 body::-webkit-scrollbar {
   width: 0px;
 }
+
+#app {
+  background-color: #fff;
+}
 </style>
