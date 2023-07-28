@@ -9,6 +9,7 @@ module.exports = {
       openDevTools: {
         paths: {
           'mp-weixin': 'D:\\wechatDev\\微信web开发者工具',
+          'mp-toutiao': 'D:\\dyDev\\@bytedminiprogram-ide',
         },
       },
     },

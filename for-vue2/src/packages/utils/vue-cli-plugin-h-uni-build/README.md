@@ -19,7 +19,7 @@ outline: deep
 
 ## 兼容性
 
-<SupportTable WEIXIN H5/>
+<SupportTable WEIXIN H5 TOUTIAO/>
 
 ## 安装
 
@@ -34,12 +34,14 @@ outline: deep
 ```shell [yarn]
 yarn h-uni
 ```
+
 ```shell [npm]
 npm run h-uni
 ```
+
 :::
 
-如果您看到了h-uni的提示，证明h-uni已正确安装到您的项目中
+如果您看到了 h-uni 的提示，证明 h-uni 已正确安装到您的项目中
 
 如果没有，请移步至：[h-uni 安装](/README.html#安装)
 
@@ -52,9 +54,11 @@ npm run h-uni
 ```shell [yarn]
 yarn h-uni initHUniBuild
 ```
+
 ```shell [npm]
 npm run h-uni initHUniBuild
 ```
+
 :::
 
 成功后您会看到成功提示
@@ -67,12 +71,11 @@ npm run h-uni initHUniBuild
 // vue.config.js
 module.exports = {
   pluginOptions: {
-    'h-uni-build': {
+    "h-uni-build": {
       // options
     },
   },
 };
-
 ```
 
 ## 配置项
@@ -85,15 +88,13 @@ module.exports = {
 
 [`afterBuild`](#beforebuild-和-afterbuild):`uni-build`构建之后的回调函数
 
-
-
 ## openDevTools
 
 - **类型:** `Object || false`
 
-项目编译后自动打开开发者工具，适用于使用cli搭建的uniapp项目
+项目编译后自动打开开发者工具，适用于使用 cli 搭建的 uniapp 项目
 
--  **使用示例**
+- **使用示例**
 
 正确配置后，在项目中运行你的启动命令，如：
 
@@ -103,21 +104,40 @@ yarn dev:mp-weixin
 # 在uniapp打包编译`完成后`会自动打开对微信开发者工具
 ```
 
-
-
 - **启用或关闭此功能**
 
 把`openDevTools`配置成`false`,或者将此配置项置空,此功能即关闭
 
-::: warning H5平台：
+### 平台差异说明
 
-不支持此功能！解决方案见：[特殊处理devh5](#特殊处理devh5)
+由于各平台开发者工具支持功能参差不全以及不同平台开发的差异，因此会有很多的差异化内容
+
+但`openDevTools`都保证了基本的`打开开发者工具`功能
+
+::: danger H5
+
+不支持此功能选项！解决方案见：[特殊处理 devh5](#特殊处理devh5)
+
+:::
+
+::: info 微信
+
+- 如果`未登录`会在控制台打印登录二维码，扫码登录
+- `ctrl+c`退出进程时会提示：是否阻止关闭开发者工具，3s 未选择后自动关闭
+
+:::
+
+::: warning 头条
+
+- 受抖音开发者工具限制，不支持自动打开项目，需手动导入项目(项目路径会自动复制至粘贴板)
+- 目前不支持`ctrl+c`退出时关闭开发者工具(存在 bug)
 
 :::
 
 ---
 
 ### openDevTools.paths
+
 - **类型:** `Object`
 
 `Object<key>`:开发者工具标识
@@ -125,12 +145,11 @@ yarn dev:mp-weixin
 `Object<value>`:开发者工具的安装路径(绝对路径)
 
 ```javascript
-
 module.exports = {
   pluginOptions: {
-    openDevTools:{
-      paths:{
-        'mp-weixin':'D:\\wechatDev\\微信web开发者工具',
+    openDevTools: {
+      paths: {
+        "mp-weixin": "D:\\wechatDev\\微信web开发者工具",
         // ... 其他开发者工具目录
       },
     },
@@ -141,33 +160,28 @@ module.exports = {
 ---
 
 ### openDevTools.exitClose
+
 - **类型:** `Boolean`
 - **默认:** `false`
 
-退出时是否关闭开发者工具
-
-::: info 微信平台：
-
-1.如果`未登录`会在控制台打印登录二维码，扫码登录
-
-2.`ctrl+c`退出进程时会提示：是否阻止关闭开发者工具，3s未选择后自动关闭
-
-:::
+在命令行中使用`ctrl+c`退出进程时是否关闭开发者工具
 
 ---
 
 ### openDevTools.projectDir
+
 - **类型:** `String`
 - **默认:** `uniapp` 默认编译输出文件夹
 
 编译后项目的路径(绝对路径)
 
 ## setMode
+
 - **类型:** `Array<object> || false`
 
 项目编译前提示选择模式启动，模式中可配置该模式使用的 `manifest.json` 文件、`pages.json` 文件、`env` 环境变量，或者只更改部分选择
 
-::: warning
+::: warning 默认配置
 
 如果使用`setMode`并配置了`setModeItem.manifestJson`或`setModeItem.pagesJson`
 
@@ -177,7 +191,7 @@ module.exports = {
 
 :::
 
--  **使用示例**
+- **使用示例**
 
 配置了一个名称为：`模式1` 的启动方式
 
@@ -189,22 +203,24 @@ module.exports = {
 
 ```javascript
 // vue.config.js
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 module.exports = {
   pluginOptions: {
-    'h-uni-build': {
+    "h-uni-build": {
       setMode: [
         {
-          name: '模式1',
+          name: "模式1",
           env: {
             APP_MODE: '"模式1"',
           },
-          manifestJson: fs.readFileSync(path.resolve(__dirname,'./src/manifestMode1.json')),
+          manifestJson: fs.readFileSync(
+            path.resolve(__dirname, "./src/manifestMode1.json")
+          ),
           pagesJson: {
             globalStyle: {
-              navigationBarBackgroundColor: '#999',
+              navigationBarBackgroundColor: "#999",
             },
           },
         },
@@ -212,9 +228,7 @@ module.exports = {
     },
   },
 };
-
 ```
-
 
 - **启用或关闭此功能**
 
@@ -223,6 +237,7 @@ module.exports = {
 ---
 
 ### setModeItem.name
+
 - **类型:** `String`
 
 模式的名称
@@ -230,6 +245,7 @@ module.exports = {
 ---
 
 ### setModeItem.env
+
 - **类型:** `Object`
 
 为此模式设置的环境变量
@@ -242,10 +258,10 @@ module.exports = {
 // vue.config.js
 module.exports = {
   pluginOptions: {
-    'h-uni-build': {
+    "h-uni-build": {
       setMode: [
         {
-          name: '模式1',
+          name: "模式1",
           env: {
             APP_MODE: '"模式1"',
           },
@@ -256,14 +272,13 @@ module.exports = {
 };
 
 // index.vue
-console.log(process.env.APP_MODE === '模式1'); // true
-
-
+console.log(process.env.APP_MODE === "模式1"); // true
 ```
 
 ---
 
 ### setModeItem.manifestJson
+
 - **类型:** `String || Object`
 
 该模式的`manifest.json`文件
@@ -275,6 +290,7 @@ console.log(process.env.APP_MODE === '模式1'); // true
 ---
 
 ### setModeItem.pagesJson
+
 - **类型:** `String || Object`
 
 该模式的`pages.json`文件
@@ -284,6 +300,7 @@ console.log(process.env.APP_MODE === '模式1'); // true
 `Object`:覆盖原有的`pages.json`中的部分配置
 
 ## beforeBuild 和 afterBuild
+
 - **类型:** `function`
 - **参数:** `(api, options, args)`
 
@@ -311,15 +328,15 @@ console.log(process.env.APP_MODE === '模式1'); // true
 
 如果是覆盖模式，则把`setModeItem.manifestJson`和`setModeItem.pagesJson`中的配置项覆盖`默认配置项`并写入`manifest.json`和`pages.json`作为该模式的启动文件
 
-
 ## 特殊处理：`dev:h5`
 
 ```json
 // package.json
 {
-  "dev:h5": "cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-serve",
+  "dev:h5": "cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-serve"
 }
 ```
+
 由此不难看出执行`dev:h5`命令时并未执行`uni-build`,扩展`uni-build`并不可行
 
 未解决这个问题，插件内已同时扩展了`uni-serve`，除了[`openDevTools`](#opendevtools)功能，其余插件扩展功能和回调函数均能正常使用
@@ -334,8 +351,3 @@ module.exports = {
   },
 };
 ```
-
-
-
-
-

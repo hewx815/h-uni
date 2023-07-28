@@ -52,6 +52,7 @@ module.exports = async (api, options, args) => {
     spawn('cmd.exe', ['/c', `node ${commandPath} ${projectDir} 0`], { cwd: devToolPath, stdio: 'inherit' });
 
     if (exitClose) {
+      // TODO: bug： mp-toutiao 会导致命令行异常退出 2023年7月28日10:16:25 by:hewx
       // 退出：第四个参数为 1
       process.on('SIGINT', () => {
         const exitCmd = spawn('cmd.exe', ['/c', `node ${commandPath} ${projectDir} 1`], { cwd: devToolPath });
