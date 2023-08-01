@@ -11,7 +11,7 @@ outline: deep
 
 ## 兼容性
 
-<SupportTable  H5  WEIXIN/>
+<SupportTable  H5  WEIXIN TOUTIAO/>
 
 ## 安装
 

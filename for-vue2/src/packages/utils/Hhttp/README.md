@@ -12,7 +12,7 @@ outline: deep
 
 ## 兼容性
 
-<SupportTable WEIXIN />
+<SupportTable WEIXIN H5 />
 
 ## 安装
 
