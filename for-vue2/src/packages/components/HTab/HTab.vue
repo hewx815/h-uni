@@ -59,7 +59,12 @@
 */
 export default {
   provide() {
-    return { HTab: this }; // 与item组件通信
+    return { // 与item组件通信
+      getHTabDirection: () => this.direction,
+      getHTabValue: () => this.value,
+      setItem: this.setItem,
+      itemClick: this.itemClick,
+    };
   },
   props: {
     value: {
@@ -137,6 +142,7 @@ export default {
     },
     // scroll-view 高
     scrollHeight() {
+      console.log('scrollHeight');
       if (this.height) {
         if (typeof this.height === 'number') return `${this.height}px`;
         return this.height;
@@ -168,7 +174,6 @@ export default {
     // 滑块样式
     activeStyles() {
       if (!this.showActive) return '';
-
       const item = this.items.find((items) => items.value === this.value);
       if (!item) return '';
 
@@ -205,34 +210,39 @@ export default {
     // 重新计算尺寸
     resize(value) {
       this.$nextTick(() => {
-        const arr = value
-          ? [this.items.find((item) => item.value === value).resize()]
-          : [...this.items.map((item) => item.resize())];
+        setTimeout(() => {
+          this.$nextTick(() => {
+            const arr = value
+              ? [this.items.find((item) => item.value === value).resize()]
+              : [...this.items.map((item) => item.resize())];
 
-        Promise.all([
-          this.getRect(),
-          this.getScroll(),
-          this.getContainerRect(),
-          ...arr,
-        ])
-          .then(([rect, scroll, containerRect, ...itemsRect]) => {
-            if (value) {
-              const index = this.items.find((item) => item.value === value);
-              this.$set(this.items, index, itemsRect[0]);
-            } else {
-              itemsRect.forEach((itemRect, index) => {
-                this.$set(this.items, index, { ...this.items[index], ...itemsRect[index] });
+            Promise.all([
+              this.getRect(),
+              this.getScroll(),
+              this.getContainerRect(),
+              ...arr,
+            ])
+              .then(([rect, scroll, containerRect, ...itemsRect]) => {
+                this.scrollViewRect = rect;
+                this.scrollViewScroll = scroll;
+                this.containerRect = containerRect;
+                if (value) {
+                  const index = this.items.find((item) => item.value === value);
+                  this.$set(this.items, index, itemsRect[0]);
+                } else {
+                  itemsRect.forEach((itemRect, index) => {
+                    this.$set(this.items, index, { ...this.items[index], ...itemsRect[index] });
+                  });
+                }
+
+                return '';
+              })
+              .catch((err) => {
+                // eslint-disable-next-line no-console
+                console.error(err);
               });
-            }
-            this.scrollViewRect = rect;
-            this.scrollViewScroll = scroll;
-            this.containerRect = containerRect;
-            return '';
-          })
-          .catch((err) => {
-            // eslint-disable-next-line no-console
-            console.error(err);
           });
+        }, 0);
       });
     },
     // 获取 scroll-view rect信息

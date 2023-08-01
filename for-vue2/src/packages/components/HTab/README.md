@@ -18,7 +18,7 @@ outline: deep
 
 ## 兼容性
 
-<SupportTable  H5  WEIXIN/>
+<SupportTable  H5  WEIXIN TOUTIAO/>
 
 ## 使用
 
@@ -166,9 +166,9 @@ outline: deep
 
 ## Item Events
 
-| 事件名 | 描述                       |         参数         |
-| :----- | :------------------------- | :------------------: |
-| select | 当前选项卡被选中触发的事件 | 当前选项卡的实例对象 |
+| 事件名 | 描述                       | 参数 |
+| :----- | :------------------------- | :--: |
+| select | 当前选项卡被选中触发的事件 |  -   |
 
 ## Item Slot
 

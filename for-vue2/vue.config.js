@@ -10,6 +10,7 @@ module.exports = {
         paths: {
           'mp-weixin': 'D:\\wechatDev\\微信web开发者工具',
           'mp-toutiao': 'D:\\dyDev\\@bytedminiprogram-ide',
+          // 'mp-toutiao': 'E:\\bytedminiprogram-ide\\@bytedminiprogram-ide',
         },
       },
     },

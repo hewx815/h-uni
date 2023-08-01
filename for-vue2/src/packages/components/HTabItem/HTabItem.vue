@@ -4,11 +4,11 @@
     :class="{
       'h_tab_item-y': direction === 'y',
       'h_tab_item-x': direction === 'x',
-      'h_tab_item-tab-y': HTabsDirection === 'y',
-      'h_tab_item-tab-x': HTabsDirection === 'x',
+      'h_tab_item-tab-y': HTabDirection === 'y',
+      'h_tab_item-tab-x': HTabDirection === 'x',
     }"
     :style="itemStyles"
-    @click="itemClick"
+    @click="itemClick(value)"
   >
     <slot>
       <image
@@ -55,9 +55,7 @@
  * @slot default
 */
 export default {
-  inject: {
-    HTab: ['HTab'],
-  },
+  inject: ['getHTabDirection', 'getHTabValue', 'setItem', 'itemClick'],
   props: {
     value: {
       type: [String, Number, Boolean],
@@ -72,6 +70,10 @@ export default {
     label: {
       type: [String, Number],
       default: '',
+    },
+    label1: {
+      type: [String, Number],
+      default: '1',
     },
     activeLabel: {
       type: String,
@@ -112,16 +114,16 @@ export default {
   },
   data() {
     return {
+      getHTabDirectionCopy: () => undefined,
+      getHTabValueCopy: () => undefined,
     };
   },
   computed: {
     HTabValue() {
-      if (!this.HTab) return '';
-      return this.HTab.value;
+      return this.getHTabValueCopy();
     },
-    HTabsDirection() {
-      if (!this.HTab) return 'x';
-      return this.HTab.direction;
+    HTabDirection() {
+      return this.getHTabDirectionCopy();
     },
     itemStyles() {
       return this.$h.cssConverter({
@@ -149,7 +151,9 @@ export default {
     },
   },
   created() {
-    this.HTab.setItem(this.value, this.resize, this.select);
+    this.getHTabValueCopy = this.getHTabValue;
+    this.getHTabDirectionCopy = this.getHTabDirection;
+    this.setItem(this.value, this.resize, this.select);
   },
   methods: {
     // 获取节点信息
@@ -164,16 +168,10 @@ export default {
       });
     },
 
-    // 点击事件
-    itemClick() {
-      this.HTab.itemClick(this.value);
-    },
-
     select() {
-      this.$emit('select', this);
+      this.$emit('select');
     },
 
-    toJSON() { },
   },
 };
 </script>
