@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/hewx815/h-uni/compare/v1.4.2...v1.5.0) (2023-08-01)
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* uniapp版本更新 ([9c068f0](https://github.com/hewx815/h-uni/commit/9c068f063e45c694e5cd01edf8585d9aa290a6a4))
+
+
+### ✨ Features | 新功能
+
+* 组件：HTab 对抖音小程序平台的支持 ([d757cd8](https://github.com/hewx815/h-uni/commit/d757cd88c2b36fd49a4a78bee63679a7121aaef0))
+* vue-cli-plugin-h-uni-build 新增对头条平台的支持&&文档更新 ([315a791](https://github.com/hewx815/h-uni/commit/315a791fbc947b3fa13641ccc7ac1e2488566b47))
+
+
+### ✏️ Documentation | 文档
+
+* 部分功能文档兼容性更新 ([ca20aee](https://github.com/hewx815/h-uni/commit/ca20aee562983733a1a046b596b2b36eda5a556e))
+
 ### [1.4.2](https://github.com/hewx815/h-uni/compare/v1.4.1...v1.4.2) (2023-07-26)
 
 
