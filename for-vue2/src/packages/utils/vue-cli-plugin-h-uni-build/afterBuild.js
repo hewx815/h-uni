@@ -25,12 +25,15 @@ module.exports = async (api, options, args) => {
       err('缺少\'paths\'配置');
     }
 
-    if (!openDevTools.paths[platFrom]) return;
-
     // 获取命令文件路径
     const commandPath = getCommandPath();
     if (!commandPath) return;
 
+    // 获取开发者路径
+    if (openDevTools.paths[platFrom] === '') {
+      err(`缺少paths.${platFrom}配置`);
+      return;
+    }
     const devToolPath = openDevTools.paths[platFrom];
     if (!validPath(devToolPath)) {
       err(`没有这样的文件夹：${devToolPath}`);
@@ -47,7 +50,7 @@ module.exports = async (api, options, args) => {
     spawn('cmd.exe', ['/c', `node ${commandPath} ${projectDir} 0`], { cwd: devToolPath, stdio: 'inherit' });
 
     if (exitClose) {
-      // TODO: bug： mp-toutiao 会导致命令行异常退出 2023年7月28日10:16:25 by:hewx
+      // TODO: bug： mp-toutiao/mp-baidu powershell中会导致命令行异常退出 2023年7月28日10:16:25 by:hewx
       // 退出：第四个参数为 1
       process.on('SIGINT', () => {
         const exitCmd = spawn('cmd.exe', ['/c', `node ${commandPath} ${projectDir} 1`], { cwd: devToolPath });
