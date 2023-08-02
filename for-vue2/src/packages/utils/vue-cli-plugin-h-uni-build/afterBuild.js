@@ -25,17 +25,12 @@ module.exports = async (api, options, args) => {
       err('缺少\'paths\'配置');
     }
 
+    if (!openDevTools.paths[platFrom]) return;
+
     // 获取命令文件路径
     const commandPath = getCommandPath();
-    if (!commandPath) {
-      return;
-    }
+    if (!commandPath) return;
 
-    // 获取开发者路径
-    if (!openDevTools.paths[platFrom]) {
-      err(`缺少paths.${platFrom}配置`);
-      return;
-    }
     const devToolPath = openDevTools.paths[platFrom];
     if (!validPath(devToolPath)) {
       err(`没有这样的文件夹：${devToolPath}`);

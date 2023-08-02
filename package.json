@@ -49,6 +49,7 @@
     "columnify": "^1.6.0",
     "cross-env": "^7.0.3",
     "inquirer8": "npm:inquirer@8.0.0",
+    "minidev": "^1.9.0",
     "strip-json-comments": "^5.0.0"
   },
   "engines": {
