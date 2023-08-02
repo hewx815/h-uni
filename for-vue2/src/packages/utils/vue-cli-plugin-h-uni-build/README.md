@@ -19,7 +19,7 @@ outline: deep
 
 ## 兼容性
 
-<SupportTable WEIXIN H5 TOUTIAO/>
+<SupportTable WEIXIN H5 TOUTIAO BAIDU ALIPAY/>
 
 ## 安装
 
@@ -108,7 +108,7 @@ yarn dev:mp-weixin
 
 把`openDevTools`配置成`false`,或者将此配置项置空,此功能即关闭
 
-### 平台差异说明
+- **平台差异说明**
 
 由于各平台开发者工具支持功能参差不全以及不同平台开发的差异，因此会有很多的差异化内容
 
@@ -116,24 +116,29 @@ yarn dev:mp-weixin
 
 ::: danger H5
 
-不支持此功能选项！解决方案见：[特殊处理 devh5](#特殊处理devh5)
-
-:::
-
-::: info 微信
-
-- 如果`未登录`会在控制台打印登录二维码，扫码登录
-- `ctrl+c`退出进程时会提示：是否阻止关闭开发者工具，3s 未选择后自动关闭
+不支持此功能选项！解决方案见：[特殊处理 dev:h5](#特殊处理-dev-h5)
 
 :::
 
 ::: warning 头条
 
 - 受抖音开发者工具限制，不支持自动打开项目，需手动导入项目(项目路径会自动复制至粘贴板)
-- 目前不支持`ctrl+c`退出时关闭开发者工具(存在 bug)
+- 使用poweshell命令行工具时, [`exitClose`](#opendevtools-exitclose) 会导致当前进程意外退出
 
 :::
 
+::: warning 百度
+
+- 受百度开发者工具限制，不支持自动打开项目，需手动导入项目(项目路径会自动复制至粘贴板)
+- 使用poweshell命令行工具时, [`exitClose`](#opendevtools-exitclose) 会导致当前进程意外退出
+
+:::
+
+::: info 微信
+
+- 如果未登录，会在控制台打印登录二维码，扫码登录
+
+:::
 ---
 
 ### openDevTools.paths
