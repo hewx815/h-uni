@@ -18,7 +18,7 @@ outline: deep
 
 ## 兼容性
 
-<SupportTable  H5  WEIXIN TOUTIAO/>
+<SupportTable  H5  WEIXIN TOUTIAO BAIDU/>
 
 ## 使用
 
@@ -84,7 +84,7 @@ outline: deep
 <PreviewBtn path="pages/HTab/HTabItemStyle"/>
 
 ::: code-group
-<<< @/for-vue2/src/pages/HTab/HTabItemStyle.vue#template {17-23,40-46,62-68,83-84,99-100 vue} [template]
+<<< @/for-vue2/src/pages/HTab/HTabItemStyle.vue#template {18-24,41-47,63-69,84-85,100-101 vue} [template]
 <<< @/for-vue2/src/pages/HTab/HTabItemStyle.vue#script {13-23 vue} [script]
 <<< @/for-vue2/src/pages/HTab/HTabItemStyle.vue#style {vue} [style]
 :::
@@ -124,7 +124,7 @@ outline: deep
 | value/v-model         | 当前选中`HTabItem`所绑定的 value 值 | `String` `Number` `Boolean` |               -               |       -        |
 | direction             | 标签栏的方向                        |          `String`           |              x,y              |       y        |
 | width                 | 标签栏的宽度                        |      `String` `Number`      |               -               |  160rpx/100vw  |
-| height                | 标签栏的高度                        |      `String` `Number`      |               -               | 1246rpx/160rpx |
+| height                | 标签栏的高度                        |      `String` `Number`      |               -               | 1200rpx/160rpx |
 | activeAspect          | 滑块的朝向                          |          `String`           | none,left, right, top, bottom |      none      |
 | activeDuration        | 滑块过渡时间(单位:ms)               |          `Number`           |               -               |      500       |
 | activeBackgroundColor | 滑块的背景颜色                      |          `String`           |               -               |    #FFFFFF     |
@@ -166,9 +166,9 @@ outline: deep
 
 ## Item Events
 
-| 事件名 | 描述                       | 参数 |
-| :----- | :------------------------- | :--: |
-| select | 当前选项卡被选中触发的事件 |  -   |
+| 事件名 | 描述                       | 参数  |
+| :----- | :------------------------- | :---: |
+| select | 当前选项卡被选中触发的事件 |   -   |
 
 ## Item Slot
 

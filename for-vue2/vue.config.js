@@ -7,7 +7,7 @@ module.exports = {
   pluginOptions: {
     'h-uni-build': {
       openDevTools: {
-        exitClose: true,
+        // exitClose: true,
         paths: {
           'mp-weixin': 'D:\\wechatDev\\微信web开发者工具',
           'mp-toutiao': 'D:\\dyDev\\@bytedminiprogram-ide',

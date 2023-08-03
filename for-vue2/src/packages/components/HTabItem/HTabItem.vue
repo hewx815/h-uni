@@ -1,12 +1,11 @@
 <template>
   <view
     class="h_tab_item"
-    :class="{
-      'h_tab_item-y': direction === 'y',
-      'h_tab_item-x': direction === 'x',
-      'h_tab_item-tab-y': HTabDirection === 'y',
-      'h_tab_item-tab-x': HTabDirection === 'x',
-    }"
+    :class="[
+      `h_tab_item-${direction}`,
+      `h_tab_item-tab-${HTabDirection}`,
+      `h_tab_item-${vueId}`,
+    ]"
     :style="itemStyles"
     @click="itemClick(value)"
   >
@@ -14,19 +13,13 @@
       <image
         v-if="image"
         class="h_tab_item_image"
-        :class="{
-          'h_tab_item_image-y': direction === 'y',
-          'h_tab_item_image-x': direction === 'x',
-        }"
+        :class="[`h_tab_item_image-${direction}`]"
         :src="imageSrc"
         :style="imageStyles"
       />
       <text
         class="h_tab_item_label"
-        :class="{
-          'h_tab_item_label-y': direction === 'y',
-          'h_tab_item_label-x': direction === 'x',
-        }"
+        :class="[`h_tab_item_label-${direction}`]"
         :style="labelStyles"
       >
         {{ labelText }}
@@ -114,6 +107,8 @@ export default {
   },
   data() {
     return {
+      vueId: '',
+
       getHTabDirectionCopy: () => undefined,
       getHTabValueCopy: () => undefined,
     };
@@ -149,18 +144,29 @@ export default {
         ...this.$h.cssConverter(this.HTabValue === this.value ? this.activeLabelStyle : {}, 'object'),
       }, 'string');
     },
+    itemClassName() {
+      return `h_tab_item-tab-${this.HTabDirection} h_tab_item-${this.direction}`;
+    },
   },
   created() {
     this.getHTabValueCopy = this.getHTabValue;
     this.getHTabDirectionCopy = this.getHTabDirection;
     this.setItem(this.value, this.resize, this.select);
+    // #ifdef MP-BAIDU
+    // eslint-disable-next-line no-underscore-dangle
+    this.vueId = this.$scope._$vueId;
+    // #endif
   },
   methods: {
     // 获取节点信息
     resize() {
+      let className = '.h_tab_item';
+      // #ifdef MP-BAIDU
+      className = `.h_tab_item-${this.vueId}`;
+      // #endif
       return new Promise((resolve) => {
         this.$nextTick(() => {
-          uni.createSelectorQuery().in(this).select('.h_tab_item').boundingClientRect((data) => {
+          uni.createSelectorQuery().in(this).select(className).boundingClientRect((data) => {
             resolve(data);
           })
             .exec();

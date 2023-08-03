@@ -16,4 +16,8 @@ body::-webkit-scrollbar {
 #app {
   background-color: #fff;
 }
+
+page {
+  background-color: #fff;
+}
 </style>

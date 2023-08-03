@@ -232,11 +232,6 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
-"@dcloudio/uni-ui@^1.4.28":
-  version "1.4.28"
-  resolved "https://registry.yarnpkg.com/@dcloudio/uni-ui/-/uni-ui-1.4.28.tgz#557a84b53722937126aff72d1ab4b56741d11937"
-  integrity sha512-e/lSbvR79KH9+d3D4ueNbvD6szigjO/5IyjBNmiTqaj0PTS324fBV3L6f3s1qpkYonM4rdOl000hVOcAg6Gh/A==
-
 "@docsearch/css@3.5.1", "@docsearch/css@^3.5.1":
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-3.5.1.tgz#4adf9884735bbfea621c3716e80ea97baa419b73"
