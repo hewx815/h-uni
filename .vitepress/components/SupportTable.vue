@@ -9,10 +9,11 @@
         <th>微信</th>
         <th>支付宝</th>
         <th>百度</th>
-        <th>头条</th>
-        <th>QQ</th>
+        <th>抖音</th>
+        <th>飞书</th>
+        <!-- <th>QQ</th>
         <th>快手</th>
-        <th>京东</th>
+        <th>京东</th> -->
         <th>NVUE</th>
       </tr>
     </thead>
@@ -26,13 +27,18 @@
         <td>{{ dd('ALIPAY') }}</td>
         <td>{{ dd('BAIDU') }}</td>
         <td>{{ dd('TOUTIAO') }}</td>
-        <td>{{ dd('QQ') }}</td>
+        <td>{{ dd('LARK') }}</td>
+        <!-- <td>{{ dd('QQ') }}</td>
         <td>{{ dd('KUAISHOU') }}</td>
-        <td>{{ dd('JD') }}</td>
+        <td>{{ dd('JD') }}</td> -->
         <td>{{ dd('NVUE') }}</td>
       </tr>
     </tbody>
-
+    <div class="example">
+      <span>⚪:未测试</span>
+      <span>✅:支持</span>
+      <span>❌:不支持</span>
+    </div>
   </table>
 
   <div class="info ">
@@ -60,6 +66,10 @@
       class="warning custom-block"
       v-if="typeof props.TOUTIAO === 'string'"
     >头条：{{ ddd('TOUTIAO') }}</div>
+    <div
+      class="warning custom-block"
+      v-if="typeof props.LARK === 'string'"
+    >飞书：{{ ddd('LARK') }}</div>
     <div
       class="warning custom-block"
       v-if="typeof props.QQ === 'string'"
@@ -97,6 +107,7 @@ const props = defineProps({
   ALIPAY: [Boolean, String],
   BAIDU: [Boolean, String],
   TOUTIAO: [Boolean, String],
+  LARK: [Boolean, String],
   QQ: [Boolean, String],
   KUAISHOU: [Boolean, String],
   JD: [Boolean, String],
@@ -124,8 +135,22 @@ const ddd = (platForm) => {
   text-align: center;
 }
 
-
 .info .custom-block {
   padding-top: 8px;
+}
+
+.table:hover .example {
+  opacity: 0.8;
+}
+
+.example {
+  transition: .5s;
+  overflow: hidden;
+  padding-top: 5px;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  opacity: 0;
 }
 </style>
