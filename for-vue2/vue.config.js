@@ -6,6 +6,7 @@ module.exports = {
   },
   pluginOptions: {
     'h-uni-build': {
+      delOldFile: true,
       openDevTools: {
         // exitClose: true,
         paths: {

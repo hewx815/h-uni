@@ -6,7 +6,11 @@ const err = (message) => {
 [h-uni-build]:${message}
 `);
 };
-
+const error = (message) => {
+  console.error(`
+[h-uni-build]:${message}
+`);
+};
 const log = (message) => {
   // eslint-disable-next-line no-console
   console.log(`
@@ -79,6 +83,27 @@ const mergeObjects = (...objs) => {
   return result;
 };
 
+/**
+ * @description 删除文件夹下所有文件
+ * @param {String} path 要删除的文件夹路径
+*/
+// eslint-disable-next-line no-shadow
+const delDir = (path) => {
+  let files = [];
+  if (fs.existsSync(path)) {
+    files = fs.readdirSync(path);
+    files.forEach((file) => {
+      const curPath = `${path}/${file}`;
+      if (fs.statSync(curPath).isDirectory()) {
+        delDir(curPath); // 递归删除文件夹
+      } else {
+        fs.unlinkSync(curPath); // 删除文件
+      }
+    });
+    fs.rmdirSync(path);
+  }
+};
+
 module.exports = {
-  err, log, getCommandPath, validPath, mergeObjects,
+  error, err, log, getCommandPath, validPath, mergeObjects, delDir,
 };

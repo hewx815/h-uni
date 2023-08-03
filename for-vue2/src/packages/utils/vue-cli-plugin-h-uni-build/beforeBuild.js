@@ -4,14 +4,32 @@ const inquirer = require('inquirer8');
 const fs = require('fs');
 const path = require('path');
 const stripJsonComments = require('strip-json-comments');
-const { validPath, mergeObjects } = require('./utils');
+const {
+  validPath, mergeObjects, delDir, log, error,
+} = require('./utils');
 
 module.exports = async (api, options, args) => {
-  const { setMode, beforeBuild } = options.pluginOptions['h-uni-build'] ? options.pluginOptions['h-uni-build'] : {};
+  const { setMode, beforeBuild, delOldFile } = options.pluginOptions['h-uni-build'] ? options.pluginOptions['h-uni-build'] : {};
 
   // beforeBuild
   if (typeof beforeBuild === 'function') {
     await beforeBuild(api, options, args);
+  }
+
+  // delOldFile
+  if (delOldFile) {
+    const outDir = process.env.UNI_OUTPUT_DIR;
+    if (validPath(outDir)) {
+      try {
+        delDir(outDir);
+        log(`${outDir}下所有旧文件已清空`);
+      } catch (e) {
+        error('文件删除失败');
+        error(e);
+      }
+    } else {
+      log(`首次编译，未发现${outDir}存在旧文件`);
+    }
   }
 
   // setMode
