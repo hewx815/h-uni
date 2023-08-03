@@ -19,7 +19,7 @@ outline: deep
 
 ## 兼容性
 
-<SupportTable WEIXIN H5 TOUTIAO BAIDU ALIPAY/>
+<SupportTable WEIXIN H5 TOUTIAO BAIDU ALIPAY LARK/>
 
 ## 安装
 
@@ -130,6 +130,13 @@ yarn dev:mp-weixin
 ::: warning 百度
 
 - 受百度开发者工具限制，不支持自动打开项目，需手动导入项目(项目路径会自动复制至粘贴板)
+- 使用poweshell命令行工具时, [`exitClose`](#opendevtools-exitclose) 会导致当前进程意外退出
+
+:::
+
+::: warning 飞书
+
+- 受飞书开发者工具限制，不支持自动打开项目，需手动导入项目(项目路径会自动复制至粘贴板)
 - 使用poweshell命令行工具时, [`exitClose`](#opendevtools-exitclose) 会导致当前进程意外退出
 
 :::

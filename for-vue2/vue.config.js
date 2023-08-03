@@ -14,6 +14,7 @@ module.exports = {
           // 'mp-toutiao': 'E:\\bytedminiprogram-ide\\@bytedminiprogram-ide',
           'mp-alipay': 'D:\\payDev\\小程序开发者工具',
           'mp-baidu': 'D:\\baiduDev\\swan-ide-gui',
+          'mp-lark': 'C:\\Users\\admin\\AppData\\Local\\Programs\\opdev-ide',
         },
       },
     },
