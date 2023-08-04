@@ -236,6 +236,7 @@ export default {
 }
 
 .h_tab_item_label-x {
+  white-space: nowrap;
   padding: 0 0 0 4rpx;
 }
 </style>

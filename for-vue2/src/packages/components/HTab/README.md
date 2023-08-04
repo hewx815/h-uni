@@ -18,7 +18,7 @@ outline: deep
 
 ## 兼容性
 
-<SupportTable  H5  WEIXIN TOUTIAO BAIDU/>
+<SupportTable  H5  WEIXIN TOUTIAO BAIDU ALIPAY LARK/>
 
 ## 使用
 
