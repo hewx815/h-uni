@@ -4,7 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { spawn, exec } from 'child_process';
-
+// eslint-disable-next-line import/no-extraneous-dependencies
+import ts from 'typescript';
 /**
  * @description 选择开发配置
  * @param {Array} configList 配置列表
@@ -76,6 +77,7 @@ export const choiceScript = async (scriptsList) => {
 export const runStart = (devFolder, script) => {
   // 要执行的命令
   const command = `cd ${devFolder}&&npm run ${script}`;
+
   // eslint-disable-next-line no-console
   console.clear();
   const child = exec('vitepress dev --host');
@@ -153,28 +155,11 @@ export const checkoutDir = (filePath) => {
 };
 
 /**
- * @description 递归删除指定目录及其子目录下的所有 README.md 文件
- * @param {String} dir - 目标目录的路径
- */
-export const deleteReadmeFiles = (dir) => {
-  fs.readdirSync(dir).forEach((file) => {
-    const filePath = path.join(dir, file);
-    if (fs.statSync(filePath).isDirectory()) {
-      deleteReadmeFiles(filePath); // 递归处理子目录
-    } else if (file === 'README.md') {
-      fs.unlinkSync(filePath);
-    }
-  });
-};
-
-/**
  * @description 将指定目录下所有以 PascalCase 命名的文件夹和文件重命名为 kebab-case。
  * @param {string} directoryPath - 目录路径。
  */
 export const renameFilesToKebabCase = (directoryPath) => {
   if (!fs.existsSync(directoryPath)) {
-    // eslint-disable-next-line no-console
-    console.error('Directory does not exist:', directoryPath);
     return;
   }
 
@@ -185,20 +170,16 @@ export const renameFilesToKebabCase = (directoryPath) => {
 
   /**
    * 获取文件名（不包含扩展名）。
-   * @param {string} fileName - 文件名。
-   * @returns {string} 文件名（不包含扩展名）。
    */
   function getFileName(fileName) {
-    return path.parse(fileName).name;
+    return fileName.slice(0, fileName.indexOf('.'));
   }
 
   /**
    * 获取文件扩展名。
-   * @param {string} fileName - 文件名。
-   * @returns {string} 文件扩展名（包含点号）。
    */
   function getFileExtension(fileName) {
-    return path.parse(fileName).ext;
+    return fileName.slice(fileName.indexOf('.'), fileName.length + 1);
   }
 
   /**
@@ -230,7 +211,6 @@ export const renameFilesToKebabCase = (directoryPath) => {
           const newFilePath = path.join(directory, kebabCaseName);
 
           fs.renameSync(filePath, newFilePath);
-
           // 递归调用，重命名文件夹内部的文件
           traverseDirectory(newFilePath);
         } else {
@@ -292,4 +272,80 @@ export const transformAndWriteFile = (filePath) => {
 
   const transformedContent = transformContent(fileContent);
   fs.writeFileSync(filePath, transformedContent, 'utf-8');
+};
+
+/**
+ * @description 把指定文件夹内所有vue单文件<sctipt>内ts内容编译成js / ts文件=>js
+ * @param {String} folderPath 需要转换的文件夹路径
+ * 注意：转换后无法恢复！请生成.d.ts后在进行转换
+*/
+export const tsToJs = (folderPath) => {
+  const processTsScript = (scriptContent) => ts.transpileModule(scriptContent, {
+    compilerOptions: {
+      target: ts.ScriptTarget.ESNext,
+    },
+  }).outputText;
+  const files = fs.readdirSync(folderPath);
+
+  files.forEach((file) => {
+    const filePath = path.join(folderPath, file);
+
+    if (fs.lstatSync(filePath).isDirectory()) {
+      // 如果是文件夹，递归处理
+      tsToJs(filePath);
+    } else if (path.extname(filePath) === '.vue') {
+      // 如果是 .vue 文件，处理带有属性 lang="ts" 或 lang='ts' 的 <script> 标签内容
+      const vueContent = fs.readFileSync(filePath, 'utf-8');
+      const updatedVueContent = vueContent.replace(/<script(?:[^>]*)\s+lang=(?:"ts"|'ts')(?:[^>]*)>([\s\S]*?)<\/script>/g, (match, scriptContent) => {
+        const isSetupTag = /<script(?:[^>]*)\s+lang=(?:"ts"|'ts')(?:[^>]*)\s+setup(?:[^>]*)>/.test(match);
+        const jsContent = processTsScript(scriptContent);
+        return `<script ${isSetupTag ? ' setup' : ''}lang="js">\n${jsContent}\n</script>`;
+      });
+      fs.writeFileSync(filePath, updatedVueContent, 'utf-8');
+    } else if (path.extname(filePath) === '.ts' && !file.includes('.d.ts')) {
+      // 如果是 .ts 文件，将内容转换为 .js 文件
+      const tsContent = fs.readFileSync(filePath, 'utf-8');
+      const jsContent = processTsScript(tsContent);
+      const jsFilePath = filePath.replace(/\.ts$/, '.js');
+      fs.writeFileSync(jsFilePath, jsContent, 'utf-8');
+      // 删除原始的 .ts 文件
+      fs.unlinkSync(filePath);
+    }
+  });
+};
+
+/**
+ * 递归删除指定目录及其子目录下满足的文件
+ * @param {String} dir - 目标目录的路径
+ * @param {Function} fn
+ */
+export const deleteFiles = (dir, fn) => {
+  fs.readdirSync(dir).forEach((file) => {
+    const filePath = path.join(dir, file);
+    if (fs.statSync(filePath).isDirectory()) {
+      deleteFiles(filePath, fn); // 递归处理子目录
+    } else if (fn(file)) {
+      fs.unlinkSync(filePath);
+    }
+  });
+};
+
+/**
+ * 写入指定内容到文件夹下所有vue文件
+ * @param {String} folderPath - 目标目录的路径
+ * @param {Function} fn 参数 file 文件名 ，返回 文件内容
+ */
+export const updateVueFiles = (folderPath, fn) => {
+  const files = fs.readdirSync(folderPath);
+
+  files.forEach((file) => {
+    const filePath = path.join(folderPath, file);
+
+    if (fs.lstatSync(filePath).isDirectory()) {
+      // 如果是文件夹，递归处理
+      updateVueFiles(filePath, fn);
+    } else if (path.extname(filePath) === '.vue') {
+      fs.writeFileSync(filePath, fn(file), 'utf-8');
+    }
+  });
 };

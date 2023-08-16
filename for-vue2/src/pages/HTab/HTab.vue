@@ -5,7 +5,6 @@
       v-for="( item, index ) in list "
       :key="index"
       :title="item.title"
-      :note="item.note"
       show-arrow
       clickable
       :to="`/pages/${item.url}`"
@@ -13,8 +12,9 @@
   </uni-list>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@vue/runtime-dom';
+export default defineComponent({
   data() {
     return {
       list: [
@@ -45,5 +45,5 @@ export default {
       ],
     };
   },
-};
+});
 </script>

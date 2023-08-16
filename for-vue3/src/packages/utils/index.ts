@@ -1,1 +1,1 @@
-export {default as Hhttp} from './Hhttp/Hhttp'
+export { default as Hhttp } from './Hhttp/Hhttp';

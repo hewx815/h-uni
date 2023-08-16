@@ -1,4 +1,5 @@
 <template>
+  <!-- @vue-ignore -->
   <view
     class="h_tab_item"
     :class="[
@@ -28,7 +29,7 @@
   </view>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * @name HTabItem
  * @description HTab  item
@@ -47,7 +48,12 @@
  * @property {String||Object}  activeStyle 选中后选项卡的样式
  * @slot default
 */
-export default {
+import { defineComponent } from '@vue/runtime-dom';
+import HTab from '../HTab/HTab.vue';
+import { cssConverter } from '../../utils/index';
+type HTabType = InstanceType<typeof HTab>;
+
+export default defineComponent({
   inject: ['getHTabDirection', 'getHTabValue', 'setItem', 'itemClick'],
   props: {
     value: {
@@ -56,7 +62,7 @@ export default {
     },
     direction: {
       default: 'y',
-      validator(value) {
+      validator(value: any) {
         return ['x', 'y'].includes(value);
       },
     },
@@ -109,8 +115,8 @@ export default {
     return {
       vueId: '',
 
-      getHTabDirectionCopy: () => undefined,
-      getHTabValueCopy: () => undefined,
+      getHTabDirectionCopy: (): any => { },
+      getHTabValueCopy: (): any => { },
     };
   },
   computed: {
@@ -121,27 +127,27 @@ export default {
       return this.getHTabDirectionCopy();
     },
     itemStyles() {
-      return this.$h.cssConverter({
-        ...this.$h.cssConverter(this.styles, 'object'),
-        ...this.$h.cssConverter(this.HTabValue === this.value ? this.activeStyle : {}, 'object'),
+      return cssConverter({
+        ...cssConverter(this.styles, 'object') as Record<string, any>,
+        ...cssConverter(this.HTabValue === this.value ? this.activeStyle : {}, 'object') as Record<string, any>,
       }, 'string');
     },
     imageSrc() {
       return this.HTabValue === this.value && this.activeImage ? this.activeImage : this.image;
     },
     imageStyles() {
-      return this.$h.cssConverter({
-        ...this.$h.cssConverter(this.imageStyle, 'object'),
-        ...this.$h.cssConverter(this.HTabValue === this.value ? this.activeImageStyle : {}, 'object'),
+      return cssConverter({
+        ...cssConverter(this.imageStyle, 'object') as Record<string, any>,
+        ...cssConverter(this.HTabValue === this.value ? this.activeImageStyle : {}, 'object') as Record<string, any>,
       }, 'string');
     },
     labelText() {
       return this.HTabValue === this.value && this.activeLabel ? this.activeLabel : this.label;
     },
     labelStyles() {
-      return this.$h.cssConverter({
-        ...this.$h.cssConverter(this.labelStyle, 'object'),
-        ...this.$h.cssConverter(this.HTabValue === this.value ? this.activeLabelStyle : {}, 'object'),
+      return cssConverter({
+        ...cssConverter(this.labelStyle, 'object') as Record<string, any>,
+        ...cssConverter(this.HTabValue === this.value ? this.activeLabelStyle : {}, 'object') as Record<string, any>,
       }, 'string');
     },
     itemClassName() {
@@ -149,11 +155,13 @@ export default {
     },
   },
   created() {
-    this.getHTabValueCopy = this.getHTabValue;
-    this.getHTabDirectionCopy = this.getHTabDirection;
+    this.getHTabValueCopy = this.getHTabValue as () => HTabType['value'];
+    this.getHTabDirectionCopy = this.getHTabDirection as () => HTabType['direction'];
+    //@ts-ignore
     this.setItem(this.value, this.resize, this.select);
     // #ifdef MP-BAIDU
     // eslint-disable-next-line no-underscore-dangle
+    //@ts-ignore
     this.vueId = this.$scope._$vueId;
     // #endif
   },
@@ -179,7 +187,7 @@ export default {
     },
 
   },
-};
+});
 </script>
 
 <style lang='scss' scoped>

@@ -1,22 +1,33 @@
+type RequestInfo = {
+  config: any;
+  request: any;
+  response: any,
+  errMeaasge: any,
+};
 export default class Hhttp {
   // 实例属性
-  baseUrl = null;
-
-  baseHeader = null;
-
-  baseMethod = null;
-
-  baseData = null;
-
-  baseTimeout = null;
-
+  baseUrl = null as string | null;
+  baseHeader = null as Record<string, any> | null;
+  baseMethod = null as UniNamespace.RequestOptions['method'] | null;
+  baseData = null as UniNamespace.RequestOptions['data'] | null;
+  baseTimeout = null as number | null;
   interceptor = {
-    request: null,
-    response: null,
+    request: null as ((config: any) => Promise<RequestInfo>) | null,
+    response: null as ((config: any) => Promise<RequestInfo>) | null,
   };
 
   // 配置实例
-  constructor(options) {
+  constructor(options: {
+    baseUrl: string | null;
+    baseHeader: Record<string, any> | null;
+    baseMethod: UniNamespace.RequestOptions['method'] | null;
+    baseData: UniNamespace.RequestOptions['data'] | null;
+    baseTimeout: number | null;
+    interceptor: {
+      request: (() => Promise<RequestInfo>) | null,
+      response: (() => Promise<RequestInfo>) | null,
+    };
+  }) {
     this.baseUrl = options ? options.baseUrl || null : null;
 
     this.baseData = options ? options.baseData || null : null;
@@ -35,23 +46,23 @@ export default class Hhttp {
   }
 
   // 请求配置策略
-  static getUrl = (baseUrl, url = '') => {
+  static getUrl = (baseUrl: any, url = '') => {
     if (!baseUrl) return url;
     const base = baseUrl.replace(/\/+$/, ''); // 去掉baseUrl末尾的斜杠
     const path = url.replace(/^\/+/, ''); // 去掉url开头的斜杠
     return `${base}/${path}`;
   };
 
-  static getHeader = (baseHeader, header = {}) => ({ ...baseHeader, ...header });
+  static getHeader = (baseHeader: any, header = {}) => ({ ...baseHeader, ...header });
 
-  static getMethod = (baseMethod, method) => (method || baseMethod || 'GET');
+  static getMethod = (baseMethod: any, method: any) => (method || baseMethod || 'GET');
 
-  static getDate = (baseData, data = {}) => ({ ...baseData, ...data });
+  static getDate = (baseData: any, data = {}) => ({ ...baseData, ...data });
 
-  static getTimeout = (baseTimeout, timeout) => (timeout || baseTimeout || 5000);
+  static getTimeout = (baseTimeout: any, timeout: any) => (timeout || baseTimeout || 5000);
 
   // 获取请求配置
-  static getRequest = (baseConfig, useConfig) => ({
+  static getRequest = (baseConfig: any, useConfig: any) => ({
 
     url: Hhttp.getUrl(baseConfig.baseUrl, useConfig.url),
 
@@ -66,10 +77,10 @@ export default class Hhttp {
   });
 
   // 获取 baseConfig
-  static getBaseConfig = (this_) => this_;
+  static getBaseConfig = (this_: any) => this_;
 
   // 获取 useConfig
-  static getUseConfig = (args) => {
+  static getUseConfig = (args: any) => {
     if (args.length === 1 && args[0]) { // 调用方式1
       return args[0];
     }
@@ -87,31 +98,31 @@ export default class Hhttp {
   };
 
   // uni.request Promise
-  static uniRequestPromise = (uniConfig) => new Promise((resolve, reject) => {
+  static uniRequestPromise = (uniConfig: any) => new Promise((resolve, reject) => {
     uni.request({
       ...uniConfig,
-      success(res) {
+      success(res: any) {
         resolve(res);
       },
-      fail(err) {
+      fail(err: any) {
         reject(err);
       },
     });
   });
 
   // 请求主函数
-  async request(...args) {
-    let info = {
-      config: this,
-      request: null,
-      response: null,
-      errMeaasge: null,
+  async request(...args: any) {
+    let info: RequestInfo = {
+      config: this as any,
+      request: null as any,
+      response: null as any | (() => Promise<any>),
+      errMeaasge: null as any | (() => Promise<any>),
     };
 
     // 获取请求体
     try {
-      const baseConfig = Hhttp.getBaseConfig(this);
-      const useConfig = Hhttp.getUseConfig(args);
+      const baseConfig = Hhttp.getBaseConfig(args);
+      const useConfig = Hhttp.getUseConfig(arguments);
       info.request = Hhttp.getRequest(baseConfig, useConfig);
     } catch (err) {
       info.errMeaasge = '配置错误';
@@ -153,36 +164,38 @@ export default class Hhttp {
     return Promise.resolve(info);
   }
 
+
+
   // 快捷方法
-  get(url, data) {
+  get(url: any, data: any) {
     return this.request('GET', url, data);
   }
 
-  post(url, data) {
+  post(url: any, data: any) {
     return this.request('POST', url, data);
   }
 
-  put(url, data) {
+  put(url: any, data: any) {
     return this.request('PUT', url, data);
   }
 
-  delete(url, data) {
+  delete(url: any, data: any) {
     return this.request('DELETE', url, data);
   }
 
-  connect(url, data) {
+  connect(url: any, data: any) {
     return this.request('CONNECT', url, data);
   }
 
-  head(url, data) {
+  head(url: any, data: any) {
     return this.request('HEAD', url, data);
   }
 
-  option(url, data) {
+  option(url: any, data: any) {
     return this.request('OPTIONS', url, data);
   }
 
-  trace(url, data) {
+  trace(url: any, data: any) {
     return this.request('TRACE', url, data);
   }
 }

@@ -1,5 +1,5 @@
 module.exports = {
   extends: [
-    'eslint-config-hewx/uniapp-vue2-typescript',
+    'eslint-config-hewx/uniapp-vue3-typescript',
   ],
 };

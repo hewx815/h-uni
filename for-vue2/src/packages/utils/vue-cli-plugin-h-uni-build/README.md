@@ -76,6 +76,20 @@ module.exports = {
   },
 };
 ```
+::: tip 获得语法提示
+您可以从`h-uni/for-vue2/utils`中导入`defineConfigHuniBuild`以获得良好的配置体验
+```javascript
+const { defineConfigHuniBuild } = require('h-uni/for-vue2/utils');
+// vue.config.js
+module.exports = {
+  pluginOptions: {
+    "h-uni-build": defineConfigHuniBuild({
+      // options
+    })
+  },
+};
+```
+:::
 
 ## openDevTools
 
@@ -331,7 +345,6 @@ console.log(process.env.APP_MODE === "模式1"); // true
 ::: tip
 有时候当你改了半天的bug却看不到结果的任何变化，此时这个功能些许能帮上你的忙🧐
 :::
-
 
 ## 特殊处理：`dev:h5`
 

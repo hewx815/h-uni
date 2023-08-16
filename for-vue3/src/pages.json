@@ -1,16 +1,23 @@
 {
   "pages": [
     {
-      "path": "test/index",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
+      "path": "pages/NavCom/NavCom"
+    },
+    {
+      "path": "pages/HTab/HTab"
     }
   ],
   "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "h-uni",
+    "backgroundColor": "#999",
+    "navigationBarBackgroundColor": "#5F5FCD"
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
+      "^H(.*)": "@/packages/components/H$1/H$1.vue"
+    }
   }
 }

@@ -34,7 +34,12 @@
   </scroll-view>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@vue/runtime-dom';
+import HTabItem from '../HTabItem/HTabItem.vue';
+import { cssConverter } from '../../utils/index';
+type HTabItemType = InstanceType<typeof HTabItem>;
+
 /**
  * @name HTab 标签栏
  * @description 支持横向和纵向布局的标签栏
@@ -54,7 +59,9 @@
  * @slot default <HTabItem/>
  * @slot active 自定义滑块
 */
-export default {
+
+
+export default defineComponent({
   provide() {
     return { // 与item组件通信
       getHTabDirection: () => this.direction,
@@ -70,7 +77,7 @@ export default {
     },
     direction: {
       default: 'y',
-      validator(value) {
+      validator(value: any) {
         return ['x', 'y'].includes(value);
       },
     },
@@ -85,6 +92,7 @@ export default {
     activeAspect: {
       default: 'none',
       validator(value) {
+        if (typeof value !== 'string') return false;
         return ['left', 'right', 'top', 'bottom', 'none'].includes(value);
       },
     },
@@ -121,13 +129,19 @@ export default {
     return {
       vueId: 'vueId',
 
-      scrollViewScroll: {}, // scroll-view 滚动信息
+      scrollViewScroll: {} as UniNamespace.NodeInfo, // scroll-view 滚动信息
 
-      scrollViewRect: {}, // scroll-view 节点信息
+      scrollViewRect: {} as UniNamespace.NodeInfo, // scroll-view 节点信息
 
-      containerRect: {}, // Container 节点信息
+      containerRect: {} as UniNamespace.NodeInfo, // Container 节点信息
 
-      items: [], // items
+      items: [] as Array<
+        UniNamespace.NodeInfo
+        & {
+          value: HTabItemType['$props']['value'];
+          select?: HTabItemType['select'];
+          resize: () => Promise<UniNamespace.NodeInfo>;
+        }>
     };
   },
   computed: {
@@ -154,12 +168,26 @@ export default {
       const item = this.items.find((items) => items.value === this.value);
       if (!item) return {};
 
-      if (item.dataset) {
+      if (item.dataset && item.select) {
         item.select();
       }
       const {
         top, height, left, width,
       } = item;
+
+      if (
+        this.scrollViewRect.height === undefined
+        || this.scrollViewRect.width === undefined
+        || this.items[0].left === undefined
+        || this.items[0].top === undefined
+        || top === undefined
+        || left === undefined
+        || width === undefined
+        || height === undefined
+      ) return {
+        x: 0,
+        y: 0
+      };
 
       const centerHeight = this.scrollViewRect.height / 2;
       const centerWidth = this.scrollViewRect.width / 2;
@@ -175,20 +203,30 @@ export default {
       const item = this.items.find((items) => items.value === this.value);
       if (!item) return '';
 
+      if (
+        item.right === undefined
+        || item.left === undefined
+        || item.bottom === undefined
+        || item.top === undefined
+        || this.containerRect.top === undefined
+        || this.containerRect.left === undefined
+
+      ) return '';
+
       const width = item ? item.right - item.left : 0;
       const height = item ? item.bottom - item.top : 0;
 
       const top = item.top - this.containerRect.top;
       const left = item.left - this.containerRect.left;
 
-      return this.$h.cssConverter({
+      return cssConverter({
         width: `${width}px`,
         height: `${height}px`,
         top: `${top}px`,
         left: `${left}px`,
         transition: `${this.activeAnimation ? (this.activeDuration / 1000) : 0}s`,
         '--h-tab-active-background': this.activeBackgroundColor,
-        ...this.$h.cssConverter(this.activeStyle, 'object'),
+        ...cssConverter(this.activeStyle, 'object') as Record<string, any>
       }, 'string');
     },
 
@@ -196,6 +234,7 @@ export default {
   created() {
     // #ifdef MP-BAIDU
     // eslint-disable-next-line no-underscore-dangle
+    // @ts-ignore
     this.vueId = this.$scope._$vueId;
     // #endif
   },
@@ -204,20 +243,24 @@ export default {
   },
   methods: {
     // 设置item组件信息
-    setItem(value, resizeFn, select) {
+    setItem(
+      value: typeof this.value,
+      resizeFn: () => Promise<UniNamespace.NodeInfo>,
+      select: HTabItemType['select']
+    ) {
       this.items.push({ value, resize: resizeFn, select });
     },
     // item组件点击事件
-    itemClick(value) {
+    itemClick(value: any) {
       this.$emit('input', value);
     },
     // 重新计算尺寸
-    resize(value) {
+    resize(value?: typeof this.value) {
       this.$nextTick(() => {
         setTimeout(() => {
           this.$nextTick(() => {
             const arr = value
-              ? [this.items.find((item) => item.value === value).resize()]
+              ? [this.items.find((item) => item.value === value)?.resize()]
               : [...this.items.map((item) => item.resize())];
 
             Promise.all([
@@ -227,14 +270,16 @@ export default {
               ...arr,
             ])
               .then(([rect, scroll, containerRect, ...itemsRect]) => {
-                this.scrollViewRect = rect;
-                this.scrollViewScroll = scroll;
-                this.containerRect = containerRect;
+                this.scrollViewRect = rect || {};
+                this.scrollViewScroll = scroll || {};
+                this.containerRect = containerRect || {};
                 if (value) {
                   const index = this.items.find((item) => item.value === value);
+                  // @ts-ignore
                   this.$set(this.items, index, itemsRect[0]);
                 } else {
                   itemsRect.forEach((itemRect, index) => {
+                    // @ts-ignore
                     this.$set(this.items, index, { ...this.items[index], ...itemsRect[index] });
                   });
                 }
@@ -288,7 +333,7 @@ export default {
       });
     },
   },
-};
+});
 </script>
 
 <style lang='scss' scoped>

@@ -19,17 +19,16 @@ outline: deep
 ### 使用全局挂载的方法
 
 - 完成[`h-uni`安装](/README.html#安装)
-- 完成[`h-uni`配置](/README.html#配置)
-- 使用`this.$h.Hhttp`或者`uni.$h.Hhttp`访问
+- 完成[挂载全局工具](/README.html#挂载全局工具)
+- 使用`this.$h.Hhttp`访问
 
 ```js
 const { Hhttp } = this.$h;
-// 或者
-const { Hhttp } = uni.$h;
 ```
 ### 按需导入
 - 完成[`h-uni`安装](/README.html#安装)
 - 从`h-uni/dist/for-vue2/utils`中导入`Hhttp`
+
 ```js
 import { Hhttp } from 'h-uni/dist/for-vue2/utils';
 ```

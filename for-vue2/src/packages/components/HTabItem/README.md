@@ -20,20 +20,6 @@ outline: deep
 
 <SupportTable  H5  WEIXIN TOUTIAO BAIDU ALIPAY LARK/>
 
-## 安装
-
-### 使用全局挂载的方法
-
-- 完成[`h-uni`安装](/README.html#安装)
-- 完成[挂载全局组件](/README.html#挂载全局组件)
-
-### 按需导入
-- 完成[`h-uni`安装](/README.html#安装)
-- 从`h-uni/for-vue2/components`导入`HTab`
-
-```js
-import { HTab } from 'h-uni/for-vue2/components'
-```
 ## 使用
 
 ### 基础用法

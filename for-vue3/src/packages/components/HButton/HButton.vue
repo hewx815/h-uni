@@ -2,7 +2,7 @@
   Hbutton
 </template>
 
-<script setup name=''>
+<script setup lang="ts">
 </script>
 
 <style lang='scss' scoped></style>

@@ -149,7 +149,7 @@
 <!-- #endregion template -->
 
 <!-- #region script -->
-<script>
+<script lang="ts">
 export default {
   data() {
     return {

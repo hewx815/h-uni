@@ -1,23 +1,19 @@
-module.exports = {
-  transpileDependencies: ['@dcloudio/uni-ui'],
+const { defineConfig } = require('@vue/cli-service');
+module.exports = defineConfig({
   devServer: {
+    host: 'localhost',
+    port: '8080',
     open: true,
-    host: '127.0.0.1',
   },
+  transpileDependencies: ['../node_modules/@dcloudio/uni-ui'],
   pluginOptions: {
     'h-uni-build': {
-      delOldFile: true,
       openDevTools: {
-        // exitClose: true,
         paths: {
-          'mp-weixin': 'D:\\wechatDev\\微信web开发者工具',
-          'mp-toutiao': 'D:\\dyDev\\@bytedminiprogram-ide',
-          // 'mp-toutiao': 'E:\\bytedminiprogram-ide\\@bytedminiprogram-ide',
-          'mp-alipay': 'D:\\payDev\\小程序开发者工具',
-          'mp-baidu': 'D:\\baiduDev\\swan-ide-gui',
-          'mp-lark': 'C:\\Users\\admin\\AppData\\Local\\Programs\\opdev-ide',
+          'mp-weixin': 'D:\\wechatDev\\微信web开发者工具'
         },
+        exitClose: true,
       },
-    },
-  },
-};
+    }
+  }
+});
