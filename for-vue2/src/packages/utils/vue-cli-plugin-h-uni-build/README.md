@@ -8,18 +8,17 @@ outline: deep
 
 这是一个`h-uni`的`内置`插件，扩展了 `uni-app` 原生的 `uni-build`
 
-插件已经扩展了在开发中常用的功能
+插件已经扩展了在开发中常用的功能:
 
-1. 项目编译后自动打开开发者工具
-2. 动态的 `manifest.json` 文件、`pages.json` 文件、`env` 环境变量
+- [`openDevTools`](#opendevtools) 项目编译后自动打开开发者工具
+- [`setMode`](#setmode) 可以以指定的模式启动，使用动态的 `manifest.json` `pages.json` `env` 环境变量
+- [`beforeBuild`&&`afterBuild`](#beforebuild-和-afterbuild) 用于自定义扩展的编译前和编译后的函数接口
+- [`delOldFile`](#deloldfile) 项目编译前先删掉上一次编译的旧文件内容
 
-并提供了编译前和编译后的函数接口更灵活的扩展`uni-build`
-
-详细功能见[`配置项`](#配置项)
 
 ## 兼容性
 
-<SupportTable WEIXIN H5 TOUTIAO/>
+<SupportTable WEIXIN H5 TOUTIAO BAIDU ALIPAY LARK/>
 
 ## 安装
 
@@ -78,16 +77,6 @@ module.exports = {
 };
 ```
 
-## 配置项
-
-[`openDevTools`](#opendevtools):开发者工具启动器（内置功能）
-
-[`setMode`](#setmode):为项目设置启动模式（内置功能）
-
-[`beforeBuild`](#beforebuild-和-afterbuild):`uni-build`构建之前的回调函数
-
-[`afterBuild`](#beforebuild-和-afterbuild):`uni-build`构建之后的回调函数
-
 ## openDevTools
 
 - **类型:** `Object || false`
@@ -108,7 +97,7 @@ yarn dev:mp-weixin
 
 把`openDevTools`配置成`false`,或者将此配置项置空,此功能即关闭
 
-### 平台差异说明
+- **平台差异说明**
 
 由于各平台开发者工具支持功能参差不全以及不同平台开发的差异，因此会有很多的差异化内容
 
@@ -116,25 +105,36 @@ yarn dev:mp-weixin
 
 ::: danger H5
 
-不支持此功能选项！解决方案见：[特殊处理 devh5](#特殊处理devh5)
-
-:::
-
-::: info 微信
-
-- 如果`未登录`会在控制台打印登录二维码，扫码登录
-- `ctrl+c`退出进程时会提示：是否阻止关闭开发者工具，3s 未选择后自动关闭
+不支持此功能选项！解决方案见：[特殊处理 dev:h5](#特殊处理-dev-h5)
 
 :::
 
 ::: warning 头条
 
 - 受抖音开发者工具限制，不支持自动打开项目，需手动导入项目(项目路径会自动复制至粘贴板)
-- 目前不支持`ctrl+c`退出时关闭开发者工具(存在 bug)
+- 使用poweshell命令行工具时, [`exitClose`](#opendevtools-exitclose) 会导致当前进程意外退出
 
 :::
 
----
+::: warning 百度
+
+- 受百度开发者工具限制，不支持自动打开项目，需手动导入项目(项目路径会自动复制至粘贴板)
+- 使用poweshell命令行工具时, [`exitClose`](#opendevtools-exitclose) 会导致当前进程意外退出
+
+:::
+
+::: warning 飞书
+
+- 受飞书开发者工具限制，不支持自动打开项目，需手动导入项目(项目路径会自动复制至粘贴板)
+- 使用poweshell命令行工具时, [`exitClose`](#opendevtools-exitclose) 会导致当前进程意外退出
+
+:::
+
+::: info 微信
+
+- 如果未登录，会在控制台打印登录二维码，扫码登录
+
+:::
 
 ### openDevTools.paths
 
@@ -157,16 +157,12 @@ module.exports = {
 };
 ```
 
----
-
 ### openDevTools.exitClose
 
 - **类型:** `Boolean`
 - **默认:** `false`
 
 在命令行中使用`ctrl+c`退出进程时是否关闭开发者工具
-
----
 
 ### openDevTools.projectDir
 
@@ -234,15 +230,11 @@ module.exports = {
 
 把`setMode`配置成`false`、空数组`[]`,或者将此配置项置空,此功能即关闭
 
----
-
 ### setModeItem.name
 
 - **类型:** `String`
 
 模式的名称
-
----
 
 ### setModeItem.env
 
@@ -275,8 +267,6 @@ module.exports = {
 console.log(process.env.APP_MODE === "模式1"); // true
 ```
 
----
-
 ### setModeItem.manifestJson
 
 - **类型:** `String || Object`
@@ -287,8 +277,6 @@ console.log(process.env.APP_MODE === "模式1"); // true
 
 `Object`:覆盖原有的`manifest.json`中的部分配置
 
----
-
 ### setModeItem.pagesJson
 
 - **类型:** `String || Object`
@@ -298,6 +286,16 @@ console.log(process.env.APP_MODE === "模式1"); // true
 `String`:指定一个`pages.json`文件路径
 
 `Object`:覆盖原有的`pages.json`中的部分配置
+
+### pagesDefault.json 和 manifestDefault.json
+
+如果启用了`setMode`,每次运行时都会在项目根目录更新`pagesDefault.json`或`manifestDefault.json`
+
+如果不存在`pagesDefault.json`或`manifestDefault.json`，则自动从`manifest.json`或`pages.json`中获取配置并生成文件
+
+如果存在，则把`pagesDefault.json`或`manifestDefault.json`作为`默认配置项`
+
+如果选项是`Object`类型，则把`setModeItem.manifestJson`或`setModeItem.pagesJson`中的配置项覆盖`pagesDefault.json`或`manifestDefault.json`并写入`manifest.json`或`pages.json`作为该模式的启动文件
 
 ## beforeBuild 和 afterBuild
 
@@ -318,15 +316,22 @@ console.log(process.env.APP_MODE === "模式1"); // true
 
 构建后运行`afterBuild`,比内置功能更晚
 
-## pagesDefault.json 和 manifestDefault.json
+::: tip 插件内进程先后顺序
+`beforeBuild`=>`delOldFile`=>`setMode`=>`uni-build`=>`openDevTools`=>`afterBuild`
+:::
 
-每次运行时都会更新`pagesDefault.json`和`manifestDefault.json`
 
-如果不存在`pagesDefault.json`和`manifestDefault.json`，则自动从`manifest.json`和`pages.json`中获取配置并生成文件
+## delOldFile
 
-如果存在，则把`pagesDefault.json`和`manifestDefault.json`作为`默认配置项`
+- **类型:** `Boolean`
+- **默认** `false`
 
-如果是覆盖模式，则把`setModeItem.manifestJson`和`setModeItem.pagesJson`中的配置项覆盖`默认配置项`并写入`manifest.json`和`pages.json`作为该模式的启动文件
+是否在编译前删掉上一次编译的旧文件
+
+::: tip
+有时候当你改了半天的bug却看不到结果的任何变化，此时这个功能些许能帮上你的忙🧐
+:::
+
 
 ## 特殊处理：`dev:h5`
 

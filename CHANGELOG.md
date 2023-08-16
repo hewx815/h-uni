@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/hewx815/h-uni/compare/v1.5.0...v1.6.0) (2023-08-08)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* h-uni 命令错误，columnify 依赖调整 ([18c72d4](https://github.com/hewx815/h-uni/commit/18c72d485249f40433b2c2f47c922687da5c0d65))
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* 取消对计划对 QQ,京东，快手小程序的支持，增加飞书小程序计划 ([d91d5d2](https://github.com/hewx815/h-uni/commit/d91d5d265ef677abebe7eeac61e06ca0ad3f5b4d))
+* eslint 规则调整 ([3de56a1](https://github.com/hewx815/h-uni/commit/3de56a120a259418a89477b8795a3c25e22f619b))
+
+
+### ✏️ Documentation | 文档
+
+* 代码块右下角滚动条拖动块隐藏 ([2df665d](https://github.com/hewx815/h-uni/commit/2df665d1e6906b1630ad4a361d4cae446253aa99))
+
+
+### ✨ Features | 新功能
+
+* hhttp 支持支付宝、百度、抖音、飞书 平台 ([aef6673](https://github.com/hewx815/h-uni/commit/aef66734793663e97c6f57066860da88f4e48146))
+* hTab组件 支持百度平台 ([f0d3318](https://github.com/hewx815/h-uni/commit/f0d33187a9f5463e9a5835679382371f18134fb4))
+* hTab组件支持支付宝、飞书平台&&文档更新 ([2d3ecc9](https://github.com/hewx815/h-uni/commit/2d3ecc9c098f65b4dce6c67c62a7c41ccf8657a4))
+* vue-cli-plugin-h-uni-build `delOldFile`编译前删除旧的编译文件功能 ([28dc066](https://github.com/hewx815/h-uni/commit/28dc0668ad21bc6f9da63d058e174fe6c52ec33f))
+* vue-cli-plugin-h-uni-build 支持百度平台 ([a0224fd](https://github.com/hewx815/h-uni/commit/a0224fd59a5baf4a070e91379377521baba55d9e))
+* vue-cli-plugin-h-uni-build 支持飞书平台&&文档更新 ([dc5b2b2](https://github.com/hewx815/h-uni/commit/dc5b2b2d4db3b82aae259c640366a0bb6ab7e529))
+* vue-cli-plugin-h-uni-build 支持支付宝平台 ([22ae332](https://github.com/hewx815/h-uni/commit/22ae332f8e64d9f9574cc0b10e9085ff01126a5f))
+
+## [1.5.0](https://github.com/hewx815/h-uni/compare/v1.4.2...v1.5.0) (2023-08-01)
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* uniapp版本更新 ([9c068f0](https://github.com/hewx815/h-uni/commit/9c068f063e45c694e5cd01edf8585d9aa290a6a4))
+
+
+### ✨ Features | 新功能
+
+* 组件：HTab 对抖音小程序平台的支持 ([d757cd8](https://github.com/hewx815/h-uni/commit/d757cd88c2b36fd49a4a78bee63679a7121aaef0))
+* vue-cli-plugin-h-uni-build 新增对头条平台的支持&&文档更新 ([315a791](https://github.com/hewx815/h-uni/commit/315a791fbc947b3fa13641ccc7ac1e2488566b47))
+
+
+### ✏️ Documentation | 文档
+
+* 部分功能文档兼容性更新 ([ca20aee](https://github.com/hewx815/h-uni/commit/ca20aee562983733a1a046b596b2b36eda5a556e))
+
 ### [1.4.2](https://github.com/hewx815/h-uni/compare/v1.4.1...v1.4.2) (2023-07-26)
 
 

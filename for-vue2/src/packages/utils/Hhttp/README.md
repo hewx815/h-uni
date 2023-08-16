@@ -12,7 +12,7 @@ outline: deep
 
 ## 兼容性
 
-<SupportTable WEIXIN />
+<SupportTable WEIXIN H5 ALIPAY BAIDU TOUTIAO LARK/>
 
 ## 安装
 
@@ -86,10 +86,10 @@ const request = new Hhttp(baseOptions);
 request.baseTimeout = 10000
 
 // 发起get请求
-const { response } = await request.get('/s', { wd='哈哈哈' });
+const { response } = await request.get('/s', { wd:'哈哈哈' });
 
 // 发起post请求
-const { response } = await request.post('/s', { wd='哈哈哈' });
+const { response } = await request.post('/s', { wd:'哈哈哈' });
 
 // 拿到响应数据
 console.log(response);
@@ -106,12 +106,12 @@ const Hhttp = this.$h.Hhttp;
 const request = new Hhttp();
 
 // 同步调用
-const { response } = await request.get('https://www.baidu.com/s', { wd='哈哈哈' });
+const { response } = await request.get('https://www.baidu.com/s', { wd:'哈哈哈' });
 // 拿到响应数据
 console.log(response);
 
 // 异步调用
-request.post('https://www.baidu.com/s', { wd='哈哈哈' })
+request.post('https://www.baidu.com/s', { wd:'哈哈哈' })
   .then((data) =>{
     // 拿到响应数据
     console.log(data.response);

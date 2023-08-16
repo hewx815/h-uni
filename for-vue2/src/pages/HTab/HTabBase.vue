@@ -3,9 +3,9 @@
   <view class="box">
     <HTab v-model="active">
       <HTabItem
-        v-for="( item, index ) in 30"
+        v-for="( item, index ) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
         :key="index"
-        :value="item"
+        :value="index"
         :label="`套餐${item}`"
       />
     </HTab>
@@ -21,7 +21,7 @@
 export default {
   data() {
     return {
-      active: 1,
+      active: 0,
     };
   },
 };

@@ -82,6 +82,6 @@ table tbody tr {
 }
 
 /* 滚动条轨道 */
-.vp-doc [class*="language-"] pre::-webkit-scrollbar-track-piece {
-  background-color: rgba(0, 0, 0, 0);
+.vp-doc [class*="language-"] pre::-webkit-scrollbar-corner {
+  display: none;
 }

@@ -1,32 +1,25 @@
 <template>
   <view
     class="h_tab_item"
-    :class="{
-      'h_tab_item-y': direction === 'y',
-      'h_tab_item-x': direction === 'x',
-      'h_tab_item-tab-y': HTabsDirection === 'y',
-      'h_tab_item-tab-x': HTabsDirection === 'x',
-    }"
+    :class="[
+      `h_tab_item-${direction}`,
+      `h_tab_item-tab-${HTabDirection}`,
+      `h_tab_item-${vueId}`,
+    ]"
     :style="itemStyles"
-    @click="itemClick"
+    @click="itemClick(value)"
   >
     <slot>
       <image
         v-if="image"
         class="h_tab_item_image"
-        :class="{
-          'h_tab_item_image-y': direction === 'y',
-          'h_tab_item_image-x': direction === 'x',
-        }"
+        :class="[`h_tab_item_image-${direction}`]"
         :src="imageSrc"
         :style="imageStyles"
       />
       <text
         class="h_tab_item_label"
-        :class="{
-          'h_tab_item_label-y': direction === 'y',
-          'h_tab_item_label-x': direction === 'x',
-        }"
+        :class="[`h_tab_item_label-${direction}`]"
         :style="labelStyles"
       >
         {{ labelText }}
@@ -55,9 +48,7 @@
  * @slot default
 */
 export default {
-  inject: {
-    HTab: ['HTab'],
-  },
+  inject: ['getHTabDirection', 'getHTabValue', 'setItem', 'itemClick'],
   props: {
     value: {
       type: [String, Number, Boolean],
@@ -72,6 +63,10 @@ export default {
     label: {
       type: [String, Number],
       default: '',
+    },
+    label1: {
+      type: [String, Number],
+      default: '1',
     },
     activeLabel: {
       type: String,
@@ -112,16 +107,18 @@ export default {
   },
   data() {
     return {
+      vueId: '',
+
+      getHTabDirectionCopy: () => undefined,
+      getHTabValueCopy: () => undefined,
     };
   },
   computed: {
     HTabValue() {
-      if (!this.HTab) return '';
-      return this.HTab.value;
+      return this.getHTabValueCopy();
     },
-    HTabsDirection() {
-      if (!this.HTab) return 'x';
-      return this.HTab.direction;
+    HTabDirection() {
+      return this.getHTabDirectionCopy();
     },
     itemStyles() {
       return this.$h.cssConverter({
@@ -147,16 +144,29 @@ export default {
         ...this.$h.cssConverter(this.HTabValue === this.value ? this.activeLabelStyle : {}, 'object'),
       }, 'string');
     },
+    itemClassName() {
+      return `h_tab_item-tab-${this.HTabDirection} h_tab_item-${this.direction}`;
+    },
   },
   created() {
-    this.HTab.setItem(this.value, this.resize, this.select);
+    this.getHTabValueCopy = this.getHTabValue;
+    this.getHTabDirectionCopy = this.getHTabDirection;
+    this.setItem(this.value, this.resize, this.select);
+    // #ifdef MP-BAIDU
+    // eslint-disable-next-line no-underscore-dangle
+    this.vueId = this.$scope._$vueId;
+    // #endif
   },
   methods: {
     // 获取节点信息
     resize() {
+      let className = '.h_tab_item';
+      // #ifdef MP-BAIDU
+      className = `.h_tab_item-${this.vueId}`;
+      // #endif
       return new Promise((resolve) => {
         this.$nextTick(() => {
-          uni.createSelectorQuery().in(this).select('.h_tab_item').boundingClientRect((data) => {
+          uni.createSelectorQuery().in(this).select(className).boundingClientRect((data) => {
             resolve(data);
           })
             .exec();
@@ -164,16 +174,10 @@ export default {
       });
     },
 
-    // 点击事件
-    itemClick() {
-      this.HTab.itemClick(this.value);
-    },
-
     select() {
-      this.$emit('select', this);
+      this.$emit('select');
     },
 
-    toJSON() { },
   },
 };
 </script>
@@ -232,6 +236,7 @@ export default {
 }
 
 .h_tab_item_label-x {
+  white-space: nowrap;
   padding: 0 0 0 4rpx;
 }
 </style>

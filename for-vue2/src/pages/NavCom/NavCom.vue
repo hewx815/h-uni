@@ -7,7 +7,6 @@
         :title="item.title"
         :note="item.note"
         show-arrow
-        link="navigateTo"
         clickable
         :to="`/pages/${item.title}/${item.title}`"
       />

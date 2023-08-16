@@ -27,12 +27,10 @@ module.exports = async (api, options, args) => {
 
     // 获取命令文件路径
     const commandPath = getCommandPath();
-    if (!commandPath) {
-      return;
-    }
+    if (!commandPath) return;
 
     // 获取开发者路径
-    if (!openDevTools.paths[platFrom]) {
+    if (openDevTools.paths[platFrom] === '') {
       err(`缺少paths.${platFrom}配置`);
       return;
     }
@@ -52,7 +50,8 @@ module.exports = async (api, options, args) => {
     spawn('cmd.exe', ['/c', `node ${commandPath} ${projectDir} 0`], { cwd: devToolPath, stdio: 'inherit' });
 
     if (exitClose) {
-      // TODO: bug： mp-toutiao 会导致命令行异常退出 2023年7月28日10:16:25 by:hewx
+      // TODO: bug： mp-toutiao/mp-baidu/mp-lark powershell中会导致命令行异常退出 2023年7月28日10:16:25 by:hewx
+      // TODO: 减少体积：mp-alipay 可以移除minidev这个包,采用使用命令行方式  2023年8月3日11:39:59 by:hewx
       // 退出：第四个参数为 1
       process.on('SIGINT', () => {
         const exitCmd = spawn('cmd.exe', ['/c', `node ${commandPath} ${projectDir} 1`], { cwd: devToolPath });

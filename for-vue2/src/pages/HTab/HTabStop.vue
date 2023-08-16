@@ -10,7 +10,7 @@
         :scroll-animation="false"
       >
         <HTabItem
-          v-for="(item, index) in 20"
+          v-for="(item, index) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
           :key="index"
           :value="index"
           :label="`选项${item}`"
@@ -27,7 +27,7 @@
         :active-animation="false"
       >
         <HTabItem
-          v-for="(item, index) in 20"
+          v-for="(item, index) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
           :key="index"
           :value="index"
           :label="`选项${item}`"
@@ -44,7 +44,7 @@
         :scroll-center="false"
       >
         <HTabItem
-          v-for="(item, index) in 20"
+          v-for="(item, index) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
           :key="index"
           :value="index"
           :label="`选项${item}`"
@@ -62,7 +62,7 @@
       >
         <!-- 关闭滑块后无法区分当前选中项，可通过 `activeStyle` 设置选中项样式 -->
         <HTabItem
-          v-for="(item, index) in 20"
+          v-for="(item, index) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
           :key="index"
           :value="index"
           :label="`选项${item}`"

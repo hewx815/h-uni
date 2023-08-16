@@ -1,6 +1,6 @@
 <template>
   <scroll-view
-    class="h_tab"
+    :class="[`h_tab`, `h_tab-${vueId}`]"
     :style="{ height: scrollHeight, width: scrollWidth }"
     :scroll-x="direction === 'x'"
     :scroll-y="direction === 'y'"
@@ -13,13 +13,10 @@
     <view
       v-if="showActive"
       class="h_tab_active"
-      :class="{
-        'h_tab_active-none': activeAspect === 'none',
-        'h_tab_active-left': activeAspect === 'left',
-        'h_tab_active-right': activeAspect === 'right',
-        'h_tab_active-top': activeAspect === 'top',
-        'h_tab_active-bottom': activeAspect === 'bottom',
-      }"
+      :class="[
+        `h_tab_active-${activeAspect}`,
+        `h_tab_active-${vueId}`
+      ]"
       :style="activeStyles"
     >
       <slot name="active" />
@@ -27,10 +24,10 @@
     <!-- 选项卡容器 -->
     <view
       class="h_tab_container"
-      :class="{
-        'h_tab_container-x': direction === 'x',
-        'h_tab_container-y': direction === 'y',
-      }"
+      :class="[
+        `h_tab_container-${direction}`,
+        `h_tab_container-${vueId}`
+      ]"
     >
       <slot />
     </view>
@@ -59,7 +56,12 @@
 */
 export default {
   provide() {
-    return { HTab: this }; // 与item组件通信
+    return { // 与item组件通信
+      getHTabDirection: () => this.direction,
+      getHTabValue: () => this.value,
+      setItem: this.setItem,
+      itemClick: this.itemClick,
+    };
   },
   props: {
     value: {
@@ -117,6 +119,8 @@ export default {
   },
   data() {
     return {
+      vueId: 'vueId',
+
       scrollViewScroll: {}, // scroll-view 滚动信息
 
       scrollViewRect: {}, // scroll-view 节点信息
@@ -141,7 +145,7 @@ export default {
         if (typeof this.height === 'number') return `${this.height}px`;
         return this.height;
       }
-      return this.direction === 'x' ? '160rpx' : '1246rpx';
+      return this.direction === 'x' ? '160rpx' : '1000rpx';
     },
     // 滚动到中间为止的坐标值
     scrollXY() {
@@ -168,7 +172,6 @@ export default {
     // 滑块样式
     activeStyles() {
       if (!this.showActive) return '';
-
       const item = this.items.find((items) => items.value === this.value);
       if (!item) return '';
 
@@ -190,6 +193,12 @@ export default {
     },
 
   },
+  created() {
+    // #ifdef MP-BAIDU
+    // eslint-disable-next-line no-underscore-dangle
+    this.vueId = this.$scope._$vueId;
+    // #endif
+  },
   mounted() {
     this.resize();
   },
@@ -205,40 +214,49 @@ export default {
     // 重新计算尺寸
     resize(value) {
       this.$nextTick(() => {
-        const arr = value
-          ? [this.items.find((item) => item.value === value).resize()]
-          : [...this.items.map((item) => item.resize())];
+        setTimeout(() => {
+          this.$nextTick(() => {
+            const arr = value
+              ? [this.items.find((item) => item.value === value).resize()]
+              : [...this.items.map((item) => item.resize())];
 
-        Promise.all([
-          this.getRect(),
-          this.getScroll(),
-          this.getContainerRect(),
-          ...arr,
-        ])
-          .then(([rect, scroll, containerRect, ...itemsRect]) => {
-            if (value) {
-              const index = this.items.find((item) => item.value === value);
-              this.$set(this.items, index, itemsRect[0]);
-            } else {
-              itemsRect.forEach((itemRect, index) => {
-                this.$set(this.items, index, { ...this.items[index], ...itemsRect[index] });
+            Promise.all([
+              this.getRect(),
+              this.getScroll(),
+              this.getContainerRect(),
+              ...arr,
+            ])
+              .then(([rect, scroll, containerRect, ...itemsRect]) => {
+                this.scrollViewRect = rect;
+                this.scrollViewScroll = scroll;
+                this.containerRect = containerRect;
+                if (value) {
+                  const index = this.items.find((item) => item.value === value);
+                  this.$set(this.items, index, itemsRect[0]);
+                } else {
+                  itemsRect.forEach((itemRect, index) => {
+                    this.$set(this.items, index, { ...this.items[index], ...itemsRect[index] });
+                  });
+                }
+
+                return '';
+              })
+              .catch((err) => {
+                // eslint-disable-next-line no-console
+                console.error(err);
               });
-            }
-            this.scrollViewRect = rect;
-            this.scrollViewScroll = scroll;
-            this.containerRect = containerRect;
-            return '';
-          })
-          .catch((err) => {
-            // eslint-disable-next-line no-console
-            console.error(err);
           });
+        }, 200);
       });
     },
     // 获取 scroll-view rect信息
     getRect() {
+      let className = '.h_tab';
+      // #ifdef MP-BAIDU
+      className = `.h_tab-${this.vueId}`;
+      // #endif
       return new Promise((resolve) => {
-        uni.createSelectorQuery().in(this).select('.h_tab').boundingClientRect((data) => {
+        uni.createSelectorQuery().in(this).select(className).boundingClientRect((data) => {
           resolve(data);
         })
           .exec();
@@ -246,16 +264,24 @@ export default {
     },
     // 获取 scroll-view scroll信息
     getScroll() {
+      let className = '.h_tab';
+      // #ifdef MP-BAIDU
+      className = `.h_tab-${this.vueId}`;
+      // #endif
       return new Promise((resolve) => {
-        uni.createSelectorQuery().in(this).select('.h_tab').scrollOffset((data) => {
+        uni.createSelectorQuery().in(this).select(className).scrollOffset((data) => {
           resolve(data);
         })
           .exec();
       });
     },
     getContainerRect() {
+      let className = '.h_tab_container';
+      // #ifdef MP-BAIDU
+      className = `.h_tab_container-${this.vueId}`;
+      // #endif
       return new Promise((resolve) => {
-        uni.createSelectorQuery().in(this).select('.h_tab_container').boundingClientRect((data) => {
+        uni.createSelectorQuery().in(this).select(className).boundingClientRect((data) => {
           resolve(data);
         })
           .exec();

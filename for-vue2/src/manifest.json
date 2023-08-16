@@ -45,7 +45,6 @@
       "sdkConfigs": {}
     }
   },
-  "quickapp": {},
   "mp-weixin": {
     "appid": "wxa4f9f887f2871162",
     "setting": {
@@ -61,15 +60,23 @@
     "optimization": { "subPackages": true }
   },
   "mp-alipay": {
+    "appid": "2021004107611552",
     "usingComponents": true
   },
   "mp-baidu": {
+    "appid": "17767960",
     "usingComponents": true
   },
   "mp-toutiao": {
+    "appid": "ttbb5dcde02461c00001",
     "usingComponents": true
   },
   "mp-qq": {
+    "appid": "1112239269",
+    "usingComponents": true
+  },
+  "mp-lark": {
+    "appid": "cli_a4467d9516b1100c",
     "usingComponents": true
   },
   "h5": {

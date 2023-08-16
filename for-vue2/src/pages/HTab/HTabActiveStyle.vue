@@ -13,7 +13,7 @@
           height="100px"
         >
           <HTabItem
-            v-for="( item, index ) in 10"
+            v-for="( item, index ) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
             :key="index"
             :value="index"
             label="none"
@@ -27,7 +27,7 @@
           height="100px"
         >
           <HTabItem
-            v-for="( item, index ) in 10"
+            v-for="( item, index ) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
             :key="index"
             :value="index"
             label="left"
@@ -41,7 +41,7 @@
           height="100px"
         >
           <HTabItem
-            v-for="( item, index ) in 10"
+            v-for="( item, index ) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
             :key="index"
             :value="index"
             label="right"
@@ -57,7 +57,7 @@
         style="margin-top: 20rpx;"
       >
         <HTabItem
-          v-for="( item, index ) in 10"
+          v-for="( item, index ) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
           :key="index"
           :value="index"
           label="top"
@@ -72,7 +72,7 @@
         style="margin-top: 20rpx;"
       >
         <HTabItem
-          v-for="( item, index ) in 10"
+          v-for="( item, index ) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
           :key="index"
           :value="index"
           label="bottom"
@@ -92,7 +92,7 @@
           :active-duration="2000"
         >
           <HTabItem
-            v-for="( item, index ) in 10"
+            v-for="( item, index ) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
             :key="index"
             :value="index"
             label="过渡时间"
@@ -111,7 +111,7 @@
           active-background-color="rgb(145, 145, 205)"
         >
           <HTabItem
-            v-for="( item, index ) in 10"
+            v-for="( item, index ) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
             :key="index"
             :value="index"
             label="背景颜色"
@@ -136,7 +136,7 @@
           }"
         >
           <HTabItem
-            v-for="( item, index ) in 10 "
+            v-for="( item, index ) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] "
             :key="index"
             :value="index"
             label="自定义样式"
@@ -153,7 +153,7 @@
 export default {
   data() {
     return {
-      active: 2,
+      active: 0,
     };
   },
 };
