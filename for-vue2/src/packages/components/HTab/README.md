@@ -29,10 +29,10 @@ outline: deep
 
 ### 按需导入
 - 完成[`h-uni`安装](/README.html#安装)
-- 从`h-uni/for-vue2/components`导入`HTab`
+- 从`h-uni/dist/for-vue2`导入`HTab`
 
 ```js
-import { HTab } from 'h-uni/for-vue2/components'
+import { HTab, HTabItem } from 'h-uni/dist/for-vue2'
 ```
 ## 使用
 

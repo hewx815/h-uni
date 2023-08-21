@@ -27,10 +27,10 @@ const { Hhttp } = this.$h;
 ```
 ### 按需导入
 - 完成[`h-uni`安装](/README.html#安装)
-- 从`h-uni/dist/for-vue2/utils`中导入`Hhttp`
+- 从`h-uni/dist/for-vue2`中导入`Hhttp`
 
 ```js
-import { Hhttp } from 'h-uni/dist/for-vue2/utils';
+import { Hhttp } from 'h-uni/dist/for-vue2';
 ```
 
 ## 使用

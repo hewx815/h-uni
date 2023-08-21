@@ -39,8 +39,11 @@
 <!-- #endregion template -->
 
 <!-- #region script -->
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@vue/runtime-dom';
+import { HTab } from '../../packages/components';
+
+export default defineComponent({
   data() {
     return {
 
@@ -63,10 +66,11 @@ export default {
   methods: {
     resize() {
       // tab尺寸发生变化需要重新计算tab尺寸
-      this.$refs.tab.resize();
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      (this.$refs.tab as InstanceType<typeof HTab>).resize();
     },
   },
-};
+});
 </script>
 <!-- #endregion script -->
 

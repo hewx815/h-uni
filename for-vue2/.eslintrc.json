@@ -2,6 +2,7 @@
   "root": true,
   "extends": ["eslint-config-hewx/uniapp-vue2-typescript"],
   "rules": {
-    "@typescript-eslint/no-unsafe-call": [0]
+    "@typescript-eslint/no-unsafe-call": [0],
+    "import/no-unresolved": [0]
   }
 }

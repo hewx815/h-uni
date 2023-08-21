@@ -14,8 +14,10 @@
   </view>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@vue/runtime-dom';
+
+export default defineComponent({
   data() {
     return {
       list: [
@@ -27,13 +29,15 @@ export default {
           title: 'HTab',
           note: '标签栏',
         },
+        {
+          title: 'HWaterFall',
+          note: '瀑布屏',
+        },
       ],
     };
   },
-  methods: {
 
-  },
-};
+});
 </script>
 
 <style lang='scss' scoped></style>

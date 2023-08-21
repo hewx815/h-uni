@@ -17,8 +17,8 @@
       "@dcloudio/types",
       "miniprogram-api-typings",
       "mini-types",
-      "./src/packages/components.d.ts",
-      "./src/packages/utils.d.ts"
+      "./src/packages/globalComponents.d.ts",
+      "./src/packages/globalUtils.d.ts"
     ],
     "paths": {
       "@/*": ["./src/*"]

@@ -31,11 +31,11 @@ outline: deep
 
 ::: code-group
 
-```shell[yarn]
+```shell [yarn]
 yarn add h-uni
 ```
 
-```shell[npm]
+```shell [npm]
 npm install h-uni
 ```
 
@@ -45,11 +45,11 @@ npm install h-uni
 
 ::: code-group
 
-```shell[yarn]
+```shell [yarn]
 yarn h-uni
 ```
 
-```shell[npm]
+```shell [npm]
 npm run h-uni
 ```
 
@@ -67,22 +67,20 @@ npm run h-uni
 
 如果您只是需要`h-uni`中的部分功能，而不想安装全部功能，您可以使用按需导入的方式。
 
-
-组件存放位置：`h-uni/for-vue2/components`
 ```vue
 <script>
-import { HTab } from 'h-uni/for-vue2/components'
+import { HTab } from 'h-uni/dist/for-vue2'
 export defaut {
   components:{ HTab }
 }
 </script>
 ```
 
-工具存放位置：`h-uni/for-vue2/utils`
 ```js
-import { Hhttp } from 'h-uni/for-vue2/utils'
+import { Hhttp } from 'h-uni/dist/for-vue2'
 const reqest = new Hhttp
 ```
+
 
 :::tip 温馨提示
 部分组件或工具因其特殊性，按需导入方式有所不同，请以组件和工具实际文档为准。
@@ -94,7 +92,7 @@ const reqest = new Hhttp
 // main.js
 import Vue from "vue";
 import App from "./App.vue";
-import { installUtils } from 'h-uni/for-vue2'
+import { installUtils } from 'h-uni/dist/for-vue2'
 
 installUtils(Vue)
 new Vue(App).$mount();
@@ -160,7 +158,7 @@ module.exports = {
 // main.js
 import Vue from "vue";
 import App from "./App.vue";
-import { installComponents } from "h-uni/for-vue2";
+import { installComponents } from "h-uni/dist/for-vue2";
 
 installComponents(Vue)
 
@@ -186,9 +184,9 @@ new Vue(App).$mount();
 
 - **获得全局 组件/工具 类型支持**
 
- 组件类型声明文件：`h-uni/for-vue2/components.d.ts`
+ 组件类型声明文件：`h-uni/dist/for-vue2/globalComponents.d.ts`
 
- 工具类型声明文件：`h-uni/for-vue2/utils.d.ts`
+ 工具类型声明文件：`h-uni/dist/for-vue2/globalUtils.d.ts`
 
  在项目根目录的`jsconfig.json`或者``tsconfig.json``文件中`compilerOptions.types`字段中增加全局需要的类型声明文件目录
  ```jsonc
@@ -197,8 +195,8 @@ new Vue(App).$mount();
    "compilerOptions": {
      "types": [
         //...
-        "h-uni/for-vue2/components.d.ts",
-        "h-uni/for-vue2/utils.d.ts",
+        "h-uni/dist/for-vue2/globalComponents.d.ts",
+        "h-uni/dist/for-vue2/globalUtils.d.ts",
         //...
      ]
    }

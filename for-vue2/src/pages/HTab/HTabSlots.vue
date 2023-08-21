@@ -91,8 +91,10 @@
 <!-- #endregion template -->
 
 <!-- #region script -->
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@vue/runtime-dom';
+
+export default defineComponent({
   data() {
     return {
       active0: 1,
@@ -100,7 +102,7 @@ export default {
       active2: 0,
     };
   },
-};
+});
 </script>
 <!-- #endregion script -->
 

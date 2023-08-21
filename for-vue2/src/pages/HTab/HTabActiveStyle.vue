@@ -150,13 +150,15 @@
 
 <!-- #region script -->
 <script lang="ts">
-export default {
+import { defineComponent } from '@vue/runtime-dom';
+
+export default defineComponent({
   data() {
     return {
       active: 0,
     };
   },
-};
+});
 </script>
 <!-- #endregion script -->
 

@@ -17,8 +17,8 @@
       "@dcloudio/types",
       "miniprogram-api-typings",
       "mini-types",
-      "./components.d.ts",
-      "./utils.d.ts"
+      "./globalComponents.d.ts",
+      "./globalUtils.d.ts"
     ],
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   }

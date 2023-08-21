@@ -47,3 +47,18 @@ export default function cssConverter(value: CSSProperties | string, target: 'str
 
   return {};
 }
+
+// TODO:ts专用函数 cssConverterString cssConverterObject 解决在ts中使用时类型准确性
+/**
+ * @name 样式转换器(指定为短横线命名的css字符串)
+ * @param {String||Object} value 短横线命名的css字符串|| 驼峰命名的css对象
+ * @return {Object} 驼峰命名的css对象
+*/
+// export const cssConverterString = (value:CSSProperties|string): CSSProperties => ({});
+
+/**
+ * @name 样式转换器(指定为驼峰命名的css对象)
+ * @param {String||Object} value 短横线命名的css字符串|| 驼峰命名的css对象
+ * @return {Object} 短横线命名的css字符串
+*/
+// export const cssConverterObject = (value:CSSProperties|string): string => '';

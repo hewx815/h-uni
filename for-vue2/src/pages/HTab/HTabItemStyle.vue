@@ -109,8 +109,11 @@
 <!-- #endregion template -->
 
 <!-- #region script -->
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@vue/runtime-dom';
+import { HTab } from '../../packages/components/index';
+
+export default defineComponent({
   data() {
     return {
       active0: 0,
@@ -130,10 +133,11 @@ export default {
      * 导致获取尺寸异常,需要等待旋转结束后重新计算尺寸
      */
     setTimeout(() => {
-      this.$refs.HTab.resize();
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      (this.$refs.tab as InstanceType<typeof HTab>).resize();
     }, 500);
   },
-};
+});
 </script>
 <!-- #endregion script -->
 

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import Vue from 'vue';
 import App from './App.vue';
-import Huni from './packages/index';
 
-Vue.use(Huni);
 Vue.config.productionTip = false;
 uni.addInterceptor({
   returnValue(res) {
