@@ -1,4 +1,5 @@
 const { defineConfig } = require('@vue/cli-service');
+
 module.exports = defineConfig({
   devServer: {
     host: 'localhost',
@@ -10,10 +11,10 @@ module.exports = defineConfig({
     'h-uni-build': {
       openDevTools: {
         paths: {
-          'mp-weixin': 'D:\\wechatDev\\微信web开发者工具'
+          'mp-weixin': 'D:\\wechatDev\\微信web开发者工具',
         },
         exitClose: true,
       },
-    }
-  }
+    },
+  },
 });

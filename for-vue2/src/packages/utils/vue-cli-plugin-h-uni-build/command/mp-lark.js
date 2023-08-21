@@ -1,6 +1,7 @@
 const projectPath = process.argv[2];
 const isExit = process.argv[3];
 
+// eslint-disable-next-line node/no-extraneous-require
 const clipboardy = require('clipboardy');
 const { spawn } = require('child_process');
 const { log, err } = require('../utils');
@@ -21,6 +22,7 @@ const exit = () => new Promise((resolve, reject) => {
 
 if (Number(isExit) === 1) {
   exit()
+    // eslint-disable-next-line no-process-exit
     .then(() => process.exit())
     .catch((error) => err(`未能正确关闭开发者工具
     ${error}`));

@@ -1,5 +1,15 @@
 {
   "name": "vue-cli-plugin-h-uni-build",
   "version": "0.0.1",
-  "description": "vue-cli-plugin-h-uni-build"
+  "description": "vue-cli-plugin-h-uni-build",
+  "type": "commonjs",
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }

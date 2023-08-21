@@ -9,11 +9,18 @@
     "type": "git",
     "url": "https://github.com/hewx815/h-uni"
   },
-  "main": "index.js",
   "type": "module",
+  "main": "index.js",
   "keywords": [
     "h-uni",
-    "uniapp"
+    "uniapp",
+    "vue",
+    "javascript",
+    "typescript",
+    "components",
+    "utils",
+    "vscode",
+    "devTools"
   ],
   "files": [
     "./dist",
@@ -35,8 +42,8 @@
   "devDependencies": {
     "axios": "^1.3.5",
     "commitizen": "^4.3.0",
-    "eslint": "^8.39.0",
-    "eslint-config-hewx": "1.3.0",
+    "eslint": "^8.47.0",
+    "eslint-config-hewx": "^1.5.1",
     "inquirer": "^9.2.7",
     "sass": "^1.63.4",
     "sass-loader": "^13.3.2",
@@ -47,7 +54,6 @@
     "yarn": "^1.22.19"
   },
   "dependencies": {
-    "@vue/runtime-dom": "^3.3.4",
     "clipboardy": "^3.0.0",
     "columnify": "^1.6.0",
     "cross-env": "^7.0.3",

@@ -1,15 +1,16 @@
-import { ProjectOptions } from "@vue/cli-service/types/ProjectOptions";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ProjectOptions } from '@vue/cli-service/types/ProjectOptions';
 
 interface OpenDevTools {
   /**
    * 开发者工具的安装路径
    */
   paths?: {
-    "mp-weixin"?: string;
-    "mp-alipay"?: string;
-    "mp-baidu"?: string;
-    "mp-toutiao"?: string;
-    "mp-lark"?: string;
+    'mp-weixin'?: string;
+    'mp-alipay'?: string;
+    'mp-baidu'?: string;
+    'mp-toutiao'?: string;
+    'mp-lark'?: string;
   };
   /**
    * 退出进程时是否关闭开发者工具
@@ -21,7 +22,6 @@ interface OpenDevTools {
   projectDir?: string;
 }
 
-type SetMode = Array<SetModeItem>;
 interface SetModeItem {
   /**
    *  模式的名称
@@ -30,6 +30,7 @@ interface SetModeItem {
   /**
    *  为此模式设置的环境变量
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   env?: Record<string, any>;
   /**
    *  该模式的manifest.json文件
@@ -40,17 +41,18 @@ interface SetModeItem {
    */
   pagesJson?: string | object;
 }
+type SetMode = Array<SetModeItem>;
 
 /**
  * 扩展的编译前和编译后的函数接口
  */
-type Hooks = (api: ProjectOptions, options: object, args: Array<any>) => void;
+type Hooks = (api: ProjectOptions, options: object, args: Array<string>) => void;
 
 interface Config {
-  openDevTools?: OpenDevTools | "" | false;
-  setMode?: SetMode | "" | false;
-  beforeBuild?: Hooks | "" | false;
-  afterBuild?: Hooks | "" | false;
+  openDevTools?: OpenDevTools | '' | false;
+  setMode?: SetMode | '' | false;
+  beforeBuild?: Hooks | '' | false;
+  afterBuild?: Hooks | '' | false;
   delOldFile?: boolean;
 }
 

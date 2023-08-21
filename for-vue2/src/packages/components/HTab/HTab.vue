@@ -38,6 +38,7 @@
 import { defineComponent } from '@vue/runtime-dom';
 import HTabItem from '../HTabItem/HTabItem.vue';
 import { cssConverter } from '../../utils/index';
+
 type HTabItemType = InstanceType<typeof HTabItem>;
 
 /**
@@ -60,13 +61,14 @@ type HTabItemType = InstanceType<typeof HTabItem>;
  * @slot active 自定义滑块
 */
 
-
 export default defineComponent({
   provide() {
     return { // 与item组件通信
       getHTabDirection: () => this.direction,
       getHTabValue: () => this.value,
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       setItem: this.setItem,
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       itemClick: this.itemClick,
     };
   },
@@ -77,7 +79,8 @@ export default defineComponent({
     },
     direction: {
       default: 'y',
-      validator(value: any) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      validator(value: string) {
         return ['x', 'y'].includes(value);
       },
     },
@@ -139,9 +142,9 @@ export default defineComponent({
         UniNamespace.NodeInfo
         & {
           value: HTabItemType['$props']['value'];
-          select?: HTabItemType['select'];
+          select: HTabItemType['select'];
           resize: () => Promise<UniNamespace.NodeInfo>;
-        }>
+        }>,
     };
   },
   computed: {
@@ -184,10 +187,12 @@ export default defineComponent({
         || left === undefined
         || width === undefined
         || height === undefined
-      ) return {
-        x: 0,
-        y: 0
-      };
+      ) {
+        return {
+          x: 0,
+          y: 0,
+        };
+      }
 
       const centerHeight = this.scrollViewRect.height / 2;
       const centerWidth = this.scrollViewRect.width / 2;
@@ -226,73 +231,82 @@ export default defineComponent({
         left: `${left}px`,
         transition: `${this.activeAnimation ? (this.activeDuration / 1000) : 0}s`,
         '--h-tab-active-background': this.activeBackgroundColor,
-        ...cssConverter(this.activeStyle, 'object') as Record<string, any>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...cssConverter(this.activeStyle, 'object') as Record<string, any>,
       }, 'string');
     },
 
   },
   created() {
     // #ifdef MP-BAIDU
-    // eslint-disable-next-line no-underscore-dangle
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, no-underscore-dangle, @typescript-eslint/no-unsafe-member-access
     this.vueId = this.$scope._$vueId;
     // #endif
   },
   mounted() {
-    this.resize();
+    this.resize().catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error('[HTab]', error);
+    });
   },
   methods: {
     // 设置item组件信息
     setItem(
       value: typeof this.value,
       resizeFn: () => Promise<UniNamespace.NodeInfo>,
-      select: HTabItemType['select']
+      select: HTabItemType['select'],
     ) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       this.items.push({ value, resize: resizeFn, select });
     },
     // item组件点击事件
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     itemClick(value: any) {
       this.$emit('input', value);
     },
     // 重新计算尺寸
-    resize(value?: typeof this.value) {
-      this.$nextTick(() => {
-        setTimeout(() => {
-          this.$nextTick(() => {
-            const arr = value
-              ? [this.items.find((item) => item.value === value)?.resize()]
-              : [...this.items.map((item) => item.resize())];
+    async resize(value?: typeof this.value) {
+      await this.$nextTick();
+      setTimeout(async () => {
+        await this.$nextTick();
+        const arr = value
+          ? [this.items.find((item) => item.value === value)?.resize()]
+          : [...this.items.map((item) => item.resize())];
 
-            Promise.all([
-              this.getRect(),
-              this.getScroll(),
-              this.getContainerRect(),
-              ...arr,
-            ])
-              .then(([rect, scroll, containerRect, ...itemsRect]) => {
-                this.scrollViewRect = rect || {};
-                this.scrollViewScroll = scroll || {};
-                this.containerRect = containerRect || {};
-                if (value) {
-                  const index = this.items.find((item) => item.value === value);
-                  // @ts-ignore
-                  this.$set(this.items, index, itemsRect[0]);
-                } else {
-                  itemsRect.forEach((itemRect, index) => {
-                    // @ts-ignore
-                    this.$set(this.items, index, { ...this.items[index], ...itemsRect[index] });
-                  });
-                }
-
-                return '';
-              })
-              .catch((err) => {
-                // eslint-disable-next-line no-console
-                console.error(err);
+        Promise.all([
+          this.getRect(),
+          this.getScroll(),
+          this.getContainerRect(),
+          ...arr,
+        ])
+          .then(([rect, scroll, containerRect, ...itemsRect]) => {
+            this.scrollViewRect = rect || {};
+            this.scrollViewScroll = scroll || {};
+            this.containerRect = containerRect || {};
+            if (value) {
+              const index = this.items.find((item) => item.value === value);
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+              this.$set(this.items, index, itemsRect[0]);
+            } else {
+              itemsRect.forEach((itemRect, index) => {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+                this.$set(this.items, index, { ...this.items[index], ...itemsRect[index] });
               });
+            }
+
+            return '';
+          })
+          .catch((err) => {
+            // eslint-disable-next-line no-console
+            console.error(err);
           });
-        }, 200);
-      });
+      }, 200);
     },
     // 获取 scroll-view rect信息
     getRect() {

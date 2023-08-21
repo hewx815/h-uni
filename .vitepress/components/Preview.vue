@@ -6,62 +6,69 @@
     <div
       ref="previewIcon"
       class="preview_icon"
-      @mousedown="mousedown"
-      @mouseup="mouseup"
       :style="{
         backgroundImage: `url(${open ? closeSvg : phoneSvg})`,
         transform: `rotateZ(${open ? '360deg' : '0deg'})`,
       }"
+      @mousedown="mousedown"
+      @mouseup="mouseup"
     />
     <div
       :style="iframeStyle"
       class="iframe_box"
     >
       <iframe
-        @load="open = true"
         class="preview_iframe"
         :src="url"
         frameborder="0"
+        @load="open = true"
       />
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 /**
  * @name 组件预览悬浮组件
  * @description 在组件md文件中挂载此组件
  * @property {String} path 预览的路径
 */
+import {
+  computed, getCurrentInstance, ref, onMounted,
+} from 'vue';
 import closeSvg from '../static/close.svg';
 import phoneSvg from '../static/phone.svg';
-
-import { defineProps, computed, getCurrentInstance, ref, onMounted } from 'vue';
 
 const props = defineProps({
   path: {
     type: String,
-    required: true
+    required: true,
   },
 });
-
-
-
 
 // previewBtn path
 const previewBtnPath = ref('');
 // iframe 打开状态
-const open = ref(false);
-
+const open = ref<boolean | number>(false);
 const top = ref(0);
 const left = ref(0);
+const previewIcon = ref<HTMLElement>(null);
 
-const previewIcon = ref(null);
+// 储存坐标信息
+const KEY = 'HUNI_HEWXING_CN_PREVIEW_XY';
+const saveXY = (x: string | number, y: string | number) => {
+  localStorage.setItem(KEY, JSON.stringify({ x, y }));
+};
+const getXY = () => {
+  const data = localStorage.getItem(KEY);
+  return data ? JSON.parse(data) as { x: string | number; y: string | number; } : null;
+};
 
 const { proxy } = getCurrentInstance();
 
 // PhonePreview 组件调用此方法 更改 previewBtnPath
-proxy.$root.preview = (url) => {
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+(proxy.$root as any).preview = (url: string) => {
   previewBtnPath.value = '';
   setTimeout(() => {
     previewBtnPath.value = url;
@@ -69,22 +76,9 @@ proxy.$root.preview = (url) => {
   open.value = true;
 };
 
-
-onMounted(() => {
-  const data = getXY();
-  if (data) {
-    left.value = data.x;
-    top.value = data.y;
-    return;
-  }
-
-  left.value = 0;
-  top.value = window.innerHeight - 667 - 50;
-});
-
 // iframe src
 const url = computed(() => {
-  const baseUrl = process.env.NODE_ENV === 'production' ? 'https://h-uni.hewxing.cn/preview-vue2/#/' : "http://localhost:8080/#/";
+  const baseUrl = process.env.NODE_ENV === 'production' ? 'https://h-uni.hewxing.cn/preview-vue2/#/' : 'http://localhost:8080/#/';
   return baseUrl + (previewBtnPath.value ? previewBtnPath.value : props.path);
 });
 
@@ -97,42 +91,38 @@ const iframeStyle = computed(() => {
       borderRadius: '10px',
       opacity: 1,
     };
-  } else {
-    return {
-      width: '0px',
-      height: '0px',
-      borderRadius: '0 0 100% 0%',
-      opacity: 0.5,
-    };
   }
+  return {
+    width: '0px',
+    height: '0px',
+    borderRadius: '0 0 100% 0%',
+    opacity: 0.5,
+  };
 });
-
 
 // 获取滚动条宽度
 const getScrollBarWidth = () => {
-  const outer = document.createElement("div");
-  outer.style.visibility = "hidden";
-  outer.style.width = "100px";
-  outer.style.position = "absolute";
-  outer.style.top = "-9999px";
+  const outer = document.createElement('div');
+  outer.style.visibility = 'hidden';
+  outer.style.width = '100px';
+  outer.style.position = 'absolute';
+  outer.style.top = '-9999px';
   document.body.appendChild(outer);
 
   const widthNoScroll = outer.offsetWidth;
-  outer.style.overflow = "scroll";
+  outer.style.overflow = 'scroll';
 
-  const inner = document.createElement("div");
-  inner.style.width = "100%";
+  const inner = document.createElement('div');
+  inner.style.width = '100%';
   outer.appendChild(inner);
 
   const widthWithScroll = inner.offsetWidth;
   outer.parentNode.removeChild(outer);
-  return widthNoScroll - widthWithScroll;;
+  return widthNoScroll - widthWithScroll;
 };
 
-
 // 移动
-const move = (e) => {
-
+const move = (e: MouseEvent) => {
   // 鼠标距离屏幕
   const mouseX = e.screenX;
   const mouseY = e.screenY;
@@ -178,17 +168,16 @@ const move = (e) => {
   open.value = open.value ? 1 : 0;
 };
 
-
 const mousedown = () => {
   document.body.style.userSelect = 'none';
 
   const timer = setTimeout(() => {
-    previewIcon.value.style.cursor = "move";
+    previewIcon.value.style.cursor = 'move';
     document.addEventListener('mousemove', move);
 
     document.addEventListener('mouseup', () => {
       if (!previewIcon.value) return;
-      previewIcon.value.style.cursor = "pointer";
+      previewIcon.value.style.cursor = 'pointer';
       document.body.style.userSelect = 'auto';
       document.removeEventListener('mousemove', move);
       // 来自移动的抬起事件需要关闭
@@ -204,22 +193,23 @@ const mousedown = () => {
   });
 };
 
-
 const mouseup = () => {
   // 来自移动的抬起事件忽略
   if (open.value === 0 || open.value === 1) return;
   open.value = !open.value;
 };
 
-// 储存坐标信息
-const KEY = 'HUNI_HEWXING_CN_PREVIEW_XY';
-const saveXY = (x, y) => {
-  localStorage.setItem(KEY, JSON.stringify({ x, y }));
-};
-const getXY = () => {
-  const data = localStorage.getItem(KEY);
-  return data ? JSON.parse(data) : null;
-}
+onMounted(() => {
+  const data = getXY();
+  if (data) {
+    left.value = Number(data.x);
+    top.value = Number(data.y);
+    return;
+  }
+
+  left.value = 0;
+  top.value = window.innerHeight - 667 - 50;
+});
 
 </script>
 
@@ -271,7 +261,6 @@ const getXY = () => {
     0 2px 2px -1px rgba(0, 0, 0, .2),
     0 1px 2px 0 rgba(0, 0, 0, .14),
     0 1px 4px 0 rgba(0, 0, 0, .12);
-
 
   &:hover {
     box-shadow:

@@ -1,3 +1,10 @@
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type RequestInfo = {
   config: any;
   request: any;
@@ -7,10 +14,15 @@ type RequestInfo = {
 export default class Hhttp {
   // 实例属性
   baseUrl = null as string | null;
+
   baseHeader = null as Record<string, any> | null;
+
   baseMethod = null as UniNamespace.RequestOptions['method'] | null;
+
   baseData = null as UniNamespace.RequestOptions['data'] | null;
+
   baseTimeout = null as number | null;
+
   interceptor = {
     request: null as ((config: any) => Promise<RequestInfo>) | null,
     response: null as ((config: any) => Promise<RequestInfo>) | null,
@@ -48,6 +60,7 @@ export default class Hhttp {
   // 请求配置策略
   static getUrl = (baseUrl: any, url = '') => {
     if (!baseUrl) return url;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const base = baseUrl.replace(/\/+$/, ''); // 去掉baseUrl末尾的斜杠
     const path = url.replace(/^\/+/, ''); // 去掉url开头的斜杠
     return `${base}/${path}`;
@@ -122,7 +135,7 @@ export default class Hhttp {
     // 获取请求体
     try {
       const baseConfig = Hhttp.getBaseConfig(args);
-      const useConfig = Hhttp.getUseConfig(arguments);
+      const useConfig = Hhttp.getUseConfig(args);
       info.request = Hhttp.getRequest(baseConfig, useConfig);
     } catch (err) {
       info.errMeaasge = '配置错误';
@@ -163,8 +176,6 @@ export default class Hhttp {
 
     return Promise.resolve(info);
   }
-
-
 
   // 快捷方法
   get(url: any, data: any) {

@@ -4,7 +4,9 @@
       class="btn"
       @click="clickBtn"
     >
-      <div class="btn_text">预览</div>
+      <div class="btn_text">
+        预览
+      </div>
       <img
         class="btn_img"
         src="../static/eye.svg"
@@ -13,24 +15,26 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 /**
  * @name 预览按钮
  * @description 依赖组件<Preview> 在
  * 代码块的上分插入该组件 点击按钮时会更改<Preview>正在预览的路径
  * @property {String} path 预览的路径
 */
-import { getCurrentInstance, defineProps } from 'vue';
+import { getCurrentInstance } from 'vue';
+
 const props = defineProps({
   path: {
     type: String,
-    required: true
+    required: true,
   },
 });
 const { proxy } = getCurrentInstance();
 
 const clickBtn = () => {
-  proxy.$root.preview(props.path);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any
+  (proxy.$root as any).preview(props.path);
 };
 </script>
 

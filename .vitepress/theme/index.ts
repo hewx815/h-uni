@@ -1,14 +1,16 @@
-/* eslint-disable import/no-extraneous-dependencies */
+// eslint-disable-next-line import/extensions
 import DefaultTheme from 'vitepress/theme';
+import { EnhanceAppContext } from 'vitepress';
 import './custom.css';
-import * as components from '../components';
+import { Component } from 'vue';
+import * as allComponents from '../components';
+
+const components: Record<keyof typeof allComponents, Component> = allComponents;
 
 export default {
   extends: DefaultTheme,
-  enhanceApp(ctx) {
-    // register global components
-    Object.keys(components).forEach((key) => {
-      // eslint-disable-next-line import/namespace
+  enhanceApp(ctx: EnhanceAppContext) {
+    Object.keys(components).forEach((key: keyof typeof components) => {
       ctx.app.component(key, components[key]);
     });
   },

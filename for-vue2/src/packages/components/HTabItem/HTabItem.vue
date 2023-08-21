@@ -51,6 +51,7 @@
 import { defineComponent } from '@vue/runtime-dom';
 import HTab from '../HTab/HTab.vue';
 import { cssConverter } from '../../utils/index';
+
 type HTabType = InstanceType<typeof HTab>;
 
 export default defineComponent({
@@ -62,7 +63,7 @@ export default defineComponent({
     },
     direction: {
       default: 'y',
-      validator(value: any) {
+      validator(value: string) {
         return ['x', 'y'].includes(value);
       },
     },
@@ -114,9 +115,10 @@ export default defineComponent({
   data() {
     return {
       vueId: '',
-
-      getHTabDirectionCopy: (): any => { },
-      getHTabValueCopy: (): any => { },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function
+      getHTabDirectionCopy: (): typeof this.value => '',
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function
+      getHTabValueCopy: (): typeof this.value => '',
     };
   },
   computed: {
@@ -128,7 +130,9 @@ export default defineComponent({
     },
     itemStyles() {
       return cssConverter({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ...cssConverter(this.styles, 'object') as Record<string, any>,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ...cssConverter(this.HTabValue === this.value ? this.activeStyle : {}, 'object') as Record<string, any>,
       }, 'string');
     },
@@ -137,7 +141,9 @@ export default defineComponent({
     },
     imageStyles() {
       return cssConverter({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ...cssConverter(this.imageStyle, 'object') as Record<string, any>,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ...cssConverter(this.HTabValue === this.value ? this.activeImageStyle : {}, 'object') as Record<string, any>,
       }, 'string');
     },
@@ -146,7 +152,9 @@ export default defineComponent({
     },
     labelStyles() {
       return cssConverter({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ...cssConverter(this.labelStyle, 'object') as Record<string, any>,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ...cssConverter(this.HTabValue === this.value ? this.activeLabelStyle : {}, 'object') as Record<string, any>,
       }, 'string');
     },
@@ -157,11 +165,14 @@ export default defineComponent({
   created() {
     this.getHTabValueCopy = this.getHTabValue as () => HTabType['value'];
     this.getHTabDirectionCopy = this.getHTabDirection as () => HTabType['direction'];
-    //@ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     this.setItem(this.value, this.resize, this.select);
     // #ifdef MP-BAIDU
-    // eslint-disable-next-line no-underscore-dangle
-    //@ts-ignore
+    // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     this.vueId = this.$scope._$vueId;
     // #endif
   },
@@ -173,12 +184,17 @@ export default defineComponent({
       className = `.h_tab_item-${this.vueId}`;
       // #endif
       return new Promise((resolve) => {
-        this.$nextTick(() => {
-          uni.createSelectorQuery().in(this).select(className).boundingClientRect((data) => {
-            resolve(data);
-          })
-            .exec();
-        });
+        this.$nextTick()
+          .then(() => {
+            uni.createSelectorQuery().in(this).select(className).boundingClientRect((data) => {
+              resolve(data);
+            })
+              .exec();
+            return true;
+          }).catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error('[HTabItem]', error);
+          });
       });
     },
 

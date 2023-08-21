@@ -1,5 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable no-unused-vars */
+/* eslint-disable node/no-extraneous-require */
 const inquirer = require('inquirer8');
 const fs = require('fs');
 const path = require('path');
@@ -38,7 +37,7 @@ module.exports = async (api, options, args) => {
     const names = setMode.map((item) => item.name);
 
     // uni-build 输出后
-    const bugFix = () => new Promise((resolve, reject) => {
+    const bugFix = () => new Promise((resolve) => {
       setTimeout(() => {
         resolve();
       }, 0);
@@ -64,6 +63,7 @@ module.exports = async (api, options, args) => {
         config
           .plugin('define')
           .tap((argss) => {
+            // eslint-disable-next-line no-param-reassign, node/no-unsupported-features/es-syntax
             argss[0]['process.env'] = { ...argss[0]['process.env'], ...userConfig.env };
             return argss;
           });

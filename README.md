@@ -190,7 +190,7 @@ new Vue(App).$mount();
 
  工具类型声明文件：`h-uni/for-vue2/utils.d.ts`
 
- 在项目根目录的`jsconfig.json`或者``tsconfig.json``文件中`compilerOptions.types`字段中增加全局需要的类型声明文件
+ 在项目根目录的`jsconfig.json`或者``tsconfig.json``文件中`compilerOptions.types`字段中增加全局需要的类型声明文件目录
  ```jsonc
  /// jsconfig.json
  {
@@ -204,6 +204,7 @@ new Vue(App).$mount();
    }
  }
  ```
+
 ### HBuilderX支持
 已经提上日程，最晚2099年之前支持
 

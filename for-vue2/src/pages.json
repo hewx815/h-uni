@@ -1,9 +1,6 @@
 {
   "pages": [
     {
-      "path": "pages/TestPage"
-    },
-    {
       "path": "pages/NavCom/NavCom"
     },
     {

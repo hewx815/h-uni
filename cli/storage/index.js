@@ -1,4 +1,3 @@
-import { execFile } from 'child_process';
 import fs, { existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

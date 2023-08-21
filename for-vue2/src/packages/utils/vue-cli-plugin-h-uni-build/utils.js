@@ -7,6 +7,7 @@ const err = (message) => {
 `);
 };
 const error = (message) => {
+  // eslint-disable-next-line no-console
   console.error(`
 [h-uni-build]:${message}
 `);

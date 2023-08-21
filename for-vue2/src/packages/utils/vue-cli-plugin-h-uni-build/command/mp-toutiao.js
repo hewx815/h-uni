@@ -21,6 +21,7 @@ const exit = () => new Promise((resolve, reject) => {
 
 if (Number(isExit) === 1) {
   exit()
+    // eslint-disable-next-line no-process-exit
     .then(() => process.exit())
     .catch((error) => err(`未能正确关闭开发者工具
     ${error}`));

@@ -1,0 +1,25 @@
+# `TODO`标签说明、全局`TODO`列表
+
+# `TODO`: 需要完成的任务或需要进一步处理的事项。
+# `FIXME`: 存在的 bug 或缺陷(不会导致功能上的错误)。
+# `BUG`: 存在的 bug 或缺陷(会导致功能上的错误)。
+# `HACK`: 临时性的解决方案或修补。
+# `XXX`: 需要特别注意或需要进一步检查的地方(优化点)。
+
+
+
+TODO 生成项目结构目录说明
+
+TODO vue2 installComponents,installUtils 函数支持
+
+TODO vue2 vue-cli-plugin-h-uni-build：defineConfigHuniBuild 类型支持文档
+
+TODO Vue3 开始页面
+
+TODO Vue3 vite-plugin-h-uni-build 功能
+
+TODO Vue3 HTab 组件
+
+
+
+

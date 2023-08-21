@@ -1,6 +1,5 @@
 <template>
   <table class="table">
-
     <thead>
       <tr>
         <th>平台</th>
@@ -43,53 +42,75 @@
 
   <div class="info ">
     <div
-      class="warning custom-block"
       v-if="typeof props.APP === 'string'"
-    >APP：{{ ddd('APP') }}</div>
-    <div
       class="warning custom-block"
+    >
+      APP：{{ ddd('APP') }}
+    </div>
+    <div
       v-if="typeof props.H5 === 'string'"
-    >H5：{{ ddd('H5') }}</div>
-    <div
       class="warning custom-block"
+    >
+      H5：{{ ddd('H5') }}
+    </div>
+    <div
       v-if="typeof props.WEIXIN === 'string'"
-    >微信：{{ ddd('WEIXIN') }}</div>
-    <div
       class="warning custom-block"
+    >
+      微信：{{ ddd('WEIXIN') }}
+    </div>
+    <div
       v-if="typeof props.ALIPAY === 'string'"
-    >支付宝：{{ ddd('ALIPAY') }}</div>
-    <div
       class="warning custom-block"
+    >
+      支付宝：{{ ddd('ALIPAY') }}
+    </div>
+    <div
       v-if="typeof props.BAIDU === 'string'"
-    >百度：{{ ddd('BAIDU') }}</div>
-    <div
       class="warning custom-block"
+    >
+      百度：{{ ddd('BAIDU') }}
+    </div>
+    <div
       v-if="typeof props.TOUTIAO === 'string'"
-    >头条：{{ ddd('TOUTIAO') }}</div>
-    <div
       class="warning custom-block"
+    >
+      头条：{{ ddd('TOUTIAO') }}
+    </div>
+    <div
       v-if="typeof props.LARK === 'string'"
-    >飞书：{{ ddd('LARK') }}</div>
-    <div
       class="warning custom-block"
+    >
+      飞书：{{ ddd('LARK') }}
+    </div>
+    <div
       v-if="typeof props.QQ === 'string'"
-    >QQ：{{ ddd('QQ') }}</div>
-    <div
       class="warning custom-block"
+    >
+      QQ：{{ ddd('QQ') }}
+    </div>
+    <div
       v-if="typeof props.KUAISHOU === 'string'"
-    >快手：{{ ddd('KUAISHOU') }}</div>
-    <div
       class="warning custom-block"
+    >
+      快手：{{ ddd('KUAISHOU') }}
+    </div>
+    <div
       v-if="typeof props.JD === 'string'"
-    >京东：{{ ddd('JD') }}</div>
-    <div
       class="warning custom-block"
+    >
+      京东：{{ ddd('JD') }}
+    </div>
+    <div
       v-if="typeof props.NVUE === 'string'"
-    >NVUE：{{ ddd('NVUE') }}</div>
+      class="warning custom-block"
+    >
+      NVUE：{{ ddd('NVUE') }}
+    </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 /**
  * @description 兼容性展示表格
  * @property {Boolean||String} APP
@@ -101,20 +122,33 @@
 */
 
 const props = defineProps({
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   APP: [Boolean, String],
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   H5: [Boolean, String],
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   WEIXIN: [Boolean, String],
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   ALIPAY: [Boolean, String],
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   BAIDU: [Boolean, String],
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   TOUTIAO: [Boolean, String],
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   LARK: [Boolean, String],
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   QQ: [Boolean, String],
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   KUAISHOU: [Boolean, String],
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   JD: [Boolean, String],
+  // eslint-disable-next-line vue/prop-name-casing, vue/require-default-prop
   NVUE: [Boolean, String],
 });
 
-const dd = (platForm) => {
+type PlatForm = keyof typeof props;
+
+const dd = (platForm: PlatForm) => {
   const state = props[platForm];
   if (state === false) {
     return '⚪';
@@ -125,9 +159,7 @@ const dd = (platForm) => {
   return '❌';
 };
 
-const ddd = (platForm) => {
-  return props[platForm];
-};
+const ddd = (platForm: PlatForm) => props[platForm];
 </script>
 
 <style  scoped>
