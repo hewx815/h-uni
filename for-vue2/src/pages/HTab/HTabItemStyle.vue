@@ -134,7 +134,7 @@ export default defineComponent({
      */
     setTimeout(() => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      (this.$refs.tab as InstanceType<typeof HTab>).resize();
+      (this.$refs.HTab as InstanceType<typeof HTab>).resize();
     }, 500);
   },
 });
