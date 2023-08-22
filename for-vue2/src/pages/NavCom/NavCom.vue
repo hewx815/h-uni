@@ -22,10 +22,6 @@ export default defineComponent({
     return {
       list: [
         {
-          title: 'HButton',
-          note: '按钮',
-        },
-        {
           title: 'HTab',
           note: '标签栏',
         },

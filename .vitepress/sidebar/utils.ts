@@ -12,7 +12,7 @@ export default [
     text: 'for-vue3',
     collapsed: false,
     items: [
-      { text: '网络请求 Hhttp', link: '/for-vue3/utils/Hhttp' },
+      // { text: '网络请求 Hhttp', link: '/for-vue3/utils/Hhttp' },
     ],
   },
 ];

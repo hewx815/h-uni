@@ -45,7 +45,7 @@ export default defineConfig({
     nav: [
       { text: '主页', link: '/' },
       { text: '开始', link: '/README' },
-      { text: '组件', link: '/for-vue2/components/HButton', activeMatch: '/components' },
+      { text: '组件', link: '/for-vue2/components/HTab', activeMatch: '/components' },
       { text: '工具', link: '/for-vue2/utils/Hhttp', activeMatch: '/utils' },
       { text: '更新记录', link: '/CHANGELOG' },
       {

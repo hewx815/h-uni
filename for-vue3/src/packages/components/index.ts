@@ -1,2 +1,2 @@
-export { default as Hbutton } from './HButton/HButton.vue';
+// eslint-disable-next-line import/prefer-default-export
 export { default as HTab } from './HTab/HTab.vue';

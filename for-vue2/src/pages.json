@@ -4,9 +4,6 @@
       "path": "pages/NavCom/NavCom"
     },
     {
-      "path": "pages/HButton/HButton"
-    },
-    {
       "path": "pages/HTab/HTab",
       "style": {
         "navigationBarTitleText": "HTab"
