@@ -1,19 +1,26 @@
-import type { InputOptions } from 'rollup';
+/* eslint-disable node/no-unpublished-import */
+import type { UserConfig, ConfigEnv } from 'vite';
+import type { Config } from './defineConfig';
+import beforeBuild from './beforeBuild';
+import afterBuild from './afterBuild';
 
-export default function () {
+export default function hUniBuild(config: Config) {
   return {
+
     name: 'vite-plugin-h-uni-build',
 
-    buildStart(options: InputOptions): Promise<void> {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve();
-        }, 5000);
-      });
+    async config(viteConfig: UserConfig, env: ConfigEnv) {
+      const key = 'VITE_PLUGIN_H_UNI_BUILD_BEFORE';
+      if (process.env[key] === 'runing') return;
+
+      await beforeBuild(config, viteConfig, env);
     },
 
-    buildEnd(error: any) {
-      console.log('error', error);
+    async buildEnd(error: unknown) {
+      const key = 'VITE_PLUGIN_H_UNI_BUILD_AFTER';
+      if (process.env[key] === 'runing') return;
+
+      await afterBuild(config, error);
     },
 
   };

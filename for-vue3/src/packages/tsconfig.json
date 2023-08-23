@@ -5,6 +5,6 @@
     "sourceMap": true,
     "baseUrl": ".",
     "lib": ["esnext", "dom"],
-    "types": ["@dcloudio/types"]
+    "types": ["@dcloudio/types", "node"]
   }
 }
