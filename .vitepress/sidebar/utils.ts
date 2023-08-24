@@ -12,6 +12,7 @@ export default [
     text: 'for-vue3',
     collapsed: false,
     items: [
+      { text: 'Hhttp 网络请求', link: '/for-vue3/utils/Hhttp' },
       { text: 'vite-plugin-h-uni-build', link: '/for-vue3/utils/vite-plugin-h-uni-build' },
     ],
   },

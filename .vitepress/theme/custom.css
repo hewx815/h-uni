@@ -15,6 +15,7 @@
   --shadow-3: rgba(0, 0, 0, 0.12);
 
   --vp-layout-max-width: 1460px;
+  --vp-code-block-bg: #292b30;
 }
 
 .dark {
