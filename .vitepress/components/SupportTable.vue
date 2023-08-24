@@ -179,7 +179,7 @@ const ddd = (platForm: PlatForm) => props[platForm];
   transition: .5s;
   overflow: hidden;
   padding-top: 5px;
-  width: 200px;
+  width: 300px;
   display: flex;
   justify-content: space-between;
   font-size: 12px;
