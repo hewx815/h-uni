@@ -59,7 +59,7 @@ export interface Config {
   /**
  * 构建后回调函数
  */
-  afterBuild?: '' | false | ((config: Config, error: unknown) => void | Promise<any>);
+  afterBuild?: '' | false | ((error: unknown) => void | Promise<any>);
   /**
    * 是否在编译前删掉上一次编译的旧文件
   */

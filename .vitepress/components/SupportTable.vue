@@ -36,7 +36,7 @@
     <div class="example">
       <span>⚪:未测试</span>
       <span>✅:支持</span>
-      <span>❌:不支持</span>
+      <span>❌:不支持/有部分功能不支持</span>
     </div>
   </table>
 

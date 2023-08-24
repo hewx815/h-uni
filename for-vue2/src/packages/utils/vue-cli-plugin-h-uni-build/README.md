@@ -2,11 +2,11 @@
 outline: deep
 ---
 
-# vue-cli-plugin-h-uni-build 扩展`uni-build`
+# vue-cli-plugin-h-uni-build
 
 ## 介绍
 
-这是一个`h-uni`的`内置`插件，扩展了 `uni-app` 原生的 `uni-build`
+这是一个`h-uni`的`内置`插件，属于`vue-cli本地插件`，扩展了 `uni-app` 原生的 `uni-build`
 
 插件已经扩展了在开发中常用的功能:
 
@@ -18,7 +18,9 @@ outline: deep
 
 ## 兼容性
 
-<SupportTable WEIXIN H5 TOUTIAO BAIDU ALIPAY LARK/>
+<SupportTable WEIXIN
+  H5="不支持 afterBuild 钩子函数"
+  TOUTIAO BAIDU ALIPAY LARK/>
 
 ## 安装
 
@@ -119,7 +121,7 @@ yarn dev:mp-weixin
 
 ::: danger H5
 
-不支持此功能选项！解决方案见：[特殊处理 dev:h5](#特殊处理-dev-h5)
+不支持此功能选项！详见：[特殊处理 dev:h5](#特殊处理-dev-h5)
 
 :::
 
@@ -213,7 +215,6 @@ module.exports = {
 
 ```javascript
 // vue.config.js
-const fs = require("fs");
 const path = require("path");
 
 module.exports = {
@@ -225,9 +226,7 @@ module.exports = {
           env: {
             APP_MODE: '"模式1"',
           },
-          manifestJson: fs.readFileSync(
-            path.resolve(__dirname, "./src/manifestMode1.json")
-          ),
+          manifestJson: path.resolve(__dirname, "./src/manifestMode1.json"),
           pagesJson: {
             globalStyle: {
               navigationBarBackgroundColor: "#999",
@@ -256,9 +255,9 @@ module.exports = {
 
 为此模式设置的环境变量
 
-`Object<key>`:环境变量名称
+ `Object<key>` : `String` : 环境变量名称
 
-`Object<value>`环境变量内容
+`Object<value>` : `String` : 环境变量内容
 
 ```javascript
 // vue.config.js
@@ -334,6 +333,11 @@ console.log(process.env.APP_MODE === "模式1"); // true
 `beforeBuild`=>`delOldFile`=>`setMode`=>`uni-build`=>`openDevTools`=>`afterBuild`
 :::
 
+::: danger H5
+
+不支持`afterBuild`功能选项！详见：[特殊处理 dev:h5](#特殊处理-dev-h5)
+
+:::
 
 ## delOldFile
 
@@ -348,16 +352,9 @@ console.log(process.env.APP_MODE === "模式1"); // true
 
 ## 特殊处理：`dev:h5`
 
-```json
-// package.json
-{
-  "dev:h5": "cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-serve"
-}
-```
+`dev:h5`暂不支持`afterbuild`和`openDevTools`
 
-由此不难看出执行`dev:h5`命令时并未执行`uni-build`,扩展`uni-build`并不可行
-
-未解决这个问题，插件内已同时扩展了`uni-serve`，除了[`openDevTools`](#opendevtools)功能，其余插件扩展功能和回调函数均能正常使用
+**`openDevTools`解决方案：**
 
 `dev:h5`一般情况下调试在浏览器中进行，可以直接使用`vue-cli`自带功能:[`devServer`](https://cli.vuejs.org/zh/config/#devserver),即可实现自动打开浏览器功能：
 
@@ -369,3 +366,5 @@ module.exports = {
   },
 };
 ```
+
+**`afterbuild`暂未解决**

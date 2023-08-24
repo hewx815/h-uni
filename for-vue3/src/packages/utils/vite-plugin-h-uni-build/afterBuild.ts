@@ -67,6 +67,6 @@ export default async function (config: Config, error: unknown) {
 
   // afterBuild
   if (typeof afterBuild === 'function') {
-    await afterBuild(config, error);
+    await afterBuild(error);
   }
 }
