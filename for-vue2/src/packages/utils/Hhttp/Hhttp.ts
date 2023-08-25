@@ -1,45 +1,173 @@
-/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type RequestInfo = {
-  config: any;
+
+/**
+ * Hhttp 请求信息
+ * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#请求信息-requestinfo
+ */
+export type RequestInfo = {
+  // eslint-disable-next-line no-use-before-define
+  config: BaseOptions | typeof Example;
   request: any;
-  response: any,
-  errMeaasge: any,
+  response:
+  | UniNamespace.RequestSuccessCallbackResult
+  | UniNamespace.GeneralCallbackResult
+  | null;
+  errMeaasge: unknown;
 };
-export default class Hhttp {
-  // 实例属性
-  baseUrl = null as string | null;
 
-  baseHeader = null as Record<string, any> | null;
+export type InterceptorFunction = (
+  config: RequestInfo
+) => Promise<RequestInfo | any> | void;
 
-  baseMethod = null as UniNamespace.RequestOptions['method'] | null;
+export const defineInterceptor = (interceptor: {
+  /**
+   * Hhttp 请求拦截器
+   */
+  request: InterceptorFunction;
+  response: InterceptorFunction;
+  /**
+   * Hhttp 响应拦截器
+   */
+}) => interceptor;
 
-  baseData = null as UniNamespace.RequestOptions['data'] | null;
-
-  baseTimeout = null as number | null;
-
-  interceptor = {
-    request: null as ((config: any) => Promise<RequestInfo>) | null,
-    response: null as ((config: any) => Promise<RequestInfo>) | null,
+export type BaseOptions = {
+  baseUrl: UniNamespace.RequestOptions['url'] | null;
+  baseHeader: UniNamespace.RequestOptions['header'] | null;
+  baseMethod: UniNamespace.RequestOptions['method'] | null;
+  baseData: UniNamespace.RequestOptions['data'] | null;
+  baseTimeout: UniNamespace.RequestOptions['timeout'] | null;
+  interceptor: {
+    request: InterceptorFunction | null;
+    response: InterceptorFunction | null;
   };
+};
+
+export type Options = {
+  /**
+   * Hhttp 每次请求都拼接的url
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例属性-实例化配置-baseoptions
+   */
+  baseUrl?: UniNamespace.RequestOptions['url'];
+  /**
+   * Hhttp 每次请求都有的请求头
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例属性-实例化配置-baseoptions
+   */
+  baseHeader?: UniNamespace.RequestOptions['header'];
+  /**
+   * Hhttp 默认的请求方式
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例属性-实例化配置-baseoptions
+   */
+  baseMethod?: UniNamespace.RequestOptions['method'];
+  /**
+   * Hhttp 每次请求都发送的数据
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例属性-实例化配置-baseoptions
+   */
+  baseData?: UniNamespace.RequestOptions['data'];
+  /**
+   * Hhttp 默认的超时时间
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例属性-实例化配置-baseoptions
+   */
+  baseTimeout?: UniNamespace.RequestOptions['timeout'];
+  /**
+   * Hhttp 拦截器
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#拦截器-interceptors
+   */
+  interceptor?: {
+    /**
+     * Hhttp 请求拦截器
+     */
+    request?: InterceptorFunction;
+    /**
+     * Hhttp 响应拦截器
+     */
+    response?: InterceptorFunction;
+  };
+};
+
+export type UseConfig =
+  | UniNamespace.RequestOptions
+  | {
+    url: UniNamespace.RequestOptions['url'];
+    header: null;
+    method: UniNamespace.RequestOptions['method'];
+    data: UniNamespace.RequestOptions['data'];
+    timeout: null;
+  }
+  | undefined;
+/**
+ * 这是一个基于 uni.request 封装的 promise 请求库， 具有实例属性和方法、请求拦截器、响应拦截器等功能
+ *
+ * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp
+ */
+export default class Hhttp {
+  /**
+   * Hhttp 每次请求都拼接的url
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例属性-实例化配置-baseoptions
+   */
+  public baseUrl: BaseOptions['baseData'] = null;
+
+  /**
+   * Hhttp 每次请求都有的请求头
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例属性-实例化配置-baseoptions
+   */
+  public baseHeader: BaseOptions['baseHeader'] = null;
+
+  /**
+   * Hhttp 默认的请求方式
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例属性-实例化配置-baseoptions
+   */
+  public baseMethod: BaseOptions['baseMethod'] = null;
+
+  /**
+   * Hhttp 每次请求都发送的数据
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例属性-实例化配置-baseoptions
+   */
+  public baseData: BaseOptions['baseData'] = null;
+
+  /**
+   * Hhttp 默认的超时时间
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例属性-实例化配置-baseoptions
+   */
+  public baseTimeout: BaseOptions['baseTimeout'] = null;
+
+  /**
+   * Hhttp 拦截器
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#拦截器-interceptors
+   */
+  public interceptor: {
+    /**
+     * Hhttp 请求拦截器
+     */
+    request: BaseOptions['interceptor']['request'];
+    /**
+     * Hhttp 响应拦截器
+     */
+    response: BaseOptions['interceptor']['response'];
+  } = {
+      request: null,
+      response: null,
+    };
 
   // 配置实例
-  constructor(options: {
-    baseUrl: string | null;
-    baseHeader: Record<string, any> | null;
-    baseMethod: UniNamespace.RequestOptions['method'] | null;
-    baseData: UniNamespace.RequestOptions['data'] | null;
-    baseTimeout: number | null;
-    interceptor: {
-      request: (() => Promise<RequestInfo>) | null,
-      response: (() => Promise<RequestInfo>) | null,
-    };
-  }) {
+  constructor(options?: Options) {
     this.baseUrl = options ? options.baseUrl || null : null;
 
     this.baseData = options ? options.baseData || null : null;
@@ -50,55 +178,107 @@ export default class Hhttp {
 
     this.baseTimeout = options ? options.baseTimeout || null : null;
 
-    // eslint-disable-next-line no-nested-ternary
-    this.interceptor.request = options ? options.interceptor ? options.interceptor.request || null : null : null;
+    this.interceptor.request = options && options.interceptor && options.interceptor.request
+      ? options.interceptor.request
+      : null;
 
-    // eslint-disable-next-line no-nested-ternary
-    this.interceptor.response = options ? options.interceptor ? options.interceptor.response || null : null : null;
+    this.interceptor.request = options && options.interceptor && options.interceptor.response
+      ? options.interceptor.response
+      : null;
   }
 
   // 请求配置策略
-  static getUrl = (baseUrl: any, url = '') => {
-    if (!baseUrl) return url;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    const base = baseUrl.replace(/\/+$/, ''); // 去掉baseUrl末尾的斜杠
-    const path = url.replace(/^\/+/, ''); // 去掉url开头的斜杠
+  static getUrl = (
+    baseUrl: BaseOptions['baseUrl'],
+    url: Options['baseUrl'],
+  ) => {
+    const _baseUrl = baseUrl || '';
+    const _url = url || '';
+
+    const base = _baseUrl.replace(/\/+$/, ''); // 去掉baseUrl末尾的斜杠
+    const path = _url.replace(/^\/+/, ''); // 去掉url开头的斜杠
+
     return `${base}/${path}`;
   };
 
-  static getHeader = (baseHeader: any, header = {}) => ({ ...baseHeader, ...header });
+  static getHeader = (
+    baseHeader: UniNamespace.RequestOptions['header'] | null,
+    header: UniNamespace.RequestOptions['header'] | null,
+  ): object | any => {
+    if (
+      (baseHeader instanceof Object && header instanceof Object)
+      || (!baseHeader && header instanceof Object)
+      || (baseHeader instanceof Object && !header)
+    ) {
+      const _baseHeader = baseHeader instanceof Object ? (baseHeader as object) : {};
+      const _header = header instanceof Object ? (header as object) : {};
+      return { ..._baseHeader, ..._header };
+    }
+    return header;
+  };
 
-  static getMethod = (baseMethod: any, method: any) => (method || baseMethod || 'GET');
+  static getMethod = (
+    baseMethod: UniNamespace.RequestOptions['method'] | null,
+    method: UniNamespace.RequestOptions['method'] | null,
+  ) => method || baseMethod || 'GET';
 
-  static getDate = (baseData: any, data = {}) => ({ ...baseData, ...data });
+  static getDate = (
+    baseData: UniNamespace.RequestOptions['data'] | null,
+    data: UniNamespace.RequestOptions['data'] | null,
+  ): UniNamespace.RequestOptions['data'] => {
+    if (
+      (baseData instanceof Object && data instanceof Object)
+      || (!baseData && data instanceof Object)
+      || (baseData instanceof Object && !data)
+    ) {
+      const _baseData = baseData instanceof Object ? (baseData as object) : {};
+      const _data = data instanceof Object ? (data as object) : {};
+      return { ..._baseData, ..._data };
+    }
 
-  static getTimeout = (baseTimeout: any, timeout: any) => (timeout || baseTimeout || 5000);
+    if (
+      (baseData instanceof String && data instanceof String)
+      || (!baseData && data instanceof String)
+      || (baseData instanceof String && !data)
+    ) {
+      const _baseData = baseData instanceof String ? (baseData as string) : '';
+      const _data = data instanceof String ? (data as string) : '';
+      return `${_baseData}${_data}`;
+    }
+
+    return data || {};
+  };
+
+  static getTimeout = (
+    baseTimeout: UniNamespace.RequestOptions['timeout'] | null,
+    timeout: UniNamespace.RequestOptions['timeout'] | null,
+  ) => timeout || baseTimeout || 5000;
 
   // 获取请求配置
-  static getRequest = (baseConfig: any, useConfig: any) => ({
+  static getRequest = (baseConfig: BaseOptions, useConfig: UseConfig) => ({
+    url: Hhttp.getUrl(baseConfig.baseUrl, useConfig?.url),
 
-    url: Hhttp.getUrl(baseConfig.baseUrl, useConfig.url),
+    header: Hhttp.getHeader(baseConfig.baseHeader, useConfig?.header),
 
-    header: Hhttp.getHeader(baseConfig.baseHeader, useConfig.header),
+    method: Hhttp.getMethod(baseConfig.baseMethod, useConfig?.method),
 
-    method: Hhttp.getMethod(baseConfig.baseMethod, useConfig.method),
+    data: Hhttp.getDate(baseConfig.baseData, useConfig?.data),
 
-    data: Hhttp.getDate(baseConfig.baseData, useConfig.data),
-
-    timeout: Hhttp.getTimeout(baseConfig.baseTimeout, useConfig.timeout),
-
+    timeout: Hhttp.getTimeout(baseConfig.baseTimeout, useConfig?.timeout),
   });
 
-  // 获取 baseConfig
-  static getBaseConfig = (this_: any) => this_;
+  // 获取 baseConfig;
+  static getBaseConfig = (this_: BaseOptions): BaseOptions => this_;
 
   // 获取 useConfig
-  static getUseConfig = (args: any) => {
-    if (args.length === 1 && args[0]) { // 调用方式1
+  static getUseConfig = (args: any): UseConfig => {
+    if (args.length === 1 && args[0]) {
+      // 调用方式1
       return args[0];
     }
 
-    if (args.length === 3) { // 调用方式2
+    if (args.length === 3) {
+      // 调用方式2
       return {
         url: args[1],
         header: null,
@@ -107,29 +287,39 @@ export default class Hhttp {
         timeout: null,
       };
     }
-    return {};
+    return undefined;
   };
 
   // uni.request Promise
-  static uniRequestPromise = (uniConfig: any) => new Promise((resolve, reject) => {
+  static uniRequestPromise = (
+    uniConfig: UniNamespace.RequestOptions,
+  ): Promise<
+    | UniNamespace.RequestSuccessCallbackResult
+    | UniNamespace.GeneralCallbackResult
+  > => new Promise((resolve, reject) => {
     uni.request({
-      ...uniConfig,
-      success(res: any) {
+      success(res) {
         resolve(res);
       },
-      fail(err: any) {
+      fail(err) {
         reject(err);
       },
+      ...uniConfig,
     });
   });
 
-  // 请求主函数
+  /**
+   * 传递`uni.request`原始参数发起请求
+   *
+   * `uni.request`原始参数：https://uniapp.dcloud.net.cn/api/request/request.html#request
+   * `Hhttp`使用方式：https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例方法-method
+   */
   async request(...args: any) {
     let info: RequestInfo = {
-      config: this as any,
-      request: null as any,
-      response: null as any | (() => Promise<any>),
-      errMeaasge: null as any | (() => Promise<any>),
+      config: this,
+      request: null,
+      response: null,
+      errMeaasge: null,
     };
 
     // 获取请求体
@@ -158,7 +348,6 @@ export default class Hhttp {
     try {
       info.response = await Hhttp.uniRequestPromise(info.request);
     } catch (err) {
-      info.response = err;
       info.errMeaasge = '请求失败';
     }
 
@@ -177,36 +366,100 @@ export default class Hhttp {
     return Promise.resolve(info);
   }
 
-  // 快捷方法
-  get(url: any, data: any) {
+  /**
+   * 发起 GET 请求
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例方法-method
+   */
+  get(
+    url: UniNamespace.RequestOptions['url'],
+    data: UniNamespace.RequestOptions['data'],
+  ) {
     return this.request('GET', url, data);
   }
 
-  post(url: any, data: any) {
+  /**
+   * 发起 POST 请求
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例方法-method
+   */
+  post(
+    url: UniNamespace.RequestOptions['url'],
+    data: UniNamespace.RequestOptions['data'],
+  ) {
     return this.request('POST', url, data);
   }
 
-  put(url: any, data: any) {
+  /**
+   * 发起 PUT 请求
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例方法-method
+   */
+  put(
+    url: UniNamespace.RequestOptions['url'],
+    data: UniNamespace.RequestOptions['data'],
+  ) {
     return this.request('PUT', url, data);
   }
 
-  delete(url: any, data: any) {
+  /**
+   * 发起 DELETE 请求
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例方法-method
+   */
+  delete(
+    url: UniNamespace.RequestOptions['url'],
+    data: UniNamespace.RequestOptions['data'],
+  ) {
     return this.request('DELETE', url, data);
   }
 
-  connect(url: any, data: any) {
+  /**
+   * 发起 CONNECT 请求
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例方法-method
+   */
+  connect(
+    url: UniNamespace.RequestOptions['url'],
+    data: UniNamespace.RequestOptions['data'],
+  ) {
     return this.request('CONNECT', url, data);
   }
 
-  head(url: any, data: any) {
+  /**
+   * 发起 HEAD 请求
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例方法-method
+   */
+  head(
+    url: UniNamespace.RequestOptions['url'],
+    data: UniNamespace.RequestOptions['data'],
+  ) {
     return this.request('HEAD', url, data);
   }
 
-  option(url: any, data: any) {
+  /**
+   * 发起 OPTIONS 请求
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例方法-method
+   */
+  option(
+    url: UniNamespace.RequestOptions['url'],
+    data: UniNamespace.RequestOptions['data'],
+  ) {
     return this.request('OPTIONS', url, data);
   }
 
-  trace(url: any, data: any) {
+  /**
+   * 发起 TRACE 请求
+   *
+   * https://h-uni.hewxing.cn/for-vue2/utils/Hhttp#实例方法-method
+   */
+  trace(
+    url: UniNamespace.RequestOptions['url'],
+    data: UniNamespace.RequestOptions['data'],
+  ) {
     return this.request('TRACE', url, data);
   }
 }
+
+const Example = new Hhttp();

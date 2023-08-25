@@ -195,6 +195,22 @@ request.interceptors.response=(info)=>{
 
 ```
 
+::: tip 获得语法提示
+
+由于拦截器赋值的写法，导致无法正确获得良好的语法提示，可以手动从 `h-uni/dist/for-vue2` 导入工具函数 `defineInterceptor` 以获得语法提示
+
+```js
+import { Hhttp , defineInterceptor } from 'h-uni/dist/for-vue2'
+
+const request = new Hhttp({
+  interceptor:defineInterceptor({
+    request:(info) =>info
+    response:(info) => info
+  })
+})
+```
+:::
+
 ## 请求信息 (requestInfo)
 
 请求对象从调用实例方法开始被创建，最终通过实例方法 promise 返回
@@ -218,3 +234,5 @@ request.interceptors.response=(info)=>{
 `response`:响应信息
 
 `errMeaasge`:错误信息
+
+
