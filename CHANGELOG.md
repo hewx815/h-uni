@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0-alpha.0](https://github.com/hewx815/h-uni/compare/v1.6.0...v1.7.0-alpha.0) (2023-08-30)
+
+
+### ✏️ Documentation | 文档
+
+* 合并引起的 示例bug修复 ([2d5f187](https://github.com/hewx815/h-uni/commit/2d5f1873609ebcc0feed85aa941f76bb4d805263))
+* 移除多余无用的组件工具文档 ([153fe6a](https://github.com/hewx815/h-uni/commit/153fe6aff0cae0262f4f11a798ebb976af3285d4))
+* vue-cli-plugin-h-uni-build 、 vite-plugin-h-uni-build 文档更新 ([c42801e](https://github.com/hewx815/h-uni/commit/c42801ef4df0feed53cef27a39a350d3d0dad9e8))
+* vue3文档开始页面 ([f48b982](https://github.com/hewx815/h-uni/commit/f48b982e50efdc7b9d215899332339f82518e6ae))
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* 代码格式化 ([ab598b8](https://github.com/hewx815/h-uni/commit/ab598b8776d769c0433fa74b0e6708631c0be535))
+* 增加Vue3项目各平台编译信息 ([56950df](https://github.com/hewx815/h-uni/commit/56950df9b99ca66792b352cfb892ea9fe8859c88))
+* for-vue2 版本更新 至 2.0.2-3080720230703001 ([fb6c859](https://github.com/hewx815/h-uni/commit/fb6c859f16cd46fa402ca4d594be96220f0cb176))
+* for-vue3 更新版本至 3.0.0-alpha-3070720230316001 ([a2eac4e](https://github.com/hewx815/h-uni/commit/a2eac4eff5b197a82e631a396ae713cd3c6b7c33))
+* vitepress 升级^1.0.0-rc.4 ([319c129](https://github.com/hewx815/h-uni/commit/319c129062fd20b6e57797cc56ab6e974839dfb1))
+* vue3 项目 eslint 代码格式配置 ([d32e781](https://github.com/hewx815/h-uni/commit/d32e781d429961a2c603e80a0ac15857af76d46a))
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* 使用ts进行开发，提供类型支持 ([8e77acc](https://github.com/hewx815/h-uni/commit/8e77accdb0c724053c020ca3ad8e9d181d4244b8))
+* hhttp 代码重构，新增 ts 类型支持 ([6a07ed0](https://github.com/hewx815/h-uni/commit/6a07ed03bbb7932969db70fdca584b87312af3b3))
+
+
+### ✨ Features | 新功能
+
+* 增加for-vue2更多的组件方法挂载方式 ([f01d097](https://github.com/hewx815/h-uni/commit/f01d097271ea28ac97720cd052c20a853d087db0))
+* vite-plugin-h-uni-build 插件新增 ([3dfa770](https://github.com/hewx815/h-uni/commit/3dfa770774b38566902ca305aaf3422636d951b8))
+* vue2 新增 TypeHelper 类型工具 ([375a4d9](https://github.com/hewx815/h-uni/commit/375a4d9127742810b034c12ea1e471fcd479ec31))
+
 ## [1.6.0](https://github.com/hewx815/h-uni/compare/v1.5.0...v1.6.0) (2023-08-08)
 
 
