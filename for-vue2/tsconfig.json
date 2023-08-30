@@ -11,19 +11,25 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "skipLibCheck": true,
+    "isolatedModules": true,
     "baseUrl": ".",
     "types": [
       "webpack-env",
       "@dcloudio/types",
+      "@vue/runtime-dom",
       "miniprogram-api-typings",
       "mini-types",
       "./src/packages/globalComponents.d.ts",
-      "./src/packages/globalUtils.d.ts"
+      "./src/packages/globalUtils.d.ts",
+      "./src/packages/utils/TypeHelper"
     ],
     "paths": {
       "@/*": ["./src/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "exclude": ["node_modules", "unpackage", "dist", "src/**/*.nvue"]
+  "exclude": ["node_modules", "unpackage", "dist", "src/**/*.nvue"],
+  "vueCompilerOptions": {
+    "target": 2 //volar vue2配置
+  }
 }

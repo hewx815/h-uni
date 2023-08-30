@@ -269,6 +269,7 @@ export default defineComponent({
     // 重新计算尺寸
     async resize(value?: typeof this.value) {
       await this.$nextTick();
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       setTimeout(async () => {
         await this.$nextTick();
         const arr = value
