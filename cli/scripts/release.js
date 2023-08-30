@@ -41,7 +41,15 @@ const main = async () => {
 
   // 升级版本
   log('开始升级版本号');
-  spawnSync('yarn standard-version', { shell: true, stdio: 'inherit' });
+  const { isPrerelease } = await inquirer.prompt([
+    {
+      type: 'confirm',
+      message: '是否以测试版发布？',
+      name: 'isPrerelease',
+    },
+  ]);
+  const prerelease = isPrerelease ? ' -- --prerelease alpha' : '';
+  spawnSync(`yarn standard-version${prerelease}`, { shell: true, stdio: 'inherit' });
   log('升级版本号结束');
   log('CHANGELOG.md 已更新，请前往检查');
 
