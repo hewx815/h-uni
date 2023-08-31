@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0-alpha.1](https://github.com/hewx815/h-uni/compare/v1.7.0-alpha.0...v1.7.0-alpha.1) (2023-08-31)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 更改 导入安装方式 ([568eec1](https://github.com/hewx815/h-uni/commit/568eec1dffbc12dd4da64221d224d2950ad9844c))
+
+
+### ✏️ Documentation | 文档
+
+* 跳转组件文档bug ([9569369](https://github.com/hewx815/h-uni/commit/95693695870313a9d6544789aca2af04718d1bed))
+
 ## [1.7.0-alpha.0](https://github.com/hewx815/h-uni/compare/v1.6.0...v1.7.0-alpha.0) (2023-08-30)
 
 
