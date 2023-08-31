@@ -81,7 +81,7 @@ module.exports = {
 ::: tip 获得语法提示
 您可以从`h-uni/dist/for-vue2`中导入`defineConfigHuniBuild`以获得良好的配置体验
 ```javascript
-const { defineConfigHuniBuild } = require('h-uni/dist/for-vue2');
+const defineConfigHuniBuild = require('vue-cli-plugin-h-uni-build');
 // vue.config.js
 module.exports = {
   pluginOptions: {

@@ -1,1 +1,1 @@
-module.exports = (config) => config;
+export default function (config) { return config; }
