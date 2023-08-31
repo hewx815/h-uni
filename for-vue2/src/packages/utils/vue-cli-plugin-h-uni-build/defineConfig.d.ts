@@ -56,4 +56,6 @@ interface Config {
   delOldFile?: boolean;
 }
 
-export default (config: Config) => config;
+export default function (config: Config): Config {
+  return config;
+};

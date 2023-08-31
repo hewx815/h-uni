@@ -14,25 +14,6 @@ outline: deep
 
 <SupportTable WEIXIN H5 ALIPAY BAIDU TOUTIAO LARK/>
 
-## 安装
-
-### 使用全局挂载的方法
-
-- 完成[`h-uni`安装](/README.html#安装)
-- 完成[挂载全局工具](/README.html#挂载全局工具)
-- 使用`this.$h.Hhttp`访问
-
-```js
-const { Hhttp } = this.$h;
-```
-### 按需导入
-- 完成[`h-uni`安装](/README.html#安装)
-- 从`h-uni/dist/for-vue2`中导入`Hhttp`
-
-```js
-import { Hhttp } from 'h-uni/dist/for-vue2';
-```
-
 ## 使用
 
 下面是使用的几种方式示例

@@ -19,9 +19,7 @@
       "@vue/runtime-dom",
       "miniprogram-api-typings",
       "mini-types",
-      "./src/packages/globalComponents.d.ts",
-      "./src/packages/globalUtils.d.ts",
-      "./src/packages/utils/TypeHelper"
+      "./src/packages/global.d.ts"
     ],
     "paths": {
       "@/*": ["./src/*"]

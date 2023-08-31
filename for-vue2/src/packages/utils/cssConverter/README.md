@@ -13,25 +13,6 @@ outline: deep
 
 <SupportTable  H5  WEIXIN TOUTIAO BAIDU ALIPAY LARK/>
 
-## 安装
-
-### 使用全局挂载的方法
-- 完成[`h-uni`安装](/README.html#安装)
-- 完成[挂载全局工具](/README.html#挂载全局工具)
-- 使用`this.$h.cssConverter`访问
-```js
-const { cssConverter } = this.$h;
-```
-
-### 按需导入
-- 完成[`h-uni`安装](/README.html#安装)
-- 从`h-uni/dist/for-vue2`中导入`cssConverter`
-
- ```js
-import { cssConverter } from 'h-uni/dist/for-vue2';
-```
-
-
 ## 参数 && 返回值
 
 **cssConverter(value [, target = 'string'])**
