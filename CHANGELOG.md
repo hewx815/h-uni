@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0-alpha.2](https://github.com/hewx815/h-uni/compare/v1.7.0-alpha.1...v1.7.0-alpha.2) (2023-08-31)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* vue-cli-plugin-h-uni-build defineConfig 导入 bug ([8915ac3](https://github.com/hewx815/h-uni/commit/8915ac31b51bc061f334dfca79a09c578b9af373))
+
 ## [1.7.0-alpha.1](https://github.com/hewx815/h-uni/compare/v1.7.0-alpha.0...v1.7.0-alpha.1) (2023-08-31)
 
 
