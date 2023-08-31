@@ -12,7 +12,7 @@ hero:
       link: README.md
     - theme: alt
       text: 组件库文档
-      link: /for-vue2/components/HButton
+      link: /for-vue2/components/HTab
     - theme: alt
       text: 工具库文档
       link: /for-vue2/utils/Hhttp
