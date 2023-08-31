@@ -26,3 +26,5 @@ module.exports = (api, options) => {
 
   build.fn = (...args) => newBuildFn(...args);
 };
+
+module.exports.defineConfigHuniBuild = (config) => config;

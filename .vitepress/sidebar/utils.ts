@@ -4,7 +4,6 @@ export default [
     collapsed: false,
     items: [
       { text: 'Hhttp 网络请求', link: '/for-vue2/utils/Hhttp' },
-      { text: 'vue-cli-plugin-h-uni-build', link: '/for-vue2/utils/vue-cli-plugin-h-uni-build' },
       { text: 'cssConverter 样式转换器', link: '/for-vue2/utils/cssConverter' },
     ],
   },
@@ -13,7 +12,6 @@ export default [
     collapsed: false,
     items: [
       { text: 'Hhttp 网络请求', link: '/for-vue3/utils/Hhttp' },
-      { text: 'vite-plugin-h-uni-build', link: '/for-vue3/utils/vite-plugin-h-uni-build' },
     ],
   },
 ];

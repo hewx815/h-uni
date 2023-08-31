@@ -5,6 +5,7 @@ import { DefineComponentsHelper } from './utils';
 import UniComponents from './uniComponents/index';
 
 export * from './uniComponents/index';
+export * from './utils';
 
 type UniCommonProps = {
   id: string;

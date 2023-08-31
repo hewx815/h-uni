@@ -4,6 +4,7 @@ outline: deep
 ---
 
 # h-uni
+
 主页: https://h-uni.hewxing.cn
 
 仓库: https://github.com/hewx815/h-uni
@@ -20,14 +21,16 @@ outline: deep
 - `uview plus`：支持`vue3`、组件丰富、文档清晰，支持nvue
 - ...
 
-**`h-uni`并不适合作为项目的主力，更适合做一个功能补充的库**
+**`h-uni`并不是单纯的组件库，他更适合做一个功能补充的库**
 
 
 ## 安装
 
-### npm方式安装
+::: warning
+目前只提供 npm方式 安装
+:::
 
-**1. 安装依赖包**
+### 安装依赖包
 
 运行以下命令安装`h-uni`：
 
@@ -55,30 +58,30 @@ npm run h-uni
 
 如果您看到了正确的版本号证明已经成功安装
 
+### 安装 `scss`
 
-**2. 安装 `SCSS`**
-
-`h-uni`内的组件依赖`SCSS`，您必须要安装此插件，否则无法正常运行。
+`h-uni`内的组件依赖`scss`，您必须要安装此插件，否则无法正常运行。
 
 ::: code-group
 ```shell [yarn]
-yarn add sass -D
+yarn add sass sass-loader -D
 ```
 
 ```shell [npm]
-npm install sass-loader -D
+npm install sass sass-loader -D
 ```
 :::
 
-**3. 在项目中配置**
+### 挂载组件和函数
 
-根据项目类型选择一下配置方式
+:::tip 插件的安装
+通过以下教程安装`组件`和`函数`，对于`插件`的安装请参阅详细的插件文档
+:::
+
+根据项目类型选择对应的配置方式
 
 - [vue2项目配置](#vue2项目配置)
 - [vue3项目配置](#vue3项目配置)
-
-### HBuilderX方式安装
-已经提上日程，最晚2099年前支持
 
 ## vue2项目配置
 
@@ -169,9 +172,6 @@ module.exports = {
  }
  ```
 
-### HBuilderX支持
-已经提上日程，最晚2099年之前支持
-
 ## vue3项目配置
 
 ### 挂载主库
@@ -250,5 +250,5 @@ export function createApp() {
  }
  ```
 
-### HBuilderX支持
+## HBuilderX支持
 已经提上日程，最晚2099年之前支持

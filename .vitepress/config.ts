@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress';
 import { fileURLToPath } from 'url';
 import components from './sidebar/components';
 import utils from './sidebar/utils';
+import plugins from './sidebar/plugins';
 
 const CurrentPath = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
@@ -45,8 +46,9 @@ export default defineConfig({
     nav: [
       { text: '主页', link: '/' },
       { text: '开始', link: '/README' },
-      { text: '组件', link: '/for-vue2/components/HTab', activeMatch: '/components' },
-      { text: '工具', link: '/for-vue2/utils/Hhttp', activeMatch: '/utils' },
+      { text: '组件库', link: '/for-vue2/components/HTab', activeMatch: '/components' },
+      { text: '函数库', link: '/for-vue2/utils/Hhttp', activeMatch: '/utils' },
+      { text: '插件库', link: '/for-vue2/plugins/vue-cli-plugin-h-uni-build', activeMatch: '/plugins' },
       { text: '更新记录', link: '/CHANGELOG' },
       {
         text: '网站导航',
@@ -73,14 +75,26 @@ export default defineConfig({
       ],
       '/for-vue2/utils/': [
         {
-          text: '工具库',
+          text: '函数库',
           items: utils,
         },
       ],
       '/for-vue3/utils/': [
         {
-          text: '工具库',
+          text: '函数库',
           items: utils,
+        },
+      ],
+      '/for-vue2/plugins/': [
+        {
+          text: '插件库',
+          items: plugins,
+        },
+      ],
+      '/for-vue3/plugins/': [
+        {
+          text: '插件库',
+          items: plugins,
         },
       ],
     },

@@ -3,6 +3,7 @@
   "extends": ["eslint-config-hewx/node-javascript"],
   "globals": {
     "require": "readonly",
-    "module": "writable"
+    "module": "writable",
+    "exports": "writable"
   }
 }

@@ -73,7 +73,7 @@
     "flyio": "^0.6.2",
     "vue": ">= 2.6.14 < 2.7",
     "vue-class-component": "^6.3.2",
-    "vue-cli-plugin-h-uni-build": "./src/packages/utils/vue-cli-plugin-h-uni-build",
+    "vue-cli-plugin-h-uni-build": "./src/packages/plugins/vue-cli-plugin-h-uni-build",
     "vue-property-decorator": "^8.0.0",
     "vuex": "^3.2.0"
   },
