@@ -30,9 +30,20 @@ export default defineComponent({
           note: '瀑布屏',
         },
       ],
+
+      devList: [
+        {
+          title: 'HHttp',
+          note: '网络请求',
+        },
+      ],
     };
   },
-
+  created() {
+    if (process.env.NODE_ENV === 'development') {
+      this.list = [...this.list, ...this.devList];
+    }
+  },
 });
 </script>
 

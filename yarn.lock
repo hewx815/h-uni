@@ -2366,10 +2366,10 @@ eslint-config-airbnb-base@^15.0.0:
     object.entries "^1.1.5"
     semver "^6.3.0"
 
-eslint-config-hewx@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-hewx/-/eslint-config-hewx-1.5.1.tgz#e18fb0cac14b24e26c13914a6f0b5d11b3c1fcc5"
-  integrity sha512-vpzIXAo54nlG5jEOAluyKa2JSLZjptY9UsltRJp+3vwJVYb/Lhq48ejCOX7aOwqIPYbKOEA1AaQpXh1SvMZvCg==
+eslint-config-hewx@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-hewx/-/eslint-config-hewx-1.5.2.tgz#11ec8c20521aa41a2c22baaf9f2aac35e3c4c92a"
+  integrity sha512-1Ha/iAQQqK+OHTk/HHi+NA5kXvrxlGN4CG7N+sJEsFXXl6j1b6jDVUa7VBafgJx+t2MHHJlhXrLM73YZH+EsPQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^6.4.0"
     "@typescript-eslint/parser" "^6.4.0"

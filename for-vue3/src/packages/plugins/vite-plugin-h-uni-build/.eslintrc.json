@@ -2,6 +2,7 @@
   "root": true,
   "extends": ["eslint-config-hewx/node-typescript"],
   "rules": {
-    "node/no-extraneous-import": [0]
+    "node/no-extraneous-import": [0],
+    "import/extensions": [0]
   }
 }

@@ -4,7 +4,9 @@ import type { Config } from './defineConfig';
 import beforeBuild from './beforeBuild';
 import afterBuild from './afterBuild';
 
-export default function hUniBuild(config: Config) {
+export { default as defineConfigHUniBuild } from './defineConfig';
+
+export function hUniBuild(config: Config) {
   return {
 
     name: 'vite-plugin-h-uni-build',

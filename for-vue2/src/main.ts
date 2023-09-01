@@ -3,8 +3,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import Vue from 'vue';
 import App from './App.vue';
+import Huni from './packages/index';
 
 Vue.config.productionTip = false;
+Vue.use(Huni);
 uni.addInterceptor({
   returnValue(res) {
     if (

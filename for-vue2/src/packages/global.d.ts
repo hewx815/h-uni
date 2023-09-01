@@ -9,7 +9,7 @@ declare module '@vue/runtime-dom' {
     /**
      * h-uni 全局方法
     */
-    $h?: typeof utils;
+    $h: typeof utils;
   }
 }
 

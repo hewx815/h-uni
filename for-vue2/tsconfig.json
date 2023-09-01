@@ -19,14 +19,15 @@
       "@vue/runtime-dom",
       "miniprogram-api-typings",
       "mini-types",
-      "./src/packages/global.d.ts"
+      "./src/packages/global.d.ts",
+      "./src/packages/plugins/TypeHelper/index.d.ts"
     ],
     "paths": {
       "@/*": ["./src/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "exclude": ["node_modules", "unpackage", "dist", "src/**/*.nvue"],
+  "exclude": ["node_modules", "dist"],
   "vueCompilerOptions": {
     "target": 2 //volar vue2配置
   }

@@ -197,8 +197,7 @@ export default class Hhttp {
 
     const base = _baseUrl.replace(/\/+$/, ''); // 去掉baseUrl末尾的斜杠
     const path = _url.replace(/^\/+/, ''); // 去掉url开头的斜杠
-
-    return `${base}/${path}`;
+    return base ? `${base}/${path}` : path;
   };
 
   static getHeader = (
@@ -256,6 +255,7 @@ export default class Hhttp {
 
   // 获取请求配置
   static getRequest = (baseConfig: BaseOptions, useConfig: UseConfig) => ({
+
     url: Hhttp.getUrl(baseConfig.baseUrl, useConfig?.url),
 
     header: Hhttp.getHeader(baseConfig.baseHeader, useConfig?.header),
@@ -324,7 +324,7 @@ export default class Hhttp {
 
     // 获取请求体
     try {
-      const baseConfig = Hhttp.getBaseConfig(args);
+      const baseConfig = Hhttp.getBaseConfig(this as BaseOptions);
       const useConfig = Hhttp.getUseConfig(args);
       info.request = Hhttp.getRequest(baseConfig, useConfig);
     } catch (err) {
