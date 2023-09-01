@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0-alpha.4](https://github.com/hewx815/h-uni/compare/v1.7.0-alpha.3...v1.7.0-alpha.4) (2023-09-01)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* hhttp 合并配置 bug修复，新增测试页面 ([23735b1](https://github.com/hewx815/h-uni/commit/23735b109a6c5592273e1fdd1b8c84027c36fe04))
+
 ## [1.7.0-alpha.3](https://github.com/hewx815/h-uni/compare/v1.7.0-alpha.2...v1.7.0-alpha.3) (2023-08-31)
 
 
