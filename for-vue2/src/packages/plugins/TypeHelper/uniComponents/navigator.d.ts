@@ -2,7 +2,7 @@ export interface Navigator {
   props: {
 
   },
-  evevts: {
+  events: {
 
   };
 }

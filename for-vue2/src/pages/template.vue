@@ -2,6 +2,7 @@
 <template>
   <view>
     内容
+    <Form />
   </view>
 </template>
 <!-- #endregion template -->

@@ -2,7 +2,7 @@ export interface Canvas {
   props: {
 
   },
-  evevts: {
+  events: {
 
   };
 }

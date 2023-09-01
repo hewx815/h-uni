@@ -42,13 +42,13 @@ export default interface UniComponents {
   'rich-text': Base.RichText;
   'progress': Base.Progress;
 
-  // form // TODO
-  'button': Form.Button;
+  // form
+  'Button': Form.Button;
   'checkbox-group': Form.CheckboxGroup;
   'checkbox': Form.Checkbox;
   'editor': Form.Editor;
-  'form': Form.Form;
-  'input': Form.Input;
+  'Form': Form.Form;// TODO
+  'Input': Form.Input;
   'label': Form.Label;
   'picker': Form.Picker;
   'picker-view': Form.PickerView;

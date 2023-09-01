@@ -2,7 +2,7 @@ export interface AnimationView {
   props: {
 
   },
-  evevts: {
+  events: {
 
   };
 }
@@ -11,7 +11,7 @@ export interface Audio {
   props: {
 
   },
-  evevts: {
+  events: {
 
   };
 }
@@ -20,7 +20,7 @@ export interface Camera {
   props: {
 
   },
-  evevts: {
+  events: {
 
   };
 }
@@ -29,7 +29,7 @@ export interface Image {
   props: {
 
   },
-  evevts: {
+  events: {
 
   };
 }
@@ -38,7 +38,7 @@ export interface Video {
   props: {
 
   },
-  evevts: {
+  events: {
 
   };
 }
@@ -47,7 +47,7 @@ export interface LivePlayer {
   props: {
 
   },
-  evevts: {
+  events: {
 
   };
 }
@@ -56,7 +56,7 @@ export interface LivePusher {
   props: {
 
   },
-  evevts: {
+  events: {
 
   };
 }
