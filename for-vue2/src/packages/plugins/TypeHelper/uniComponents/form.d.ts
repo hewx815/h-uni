@@ -380,16 +380,16 @@ export interface Editor {
      * 编辑器初始化完成时触发
      * - https://uniapp.dcloud.net.cn/component/editor.html
      * - 平台差异说明
-     * -- `App`： 2.0+，app-vue
-     * -- `H5`： 2.4.5+
-     * -- `微信小程序`： 基础库 2.7.0+
-     * -- `支付宝小程序`： 需引入动态库[引入方式](https://smartprogram.baidu.com/docs/develop/framework/dynamiclib_use/)
-     * -- `百度小程序`： 不支持
-     * -- `抖音小程序、飞书小程序`： 不支持
-     * -- `QQ小程序`： 不支持
-     * -- `快应用`： 不支持
-     * -- `360小程序`： 不支持
-     * -- `快手小程序`： 不支持
+     *   - `App`： 2.0+，app-vue
+     *   - `H5`： 2.4.5+
+     *   - `微信小程序`： 基础库 2.7.0+
+     *   - `支付宝小程序`： 需引入动态库[引入方式](https://smartprogram.baidu.com/docs/develop/framework/dynamiclib_use/)
+     *   - `百度小程序`： 不支持
+     *   - `抖音小程序、飞书小程序`： 不支持
+     *   - `QQ小程序`： 不支持
+     *   - `快应用`： 不支持
+     *   - `360小程序`： 不支持
+     *   - `快手小程序`： 不支持
      */
     ready: () => void;
     /**
@@ -683,7 +683,7 @@ export interface Input {
 /**
  * 用来改进表单组件的可用性，使用for属性找到对应的id，或者将控件放在该标签下，当点击时，就会触发对应的控件。
  * - for优先级高于内部控件，内部有多个控件的时候默认触发第一个控件。
- * - 目前可以绑定的控件有：<button>, <checkbox>, <radio>, <switch>。
+ * - 目前可以绑定的控件有：`<button>, <checkbox>, <radio>, <switch>`。
  */
 export interface Label {
   props: {
@@ -711,88 +711,111 @@ export interface Picker {
     mode: 'selector' | 'multiSelector' | 'time' | 'date' | 'region';
     /**
      * - mode = selector
-     * -- 类型： Array / Array<Object>
-     * -- mode为 selector 或 multiSelector 时，range 有效
-     * -- 默认值： []
-     *
+     *   - 类型： `Array / Array<Object>`
+     *   - mode为 selector 或 multiSelector 时，range 有效
+     *   - 默认值： []
      * - mode = multiSelector
-     * -- 类型： 二维 Array / 二维 Array＜Object＞
-     * -- mode为 selector 或 multiSelector 时，range 有效。二维数组，长度表示多少列，数组的每项表示每列的数据，如[["a","b"], ["c","d"]]
-     * -- 默认值： []
+     *   - 类型： `二维 Array / 二维 Array＜Object＞`
+     *   - mode为 selector 或 multiSelector 时，range 有效。二维数组，长度表示多少列，数组的每项表示每列的数据，如[["a","b"], ["c","d"]]
+     *   - 默认值： []
      *
      * - mode = time(不支持)
      *
      * - mode = date(不支持)
+     *
+     * - mode = region(不支持)
      */
     range: Array<string> | Array<object> | Array<Array<string>> | Array<Array<object>>;
     /**
      * - mode = selector
-     * -- 当 range 是一个 Array＜Object＞ 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容
+     *   - 当 range 是一个 `Array＜Object＞` 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容
      *
      * - mode = multiSelector
-     * -- 当 range 是一个二维 Array＜Object＞ 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容
+     *   - 当 range 是一个二维 `Array＜Object＞` 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容
      *
      * - mode = time(不支持)
      *
      * - mode = date(不支持)
+     *
+     * - mode = region(不支持)
      */
     rangeKey: string;
     /**
      * - mode = selector
-     * -- 类型： Number
-     * -- value 的值表示选择了 range 中的第几个（下标从 0 开始）
-     * -- 默认值： 0
+     *   - 类型： Number
+     *   - value 的值表示选择了 range 中的第几个（下标从 0 开始）
+     *   - 默认值： 0
      *
      * - mode = multiSelector
-     * -- 类型： Array
-     * -- value 每一项的值表示选择了 range 对应项中的第几个（下标从 0 开始）
-     * -- 默认值： []
+     *   - 类型： Array
+     *   - value 每一项的值表示选择了 range 对应项中的第几个（下标从 0 开始）
+     *   - 默认值： []
      *
      * - mode = time
-     * -- 类型： String
-     * -- 表示选中的时间，格式为"hh:mm"
+     *   - 类型： String
+     *   - 表示选中的时间，格式为"hh:mm"
      *
      * - mode = date
-     * -- 类型： String
-     * -- 表示选中的日期，格式为"YYYY-MM-DD"
-     * -- 默认值： 0
+     *   - 类型： String
+     *   - 表示选中的日期，格式为"YYYY-MM-DD"
+     *   - 默认值： 0
+     *
+     * - mode = region
+     *   - 类型： Array
+     *   - 表示选中的省市区，默认选中每一列的第一个值
      */
     value: number | Array<any> | string;
     /**
      * - mode = selector
-     * -- 大屏时UI类型，支持 picker、select、auto，默认在 iPad 以 picker 样式展示而在 PC 以 select 样式展示
-     * -- 默认值： auto
-     * -- 平台差异： H5 2.9.9+
+     *   - 大屏时UI类型，支持 picker、select、auto，默认在 iPad 以 picker 样式展示而在 PC 以 select 样式展示
+     *   - 默认值： auto
+     *   - 平台差异： H5 2.9.9+
      *
      * - mode = multiSelector(不支持)
      *
      * - mode = time(不支持)
+     *
+     * - mode = date(不支持)
+     *
+     * - mode = region(不支持)
      */
     selectorType: string;
     /**
      * - mode = selector
-     * -- 是否禁用
-     * -- 默认值： false
-     * -- 平台差异： 快手小程序不支持
+     *   - 是否禁用
+     *   - 默认值： false
+     *   - 平台差异： 快手小程序不支持
      *
      * - mode = multiSelector
-     * -- 是否禁用
-     * -- 默认值： false
-     * -- 平台差异： 快手小程序不支持
+     *   - 是否禁用
+     *   - 默认值： false
+     *   - 平台差异： 快手小程序不支持
      *
      * - mode = time
-     * -- 是否禁用
-     * -- 默认值： false
+     *   - 是否禁用
+     *   - 默认值： false
+     *
+     * - mode = date(不支持)
+     *
+     * - mode = region
+     *   - 是否禁用
+     *   - 默认值： false
+     *   - 平台差异： 快手小程序不支持
      */
     disabled: boolean;
     /**
      * - mode = selector(不支持)
      *
      * - mode = multiSelector(不支持)
-     *
+     *     *   -
      * - mode = time
-     * -- 表示有效时间范围的开始，字符串格式为"hh:mm"
-     * -- 平台差异： App 不支持
+     *   - 表示有效时间范围的开始，字符串格式为"hh:mm"
+     *   - 平台差异： App 不支持
+     *
+     * - mode = date
+     *   - 表示有效日期范围的开始，字符串格式为"YYYY-MM-DD"
+     *
+     * - mode = region(不支持)
     */
     start: string;
     /**
@@ -801,78 +824,319 @@ export interface Picker {
      * - mode = multiSelector(不支持)
      *
      * - mode = time
-     * -- 表示有效时间范围的结束，字符串格式为"hh:mm"
-     * -- 平台差异： App 不支持
+     *   - 表示有效时间范围的结束，字符串格式为"hh:mm"
+     *   - 平台差异： App 不支持
+     *
+     * - mode = date
+     *   - 表示有效日期范围的结束，字符串格式为"YYYY-MM-DD"
+     *
+     * - mode = region(不支持)
     */
     end: string;
+    /**
+     * - mode = selector(不支持)
+     *
+     * - mode = multiSelector(不支持)
+     *
+     * - mode = time(不支持)
+     *
+     * - mode = date
+     *   - 有效值 year、month、day，表示选择器的粒度，默认为 day，App 端未配置此项时使用系统 UI
+     *   - 默认：day
+     *   - 平台兼容：H5、App 2.6.3+、微信小程序、百度小程序、抖音小程序、飞书小程序
+     *     - `year`： 选择器粒度为年
+     *     - `month`： 选择器粒度为月份
+     *     - `day`： 选择器粒度为天
+     *
+     * - mode = region(不支持)
+    */
+    fields: 'year' | 'month' | 'day';
+    /**
+     * - mode = selector(不支持)
+     *
+     * - mode = multiSelector(不支持)
+     *
+     * - mode = time(不支持)
+     *
+     * - mode = date(不支持)
+     *
+     * - mode = region
+     *   - 可为每一列的顶部添加一个自定义的项
+    */
+    customItem: string;
   };
   events: {
     /**
      * - mode = selector
-     * -- value 改变时触发 change 事件，event.detail = {value: value}
+     *   - value 改变时触发 change 事件，event.detail = {value: value}
      *
      * - mode = multiSelector
-     * -- value 改变时触发 change 事件，event.detail = {value: value}
+     *   - value 改变时触发 change 事件，event.detail = {value: value}
      *
      * - mode = time
-     * -- value 改变时触发 change 事件，event.detail = {value: value}
+     *   - value 改变时触发 change 事件，event.detail = {value: value}
+     *
+     * - mode = date
+     *   - value 改变时触发 change 事件，event.detail = {value: value}
+     *
+     * - mode = region
+     *    - value 改变时触发 change 事件，event.detail = {value: value}
      */
     change: (e: { detail: { value: any; }; }) => void;
     /**
      * - mode = selector
-     * -- 取消选择或点遮罩层收起 picker 时触发
-     * -- 平台差异： 快手小程序不支持
+     *   - 取消选择或点遮罩层收起 picker 时触发
+     *   - 平台差异： 快手小程序不支持
      *
      * - mode = multiSelector
-     * -- 取消选择时触发
-     * -- 平台差异： 快手小程序不支持
+     *   - 取消选择时触发
+     *   - 平台差异： 快手小程序不支持
      *
      * - mode = time
-     * -- 取消选择时触发
+     *   - 取消选择时触发
+     *
+     * - mode = date
+     *   - 取消选择时触发
+     *
+     * - mode = region(不支持)
      */
     cancel: () => void;
     /**
      * - mode = selector(不支持)
      *
+     * - mode = multiSelector(不支持)
+     *
      * - mode = multiSelector
-     * -- 某一列的值改变时触发 columnchange 事件，event.detail = {column: column, value: value}，column 的值表示改变了第几列（下标从0开始），value 的值表示变更值的下标
+     *   - 某一列的值改变时触发 columnchange 事件，event.detail = {column: column, value: value}，column 的值表示改变了第几列（下标从0开始），value 的值表示变更值的下标
      *
      * - mode = time(不支持)
+     *
+     * - mode = region
+     *   - 取消选择时触发
+     *   - 平台差异： 快手小程序不支持
     */
     columnchange: (e: { detail: { column: any, value: any; }; }) => void;
   };
 }
 
+/**
+ * 嵌入页面的滚动选择器。
+ * - 相对于picker组件，picker-view拥有更强的灵活性。当需要对自定义选择的弹出方式和UI表现时，往往需要使用picker-view。
+ * - 其中只可放置 `<picker-view-column/>` 组件，其他节点不会显示
+*/
 export interface PickerView {
-  props: {};
-  events: {};
+  props: {
+    /**
+     * 数组中的数字依次表示 picker-view 内的 picker-view-column 选择的第几项（下标从 0 开始），数字大于 picker-view-column 可选项长度时，选择最后一项。
+    */
+    value: Array<number>;
+    /**
+     * 设置选择器中间选中框的样式
+    */
+    indicatorStyle: string;
+    /**
+     * 设置选择器中间选中框的类名，注意页面或组件的style中写了scoped时，需要在类名前写/deep/
+     * - 平台差异： app-nvue与抖音小程序与飞书小程序不支持
+    */
+    indicatorClass: string;
+    /**
+     * 设置蒙层的样式
+    */
+    maskStyle: string;
+    /**
+     * 设置蒙层上半部分的样式
+     * - 平台差异： 仅 app-nvue（3.6.7+） 支持
+    */
+    maskTopStyle: string;
+    /**
+     * 设置蒙层下半部分的样式
+     * - 平台差异： 仅 app-nvue（3.6.7+） 支持
+    */
+    maskBottomStyle: string;
+    /**
+     * 设置蒙层的类名
+     * - 平台差异： app-nvue与抖音小程序与飞书小程序不支持
+    */
+    maskClass: string;
+    /**
+     * 是否在手指松开时立即触发 change 事件。若不开启则会在滚动动画结束后触发 change 事件。
+     * - 平台差异： 微信小程序 2.21.1
+    */
+    immediateChange: string;
+  };
+  events: {
+    /**
+     * 当滚动选择，value 改变时触发 change 事件，event.detail = {value: value}；value为数组，表示 picker-view 内的 picker-view-column 当前选择的是第几项（下标从 0 开始）
+    */
+    change: (e: { detail: { value: number; }; }) => void;
+    /**
+     * 当滚动选择开始时候触发事件
+     * - 平台差异： 微信小程序2.3.1、快手小程序
+    */
+    pickstart: () => void;
+    /**
+     * 当滚动选择结束时候触发事件
+     * - 平台差异： 微信小程序2.3.1、快手小程序
+    */
+    change: () => void;
+  };
 }
 
+/**
+ * `<picker-view />`的子组件，仅可放置于 `<picker-view />` 中，其子节点的高度会自动设置成与 picker-view 的选中框的高度一致。
+ * - nvue页面子节点未继承 picker-view 的选中框的高度，需要自己设置高度并居中
+*/
 export interface PickerViewColumn {
-  props: {};
-  events: {};
+  props: object;
+  events: object;
 }
 
+/**
+ * 单项选择器，内部由多个 `<radio>` 组成。通过把多个radio包裹在一个radio-group下，实现这些radio的单选。
+*/
 export interface RadioGroup {
-  props: {};
-  events: {};
+  props: object;
+  events: {
+    /**
+     * `<radio-group>` 中的选中项发生变化时触发 change 事件，event.detail = {value: 选中项radio的value}
+    */
+    change: (e: { detail: { value: string; }; }) => void;
+  };
 }
 
+/**
+ * 单选项目。
+*/
 export interface Radio {
-  props: {};
-  events: {};
+  props: {
+    /**
+     * <radio> 标识。当该 <radio> 选中时，<radio-group> 的 change 事件会携带 <radio> 的 value
+    */
+    value: string;
+    /**
+     * 当前是否选中
+     * - 默认： false
+    */
+    checked: boolean;
+    /**
+     * 是否禁用
+     * - 默认： false
+    */
+    disabled: boolean;
+    /**
+     * radio的颜色，同css的color
+    */
+    checked: string;
+  };
+  events: object;
 }
 
+/**
+ * 滑动选择器。
+*/
 export interface Slider {
-  props: {};
-  events: {};
+  props: {
+    /**
+     * 最小值
+     * - 默认： 0
+    */
+    min: number;
+    /**
+     * 最大值
+     * - 默认： 100
+    */
+    max: number;
+    /**
+     * 步长，取值必须大于 0，并且可被(max - min)整除
+     * - 默认： 1
+    */
+    step: number;
+    /**
+     * 是否禁用
+     * - 默认： false
+    */
+    disabled: boolean;
+    /**
+     * 当前取值
+     * - 默认： 0
+    */
+    value: number;
+    /**
+     * 滑块左侧已选择部分的线条颜色
+     * - 默认：
+     *   - 微信平台：绿色(#1aad19)
+     *   - 头条：红色
+     *   - 其他平台： #007aff（蓝色）
+    */
+    activeColor: string;
+    /**
+     * 滑块右侧背景条的颜色
+     * - 默认： #e9e9e9
+    */
+    backgroundColor: string;
+    /**
+     * 滑块的大小，取值范围为 12 - 28
+     * - 默认： 28
+    */
+    blockSize: number;
+    /**
+     * 滑块的颜色
+     * - 默认： #ffffff
+    */
+    blockColor: number;
+    /**
+     * 是否显示当前 value
+     * - 默认： false
+    */
+    showValue: boolean;
+  };
+  events: {
+    /**
+     * 完成一次拖动后触发的事件，event.detail = {value: value}
+    */
+    change: (e: { detail: { value: number; }; }) => void;
+    /**
+     * 拖动过程中触发的事件，event.detail = {value: value}
+    */
+    changing: (e: { detail: { value: number; }; }) => void;
+  };
 }
 
 export interface Switch {
-  props: {};
-  events: {};
+  props: {
+    /**
+     * 是否选中
+     * - 默认： false
+    */
+    checked: boolean;
+    /**
+     * 是否禁用
+     * - 默认： false
+     * - 平台支持： 抖音小程序与飞书小程序不支持
+    */
+    disabled: boolean;
+    /**
+     * 样式，有效值：switch, checkbox
+     * - 默认： switch
+    */
+    type: 'switch' | 'checkbox';
+    /**
+     * switch 的颜色，同 css 的 color
+     * - 默认： false
+    */
+    color: string;
+  };
+  events: {
+    /**
+     * checked 改变时触发 change 事件，event.detail={ value:checked}
+    */
+    change: (e: { detail: { value: any; }; }) => void;
+  };
 }
 
+/**
+ * 多行输入框。
+*/
 export interface Textarea {
   props: {};
   events: {};
