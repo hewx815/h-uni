@@ -1138,6 +1138,195 @@ export interface Switch {
  * 多行输入框。
 */
 export interface Textarea {
-  props: {};
-  events: {};
+  props: {
+    /**
+     * 输入框的内容
+    */
+    value: string;
+    /**
+     * 输入框为空时占位符
+    */
+    placeholder: string;
+    /**
+     * 指定 placeholder 的样式
+    */
+    placeholderStyle: string;
+    /**
+     * 指定 placeholder 的样式类，注意页面或组件的style中写了scoped时，需要在类名前写/deep/
+     * - textarea-placeholder
+     * - 平台差异： 抖音小程序、飞书小程序、快手小程序不支持
+    */
+    placeholderClass: string;
+    /**
+     * 是否禁用
+     * - 默认： false
+    */
+    disabled: boolean;
+    /**
+     * 最大输入长度，设置为 -1 的时候不限制最大长度
+     * - 默认： 140
+    */
+    maxlength: number;
+    /**
+     * 获取焦点
+     * - 默认： false
+     * - 平台差异： 在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现。nvue 页面不支持，需使用组件的 focus()、blur() 方法控制焦点
+    */
+    focus: boolean;
+    /**
+     * 自动聚焦，拉起键盘
+     * - 默认： false
+     * - 平台差异： 京东小程序
+    */
+    autoFocus: boolean;
+    /**
+     * 是否自动增高，设置auto-height时，style.height不生效
+     * - 默认： false
+    */
+    autoHeight: boolean;
+    /**
+     * 如果 textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true
+     * - 默认： false
+     * - 平台差异： 微信小程序、百度小程序、抖音小程序、飞书小程序、QQ小程序、快手小程序、京东小程序
+    */
+    fixed: boolean;
+    /**
+     * 指定光标与键盘的距离，单位 px 。取 textarea 距离底部的距离和 cursor-spacing 指定的距离的最小值作为光标与键盘的距离
+     * - 默认： 0
+     * - 平台差异： App、微信小程序、百度小程序、抖音小程序、飞书小程序、QQ小程序、京东小程序
+    */
+    cursorSpacing: number;
+    /**
+     * 指定focus时的光标位置
+     * - 平台差异： 微信小程序、App、H5、百度小程序、抖音小程序、飞书小程序、QQ小程序、京东小程序
+    */
+    cursor: string;
+    /**
+     * 设置键盘右下角按钮的文字
+     * - 默认： done
+     * - 平台差异： 微信小程序基础库2.13.0+、App-vue和H5(2.9.9+，且要求设备webview内核Chrome81+、Safari13.7+)
+     *   - `send`： 右下角按钮为“发送”
+     *   - `search`： 右下角按钮为“搜索”
+     *   - `next`： 右下角按钮为“下一个”
+     *   - `go`： 右下角按钮为“前往”
+     *   - `done`： 右下角按钮为“完成”
+    */
+    confirmType:
+    'send'
+    | 'search'
+    | 'next'
+    | 'go'
+    | 'done';
+    /**
+     * 点击键盘右下角按钮时是否保持键盘不收起
+     * - 默认： false
+     * - 平台差异： App(3.3.7+)、H5 (3.3.7+)、微信小程序 (基础库 2.16.0+)、百度小程序 (基础库 3.130.1+)、快手小程序
+    */
+    confirmHold: boolean;
+    /**
+     * 是否显示键盘上方带有”完成“按钮那一栏
+     * - 默认： true
+     * - 平台差异： 微信小程序、百度小程序、QQ小程序、京东小程序
+    */
+    showConfirmBar: boolean;
+    /**
+     * 光标起始位置，自动聚焦时有效，需与selection-end搭配使用
+     * - 默认： -1
+     * - 平台差异： 微信小程序、App、H5、百度小程序、抖音小程序、飞书小程序、QQ小程序、京东小程序
+    */
+    selectionStart: number;
+    /**
+     * 光标结束位置，自动聚焦时有效，需与selection-start搭配使用
+     * - 默认： -1
+     * - 平台差异： 微信小程序、App、H5、百度小程序、抖音小程序、飞书小程序、QQ小程序、京东小程序
+    */
+    selectionEnd: number;
+    /**
+     * 键盘弹起时，是否自动上推页面
+     * - 默认： true
+     * - 平台差异： App-Android（softinputMode 为 adjustResize 时无效）、微信小程序、百度小程序、QQ小程序、京东小程序
+    */
+    adjustPosition: boolean;
+    /**
+     * 是否去掉 iOS 下的默认内边距
+     * - 默认： false
+     * - 平台差异： 微信小程序2.10.0、飞书小程序 3.46
+    */
+    disableDefaultPadding: boolean;
+    /**
+     * focus时，点击页面的时候不收起键盘
+     * - 默认： false
+     * - 平台差异： 微信小程序2.8.2
+    */
+    holdKeyboard: boolean;
+    /**
+     * 键盘收起时，是否自动失去焦点
+     * - 默认： false
+     * - 平台差异： App-vue 3.0.0+ ，App-nvue不支持
+    */
+    autoBlur: boolean;
+    /**
+     * 是否忽略组件内对文本合成系统事件的处理。为 false 时将触发 compositionstart、compositionend、compositionupdate 事件，且在文本合成期间会触发 input 事件
+     * - 默认： true
+     * - 平台差异： App-vue (3.4.4+)、H5 (3.4.4+)、App-nvue不支持
+    */
+    ignoreCompositionEvent: boolean;
+    /**
+     * 是一个枚举属性，它提供了用户在编辑元素或其内容时可能输入的数据类型的提示。有效值
+     * - 默认： text
+     * - 平台差异： H5（3.7.0+）、App-vue（3.7.0+）
+     * - 新增于 uni-app 3.7.0+ inputmode是html规范后期更新的内容。各家小程序还未支持此属性。
+     * - 在符合条件的高版本webview里，uni-app的web和app-vue平台中可使用本属性。
+     *   - `none`： 无虚拟键盘。在应用程序或者站点需要实现自己的键盘输入控件时很有用。
+     *   - `text`： 使用用户本地区域设置的标准文本输入键盘。
+     *   - `decimal`： 小数输入键盘，包含数字和分隔符（通常是“ . ”或者“ , ”），设备可能也可能不显示减号键。
+     *   - `numeric`： 数字输入键盘，所需要的就是 0 到 9 的数字，设备可能也可能不显示减号键。
+     *   - `tel`： 电话输入键盘，包含 0 到 9 的数字、星号（*）和井号（#）键。表单输入里面的电话输入通常应该使用 `<input type="tel">` 。
+     *   - `search`： 为搜索输入优化的虚拟键盘，比如，返回键可能被重新标记为“搜索”，也可能还有其他的优化。
+     *   - `email`： 为邮件地址输入优化的虚拟键盘，通常包含"@"符号和其他优化。表单里面的邮件地址输入应该使用 `<input type="email">` 。
+     *   - `url`： 为网址输入优化的虚拟键盘，比如，“/”键会更加明显、历史记录访问等。表单里面的网址输入通常应该使用 `<input type="url">` 。
+    */
+    inputmode:
+    'none'
+    | 'text'
+    | 'decimal'
+    | 'numeric'
+    | 'tel'
+    | 'search'
+    | 'email'
+    | 'url';
+
+  };
+  events: {
+    /**
+     * 输入框聚焦时触发，event.detail = { value, height }，height 为键盘高度
+     * - 平台差异： 仅微信小程序、京东小程序、App（HBuilderX 2.0+ nvue uni-app模式） 、QQ小程序支持 height
+    */
+    focus: (e: { detail: { value: string, height: number; }; }) => void;
+    /**
+     * 输入框失去焦点时触发，event.detail = {value, cursor}
+     * - 平台差异： 快手小程序不支持
+    */
+    blur: (e: { detail: { value: string, cursor: any; }; }) => void;
+    /**
+     * 输入框行数变化时调用，event.detail = {height: 0, heightRpx: 0, lineCount: 0}
+     * - 平台差异： 抖音小程序、飞书小程序、快手小程序不支持
+    */
+    linechange: (e: { detail: { value: string, heightRpx: number; lineCount: number; }; }) => void;
+    /**
+     * 当键盘输入时，触发 input 事件，event.detail = {value, cursor}，`@input`处理函数的返回值并不会反映到 textarea 上
+     * - 平台差异： 快手小程序不支持
+    */
+    input: (e: { detail: { value: string, cursor: any; }; }) => void;
+    /**
+     * 点击完成时， 触发 confirm 事件，event.detail = {value: value}
+     * - 平台差异： 微信小程序、百度小程序、QQ小程序、京东小程序
+    */
+    confirm: (e: { detail: { value: string; }; }) => void;
+    /**
+     * 键盘高度发生变化的时候触发此事件，event.detail = {height: height, duration: duration}
+     * - 平台差异： 微信小程序基础库2.7.0+、App 3.1.0+
+    */
+    keyboardheightchange: (e: { detail: { height: number, duration: number; }; }) => void;
+  };
 }

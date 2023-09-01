@@ -47,7 +47,7 @@ export default interface UniComponents {
   'checkbox-group': Form.CheckboxGroup;
   'checkbox': Form.Checkbox;
   'editor': Form.Editor;
-  'Form': Form.Form;// TODO
+  'Form': Form.Form;
   'Input': Form.Input;
   'label': Form.Label;
   'picker': Form.Picker;
@@ -66,7 +66,7 @@ export default interface UniComponents {
   'animation-view': Media.AnimationView;
   'audio': Media.Audio;
   'camera': Media.Camera;
-  'image': Media.Image;
+  'image': Media.Image;// TODO
   'video': Media.Video;
   'live-player': Media.LivePlayer;
   'live-pusher': Media.LivePusher;
