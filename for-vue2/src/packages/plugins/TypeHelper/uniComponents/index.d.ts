@@ -66,7 +66,7 @@ export default interface UniComponents {
   'animation-view': Media.AnimationView;
   'audio': Media.Audio;
   'camera': Media.Camera;
-  'image': Media.Image;// TODO
+  'Image': Media.Image;
   'video': Media.Video;
   'live-player': Media.LivePlayer;
   'live-pusher': Media.LivePusher;
@@ -75,7 +75,7 @@ export default interface UniComponents {
   'map': Map.Map;
 
   // canvas
-  'canvas': Canvas.Canvas;
+  'canvas': Canvas.Canvas; // TODO
 
   // webView
   'web-view': WebView.WebView;

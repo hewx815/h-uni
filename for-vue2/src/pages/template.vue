@@ -2,10 +2,6 @@
 <template>
   <view>
     内容
-    <picker
-      :value=""
-      :fields=""
-    />
   </view>
 </template>
 <!-- #endregion template -->
