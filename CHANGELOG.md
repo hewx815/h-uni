@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/hewx815/h-uni/compare/v1.7.0...v1.8.0) (2023-09-02)
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* typeHelper 类型标注 50% ([8d84c0c](https://github.com/hewx815/h-uni/commit/8d84c0c9f183117de459cc478918606897ab3f0a))
+
+
+### ✨ Features | 新功能
+
+* typeHelper 完成 初步类型标注 ([6a6a952](https://github.com/hewx815/h-uni/commit/6a6a9523af5e6a4ba3b4aa44a59bcd9ad450a63b))
+
+
+### ✏️ Documentation | 文档
+
+* typeHelper 文档编写 ([4d501cb](https://github.com/hewx815/h-uni/commit/4d501cbb9cda4327460bc0c1259b52cbe28536c4))
+
 ## [1.7.0](https://github.com/hewx815/h-uni/compare/v1.7.0-alpha.4...v1.7.0) (2023-09-01)
 
 ## [1.7.0-alpha.4](https://github.com/hewx815/h-uni/compare/v1.7.0-alpha.3...v1.7.0-alpha.4) (2023-09-01)
