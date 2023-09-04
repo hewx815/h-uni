@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
-import { CSSProperties } from '@vue/runtime-dom';
+import type { CSSProperties } from '@vue/runtime-dom';
 
 export const cssToObj = (css: string) => {
   const obj: Record<string, string> = {};

@@ -5,6 +5,9 @@
     "sourceMap": true,
     "baseUrl": ".",
     "lib": ["esnext", "dom"],
+    "paths": {
+      "@2/*": ["../../../for-vue2/src/packages/*"]
+    },
     "types": ["@dcloudio/types", "node"]
   }
 }

@@ -31,6 +31,7 @@
     "installs": "node ./cli/scripts/installs.js",
     "dev": " node ./cli/scripts/dev.js",
     "build": "node  ./cli/scripts/build.js",
+    "build:npm": "node  ./cli/scripts/build.js --npm",
     "release": "node  ./cli/scripts/release.js",
     "commit": "cz"
   },

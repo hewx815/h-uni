@@ -90,15 +90,20 @@ export const runStart = (devFolder, script) => {
 
 /**
  * @description 拷贝文件夹
- * @param {*} srcDir 要被拷贝的源文件夹
- * @param {*} destDir 拷贝操作的目标文件夹
+ * @param {String} srcDir 要被拷贝的源文件夹
+ * @param {String} destDir 拷贝操作的目标文件夹
+ * @param {Boolean} overwrite 是否覆盖已存在的文件或文件夹
 */
-export const copyDirs = (srcDir, destDir) => {
+export const copyDirs = (srcDir, destDir, overwrite = true) => {
   const copyFile = async (src, dest) => {
-    fs.copyFileSync(src, dest);
+    if (overwrite || !fs.existsSync(dest)) {
+      fs.copyFileSync(src, dest);
+    }
   };
   const copyDir = async (src, dest) => {
-    fs.mkdirSync(dest);
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest);
+    }
     const files = fs.readdirSync(src);
     // eslint-disable-next-line no-restricted-syntax
     for (const file of files) {
@@ -137,21 +142,13 @@ export const delDir = (path) => {
 };
 
 /**
- * @description 传入文件夹的路径看是否存在，存在不用管，不存在则直接创建文件夹
- * @param {String}  reaPath 文件路径，绝对路径
- * @returns {Promise<boolean>}
-*/
-export const checkoutDir = (filePath) => {
-  const ensureDirectoryExistence = (filePath1) => {
-    const dirname = path.dirname(filePath1);
-    if (fs.existsSync(dirname)) {
-      return true;
-    }
-    ensureDirectoryExistence(dirname);
-    fs.mkdirSync(dirname);
-    return true;
-  };
-  ensureDirectoryExistence(filePath);
+ * @description 检查文件夹是否存在，如果不存在则创建文件夹
+ * @param {string} dirPath - 要检查的文件夹路径
+ */
+export const checkoutDir = (dirPath) => {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
 };
 
 /**
@@ -346,6 +343,46 @@ export const updateVueFiles = (folderPath, fn) => {
       updateVueFiles(filePath, fn);
     } else if (path.extname(filePath) === '.vue') {
       fs.writeFileSync(filePath, fn(file), 'utf-8');
+    }
+  });
+};
+
+/**
+ * @description 处理文件夹下的文件，将使用路径别名的语句转换为真实路径
+ * @param {string} dirPath - 文件夹路径
+ * @param {Object} aliasMap - 路径别名映射对象，例如 { '@alias': '/real/path' }
+ */
+export const processFilesInDir = (dirPath, aliasMap) => {
+  // 获取文件夹中的所有文件和子文件夹
+  const files = fs.readdirSync(dirPath);
+
+  files.forEach((file) => {
+    const filePath = path.join(dirPath, file);
+    const isDirectory = fs.statSync(filePath).isDirectory();
+
+    if (isDirectory) {
+      // 如果是子文件夹，递归处理
+      processFilesInDir(filePath, aliasMap);
+    } else {
+      // 如果是文件，读取文件内容并替换路径别名
+      let fileContent = fs.readFileSync(filePath, 'utf8');
+
+      // 遍历路径别名映射，将别名替换为相对路径
+      Object.keys(aliasMap).forEach((alias) => {
+        const realPath = aliasMap[alias];
+        const aliasPattern = new RegExp(alias.replace(/\\/g, '/'), 'g');
+
+        // 获取文件相对于 dirPath 的相对路径
+        const relativeFilePath = path.relative(dirPath, filePath);
+        const realDirPath = path.join(realPath, path.dirname(relativeFilePath));
+        const relativeRealPath = path.relative(dirPath, realDirPath);
+
+        // 替换路径别名
+        fileContent = fileContent.replace(aliasPattern, relativeRealPath.replace(/\\/g, '/'));
+      });
+
+      // 将替换后的内容写回文件
+      fs.writeFileSync(filePath, fileContent);
     }
   });
 };

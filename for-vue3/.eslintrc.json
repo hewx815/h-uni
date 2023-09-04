@@ -3,6 +3,7 @@
   "extends": ["eslint-config-hewx/uniapp-vue3-typescript"],
   "rules": {
     "@typescript-eslint/no-unsafe-call": [0],
-    "import/no-unresolved": [0]
+    "import/no-unresolved": [0],
+    "import/extensions": [0]
   }
 }

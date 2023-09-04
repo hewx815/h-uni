@@ -7,19 +7,15 @@
 
 ## TODO ci 对 Vue2 和 Vue3 两个包之间互相引用的处理
 
-## TODO vue2 HWaterFall 组件
+## TODO  Hhttp v2+v3 文档处理
 
-## TODO vue2 HDropDown 组件
-
-## TODO Vue2 注释内文档网站标注
-
-用于在类型提示时显示参考网站
+## TODO  cssConverter v2+v3 文档处理
 
 ## TODO Vue2 volar-helper
 
 1. 解决 @vue/runtime-dom 在<2.7 中 类型补丁
-2. uniapp 内置组件的类型支持
-3. uni-uni 组件类型支持
+<!-- 2. uniapp 内置组件的类型支持 -->
+3. uni-ui 组件类型支持
 
 ## TODO Vue3 volar-helper
 
@@ -30,6 +26,12 @@
 
 采用vue3+组合式api+ts 对组件重构，保留vue2中的属性用法
 
-# TODO vue3 HWaterFall 组件
+
+
+## TODO vue3 HWaterFall 组件
 
 ## TODO vue3 HDropDown 组件
+
+## TODO vue2 HWaterFall 组件
+
+## TODO vue2 HDropDown 组件

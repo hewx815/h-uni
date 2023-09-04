@@ -12,6 +12,7 @@ export default [
     collapsed: false,
     items: [
       { text: 'Hhttp 网络请求', link: '/for-vue3/utils/Hhttp' },
+      { text: 'cssConverter 样式转换器', link: '/for-vue3/utils/cssConverter' },
     ],
   },
 ];
