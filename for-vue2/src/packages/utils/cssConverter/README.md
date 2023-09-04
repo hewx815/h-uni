@@ -41,7 +41,7 @@ outline: deep
 ```js
 const css = 'background-color:#000;color:#fff;';
 
-const cssObj =  this.$h.cssConverter(css,'object');
+const cssObj = cssConverter(css,'object');
 
 console.log(cssObj);
 // {backgroundColor:'#000',color:'#fff'}
@@ -54,7 +54,7 @@ const cssObj = {
   color:'#fff',
 };
 
-const css =  this.$h.cssConverter(cssObj);
+const css =  cssConverter(cssObj);
 
 console.log(css);
 // background-color:#000;color:#fff;

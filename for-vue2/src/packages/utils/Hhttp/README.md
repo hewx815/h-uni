@@ -23,8 +23,6 @@ outline: deep
 使用实例的 [request](/for-vue2/utils/Hhttp.html#实例方法-method) 方法
 
 ```js
-const Hhttp = this.$h.Hhttp;
-
 // 实例化Hhttp
 const request = new Hhttp();
 
@@ -52,8 +50,6 @@ console.log(response);
 使用实例的 `get` `post` ... [快捷方法](/for-vue2/utils/Hhttp.html#实例方法-method)
 
 ```js
-const Hhttp = this.$h.Hhttp;
-
 // 实例配置
 const baseOptions = {
   baseUrl:'https://www.baidu.com',
@@ -80,8 +76,6 @@ console.log(response);
 同步与异步调用
 
 ```js
-const Hhttp = this.$h.Hhttp;
-
 // 实例化Hhttp
 const request = new Hhttp();
 
