@@ -1,34 +1,34 @@
 import {
   DefineComponent,
-  ComputedOptions,
-  MethodOptions,
-  ComponentOptionsMixin,
-  SlotsType,
   ExtractDefaultPropTypes,
   PropType,
 } from '@vue/runtime-dom';
 
-export type DefinePropsOptions<T> = {
-  [K in keyof T]: {
-    type: PropType<T[K]>;
-    default: T;
+export type DefinePropsOptions<Props> = {
+  [K in keyof Props]: {
+    type: PropType<Props[K]>;
+    default: Props;
   }
 };
 
-export type DefineComponentsHelper<T = { props: object; events: object; }, CommonProps = object, CommonEvents = object> = {
-  [K in keyof T]: DefineComponent<
-    DefinePropsOptions<T[K]['props'] & CommonProps>,
-    unknown,
-    unknown,
-    ComputedOptions,
-    MethodOptions,
-    ComponentOptionsMixin,
-    ComponentOptionsMixin,
-    T[K]['events'] & CommonEvents,
+export type EmitsToEvents<Emits> = {
+  [K in keyof Emits as `on${Capitalize<K & string>}`]?: Emits[K];
+};
+
+export type DefineComponentsHelper<Components = { props: object; events: object; }, CommonProps = object, CommonEmits = object> = {
+  [K in keyof Components]: DefineComponent<
+    DefinePropsOptions<Components[K]['props'] & CommonProps>,
+    object,
+    object,
+    object,
+    object,
+    object,
+    object,
+    Components[K]['events'] & CommonEmits,
     string,
-    unknown,
-    unknown,
-    ExtractDefaultPropTypes<DefinePropsOptions<T[K]['props'] & CommonProps>>,
-    SlotsType
+    object,
+    EmitsToEvents<Components[K]['events'] & CommonEmits>,
+    ExtractDefaultPropTypes<DefinePropsOptions<Components[K]['props'] & CommonProps>>,
+    object
   >
 };

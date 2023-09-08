@@ -29,9 +29,7 @@ export interface View {
     hoverStayTime: number;
   };
 
-  events: {
-    click: () => void;
-  };
+  events: object
 }
 
 /**
