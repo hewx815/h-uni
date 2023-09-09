@@ -1,8 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { StyleValue } from '@vue/runtime-dom';
 import { DefineComponentsHelper } from './utils';
-import UniComponents from './uniComponents/index';
+import UniComponents, {
+  View,
+  Button,
+  Form,
+  Input,
+  Label,
+  Textarea,
+  Audio,
+  Video,
+  Canvas,
+} from './uniComponents/index';
 
 export * from './uniComponents/index';
 export * from './utils';
@@ -26,4 +35,23 @@ type UniCommonEvents = {
 // 扩展uni全局内置组件
 declare module '@vue/runtime-dom' {
   interface GlobalComponents extends DefineComponentsHelper<UniComponents, UniCommonProps, UniCommonEvents> { }
+}
+
+// 重名组件
+type SameNameCompoinents={
+   view: View,
+   button: Button,
+   form: Form,
+   input: Input,
+   label: Label,
+   textarea: Textarea,
+   audio: Audio,
+   video: Video,
+   canvas: Canvas,
+}
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements extends DefineComponentsHelper<SameNameCompoinents, UniCommonProps, UniCommonEvents>{ }
+  }
 }
