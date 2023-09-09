@@ -314,7 +314,7 @@ export interface Swiper {
  * - 例如在match-media组件中放置一个侧边栏，媒体查询规则设置为宽屏才显示，就可以实现在PC宽屏显示该侧边栏，而在手机窄屏中不显示侧边栏的效果。
  * - 注意：支付宝小程序、qq小程序、百度小程序、抖音小程序，暂不支持监听屏幕动态改变，即只执行一次媒体查询。
  */
-export interface matchMedia {
+export interface MatchMedia {
   props: {
     /**
      * 页面最小宽度（ px 为单位）
@@ -356,7 +356,7 @@ export interface matchMedia {
  * -当然也可以不拖动，而使用代码来触发movable-view在movable-area里的移动缩放。
  * - movable-view的规范另见[movable-view](https://uniapp.dcloud.net.cn/component/movable-view.html)。
  */
-export interface movableArea {
+export interface MovableArea {
   props: {
     /**
      * 当里面的 movable-view 设置为支持双指缩放时，设置此值可将缩放手势生效区域修改为整个 movable-area
@@ -371,7 +371,7 @@ export interface movableArea {
  * 可移动的视图容器，在页面中可以拖拽滑动或双指缩放。
  * - movable-view必须在movable-area组件中，并且必须是直接子节点，否则不能移动。
  */
-export interface movableView {
+export interface MovableView {
   props: {
     /**
      * movable-view的移动方向，属性值有all、vertical、horizontal、none
@@ -473,7 +473,7 @@ export interface movableView {
  * 覆盖在原生组件上的文本视图。
  * - app-vue和小程序框架，渲染引擎是webview的。但为了优化体验，部分组件如map、video、textarea、canvas通过原生控件实现，原生组件层级高于前端组件（类似flash层级高于div）。为了能正常覆盖原生组件，设计了cover-view。
  */
-export interface coverView {
+export interface CoverView {
   props: {
     /**
      * 设置顶部滚动偏移量，仅在设置了 overflow-y: scroll 成为滚动元素后生效
@@ -487,7 +487,7 @@ export interface coverView {
 /**
  * 覆盖在原生组件上的图片视图。可覆盖的原生组件同cover-view，支持嵌套在cover-view里。
  */
-export interface coverImage {
+export interface CoverImage {
   props: {
     /**
      * 图标路径。支持本地路径、网络路径。不支持 base64 格式。

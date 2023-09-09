@@ -26,79 +26,76 @@ export * from './page';
 export * from './mini';
 
 export default interface UniComponents {
-  // view
-  'View': View.View;
-  'scroll-view': View.ScrollView;
-  'swiper': View.Swiper;
-  'match-media': View.matchMedia;
-  'movable-area': View.movableArea;
-  'movable-view': View.movableView;
-  'cover-view': View.coverView;
-  'cover-image': View.coverImage;
+  View: View.View;
+  ScrollView: View.ScrollView;
+  Swiper: View.Swiper;
+  MatchMedia: View.MatchMedia;
+  MovableArea: View.MovableArea;
+  MovableView: View.MovableView;
+  CoverView: View.CoverView;
+  CoverImage: View.CoverImage;
 
   // base
-  'icon': Base.Icon;
-  'text': Base.Text;
-  'rich-text': Base.RichText;
-  'progress': Base.Progress;
+  Icon: Base.Icon;
+  Text: Base.Text;
+  RichText: Base.RichText;
+  Progress: Base.Progress;
 
   // form
-  'Button': Form.Button;
-  'checkbox-group': Form.CheckboxGroup;
-  'checkbox': Form.Checkbox;
-  'editor': Form.Editor;
-  'Form': Form.Form;
-  'Input': Form.Input;
-  'label': Form.Label;
-  'picker': Form.Picker;
-  'picker-view': Form.PickerView;
-  'picker-view-column': Form.PickerViewColumn;
-  'radio-group': Form.RadioGroup;
-  'radio': Form.Radio;
-  'slider': Form.Slider;
-  'switch': Form.Switch;
-  'textarea': Form.Textarea;
+  Button: Form.Button;
+  CheckboxGroup: Form.CheckboxGroup;
+  Checkbox: Form.Checkbox;
+  Editor: Form.Editor;
+  Form: Form.Form;
+  Input: Form.Input;
+  Label: Form.Label;
+  Picker: Form.Picker;
+  PickerView: Form.PickerView;
+  PickerViewColumn: Form.PickerViewColumn;
+  RadioGroup: Form.RadioGroup;
+  Radio: Form.Radio;
+  Slider: Form.Slider;
+  Switch: Form.Switch;
+  Textarea: Form.Textarea;
 
   // navigator
-  'navigator': Navigator.Navigator;
+  Navigator: Navigator.Navigator;
 
   // media
-  'animation-view': Media.AnimationView;
-  'audio': Media.Audio;
-  'camera': Media.Camera;
-  'Image': Media.Image;
-  'video': Media.Video;
-  'live-player': Media.LivePlayer;
-  'live-pusher': Media.LivePusher;
+  AnimationView: Media.AnimationView;
+  Audio: Media.Audio;
+  Image: Media.Image;
+  Video: Media.Video;
+  LivePlayer: Media.LivePlayer;
+  LivePusher: Media.LivePusher;
 
   // map
-  'map': Map.Map;
+  Map: Map.Map;
 
   // canvas
-  'canvas': Canvas.Canvas; // TODO
+  Canvas: Canvas.Canvas; // TODO
 
   // webView
-  'web-view': WebView.WebView;
+  WebView: WebView.WebView;
 
   // ad
-  'ad': Ad.Ad;
-  'ad-rewarded-video': Ad.AdRewardedVideo;
-  'ad-fullscreen-video': Ad.AdFullscreenVideo;
-  'ad-interstitial': Ad.AdInterstitial;
-  'ad-draw': Ad.AdDraw;
-  'ad-content-page': Ad.AdContentPage;
-  'ad-interactive': Ad.AdInteractive;
+  Ad: Ad.Ad;
+  AdRewardedVideo: Ad.AdRewardedVideo;
+  AdFullscreenVideo: Ad.AdFullscreenVideo;
+  AdInterstitial: Ad.AdInterstitial;
+  AdDraw: Ad.AdDraw;
+  AdContentPage: Ad.AdContentPage;
+  AdInteractive: Ad.AdInteractive;
 
   // db
-  'unicloud-db': Db.UnicloudDb;
+  UnicloudDb: Db.UnicloudDb;
 
   // page
-  'page-meta': Page.PageMeta;
-  'navigation-bar': Page.NavigationBar;
-  'custom-tab-bar': Page.CustomTabBar;
+  PageMeta: Page.PageMeta;
+  NavigationBar: Page.NavigationBar;
+  CustomTabBar: Page.CustomTabBar;
 
   // mini
-  'official-account': Mini.OfficialAccount;
-  'open-data': Mini.OpenData;
-
+  OfficialAccount: Mini.OfficialAccount;
+  OpenData: Mini.OpenData;
 }

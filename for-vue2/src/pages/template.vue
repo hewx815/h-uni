@@ -12,8 +12,7 @@ import { defineComponent } from '@vue/runtime-dom';
 
 export default defineComponent({
   data() {
-    return {
-    };
+    return {};
   },
 });
 </script>
