@@ -82,7 +82,7 @@ const main = async () => {
 
   // 打包
   log('开始构建npm包');
-  spawnSync('yarn build:package', { shell: true, stdio: 'inherit' });
+  spawnSync('yarn build', { shell: true, stdio: 'inherit' });
   log('构建npm包结束');
 
   // 发布
