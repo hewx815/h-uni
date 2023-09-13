@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0-alpha.1](https://github.com/hewx815/h-uni/compare/v1.9.0-alpha.0...v1.9.0-alpha.1) (2023-09-13)
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 发布命令错误修复 ([edf1461](https://github.com/hewx815/h-uni/commit/edf14615380db3773038f23d4d6dd085640de983))
+
 ## [1.9.0-alpha.0](https://github.com/hewx815/h-uni/compare/v1.8.0...v1.9.0-alpha.0) (2023-09-13)
 
 
