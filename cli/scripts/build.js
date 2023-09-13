@@ -102,17 +102,19 @@ const startBuild = async (isNpm) => {
   copyDirs(vue2Components.srcDir, vue2Components.destDir);
   deleteFiles(vue2Components.destDir, (file) => {
     const suffix = file.slice(file.indexOf('.'), file.length + 1);
-    return file === 'README.md' || suffix === '.d.ts' || suffix === '.vue.d.ts';
+    // return file === 'README.md' || suffix === '.d.ts' || suffix === '.vue.d.ts';
+    return suffix === '.md';
   });
-  updateVueFiles(vue2Components.destDir, (file) => {
-    const fileName = file.slice(0, file.indexOf('.'));
-    const srcPath = `../../components/${fileName}/${file}`;
-    return `<script>
-  import ${fileName} from '${srcPath}'
+  // HACK: 后续应优化短横线组件的文件大小
+  // updateVueFiles(vue2Components.destDir, (file) => {
+  //   const fileName = file.slice(0, file.indexOf('.'));
+  //   const srcPath = `../../components/${fileName}/${file}`;
+  //   return `<script>
+  // import ${fileName} from '${srcPath}'
 
-  export default  ${fileName}
-  </script>`;
-  });
+  // export default  ${fileName}
+  // </script>`;
+  // });
   renameFilesToKebabCase(vue2Components.destDir);
   transformAndWriteFile(getPath('../../dist/for-vue2/components+/index.js'));
   fs.unlinkSync(getPath('../../dist/for-vue2/tsconfig.json'));
@@ -126,17 +128,19 @@ const startBuild = async (isNpm) => {
   copyDirs(vue3Components.srcDir, vue3Components.destDir);
   deleteFiles(vue3Components.destDir, (file) => {
     const suffix = file.slice(file.indexOf('.'), file.length + 1);
-    return file === 'README.md' || suffix === '.d.ts' || suffix === '.vue.d.ts';
+    // return file === 'README.md' || suffix === '.d.ts' || suffix === '.vue.d.ts';
+    return suffix === '.md';
   });
-  updateVueFiles(vue3Components.destDir, (file) => {
-    const fileName = file.slice(0, file.indexOf('.'));
-    const srcPath = `../../components/${fileName}/${file}`;
-    return `<script>
-  import ${fileName} from '${srcPath}'
+  // HACK: 后续应优化短横线组件的文件大小
+  // updateVueFiles(vue3Components.destDir, (file) => {
+  //   const fileName = file.slice(0, file.indexOf('.'));
+  //   const srcPath = `../../components/${fileName}/${file}`;
+  //   return `<script>
+  // import ${fileName} from '${srcPath}'
 
-  export default  ${fileName}
-  </script>`;
-  });
+  // export default  ${fileName}
+  // </script>`;
+  // });
   renameFilesToKebabCase(vue3Components.destDir);
   transformAndWriteFile(getPath('../../dist/for-vue3/components+/index.js'));
   log('生成短横线命名组件文件成功 ✔');
