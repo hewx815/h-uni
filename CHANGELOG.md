@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0-alpha.0](https://github.com/hewx815/h-uni/compare/v1.8.0...v1.9.0-alpha.0) (2023-09-13)
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* 移除多余tag，yarn.lock 更新 ([72704a2](https://github.com/hewx815/h-uni/commit/72704a2d36bd37c458d7f457741ba6de652ed78c))
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 增加 build:npm 只打包npm包的脚本，release 脚本不再执行站点打包 ([f0a7a18](https://github.com/hewx815/h-uni/commit/f0a7a18d307d925ca0f2a3896bf26fa7d01de58a))
+
+
+### ✨ Features | 新功能
+
+* for-vue3 Hhttp、cssConverter 功能 ([a88f32d](https://github.com/hewx815/h-uni/commit/a88f32d691a8e9ed48ad14f3acd620acdb296d70))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 短横线命名组件缺少组件内容 ([cc7975e](https://github.com/hewx815/h-uni/commit/cc7975e12acd5608cf86d4f457c1a7f818a85db9))
+* vue2 TypeHelper 修复重名组件类型丢失 ([abbce38](https://github.com/hewx815/h-uni/commit/abbce38ee022df02b174e9c856d2baef203664a9))
+* vue2 TypeHelper 组件 事件方法类型提示 ([cab8c89](https://github.com/hewx815/h-uni/commit/cab8c89d83eea334b00b18b25b517aaf602f31c6))
+
 ## [1.8.0](https://github.com/hewx815/h-uni/compare/v1.7.0...v1.8.0) (2023-09-02)
 
 
