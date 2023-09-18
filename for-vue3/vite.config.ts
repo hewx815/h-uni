@@ -6,6 +6,11 @@ import { hUniBuild, defineConfigHUniBuild } from './src/packages/plugins/vite-pl
 const config = defineConfigHUniBuild({
   delOldFile: true,
   setMode: false,
+  openDevTools: {
+    paths: {
+      'mp-weixin': 'D:\\wechatDev\\微信web开发者工具',
+    },
+  },
 });
 
 export default defineConfig({
