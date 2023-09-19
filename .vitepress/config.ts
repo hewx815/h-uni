@@ -49,7 +49,7 @@ export default defineConfig({
       { text: '组件库', link: '/for-vue2/components/HTab', activeMatch: '/components' },
       { text: '函数库', link: '/for-vue2/utils/Hhttp', activeMatch: '/utils' },
       { text: '插件库', link: '/for-vue2/plugins/vue-cli-plugin-h-uni-build', activeMatch: '/plugins' },
-      { text: '更新记录', link: '/CHANGELOG' },
+      { text: '更新日志', link: '/CHANGELOG' },
       {
         text: '网站导航',
         items: [
