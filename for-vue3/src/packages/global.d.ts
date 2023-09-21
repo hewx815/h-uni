@@ -1,7 +1,7 @@
 import * as utils from './utils/index';
 import * as components from './components/index';
 
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   type Components = typeof components;
   interface GlobalComponents extends Components { }
 
@@ -12,4 +12,5 @@ declare module '@vue/runtime-core' {
     $h?: typeof utils;
   }
 }
+
 export { };

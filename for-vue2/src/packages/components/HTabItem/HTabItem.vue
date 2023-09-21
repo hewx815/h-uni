@@ -70,10 +70,6 @@ export default defineComponent({
       type: [String, Number],
       default: '',
     },
-    label1: {
-      type: [String, Number],
-      default: '1',
-    },
     activeLabel: {
       type: String,
       default: '',

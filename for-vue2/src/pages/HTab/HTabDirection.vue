@@ -46,7 +46,6 @@ import { HTab } from '../../packages/components';
 export default defineComponent({
   data() {
     return {
-
       active: 0,
       tabDirection: 'y',
       tabItemDirection: 'y',

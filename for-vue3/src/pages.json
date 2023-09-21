@@ -5,6 +5,24 @@
     },
     {
       "path": "pages/HTab/HTab"
+    },
+    {
+      "path": "pages/HTab/HTabBase"
+    },
+    {
+      "path": "pages/HTab/HTabDirection"
+    },
+    {
+      "path": "pages/HTab/HTabActiveStyle"
+    },
+    {
+      "path": "pages/HTab/HTabItemStyle"
+    },
+    {
+      "path": "pages/HTab/HTabSlots"
+    },
+    {
+      "path": "pages/HTab/HTabStop"
     }
   ],
   "globalStyle": {

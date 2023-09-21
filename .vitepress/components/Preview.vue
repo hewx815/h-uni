@@ -78,7 +78,7 @@ const { proxy } = getCurrentInstance();
 
 // iframe src
 const url = computed(() => {
-  const baseUrl = process.env.NODE_ENV === 'production' ? 'https://h-uni.hewxing.cn/preview-vue2/#/' : 'http://localhost:8080/#/';
+  const baseUrl = process.env.NODE_ENV === 'production' ? 'https://h-uni.hewxing.cn/' : 'http://localhost:8080/';
   return baseUrl + (previewBtnPath.value ? previewBtnPath.value : props.path);
 });
 

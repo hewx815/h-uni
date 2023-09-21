@@ -8,4 +8,7 @@ export default Vue.extend({
 
 <style>
 /*每个页面公共css */
+page {
+  background-color: #fff !important;
+}
 </style>
