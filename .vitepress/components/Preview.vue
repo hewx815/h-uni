@@ -222,7 +222,7 @@ onMounted(() => {
   position: fixed;
   left: 0px;
   top: 0px;
-  z-index: 20;
+  z-index: 30;
 }
 
 .preview_icon {

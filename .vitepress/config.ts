@@ -27,6 +27,10 @@ export default defineConfig({
   },
   markdown: {
     cache: false,
+    theme: {
+      light: 'material-theme-lighter',
+      dark: 'material-theme',
+    },
   },
   // 路径重写
   rewrites: {
