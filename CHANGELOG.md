@@ -1,5 +1,12 @@
 # h-uni 更新日志
 h-uni 所有版本的变更记录都记录在此页面 
+### [1.9.1](https://github.com/hewx815/h-uni/compare/v1.9.0...v1.9.1) (2023-09-22)
+
+
+### ✏️ Documentation | 文档
+
+* vitepress 升级 1.0.0-rc.15，更改文档代码块主题 ([966dd65](https://github.com/hewx815/h-uni/commit/966dd65bdb8b077f8231a72ead3b03791f139ab6))
+
 ## [1.9.0](https://github.com/hewx815/h-uni/compare/v1.9.0-alpha.1...v1.9.0) (2023-09-21)
 
 
