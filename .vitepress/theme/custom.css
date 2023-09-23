@@ -1,19 +1,17 @@
 :root {
   --color: rgb(95, 95, 205);
   --color-light: rgb(115, 115, 205);
-  --color-lighter: rgb(145, 145, 205);
   --color-dark: rgb(75, 75, 205);
-  --color-darker: rgb(45, 45, 205);
 
   --color-scrollbar-thumb: rgb(208, 208, 208);
   --color-scrollbar-thumb-hover: rgb(219, 219, 219);
 
   --vp-c-brand-1: var(--color);
-  --vp-c-brand-2: var(--color-darker);
+  --vp-c-brand-2: var(--color-dark);
   --vp-c-brand-3: var(--color);
 
   /* 代码块背景 */
-  --vp-code-block-bg: rgba(73, 73, 147, 0.1);
+  --vp-code-block-bg: rgba(200, 200, 200, 0.14);
 
   /* 中间内容最大宽度 */
   --vp-layout-max-width: 1460px;
