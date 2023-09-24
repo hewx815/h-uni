@@ -1,5 +1,17 @@
 # h-uni 更新日志
 h-uni 所有版本的变更记录都记录在此页面 
+### [1.9.2](https://github.com/hewx815/h-uni/compare/v1.9.1...v1.9.2) (2023-09-24)
+
+
+### ✏️ Documentation | 文档
+
+* 主题变更 ([ebab7b3](https://github.com/hewx815/h-uni/commit/ebab7b3c61d29f82d51ad330d9dc31eab997e54b))
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 修复服务端运行build命令错误 ([87b781c](https://github.com/hewx815/h-uni/commit/87b781cb79def35ec4ef8d00c28f1f4e7c08bdd7))
+
 ### [1.9.1](https://github.com/hewx815/h-uni/compare/v1.9.0...v1.9.1) (2023-09-22)
 
 
