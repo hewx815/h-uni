@@ -13,7 +13,7 @@ import {
   transformAndWriteFile,
   deleteFiles,
   tsToJs,
-  updateVueFiles,
+  // updateVueFiles,
   processFilesInDir,
   // eslint-disable-next-line import/extensions
 } from './utils.js';
@@ -157,7 +157,7 @@ const startBuild = async (isNpm) => {
       fs.renameSync(vue2PackagePath, newVue2PackagePath);
     }
 
-    spawnSync('yarn vitepress build', { shell: true, stdio: 'inherit' });
+    spawnSync('npx vitepress build', { shell: true, stdio: 'inherit' });
 
     if (fs.existsSync(newVue2PackagePath)) {
       fs.renameSync(newVue2PackagePath, vue2PackagePath);
