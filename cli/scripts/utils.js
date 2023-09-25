@@ -296,7 +296,7 @@ export const tsToJs = (folderPath) => {
       const updatedVueContent = vueContent.replace(/<script(?:[^>]*)\s+lang=(?:"ts"|'ts')(?:[^>]*)>([\s\S]*?)<\/script>/g, (match, scriptContent) => {
         const isSetupTag = /<script(?:[^>]*)\s+lang=(?:"ts"|'ts')(?:[^>]*)\s+setup(?:[^>]*)>/.test(match);
         const jsContent = processTsScript(scriptContent);
-        return `<script ${isSetupTag ? ' setup' : ''}lang="js">\n${jsContent}\n</script>`;
+        return `<script ${isSetupTag ? 'setup ' : ''}lang="js">\n${jsContent}\n</script>`;
       });
       fs.writeFileSync(filePath, updatedVueContent, 'utf-8');
     } else if (path.extname(filePath) === '.ts' && !file.includes('.d.ts')) {
