@@ -1,5 +1,12 @@
 # h-uni 更新日志
 h-uni 所有版本的变更记录都记录在此页面 
+### [1.9.3](https://github.com/hewx815/h-uni/compare/v1.9.2...v1.9.3) (2023-09-25)
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 修复转换vue文件 setup 属性bug，发布流程打包性能优化 ([81e001a](https://github.com/hewx815/h-uni/commit/81e001a50ca4f6943e28e14977ea264932ab5543))
+
 ### [1.9.2](https://github.com/hewx815/h-uni/compare/v1.9.1...v1.9.2) (2023-09-24)
 
 
