@@ -21,7 +21,7 @@ yarn h-uni
 ```
 
 ```shell [npm]
-npm run h-uni
+npx h-uni
 ```
 
 :::
@@ -36,7 +36,7 @@ npm run h-uni
 
 类型文件位置:`h-uni/for-vue2/dist/plugins/TypeHelper/index.d.ts`
 
-```jsonc{9}
+```jsonc{10}
 {
   // ...其他配置
   "compilerOptions": {
