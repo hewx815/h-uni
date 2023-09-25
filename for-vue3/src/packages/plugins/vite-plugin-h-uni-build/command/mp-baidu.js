@@ -2,7 +2,7 @@ const projectPath = process.argv[2];
 const isExit = process.argv[3];
 const clipboardy = require('clipboardy');
 const { spawn } = require('child_process');
-const { log, err } = require('../utils');
+const { log, err } = require('./utils');
 
 // 打开
 const run = () => new Promise((resolve, reject) => {

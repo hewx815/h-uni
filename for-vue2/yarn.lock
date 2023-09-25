@@ -10438,7 +10438,7 @@ vue-class-component@^7.1.0:
   resolved "https://registry.npmmirror.com/vue-class-component/-/vue-class-component-7.2.6.tgz#8471e037b8e4762f5a464686e19e5afc708502e4"
   integrity sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w==
 
-vue-cli-plugin-h-uni-build@./src/packages/utils/vue-cli-plugin-h-uni-build:
+vue-cli-plugin-h-uni-build@./src/packages/plugins/vue-cli-plugin-h-uni-build:
   version "0.0.1"
 
 vue-hot-reload-api@^2.3.0:

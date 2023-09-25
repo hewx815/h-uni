@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-<Preview path="pages/HTab/HTab"/>
+<Preview path="preview-vue2/#/pages/HTab/HTab"/>
 
 # HTab 标签栏
 
@@ -28,10 +28,10 @@ outline: deep
 
 `HTab`通过`v-model`绑定变量，即可获取当前选中`HTabItem`的`value`
 
-<PreviewBtn path="pages/HTab/HTabBase"/>
+<PreviewBtn path="preview-vue2/#/pages/HTab/HTabBase"/>
 
 ::: code-group
-<<< @/for-vue2/src/pages/HTab/HTabBase.vue#template {3-10 vue} [template]
+<<< @/for-vue2/src/pages/HTab/HTabBase.vue#template {3-13 vue} [template]
 <<< @/for-vue2/src/pages/HTab/HTabBase.vue#script {5 vue} [script]
 <<< @/for-vue2/src/pages/HTab/HTabBase.vue#style {vue} [style]
 :::
@@ -43,11 +43,11 @@ outline: deep
 
 下面的示例中:通过两个单选按钮组控制`HTab`和`HTabItem`组件的`direction`
 
-<PreviewBtn path="pages/HTab/HTabDirection"/>
+<PreviewBtn path="preview-vue2/#/pages/HTab/HTabDirection"/>
 
 ::: code-group
 <<< @/for-vue2/src/pages/HTab/HTabDirection.vue#template {7,10,14,17,24 vue} [template]
-<<< @/for-vue2/src/pages/HTab/HTabDirection.vue#script {6-7,24-25 vue} [script]
+<<< @/for-vue2/src/pages/HTab/HTabDirection.vue#script {8-10,25-28 vue} [script]
 <<< @/for-vue2/src/pages/HTab/HTabDirection.vue#style {vue} [style]
 :::
 
@@ -65,7 +65,7 @@ outline: deep
 当`activeAspect`不为`none`时，使用`activeStyle`设置`background-color`并不完全更改滑块背景颜色，需要使用`activeBackgroundColor`属性进行更改
 :::
 
-<PreviewBtn path="pages/HTab/HTabActiveStyle"/>
+<PreviewBtn path="preview-vue2/#/pages/HTab/HTabActiveStyle"/>
 
 ::: code-group
 <<< @/for-vue2/src/pages/HTab/HTabActiveStyle.vue#template {9-13,22-27,36-41,51-57,66-72,87-92,106-111,125-136 vue} [template]
@@ -81,7 +81,7 @@ outline: deep
 - `labelStyle`和`activeLabelStyle`选项卡中文本和其选中后的样式
 - `imageStyle`和`activeImageStyle`选项卡中图片和其选中后的样式
 
-<PreviewBtn path="pages/HTab/HTabItemStyle"/>
+<PreviewBtn path="preview-vue2/#/pages/HTab/HTabItemStyle"/>
 
 ::: code-group
 <<< @/for-vue2/src/pages/HTab/HTabItemStyle.vue#template {18-24,41-47,63-69,84-85,100-101 vue} [template]
@@ -94,7 +94,8 @@ outline: deep
 - `HTab`默认插槽：标签栏的内容，可以和`HTabItem`穿插使用
 - `HTab`具名插槽`active`：自定义滑块的内容
 - `HTabItem`默认插槽：不使用属性指定的图片和文本，使用自定义选项卡内容
-  <PreviewBtn path="pages/HTab/HTabSlots"/>
+
+  <PreviewBtn path="preview-vue2/#/pages/HTab/HTabSlots"/>
 
 ::: code-group
 <<< @/for-vue2/src/pages/HTab/HTabSlots.vue#template {7-47,54-70,77-86 vue} [template]
@@ -109,7 +110,7 @@ outline: deep
 - `scrollCenter`：是否开启选中项自动滚动至中间功能
 - `showActive`：是否开启滑块
 
-<PreviewBtn path="pages/HTab/HTabStop"/>
+<PreviewBtn path="preview-vue2/#/pages/HTab/HTabStop"/>
 
 ::: code-group
 <<< @/for-vue2/src/pages/HTab/HTabStop.vue#template {9,26,43,60 vue} [template]
@@ -119,20 +120,20 @@ outline: deep
 
 ## Props
 
-| 属性名                | 描述                                |            类型             |            可选值             |     默认值     |
-| :-------------------- | :---------------------------------- | :-------------------------: | :---------------------------: | :------------: |
-| value/v-model         | 当前选中`HTabItem`所绑定的 value 值 | `String` `Number` `Boolean` |               -               |       -        |
-| direction             | 标签栏的方向                        |          `String`           |              x,y              |       y        |
-| width                 | 标签栏的宽度                        |      `String` `Number`      |               -               |  160rpx/100vw  |
-| height                | 标签栏的高度                        |      `String` `Number`      |               -               | 1200rpx/160rpx |
-| activeAspect          | 滑块的朝向                          |          `String`           | none,left, right, top, bottom |      none      |
-| activeDuration        | 滑块过渡时间(单位:ms)               |          `Number`           |               -               |      500       |
-| activeBackgroundColor | 滑块的背景颜色                      |          `String`           |               -               |    #FFFFFF     |
-| activeStyle           | 滑块的样式                          |      `String` `Object`      |               -               |       -        |
-| scrollAnimation       | 是否开启滚动动画                    |          `Boolean`          |               -               |      true      |
-| activeAnimation       | 是否开启滑块动画                    |          `Boolean`          |               -               |      true      |
-| scrollCenter          | 是否开启选中项自动滚动至中间功能    |          `Boolean`          |               -               |      true      |
-| showActive            | 是否开启滑块                        |          `Boolean`          |               -               |      true      |
+| 属性名                | 描述                             |            类型             |            可选值             |     默认值     |
+| :-------------------- | :------------------------------- | :-------------------------: | :---------------------------: | :------------: |
+| value/v-model         | 当前选中`HTabItem`所绑定的值     | `string` `number` `boolean` |               -               |       -        |
+| direction             | 标签栏的方向                     |          `string`           |              x,y              |       y        |
+| width                 | 标签栏的宽度                     |      `string` `number`      |               -               |  160rpx/100vw  |
+| height                | 标签栏的高度                     |      `string` `number`      |               -               | 1200rpx/160rpx |
+| activeAspect          | 滑块的朝向                       |          `string`           | none,left, right, top, bottom |      none      |
+| activeDuration        | 滑块过渡时间(单位:ms)            |          `number`           |               -               |      500       |
+| activeBackgroundColor | 滑块的背景颜色                   |          `string`           |               -               |    #FFFFFF     |
+| activeStyle           | 滑块的样式                       |      `string` `object`      |               -               |       -        |
+| scrollAnimation       | 是否开启滚动动画                 |          `boolean`          |               -               |      true      |
+| activeAnimation       | 是否开启滑块动画                 |          `boolean`          |               -               |      true      |
+| scrollCenter          | 是否开启选中项自动滚动至中间功能 |          `boolean`          |               -               |      true      |
+| showActive            | 是否开启滑块                     |          `boolean`          |               -               |      true      |
 
 ## Events
 
@@ -151,18 +152,18 @@ outline: deep
 
 | 属性名           | 描述                 |            类型             | 可选值 |    默认值    |
 | :--------------- | :------------------- | :-------------------------: | :----: | :----------: |
-| value            | 绑定值               | `String` `Number` `Boolean` |   -    |      -       |
-| direction        | 图片和文本的排列方向 |          `String`           | x , y  |      y       |
-| label            | 文本内容             |          `String`           |   -    |      -       |
-| activeLabel      | 选中后的文本内容     |          `String`           |   -    |   `label`    |
-| labelStyle       | 文本内容的样式       |      `String` `Object`      |   -    |      -       |
-| activeLabelStyle | 选中后文本内容的样式 |      `String` `Object`      |   -    | `labelStyle` |
-| image            | 图片链接             |          `String`           |   -    |      -       |
-| activeImage      | 选中后的图片链接     |          `String`           |   -    |   `image`    |
-| imageStyle       | 图片的样式           |      `String` `Object`      |   -    |      -       |
-| activeImageStyle | 选中后的图片的样式   |      `String` `Object`      |   -    | `imageStyle` |
-| styles           | 选项卡的样式         |      `String` `Object`      |   -    |      -       |
-| activeStyle      | 选中后选项卡的样式   |      `String` `Object`      |   -    |   `styles`   |
+| value            | 绑定值               | `string` `number` `boolean` |   -    |      -       |
+| direction        | 图片和文本的排列方向 |          `string`           | x , y  |      y       |
+| label            | 文本内容             |          `string`           |   -    |      -       |
+| activeLabel      | 选中后的文本内容     |          `string`           |   -    |   `label`    |
+| labelStyle       | 文本内容的样式       |      `string` `object`      |   -    |      -       |
+| activeLabelStyle | 选中后文本内容的样式 |      `string` `object`      |   -    | `labelStyle` |
+| image            | 图片链接             |          `string`           |   -    |      -       |
+| activeImage      | 选中后的图片链接     |          `string`           |   -    |   `image`    |
+| imageStyle       | 图片的样式           |      `string` `object`      |   -    |      -       |
+| activeImageStyle | 选中后的图片的样式   |      `string` `object`      |   -    | `imageStyle` |
+| styles           | 选项卡的样式         |      `string` `object`      |   -    |      -       |
+| activeStyle      | 选中后选项卡的样式   |      `string` `object`      |   -    |   `styles`   |
 
 ## Item Events
 

@@ -1,4 +1,6 @@
 module.exports = {
+  header: `# h-uni 更新日志
+h-uni 所有版本的变更记录都记录在此页面 `,
   types: [
     { "type": "feat", "section": "✨ Features | 新功能" },
     { "type": "fix", "section": "🐛 Bug Fixes | Bug 修复" },
@@ -13,4 +15,4 @@ module.exports = {
     { "type": "chore", "section": "🚀 Chore | 构建/工程依赖/工具" },
     { "type": "ci", "section": "👷 Continuous Integration | CI 配置" }
   ]
-}
+};

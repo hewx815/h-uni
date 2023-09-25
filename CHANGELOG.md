@@ -1,6 +1,85 @@
-# Changelog
+# h-uni 更新日志
+h-uni 所有版本的变更记录都记录在此页面 
+### [1.9.3](https://github.com/hewx815/h-uni/compare/v1.9.2...v1.9.3) (2023-09-25)
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 👷 Continuous Integration | CI 配置
+
+* 修复转换vue文件 setup 属性bug，发布流程打包性能优化 ([81e001a](https://github.com/hewx815/h-uni/commit/81e001a50ca4f6943e28e14977ea264932ab5543))
+
+### [1.9.2](https://github.com/hewx815/h-uni/compare/v1.9.1...v1.9.2) (2023-09-24)
+
+
+### ✏️ Documentation | 文档
+
+* 主题变更 ([ebab7b3](https://github.com/hewx815/h-uni/commit/ebab7b3c61d29f82d51ad330d9dc31eab997e54b))
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 修复服务端运行build命令错误 ([87b781c](https://github.com/hewx815/h-uni/commit/87b781cb79def35ec4ef8d00c28f1f4e7c08bdd7))
+
+### [1.9.1](https://github.com/hewx815/h-uni/compare/v1.9.0...v1.9.1) (2023-09-22)
+
+
+### ✏️ Documentation | 文档
+
+* vitepress 升级 1.0.0-rc.15，更改文档代码块主题 ([966dd65](https://github.com/hewx815/h-uni/commit/966dd65bdb8b077f8231a72ead3b03791f139ab6))
+
+## [1.9.0](https://github.com/hewx815/h-uni/compare/v1.9.0-alpha.1...v1.9.0) (2023-09-21)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 更换 vue2 中cssConverter用法 ([927f5dd](https://github.com/hewx815/h-uni/commit/927f5dd213774ec0b3b0110e5e4676f409a6752e))
+* vite-plugin-h-uni-build 无法启动，eslint 忽略 js 文件 ([c99893a](https://github.com/hewx815/h-uni/commit/c99893a182338e3348db8bbf8fe84937798ff652))
+
+
+### ✏️ Documentation | 文档
+
+* 修改更新日志header ([e28fd5f](https://github.com/hewx815/h-uni/commit/e28fd5f41d034749179a8919954fe41618585184))
+
+
+### ✨ Features | 新功能
+
+* cssConverter 补充函数：cssConverterString、cssConverterObject ([dc949df](https://github.com/hewx815/h-uni/commit/dc949dfbf72b7799efea9de86f9c528300da41b4))
+* vue3 新增HTab组件，文档更新 ([7a999cf](https://github.com/hewx815/h-uni/commit/7a999cfda25ba3156ec60316634acd11af63a169))
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 更改分支名称 ([d09a2be](https://github.com/hewx815/h-uni/commit/d09a2beabf280aa3b210a9c83059cfbb0750fa89))
+
+## [1.9.0-alpha.1](https://github.com/hewx815/h-uni/compare/v1.9.0-alpha.0...v1.9.0-alpha.1) (2023-09-13)
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 发布命令错误修复 ([edf1461](https://github.com/hewx815/h-uni/commit/edf14615380db3773038f23d4d6dd085640de983))
+
+## [1.9.0-alpha.0](https://github.com/hewx815/h-uni/compare/v1.8.0...v1.9.0-alpha.0) (2023-09-13)
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* 移除多余tag，yarn.lock 更新 ([72704a2](https://github.com/hewx815/h-uni/commit/72704a2d36bd37c458d7f457741ba6de652ed78c))
+
+
+### 👷 Continuous Integration | CI 配置
+
+* 增加 build:npm 只打包npm包的脚本，release 脚本不再执行站点打包 ([f0a7a18](https://github.com/hewx815/h-uni/commit/f0a7a18d307d925ca0f2a3896bf26fa7d01de58a))
+
+
+### ✨ Features | 新功能
+
+* for-vue3 Hhttp、cssConverter 功能 ([a88f32d](https://github.com/hewx815/h-uni/commit/a88f32d691a8e9ed48ad14f3acd620acdb296d70))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 短横线命名组件缺少组件内容 ([cc7975e](https://github.com/hewx815/h-uni/commit/cc7975e12acd5608cf86d4f457c1a7f818a85db9))
+* vue2 TypeHelper 修复重名组件类型丢失 ([abbce38](https://github.com/hewx815/h-uni/commit/abbce38ee022df02b174e9c856d2baef203664a9))
+* vue2 TypeHelper 组件 事件方法类型提示 ([cab8c89](https://github.com/hewx815/h-uni/commit/cab8c89d83eea334b00b18b25b517aaf602f31c6))
 
 ## [1.8.0](https://github.com/hewx815/h-uni/compare/v1.7.0...v1.8.0) (2023-09-02)
 

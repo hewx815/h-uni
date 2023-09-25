@@ -18,8 +18,8 @@ const main = async () => {
 
   const data = execSync('git rev-parse --abbrev-ref HEAD');
 
-  if (String(data).trim() !== 'production') {
-    log(`只能在production分支进行升级部署
+  if (String(data).trim() !== 'pro') {
+    log(`只能在 pro 分支进行升级部署
 
     当前分支:${String(data)}`);
     log('本次升级已退出,无任何更改');
@@ -81,9 +81,9 @@ const main = async () => {
   }
 
   // 打包
-  log('开始打包');
-  spawnSync('yarn build', { shell: true, stdio: 'inherit' });
-  log('打包结束');
+  log('开始构建npm包');
+  spawnSync('yarn build:npm', { shell: true, stdio: 'inherit' });
+  log('构建npm包结束');
 
   // 发布
   log('开始发布');

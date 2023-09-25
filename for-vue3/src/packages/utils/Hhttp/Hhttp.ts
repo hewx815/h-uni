@@ -1,11 +1,3 @@
-export default class Hhttp {
-  url: string;
+import Hhttp from '@2/utils/Hhttp/Hhttp';
 
-  constructor(
-    options: {
-      url: string;
-    },
-  ) {
-    this.url = options.url;
-  }
-}
+export default Hhttp;

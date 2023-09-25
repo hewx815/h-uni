@@ -10,6 +10,7 @@ export default [
     text: 'for-vue3',
     collapsed: false,
     items: [
+      { text: 'HTab 标签栏', link: '/for-vue3/components/HTab' },
     ],
   },
 ];

@@ -1,22 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from 'fs';
 import path from 'path';
 
 export const err = (message: unknown) => {
   throw new Error(`
-[h-uni-build]:${message}
+[h-uni-build]:${String(message)}
 `);
 };
 export const error = (message: unknown) => {
   // eslint-disable-next-line no-console
   console.error(`
-[h-uni-build]:${message}
+[h-uni-build]:${String(message)}
 `);
 };
 export const log = (message: unknown) => {
   // eslint-disable-next-line no-console
   console.log(`
-[h-uni-build]:${message}
+[h-uni-build]:${String(message)}
 `);
 };
 

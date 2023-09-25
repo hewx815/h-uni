@@ -4,7 +4,7 @@ const isExit = process.argv[3];
 // eslint-disable-next-line node/no-extraneous-require
 const clipboardy = require('clipboardy');
 const { spawn } = require('child_process');
-const { log, err } = require('../utils');
+const { log, err } = require('./utils');
 
 // 打开
 const run = () => new Promise((resolve, reject) => {

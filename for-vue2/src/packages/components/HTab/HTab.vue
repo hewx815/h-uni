@@ -37,7 +37,6 @@
 <script lang="ts">
 import { defineComponent } from '@vue/runtime-dom';
 import HTabItem from '../HTabItem/HTabItem.vue';
-import { cssConverter } from '../../utils/index';
 
 type HTabItemType = InstanceType<typeof HTabItem>;
 
@@ -224,16 +223,15 @@ export default defineComponent({
       const top = item.top - this.containerRect.top;
       const left = item.left - this.containerRect.left;
 
-      return cssConverter({
+      return this.$h.cssConverterString({
         width: `${width}px`,
         height: `${height}px`,
         top: `${top}px`,
         left: `${left}px`,
         transition: `${this.activeAnimation ? (this.activeDuration / 1000) : 0}s`,
         '--h-tab-active-background': this.activeBackgroundColor,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ...cssConverter(this.activeStyle, 'object') as Record<string, any>,
-      }, 'string');
+        ...this.$h.cssConverterObject(this.activeStyle),
+      });
     },
 
   },

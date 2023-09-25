@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
 const { spawn } = require('child_process');
-const { err, log } = require('../utils');
+const { err, log } = require('./utils.js');
 
 const projectPath = process.argv[2];
 const isExit = process.argv[3];

@@ -1,5 +1,3 @@
-/* eslint-disable func-names */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { spawn } from 'child_process';
 import type { Config } from './defineConfig';
 import {
@@ -14,7 +12,7 @@ export default async function (config: Config, error: unknown) {
 
   // openDevTools
   if (openDevTools) {
-    const platFrom: any = process.env.UNI_PLATFORM;
+    const platFrom = process.env.UNI_PLATFORM;
 
     if (platFrom === 'h5') {
       log(`
@@ -36,7 +34,7 @@ export default async function (config: Config, error: unknown) {
       err(`缺少openDevTools.paths.${platFrom}配置`);
       return;
     }
-    const devToolPath = (openDevTools.paths as any)[platFrom];
+    const devToolPath = (openDevTools.paths as any)[platFrom as string];
     if (!validPath(devToolPath)) {
       err(`没有这样的文件夹：${devToolPath}`);
       return;

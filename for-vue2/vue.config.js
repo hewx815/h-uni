@@ -9,6 +9,7 @@ const huniBuildConfig = defineConfigHuniBuild({
   openDevTools: {
     paths: {
       'mp-weixin': 'D:\\wechatDev\\微信web开发者工具',
+      'mp-baidu': 'D:\\baiduDev\\swan-ide-gui',
     },
     exitClose: true,
   },

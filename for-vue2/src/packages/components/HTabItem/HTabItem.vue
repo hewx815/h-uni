@@ -50,7 +50,6 @@
 */
 import { defineComponent } from '@vue/runtime-dom';
 import HTab from '../HTab/HTab.vue';
-import { cssConverter } from '../../utils/index';
 
 type HTabType = InstanceType<typeof HTab>;
 
@@ -70,10 +69,6 @@ export default defineComponent({
     label: {
       type: [String, Number],
       default: '',
-    },
-    label1: {
-      type: [String, Number],
-      default: '1',
     },
     activeLabel: {
       type: String,
@@ -115,9 +110,7 @@ export default defineComponent({
   data() {
     return {
       vueId: '',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function
       getHTabDirectionCopy: (): typeof this.value => '',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function
       getHTabValueCopy: (): typeof this.value => '',
     };
   },
@@ -129,34 +122,28 @@ export default defineComponent({
       return this.getHTabDirectionCopy();
     },
     itemStyles() {
-      return cssConverter({
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ...cssConverter(this.styles, 'object') as Record<string, any>,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ...cssConverter(this.HTabValue === this.value ? this.activeStyle : {}, 'object') as Record<string, any>,
-      }, 'string');
+      return this.$h.cssConverterString({
+        ...this.$h.cssConverterObject(this.styles),
+        ...this.$h.cssConverterObject(this.HTabValue === this.value ? this.activeStyle : {}),
+      });
     },
     imageSrc() {
       return this.HTabValue === this.value && this.activeImage ? this.activeImage : this.image;
     },
     imageStyles() {
-      return cssConverter({
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ...cssConverter(this.imageStyle, 'object') as Record<string, any>,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ...cssConverter(this.HTabValue === this.value ? this.activeImageStyle : {}, 'object') as Record<string, any>,
-      }, 'string');
+      return this.$h.cssConverterString({
+        ...this.$h.cssConverterObject(this.imageStyle),
+        ...this.$h.cssConverterObject(this.HTabValue === this.value ? this.activeImageStyle : {}),
+      });
     },
     labelText() {
       return this.HTabValue === this.value && this.activeLabel ? this.activeLabel : this.label;
     },
     labelStyles() {
-      return cssConverter({
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ...cssConverter(this.labelStyle, 'object') as Record<string, any>,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ...cssConverter(this.HTabValue === this.value ? this.activeLabelStyle : {}, 'object') as Record<string, any>,
-      }, 'string');
+      return this.$h.cssConverterString({
+        ...this.$h.cssConverterObject(this.labelStyle),
+        ...this.$h.cssConverterObject(this.HTabValue === this.value ? this.activeLabelStyle : {}),
+      });
     },
     itemClassName() {
       return `h_tab_item-tab-${this.HTabDirection} h_tab_item-${this.direction}`;

@@ -1,36 +1,29 @@
 :root {
   --color: rgb(95, 95, 205);
   --color-light: rgb(115, 115, 205);
-  --color-lighter: rgb(145, 145, 205);
   --color-dark: rgb(75, 75, 205);
-  --color-darker: rgb(45, 45, 205);
 
-  --vp-c-green: var(--color);
-  --vp-c-green-light: var(--color-light);
-  --vp-c-green-lighter: var(--color-lighter);
-  --vp-c-green-dark: var(--color-dark);
-  --vp-c-green-darker: var(--color-darker);
+  --color-scrollbar-thumb: rgb(208, 208, 208);
+  --color-scrollbar-thumb-hover: rgb(219, 219, 219);
 
-  --vp-c-brand: var(--vp-c-green);
-  --vp-c-brand-light: var(--vp-c-green-light);
-  --vp-c-brand-lighter: var(--vp-c-green-lighter);
-  --vp-c-brand-dark: var(--vp-c-green-dark);
-  --vp-c-brand-darker: var(--vp-c-green-darker);
+  --vp-c-brand-1: var(--color);
+  --vp-c-brand-2: var(--color-dark);
+  --vp-c-brand-3: var(--color);
 
-  --shadow-1: rgba(0, 0, 0, 0.2);
-  --shadow-2: rgba(0, 0, 0, 0.14);
-  --shadow-3: rgba(0, 0, 0, 0.12);
+  /* 代码块背景 */
+  --vp-code-block-bg: rgba(200, 200, 200, 0.14);
 
-  --vp-code-block-bg: #292b30;
+  /* 中间内容最大宽度 */
   --vp-layout-max-width: 1460px;
 }
 
-.dark {
-  --shadow-1: rgba(255, 255, 255, 0.4);
-  --shadow-2: rgba(255, 255, 255, 0.34);
-  --shadow-3: rgba(255, 255, 255, 0.32);
 
-  --vp-code-block-bg: #161618;
+.dark {
+  /* 代码块背景 */
+  --vp-code-block-bg: rgba(73, 73, 147, .1);
+
+  --color-scrollbar-thumb: rgb(126, 126, 126);
+  --color-scrollbar-thumb-hover: rgb(95, 95, 95);
 }
 
 .content-container {
@@ -42,34 +35,34 @@ table tbody tr {
   background-color: rgba(0, 0, 0, 0) !important;
 }
 
-/* 滚动条*/
+/* 代码块*/
 .vp-doc [class*="language-"] pre {
   max-height: 500px;
 }
-/* 滚动条*/
+
+/* 代码块滚动条*/
 .vp-doc [class*="language-"] pre:hover::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
-/* 滚动条*/
+
+/* 代码块滚动条*/
 .vp-doc [class*="language-"] pre::-webkit-scrollbar {
   width: 0px;
   height: 0px;
-  background-color: rgba(0, 0, 0, 0);
-}
-/* 滚动条滑块 */
-.vp-doc [class*="language-"] pre::-webkit-scrollbar-thumb {
-  background-color: rgb(95, 95, 95);
-}
-.vp-doc [class*="language-"] pre::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(126, 126, 126);
-}
-/* 滚动条轨道 */
-.vp-doc [class*="language-"] pre::-webkit-scrollbar-track-piece {
-  background-color: rgba(0, 0, 0, 0);
 }
 
-/* 滚动条轨道 */
+/* 代码块滚动条滑块 */
+.vp-doc [class*="language-"] pre::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb-hover)
+}
+
+/* 代码块滚动条滑块选中 */
+.vp-doc [class*="language-"] pre::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-scrollbar-thumb)
+}
+
+/* 代码块滚动条折角 */
 .vp-doc [class*="language-"] pre::-webkit-scrollbar-corner {
   display: none;
 }

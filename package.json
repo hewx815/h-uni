@@ -1,6 +1,6 @@
 {
   "name": "h-uni",
-  "version": "1.8.0",
+  "version": "1.9.3",
   "description": "uniapp 工具库，组件库",
   "author": "hewx",
   "license": "ISC",
@@ -31,6 +31,7 @@
     "installs": "node ./cli/scripts/installs.js",
     "dev": " node ./cli/scripts/dev.js",
     "build": "node  ./cli/scripts/build.js",
+    "build:npm": "node  ./cli/scripts/build.js --npm",
     "release": "node  ./cli/scripts/release.js",
     "commit": "cz"
   },
@@ -50,7 +51,7 @@
     "sass-loader": "^13.3.2",
     "standard-version": "^9.5.0",
     "typescript": "^5.1.6",
-    "vitepress": "^1.0.0-rc.4",
+    "vitepress": "^1.0.0-rc.15",
     "vue-tsc": "^1.8.8",
     "yarn": "^1.22.19"
   },

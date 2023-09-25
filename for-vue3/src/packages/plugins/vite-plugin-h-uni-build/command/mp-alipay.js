@@ -3,7 +3,7 @@ const isExit = process.argv[3];
 const { spawn } = require('child_process');
 // eslint-disable-next-line node/no-extraneous-require
 const { minidev } = require('minidev');
-const { err } = require('../utils');
+const { err } = require('./utils');
 
 const run = () => minidev.startIde({
   project: projectPath,

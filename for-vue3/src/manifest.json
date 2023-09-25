@@ -81,7 +81,7 @@
   },
   "h5": {
     "router": {
-      "base": "/preview-vue2/"
+      "base": "/preview-vue3/"
     }
   }
 }
