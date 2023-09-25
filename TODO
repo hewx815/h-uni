@@ -16,11 +16,6 @@
 1. uniapp 内置组件的类型支持
 2. uni-uni 组件类型支持
 
-## TODO Vue3 HTab 组件
-
-采用vue3+组合式api+ts 对组件重构，保留vue2中的属性用法
-
-
 ## TODO vue3 HWaterFall 组件
 
 ## TODO vue3 HDropDown 组件
