@@ -72,8 +72,6 @@ export default async function constructorProject(
         xmlStr = await readFile(oldPath, 'utf-8');
       }
 
-      await writeFile(oldPath, xmlStr);
-
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const xmlObj = await parseStringPromise(xmlStr);
 
@@ -83,7 +81,10 @@ export default async function constructorProject(
       xmlObj.manifest.$.package = applicationId;
       const newXmlStr = builder.buildObject(xmlObj);
 
-      await writeFile(path, newXmlStr);
+      await Promise.all([
+        writeFile(oldPath, newXmlStr),
+        writeFile(path, newXmlStr),
+      ]);
     } catch (e) {
       err('修改AndroidManifest.xml文件出错', e, 'android');
     }
@@ -95,8 +96,13 @@ export default async function constructorProject(
   ) {
     try {
       const path = resolve(projectPath, './simpleDemo/build.gradle');
+      const oldPath = resolve(projectPath, './simpleDemo/build_old.gradle');
 
       let gradleStr = await readFile(path, 'utf-8');
+
+      if (gradleStr.length === 0 && checkPathExists(oldPath)) {
+        gradleStr = await readFile(oldPath, 'utf-8');
+      }
 
       const getText = (key: keyof ChangeBuildGradleOptions) => {
         if (key === 'storeFile') {
@@ -127,7 +133,10 @@ export default async function constructorProject(
         );
       });
 
-      await writeFile(path, gradleStr);
+      await Promise.all([
+        writeFile(oldPath, gradleStr),
+        writeFile(path, gradleStr),
+      ]);
     } catch (e) {
       err('修改build.gradle文件出错', e, 'android');
     }
@@ -156,8 +165,13 @@ export default async function constructorProject(
   ) {
     try {
       const path = resolve(projectPath, './simpleDemo/src/main/assets/data/dcloud_control.xml');
+      const oldPath = resolve(projectPath, './simpleDemo/src/main/assets/data/dcloud_control_old.xml');
 
-      const oldXmlStr = await readFile(path, 'utf-8');
+      let oldXmlStr = await readFile(path, 'utf-8');
+
+      if (oldXmlStr.length === 0 && checkPathExists(oldPath)) {
+        oldXmlStr = await readFile(oldPath, 'utf-8');
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const xmlObj = await parseStringPromise(oldXmlStr);
@@ -169,7 +183,10 @@ export default async function constructorProject(
 
       const xmlStr = builder.buildObject(xmlObj);
 
-      await writeFile(path, xmlStr);
+      await Promise.all([
+        writeFile(oldPath, xmlStr),
+        writeFile(path, xmlStr),
+      ]);
     } catch (e) {
       err('修改dcloud_control.xml文件出错', e, 'android');
     }

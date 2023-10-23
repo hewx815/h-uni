@@ -91,14 +91,8 @@ export default async function androidServer(argvs: Argvs) {
     listenServer(projectPath, configPath, resourceDir, () => {
       if (!running) {
         listenning = false;
-        androidServer(argvs)
-          // eslint-disable-next-line no-process-exit
-          .then(() => process.exit(0))
-          .catch((e) => {
-            err('', e, 'android');
-            // eslint-disable-next-line no-process-exit
-            process.exit(1);
-          });
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        androidServer(argvs);
       }
     });
   }
