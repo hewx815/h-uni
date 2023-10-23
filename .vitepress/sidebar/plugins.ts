@@ -5,6 +5,7 @@ export default [
     items: [
       { text: 'vue-cli-plugin-h-uni-build', link: '/for-vue2/plugins/vue-cli-plugin-h-uni-build' },
       { text: 'TypeHelper', link: '/for-vue2/plugins/TypeHelper' },
+      { text: 'APPDevTool', link: '/for-vue2/plugins/APPDevTool' },
     ],
   },
   {

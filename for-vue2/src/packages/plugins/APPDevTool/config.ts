@@ -1,9 +1,74 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-multiple-empty-lines */
-type Icon = {
+export type Icon = {
+  /**
+   * 默认
+   */
+  dpi: IconOption;
+
+  /**
+   * 低密度
+   */
+  ldpi?: IconOption;
+
+  /**
+   * 中等密度
+   */
+  mdpi?: IconOption;
+
+  /**
+   * 高密度
+   */
+  hdpi?: IconOption;
+
+  /**
+   * 超高密度
+   */
+  xhdpi?: IconOption;
+
+  /**
+   * 超超高密度
+   */
+  xxhdpi?: IconOption;
+
+  /**
+   * 超超超高密度
+   */
+  xxxhdpi?: IconOption;
+
+  /**
+   * 无缩放
+   */
+  nohdpi?: IconOption;
+};
+
+export type IconOption = {
   icon: string;
   push: string;
   splash: string;
+};
+
+export type Signing = {
+  /**
+   * 签名别名
+  */
+  keyAlias: string;
+
+  /**
+   * 签名密码
+  */
+  keyPassword: string;
+
+  /**
+   * 证书文件路径，相对路径或绝对路径
+  */
+  storeFile: string;
+
+  /**
+   * 证书密码
+  */
+  storePassword: string;
 };
 
 export interface Config {
@@ -24,12 +89,12 @@ export interface Config {
     /**
      * Android SDK 路径
      */
-    AndroidSdkPath?: string;
+    androidSdkPath?: string;
 
     /**
      * Java 安装路径
      */
-    JavaPath?: string;
+    javaPath?: string;
 
     /**
      * appKey
@@ -61,27 +126,7 @@ export interface Config {
     /**
      * 签名选项，默认使用公共测试证书
     */
-    signing?: {
-      /**
-       * 签名别名
-      */
-      keyAlias: string;
-
-      /**
-       * 签名密码
-      */
-      keyPassword: string;
-
-      /**
-       * 证书文件路径，相对路径或绝对路径
-      */
-      storeFile: string;
-
-      /**
-       * 证书密码
-      */
-      storePassword: string;
-    };
+    signing?: Signing;
 
     /**
      * 应用图标配置

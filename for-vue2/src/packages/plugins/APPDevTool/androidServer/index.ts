@@ -22,13 +22,13 @@ export default async function androidServer(argvs: Argvs) {
 
   const { config: userConfig, path: configPath } = await getConfig(typeof argvs.configPath === 'string' ? argvs.configPath : undefined);
 
-  const AndroidSdkPath = userConfig.android?.AndroidSdkPath;
+  const androidSdkPath = userConfig.android?.androidSdkPath;
 
-  if (AndroidSdkPath) process.env.ANDROID_SDK_ROOT = AndroidSdkPath;
+  if (androidSdkPath) process.env.ANDROID_SDK_ROOT = androidSdkPath;
 
-  const JavaPath = userConfig.android?.JavaPath;
+  const javaPath = userConfig.android?.javaPath;
 
-  if (JavaPath) process.env.JAVA_HOME = JavaPath;
+  if (javaPath) process.env.JAVA_HOME = javaPath;
 
   if (!process.env.ANDROID_SDK_ROOT) return err('未发现 Android SDK 路径', '', 'android');
 
