@@ -1,5 +1,12 @@
 # h-uni 更新日志
 h-uni 所有版本的变更记录都记录在此页面 
+### [1.9.4](https://github.com/hewx815/h-uni/compare/v1.9.3...v1.9.4) (2023-10-08)
+
+
+### ✏️ Documentation | 文档
+
+* 添加百度站点验证 ([3787e7e](https://github.com/hewx815/h-uni/commit/3787e7e08f56a1ef96453568c2adf1883bc97bc4))
+
 ### [1.9.3](https://github.com/hewx815/h-uni/compare/v1.9.2...v1.9.3) (2023-09-25)
 
 

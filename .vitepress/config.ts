@@ -13,6 +13,10 @@ export default defineConfig({
   title: 'h-uni',
   lastUpdated: true,
   cleanUrls: true,
+  head: [
+    // 百度
+    ['meta', { name: 'baidu-site-verification', content: 'codeva-8gKQSKSvPS' }],
+  ],
   // Vite config options
   vite: {
     resolve: {
