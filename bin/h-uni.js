@@ -12,9 +12,9 @@ const argv = process.argv[2];
 // 输入可用命令参数
 const help = () => {
   const columns = Object.keys(argvs).map((key) => ({
-    Parameter: key,
+    命令: key,
     // eslint-disable-next-line import/namespace
-    Description: argvs[key].description,
+    描述: argvs[key].description,
   }));
 
   const content = columnify(columns, { minWidth: 30 });
@@ -29,6 +29,7 @@ const help = () => {
   // eslint-disable-next-line no-console
   console.log(`
 [h-uni]：可用命令如下：
+
 ${content}
 
 更多信息：${homeUrl}

@@ -9,5 +9,5 @@
 
 export { default as initHUniBuild } from './init-h-uni-build.js';
 export { default as version } from './version.js';
-export { default as V } from './version.js';
 export { default as v } from './version.js';
+export { default as APPDevTool } from './APPDevTool.js';

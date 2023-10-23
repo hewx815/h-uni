@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "target": "ES2022",
+    "baseUrl": "./",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "module": "ES2022",
+    "types": ["node"],
+    "paths": {}
+  },
+  "ts-node": {
+    "esm": true
+  }
+}

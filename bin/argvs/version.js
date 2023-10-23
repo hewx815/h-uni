@@ -15,6 +15,10 @@ export default {
 
     const nowVersion = packageJson.version;
 
-    console.log(`[h-uni]:当前版本：${nowVersion}`);
+    console.log(`
+[h-uni]:
+
+当前版本：${nowVersion}
+`);
   },
 };
