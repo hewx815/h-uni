@@ -45,7 +45,7 @@ npx h-uni
 
 离线打包依赖于 `Android Studio`，因此必须安装。
 
-安装教程参考：[Android Studio 安装教程](../../../../../docs/course/AndroidStudioInstall.md)
+安装教程参考：[Android Studio 安装教程](/docs/course/AndroidStudioInstall.md)
 
 
 ## 启动
