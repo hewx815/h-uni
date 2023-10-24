@@ -1,5 +1,25 @@
 # h-uni 更新日志
 h-uni 所有版本的变更记录都记录在此页面 
+## [1.10.0-alpha.0](https://github.com/hewx815/h-uni/compare/v1.9.4...v1.10.0-alpha.0) (2023-10-24)
+
+
+### ✨ Features | 新功能
+
+* v2 APPDevTool 安卓部分 功能 ([0543309](https://github.com/hewx815/h-uni/commit/0543309f0a245b8b771d9904454ed89d8e73ec76))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* aPPDevTool 修改文件丢失 ([5f88475](https://github.com/hewx815/h-uni/commit/5f88475c432c9fb7d96bb17b69bc6f1e30a3dc21))
+
+
+### ✏️ Documentation | 文档
+
+* 新增Android Studio windows 安装教程 ([1c1ddbc](https://github.com/hewx815/h-uni/commit/1c1ddbcf5487ac62d3b7d6b6020e9defa40c45b4))
+* 支持性表格重构代码 ([8ae6034](https://github.com/hewx815/h-uni/commit/8ae60348cc3726a97acf17045ea9ab57b64533f2))
+* aPPDevTool 基础文档 ([271787b](https://github.com/hewx815/h-uni/commit/271787b08419a0be5d388a6ece49aba4fe8b5b12))
+* vitepress 重构 ([0aed9ab](https://github.com/hewx815/h-uni/commit/0aed9abe390c74be2b8bc9472a64f99aee1ffe2c))
+
 ### [1.9.4](https://github.com/hewx815/h-uni/compare/v1.9.3...v1.9.4) (2023-10-08)
 
 
