@@ -9,7 +9,7 @@
       </div>
       <img
         class="btn_img"
-        src="../static/eye.svg"
+        :src="eyeSvg"
       >
     </div>
   </div>
@@ -23,6 +23,7 @@
  * @property {String} path 预览的路径
 */
 import { getCurrentInstance } from 'vue';
+import eyeSvg from '../public/svgs/eye.svg';
 
 const props = defineProps({
   path: {

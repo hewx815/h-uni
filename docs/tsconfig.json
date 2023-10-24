@@ -3,5 +3,6 @@
     "esModuleInterop": true,
     "module": "ES2022",
     "moduleResolution": "node"
-  }
+  },
+  "include": ["./.vitepress/**/*", "./**/*"]
 }

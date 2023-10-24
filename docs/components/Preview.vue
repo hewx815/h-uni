@@ -36,8 +36,8 @@
 import {
   computed, getCurrentInstance, ref, onMounted,
 } from 'vue';
-import closeSvg from '../static/close.svg';
-import phoneSvg from '../static/phone.svg';
+import closeSvg from '../public/svgs/close.svg';
+import phoneSvg from '../public/svgs/phone.svg';
 
 const props = defineProps({
   path: {

@@ -80,7 +80,7 @@ export const runStart = (devFolder, script) => {
 
   // eslint-disable-next-line no-console
   console.clear();
-  const child = exec('vitepress dev --host');
+  const child = exec('vitepress dev docs');
   child.stdout.on('data', (data) => {
     // eslint-disable-next-line no-console
     console.log(data);

@@ -157,7 +157,7 @@ const startBuild = async (isNpm) => {
       fs.renameSync(vue2PackagePath, newVue2PackagePath);
     }
 
-    spawnSync('npx vitepress build', { shell: true, stdio: 'inherit' });
+    spawnSync('npx vitepress build docs', { shell: true, stdio: 'inherit' });
 
     if (fs.existsSync(newVue2PackagePath)) {
       fs.renameSync(newVue2PackagePath, vue2PackagePath);

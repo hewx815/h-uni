@@ -16,7 +16,7 @@ dist
 cli/storage/index.json
 
 # vitepress cache
-.vitepress/cache
+docs/.vitepress/cache
 
 # yarn error log
 yarn-error.log
