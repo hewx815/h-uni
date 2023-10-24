@@ -37,6 +37,7 @@ export default defineConfig({
   // 路径重写
   rewrites: {
     ':for/src/packages/:type/:dd/README.md': ':for/:type/:dd.md',
+    'docs/course/:dd.md': 'course/:dd.md',
   },
   themeConfig: {
     editLink: {
@@ -55,6 +56,7 @@ export default defineConfig({
       { text: '组件库', link: '/for-vue2/components/HTab', activeMatch: '/components' },
       { text: '函数库', link: '/for-vue2/utils/Hhttp', activeMatch: '/utils' },
       { text: '插件库', link: '/for-vue2/plugins/vue-cli-plugin-h-uni-build', activeMatch: '/plugins' },
+      { text: '教程', link: '/course/AndroidStudioInstall', activeMatch: '/course' },
       { text: '更新日志', link: '/CHANGELOG' },
       {
         text: '网站导航',
@@ -200,6 +202,9 @@ export default defineConfig({
             },
           ],
         },
+      ],
+      '/course/': [
+        { text: 'Android Studio 安装教程', link: '/course/AndroidStudioInstall' },
       ],
     },
     // 链接图标

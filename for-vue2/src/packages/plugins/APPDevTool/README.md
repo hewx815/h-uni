@@ -9,12 +9,14 @@ outline: deep
 
 一个配置文件解决 APP 打包问题，开发者只需关注配置文件，其余的工作交给 `APPDevTool` 处理
 
-::: warning
-目前只支持 Android 平台，后续版本会增加 IOS 平台 支持
-:::
+
 ## 兼容性
 
 <SupportTable APP/>
+
+::: warning IOS
+目前只支持 Android 平台，后续版本会增加 IOS 平台 支持
+:::
 
 ## 安装
 
@@ -43,7 +45,7 @@ npx h-uni
 
 离线打包依赖于 `Android Studio`，因此必须安装。
 
-安装教程参考：[Android Studio 安装教程](#android-studio-安装教程)
+安装教程参考：[Android Studio 安装教程](../../../../../docs/course/AndroidStudioInstall.md)
 
 
 ## 启动
@@ -266,26 +268,5 @@ type IconOption = {
 
 
 ## 疑难解答
-
-### Android Studio 安装教程
-
-本文提供了 Android Studio 安装教程
-
-更多详细信息可参考官方教程： [安装 Android Studio](https://developer.android.google.cn/studio/install?hl=zh-cn#windows)
-
-**1. 下载 Android Studio 安装程序**
-
-前往 [Android Studio 官网](https://developer.android.google.cn/studio?hl=zh-cn) ，并点击 `下载 Android Studio Giraffe` 按钮。
-
-在弹出的条款及条件界面中阅读并在底部勾选 `我已阅读并同意上述条款及条件` ，点击 `下载 Android Studio Giraffe` 即可下载，网站会根据当前设备为你自动选择下载的版本。
-
-![home](/.vitepress/public/APPDevTool_AndroidStudio_Home.png)
-
-![accept](/.vitepress/public/APPDevTool_AndroidStudio_Accept.png)
-
-
-**2. 安装 Android Studio**
-
-打开下载的 Android Studio 安装程序 ，可参考以下内容完成安装
 
 
