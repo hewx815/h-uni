@@ -1,0 +1,22 @@
+# APPDevTool 待办事项
+
+- **`TODO`: 需要完成的任务或需要进一步处理的事项。**
+- **`FIXME`: 存在的 bug 或缺陷(不会导致功能上的错误)。**
+- **`BUG`: 存在的 bug 或缺陷(会导致功能上的错误)。**
+- **`HACK`: 临时性的解决方案或修补。**
+- **`XXX`: 需要特别注意或需要进一步检查的地方(优化点)。**
+
+## BUG `yarn h-uni APPDevTool` 进程未退出
+
+## BUG  发布版本 `inquirer` 依赖问题
+
+## BUG APPDevTool.config配置文件 是否 必须有
+
+## BUG androidSdkPath 效验
+
+## BUG javaPath 效验
+
+## BUG resourceDir 效验
+
+## XXX  resourceDir 默认值 根据uniapp版本动态变化 ，
+
