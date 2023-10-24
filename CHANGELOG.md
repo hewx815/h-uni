@@ -1,5 +1,12 @@
 # h-uni 更新日志
 h-uni 所有版本的变更记录都记录在此页面 
+## [1.10.0-alpha.1](https://github.com/hewx815/h-uni/compare/v1.10.0-alpha.0...v1.10.0-alpha.1) (2023-10-24)
+
+
+### ✏️ Documentation | 文档
+
+* 修复错误链接，图片 ([f8a43ce](https://github.com/hewx815/h-uni/commit/f8a43ceff03257a42656b9127263b3c409c4b3f3))
+
 ## [1.10.0-alpha.0](https://github.com/hewx815/h-uni/compare/v1.9.4...v1.10.0-alpha.0) (2023-10-24)
 
 
