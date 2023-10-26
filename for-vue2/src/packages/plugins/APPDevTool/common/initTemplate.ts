@@ -1,95 +1,52 @@
-import path from 'path';
+import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { type Argvs } from '../index.js';
 import {
   log, err, checkPathExists, copyDir,
 } from '../utils.js';
 
-// TODO:此处逻辑有问题，需重构
-export default function init(argvs: Argvs, platform: 'ios' | 'android' | 'all' = 'all') {
-  const baseIosTemplatePath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../template/ios');
-
-  const baseAndroidTemplatePath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../template/android');
-
-  const iosInitPath = path.resolve(process.cwd(), 'ios');
-
-  const androidInitPath = path.resolve(process.cwd(), 'android');
-
-  let userInitPath = process.cwd();
-
-  // 初始化初始化路径
-  if (argvs.initPath === true) {
-    err('initPath 参数需要指定路径');
-    return;
+function initProject(
+  templatePath: string,
+  initPath: string,
+) {
+  if (!checkPathExists(templatePath)) {
+    log(`缺少模板文件：${templatePath}`);
   }
 
-  if (argvs.initPath) {
-    userInitPath = argvs.initPath;
+  if (checkPathExists(initPath)) {
+    log(`${initPath} 目录已存在， 请先删除`);
+  }
 
-    if (checkPathExists(path.resolve(userInitPath, 'ios'))) {
-      log(`${userInitPath} 目录已存在， 请先删除`);
-      return;
-    }
+  copyDir(templatePath, initPath);
+}
 
-    if (checkPathExists(path.resolve(userInitPath, 'android'))) {
-      log(`${userInitPath} 目录已存在， 请先删除`);
-      return;
-    }
+export default function initTemplate(
+  projectPath: string,
+  platform: 'ios' | 'android' | 'all',
+) {
+  const iosTemplatePath = resolve(dirname(fileURLToPath(import.meta.url)), '../template/ios');
 
-    log('开始初始化模板');
+  const androidTemplatePath = resolve(dirname(fileURLToPath(import.meta.url)), '../template/android');
 
-    copyDir(baseIosTemplatePath, path.resolve(userInitPath, 'ios'));
-    copyDir(baseAndroidTemplatePath, path.resolve(userInitPath, 'android'));
+  const iosInitPath = resolve(projectPath, '');
 
-    log('初始化模板成功');
-  } else {
-    switch (platform) {
-      case 'all':
-        if (checkPathExists(androidInitPath)) {
-          log(`${androidInitPath} 目录已存在， 请先删除`);
-          return;
-        }
+  const androidInitPath = resolve(projectPath, '');
 
-        if (checkPathExists(iosInitPath)) {
-          log(`${iosInitPath} 目录已存在，请先删除`);
-          return;
-        }
+  switch (platform) {
+    case 'all':
+      initProject(androidTemplatePath, androidInitPath);
+      initProject(iosTemplatePath, iosInitPath);
+      break;
 
-        log('开始初始化模板');
+    case 'android':
+      initProject(androidTemplatePath, androidInitPath);
+      break;
 
-        copyDir(baseIosTemplatePath, iosInitPath);
-        copyDir(baseAndroidTemplatePath, androidInitPath);
+    case 'ios':
+      initProject(iosTemplatePath, iosInitPath);
+      break;
 
-        log('初始化模板成功');
-        break;
-
-      case 'android':
-        if (checkPathExists(androidInitPath)) {
-          log(`${androidInitPath} 目录已存在， 请先删除`);
-          return;
-        }
-
-        log('开始初始化模板');
-
-        copyDir(baseAndroidTemplatePath, androidInitPath);
-
-        log('初始化模板成功');
-        break;
-
-      case 'ios':
-        if (checkPathExists(iosInitPath)) {
-          log(`${iosInitPath} 目录已存在，请先删除`);
-        }
-
-        log('开始初始化模板');
-
-        copyDir(baseIosTemplatePath, iosInitPath);
-
-        log('初始化模板成功');
-        break;
-
-      default:
-        break;
-    }
+    default:
+      err('不支持的 platform');
+      break;
   }
 }

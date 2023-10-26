@@ -44,10 +44,12 @@ export default async function androidServer(argvs: Argvs) {
     }
   } else {
     const defaultProjectPath = resolve(process.cwd(), './android');
-    if (!checkPathExists(defaultProjectPath)) {
-      initTemplate({ initAndroid: true }, 'android');
-    }
+
     projectPath = defaultProjectPath;
+
+    if (!checkPathExists(defaultProjectPath)) {
+      initTemplate(projectPath, 'android');
+    }
   }
 
   const resourceDir = userConfig.resourceDir || resolve(process.cwd(), './dist/build/app-plus');
