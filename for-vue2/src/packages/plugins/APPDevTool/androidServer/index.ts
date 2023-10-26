@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import type { Argvs } from '../index.js';
 import type { DeviceOptions } from './choiceDevice.js';
 
-import { getConfig, initTemplate } from '../common/index.js';
+import { getConfig, initTemplate, getResourcePath } from '../common/index.js';
 import { err, checkPathExists } from '../utils.js';
 
 import buildApk from './buildAPK.js';
@@ -53,7 +53,7 @@ export default async function androidServer(argvs: Argvs) {
     }
   }
 
-  const resourceDir = userConfig.resourceDir || resolve(process.cwd(), './dist/build/app-plus');
+  const resourceDir = getResourcePath(userConfig);
 
   const abdPath = resolve(process.env.ANDROID_SDK_ROOT, './platform-tools');
 

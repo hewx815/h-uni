@@ -15,6 +15,8 @@ export interface Argvs {
 const argvs: Argvs = filterArgs(process.argv);
 
 async function start() {
+  process.env.H_UNI_APPDEVTOOL_ENV = 'development';
+
   if (argvs.dev) {
     await androidServer(argvs);
     await iosServer(argvs);

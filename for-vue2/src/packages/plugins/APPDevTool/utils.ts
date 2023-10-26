@@ -24,7 +24,7 @@ export function log(message: unknown, type?: 'ios' | 'android') {
  * @param message - 要记录的消息。
  * @param where - 要记录的位置。
  */
-export function err(message: unknown, e?: unknown, type?: 'ios' | 'android') {
+export function err(message: unknown, e?: unknown, type?: 'ios' | 'android'): unknown {
   const typeStr = type ? `[${type}]:` : '';
   console.log(e);
   let stack = '';
