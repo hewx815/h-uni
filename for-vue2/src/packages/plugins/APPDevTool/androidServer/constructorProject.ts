@@ -15,9 +15,13 @@ type ChangeBuildGradleOptions = {
   keyPassword: string;
   storeFile: string;
   storePassword: string;
+  sourceCompatibility: string;
+  targetCompatibility: string;
 };
 
 type ConstructorProjectOptions = {
+  javaVersion: string;
+
   appID?: string;
   appKey?: string;
   applicationId?: string;
@@ -36,7 +40,7 @@ export const DEFAULT_APPLICATION_ID = 'com.android.testa';
 export default async function constructorProject(
   projectPath: string,
   resourcePath: string,
-  constructorProjectOptions?: ConstructorProjectOptions,
+  constructorProjectOptions: ConstructorProjectOptions,
 ) {
   const DEFAULT_APP_ID = '__UNI__CA5CB1E';
 
@@ -112,6 +116,10 @@ export default async function constructorProject(
           }
           err(`签名文件：${storeFile}不存在`, '', 'android');
           return '';
+        }
+
+        if (key === 'targetCompatibility' || key === 'sourceCompatibility') {
+          return `${changeBuildGradleOptions[key]}`;
         }
 
         if (typeof changeBuildGradleOptions[key] === 'string') {
@@ -206,6 +214,8 @@ export default async function constructorProject(
           keyPassword: constructorProjectOptions?.signing ? constructorProjectOptions.signing.keyPassword : COMMON_TEST_SIGNING.keyPassword,
           storeFile: constructorProjectOptions?.signing ? constructorProjectOptions.signing.storeFile : COMMON_TEST_SIGNING.storeFile,
           storePassword: constructorProjectOptions?.signing ? constructorProjectOptions.signing.storePassword : COMMON_TEST_SIGNING.storePassword,
+          sourceCompatibility: `JavaVersion.${constructorProjectOptions.javaVersion}`,
+          targetCompatibility: `JavaVersion.${constructorProjectOptions.javaVersion}`,
         },
       ),
       changeResource(constructorProjectOptions?.appID || DEFAULT_APP_ID),

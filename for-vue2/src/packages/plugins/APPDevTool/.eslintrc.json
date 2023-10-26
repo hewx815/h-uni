@@ -3,6 +3,7 @@
   "extends": ["eslint-config-hewx/node-typescript"],
   "rules": {
     "import/extensions": "off",
-    "node/no-extraneous-import": "off"
+    "node/no-extraneous-import": "off",
+    "prefer-promise-reject-errors": "off"
   }
 }

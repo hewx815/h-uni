@@ -1,5 +1,5 @@
 import { spawn } from 'child_process';
-import inquirer from 'inquirer';
+import inquirer from 'inquirer8';
 import {
   log, err,
 } from '../utils.js';

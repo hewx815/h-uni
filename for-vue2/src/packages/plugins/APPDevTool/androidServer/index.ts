@@ -12,6 +12,7 @@ import constructorProject, { DEFAULT_APPLICATION_ID } from './constructorProject
 import installApk from './installAPK.js';
 import startApp from './startApp.js';
 import listenServer from './listenServer.js';
+import checkoutDep from './checkoutDep.js';
 
 let device: DeviceOptions | null = null;
 let running: boolean = false;
@@ -58,6 +59,8 @@ export default async function androidServer(argvs: Argvs) {
 
   const apkPath = resolve(projectPath, './simpleDemo/build/outputs/apk/debug/simpleDemo-debug.apk');
 
+  const { javaVersion } = await checkoutDep();
+
   await constructorProject(
     projectPath,
     resourceDir,
@@ -68,6 +71,7 @@ export default async function androidServer(argvs: Argvs) {
       versionCode: userConfig.android?.versionCode,
       versionName: userConfig.android?.versionName,
       signing: userConfig.android?.signing,
+      javaVersion,
     },
   );
 
