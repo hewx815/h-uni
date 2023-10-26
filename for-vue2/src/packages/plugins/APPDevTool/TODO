@@ -8,8 +8,6 @@
 
 ## BUG `yarn h-uni APPDevTool` 进程未退出
 
-## BUG  发布版本 `inquirer` 依赖问题
-
 ## BUG APPDevTool.config配置文件 是否 必须有
 
 ## BUG androidSdkPath 效验
