@@ -26,7 +26,6 @@ export function log(message: unknown, type?: 'ios' | 'android') {
  */
 export function err(message: unknown, e?: unknown, type?: 'ios' | 'android'): unknown {
   const typeStr = type ? `[${type}]:` : '';
-  console.log(e);
   let stack = '';
   if (e) {
     stack = (e as Error).stack?.split('\n').slice(1).join('\n') || '';

@@ -138,8 +138,6 @@ async function getDefaultConfig(): Promise<{ config: Config, path: string; }> {
     return { config, path: `${configPath}.json` };
   }
 
-  err(`未找到APPDevTool.config配置文件,在：${configPath}`);
-
   return { config: {}, path: '' };
 }
 
