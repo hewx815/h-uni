@@ -3,10 +3,6 @@ import { log } from '../utils.js';
 
 export default function help() {
   const data: Record<string, string> = {
-    '--init': '初始化 APP 模板(同时初始化 android 和 ios 模板)',
-    '--initAndroid': '初始化 android 模板',
-    '--initIos': '初始化 ios 模板',
-    '--initPath': '初始化模板的位置(默认为当前目录下"android"、"ios"文件夹))',
     '--dev': '编译 APP (同时编译 android 和 ios)',
     '--devAndroid': '编译 android',
     '--devIos': '编译 ios',
@@ -28,4 +24,7 @@ export default function help() {
 
 ${content}
 `);
+
+  // eslint-disable-next-line no-process-exit
+  process.exit();
 }
