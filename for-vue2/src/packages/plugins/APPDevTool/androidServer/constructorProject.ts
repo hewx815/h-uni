@@ -1,6 +1,6 @@
 import { parseStringPromise, Builder } from 'xml2js';
 import {
-  readFile, writeFile,
+  readFile, writeFile, readdir,
 } from 'fs/promises';
 import { resolve } from 'path';
 import {
@@ -56,6 +56,30 @@ export default async function constructorProject(
     storeFile: 'default.keystore',
     storePassword: '123456',
   };
+
+  const UNI_SDK_NAME_LIST = [
+    'uniapp-v8-release.aar',
+    'oaid_sdk_1.0.25.aar',
+    'lib.5plus.base-release.aar',
+    'breakpad-build-release.aar',
+    'android-gif-drawable-release@1.2.23.aar',
+  ];
+
+  // 配置uniSdk
+  async function changeUniSdk(
+    uniSdkDir: string,
+  ) {
+    const path = resolve(projectPath, './simpleDemo/libs');
+
+    const sdks = await readdir(path);
+
+    const deficiencySdks = UNI_SDK_NAME_LIST.filter((item) => !sdks.some((sdkName) => sdkName === item));
+
+    if (deficiencySdks.length !== 0) {
+      // TODO: 继续 2023年10月27日17:52:01 by:hewx
+    }
+    console.log(deficiencySdks);
+  }
 
   // 修改AndroidManifest.xml文件
   async function changeAndroidManifestXml(
