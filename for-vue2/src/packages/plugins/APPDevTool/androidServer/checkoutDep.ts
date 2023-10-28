@@ -44,16 +44,22 @@ export default async function checkoutDep() {
   }
 
   function checkoutBuildTool() {
+    const COMMAND = process.platform === 'win32' ? 'sdkmanager.bat' : './sdkmanager';
 
+    const toolsPath = path.resolve(process.env.ANDROID_SDK_ROOT || '', './tools');
+
+    spawn(COMMAND, [' --list'], { cwd: toolsPath, stdio: 'inherit', shell: true });
   }
 
   let javaVersion = '';
+
   try {
     javaVersion = await getJavaVersion();
   } catch (e) {
     err('获取 java 版本出错', e, 'android');
   }
 
+  // checkoutBuildTool();
   return {
     javaVersion,
   };
@@ -61,4 +67,5 @@ export default async function checkoutDep() {
   // checkoutBuildTool();
 }
 
-// checkoutDep('C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.382.5-hotspot');
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+// checkoutDep();

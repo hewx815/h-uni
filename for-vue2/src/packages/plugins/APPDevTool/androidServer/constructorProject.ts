@@ -76,6 +76,9 @@ export default async function constructorProject(
 
   uniSdk 下载： https://nativesupport.dcloud.net.cn/AppDocs/download/android.html#
   uniSdk 配置教程： https://h-uni.hewxing.cn/for-vue2/plugins/APPDevTool#uniSdk`, '', 'android');
+      } else {
+        // eslint-disable-next-line no-param-reassign
+        uniSdkDir = resolve(projectPath, '../.uniSdk');
       }
     } else if (!checkPathExists(uniSdkDir)) {
       err(`文件夹：${uniSdkDir} 不存在`, '', 'android');
