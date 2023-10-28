@@ -92,6 +92,14 @@ npx h-uni APPDevTool --devAndroid
 
 app 资源目录
 
+### android.uniSdkPath
+
+- **类型：** `string`
+
+- **默认：** `.uniSdk`
+
+手动指定 uniSdkPath 路径
+
 ### android.androidSdkPath
 
 - **类型：** `string`

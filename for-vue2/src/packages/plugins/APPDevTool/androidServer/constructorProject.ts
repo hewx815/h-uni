@@ -1,10 +1,10 @@
 import { parseStringPromise, Builder } from 'xml2js';
 import {
-  readFile, writeFile, readdir,
+  readFile, writeFile, readdir, copyFile,
 } from 'fs/promises';
 import { resolve } from 'path';
 import {
-  err, checkPathExists, copyDir, deleteFolderContents,
+  err, checkPathExists, copyDir, deleteFolderContents, emptyFolder,
 } from '../utils.js';
 
 type ChangeBuildGradleOptions = {
@@ -27,6 +27,7 @@ type ConstructorProjectOptions = {
   applicationId?: string;
   versionCode?: number;
   versionName?: string;
+  uniSdkPath?: string;
   signing?: {
     keyAlias: string;
     keyPassword: string;
@@ -58,7 +59,7 @@ export default async function constructorProject(
   };
 
   const UNI_SDK_NAME_LIST = [
-    'uniapp-v8-release.aar',
+    // 'uniapp-v8-release.aar',
     'oaid_sdk_1.0.25.aar',
     'lib.5plus.base-release.aar',
     'breakpad-build-release.aar',
@@ -71,14 +72,20 @@ export default async function constructorProject(
   ) {
     const path = resolve(projectPath, './simpleDemo/libs');
 
-    const sdks = await readdir(path);
+    const sdks = await readdir(uniSdkDir);
 
     const deficiencySdks = UNI_SDK_NAME_LIST.filter((item) => !sdks.some((sdkName) => sdkName === item));
 
     if (deficiencySdks.length !== 0) {
-      // TODO: 继续 2023年10月27日17:52:01 by:hewx
+      const N = '\n     ';
+      err(`缺少以下 SDK 文件：${`\n${N}${deficiencySdks.join(N)}`}`, '', 'android');
     }
-    console.log(deficiencySdks);
+
+    await emptyFolder(path);
+
+    await Promise.all(
+      UNI_SDK_NAME_LIST.map((sdkName) => copyFile(resolve(uniSdkDir, sdkName), resolve(path, sdkName))),
+    );
   }
 
   // 修改AndroidManifest.xml文件
@@ -244,6 +251,7 @@ export default async function constructorProject(
       ),
       changeResource(constructorProjectOptions?.appID || DEFAULT_APP_ID),
       changeDcloudControlXml(constructorProjectOptions?.appID || DEFAULT_APP_ID),
+      changeUniSdk(constructorProjectOptions?.uniSdkPath || resolve(projectPath, '../.uniSdk')),
     ]);
   }
 

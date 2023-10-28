@@ -87,6 +87,11 @@ export interface Config {
    */
   android?: {
     /**
+     * uniSDK 路径
+    */
+    uniSdkPath?: string;
+
+    /**
      * Android SDK 路径
      */
     androidSdkPath?: string;
