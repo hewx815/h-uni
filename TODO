@@ -22,4 +22,11 @@
 
 ## TODO HTabItem 组件事件处理
 
+## BUG HTab 组件初次加载滑块可能会未加载样式
+
+## XXX HTab 组件考虑加入禁用动画功能 (首次渲染和 resize 时可禁用动画效果)
+
+## XXX  HTab 组件性能需测试、优化
+
+
 

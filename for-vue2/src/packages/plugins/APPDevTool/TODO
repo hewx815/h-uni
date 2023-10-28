@@ -10,6 +10,18 @@
 
 ## BUG 自动下载 Build Tools
 
+## BUG 自动下载 Android Platform SDK
+
 ## BUG 自动下载 java
 
+## BUG .uniSdk 路径效验
 
+## BUG /simpleDemo/libs 文件夹效验
+
+## BUG 获取 java 版本 ，适配 `java version "xxx.xxx.xxx"`
+
+## BUG 安装后 `gradle-wrapper.jar` 文件失效
+
+## BUG 安装后 `gradle-wrapper.jar` 文件失效
+
+## BUG `uniapp-v8-release.aar` SDK 必要sdk
