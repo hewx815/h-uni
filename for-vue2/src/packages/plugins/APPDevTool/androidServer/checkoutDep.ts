@@ -19,7 +19,7 @@ export default async function checkoutDep() {
 
           const data1 = String(data).split('\r\n')[0];
 
-          if (data1.indexOf('openjdk version') !== 0) {
+          if (data1.indexOf('openjdk version') !== 0 && data1.indexOf('java version') !== 0) {
             reject(new Error());
           } else {
             const version = data1.split(' ')[2].replace(/"/g, '').split('.');

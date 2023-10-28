@@ -10,6 +10,9 @@
 
 ## BUG 自动下载 Build Tools
 
+## BUG 自动下载 Android Platform SDK
+
 ## BUG 自动下载 java
 
+## BUG 安装后 `gradle-wrapper.jar` 文件失效
 
