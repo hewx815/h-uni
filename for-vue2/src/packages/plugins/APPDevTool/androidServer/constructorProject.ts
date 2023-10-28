@@ -1,6 +1,6 @@
 import { parseStringPromise, Builder } from 'xml2js';
 import {
-  readFile, writeFile, readdir, copyFile,
+  readFile, writeFile, readdir, copyFile, mkdir,
 } from 'fs/promises';
 import { resolve } from 'path';
 import {
@@ -59,7 +59,7 @@ export default async function constructorProject(
   };
 
   const UNI_SDK_NAME_LIST = [
-    // 'uniapp-v8-release.aar',
+    'uniapp-v8-release.aar',
     'oaid_sdk_1.0.25.aar',
     'lib.5plus.base-release.aar',
     'breakpad-build-release.aar',
@@ -68,11 +68,22 @@ export default async function constructorProject(
 
   // 配置uniSdk
   async function changeUniSdk(
-    uniSdkDir: string,
+    uniSdkDir?: string,
   ) {
+    if (!uniSdkDir) {
+      if (!checkPathExists(resolve(projectPath, '../.uniSdk'))) {
+        err(`缺少uniSdk
+
+  uniSdk 下载： https://nativesupport.dcloud.net.cn/AppDocs/download/android.html#
+  uniSdk 配置教程： https://h-uni.hewxing.cn/for-vue2/plugins/APPDevTool#uniSdk`, '', 'android');
+      }
+    } else if (!checkPathExists(uniSdkDir)) {
+      err(`文件夹：${uniSdkDir} 不存在`, '', 'android');
+    }
+
     const path = resolve(projectPath, './simpleDemo/libs');
 
-    const sdks = await readdir(uniSdkDir);
+    const sdks = await readdir(uniSdkDir as string);
 
     const deficiencySdks = UNI_SDK_NAME_LIST.filter((item) => !sdks.some((sdkName) => sdkName === item));
 
@@ -81,10 +92,14 @@ export default async function constructorProject(
       err(`缺少以下 SDK 文件：${`\n${N}${deficiencySdks.join(N)}`}`, '', 'android');
     }
 
+    if (!checkPathExists(path)) {
+      await mkdir(path);
+    }
+
     await emptyFolder(path);
 
     await Promise.all(
-      UNI_SDK_NAME_LIST.map((sdkName) => copyFile(resolve(uniSdkDir, sdkName), resolve(path, sdkName))),
+      UNI_SDK_NAME_LIST.map((sdkName) => copyFile(resolve(uniSdkDir as string, sdkName), resolve(path, sdkName))),
     );
   }
 
@@ -251,7 +266,7 @@ export default async function constructorProject(
       ),
       changeResource(constructorProjectOptions?.appID || DEFAULT_APP_ID),
       changeDcloudControlXml(constructorProjectOptions?.appID || DEFAULT_APP_ID),
-      changeUniSdk(constructorProjectOptions?.uniSdkPath || resolve(projectPath, '../.uniSdk')),
+      changeUniSdk(constructorProjectOptions?.uniSdkPath),
     ]);
   }
 
