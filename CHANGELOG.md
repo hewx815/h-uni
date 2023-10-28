@@ -1,5 +1,21 @@
 # h-uni 更新日志
 h-uni 所有版本的变更记录都记录在此页面 
+## [1.10.0-alpha.2](https://github.com/hewx815/h-uni/compare/v1.10.0-alpha.1...v1.10.0-alpha.2) (2023-10-28)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* `yarn h-uni APPDevTool` 进程未退出 ([f32b1d8](https://github.com/hewx815/h-uni/commit/f32b1d88679e60df63076f4fe2ec00f16e970623))
+* 缺少 APPDevTool.config 配置文件 程序无法执行，优化 APP 资源目录 错误处理 ([078cd51](https://github.com/hewx815/h-uni/commit/078cd51c132ac53f848968d422cf97f39fb269cd))
+* 效验 java 版本 ([872659a](https://github.com/hewx815/h-uni/commit/872659ad72d0ac9b95628a686e12a3d1b6150345))
+* 重构 APPDevTool initTemplate模块 ([b4d4fd6](https://github.com/hewx815/h-uni/commit/b4d4fd6e36c1a813dae91426780b67c9fb6eb808))
+* aPPDevTool 获取 resourceDir 适配vue-cli、vite ([0fb40ae](https://github.com/hewx815/h-uni/commit/0fb40ae532f0a8b80853c93afdb5514f76d4107c))
+
+
+### ⚡ Performance Improvements | 性能优化
+
+* 移除内置uniSdk，默认读取 .uniSdk 文件夹 ([677ddbc](https://github.com/hewx815/h-uni/commit/677ddbc89d901be528684fd34cd9657c8d74bf87))
+
 ## [1.10.0-alpha.1](https://github.com/hewx815/h-uni/compare/v1.10.0-alpha.0...v1.10.0-alpha.1) (2023-10-24)
 
 
