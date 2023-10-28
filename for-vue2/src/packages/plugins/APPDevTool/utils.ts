@@ -10,6 +10,7 @@ import {
 /**
  * 控制台输出信息
  * @param message - 要记录的消息。
+ * @param type - 平台类型。
  */
 export function log(message: unknown, type?: 'ios' | 'android') {
   const typeStr = type ? `[${type}]:` : '';
@@ -20,9 +21,23 @@ export function log(message: unknown, type?: 'ios' | 'android') {
 }
 
 /**
+ * 控制台输出警告信息
+ * @param message - 要记录的消息。
+ * @param type - 平台类型。
+*/
+export function warn(message: unknown, type?: 'ios' | 'android') {
+  const typeStr = type ? `[${type}]:` : '';
+  // eslint-disable-next-line no-console
+  console.warn(`
+[APPDevTool Warn]:${typeStr}${String(message)}
+`);
+}
+
+/**
  * 控制台输出错误信息
  * @param message - 要记录的消息。
- * @param where - 要记录的位置。
+ * @param e - 错误对象。
+ * @param type - 平台类型。
  */
 export function err(message: unknown, e?: unknown, type?: 'ios' | 'android'): unknown {
   const typeStr = type ? `[${type}]:` : '';
@@ -152,4 +167,26 @@ export async function deleteFolderContents(dir: string): Promise<void> {
       await unlink(filePath);
     }
   }
+}
+
+/**
+ * 删除指定目录下的所有文件和文件夹。
+ * @param dir - 要删除的目录路径。
+*/
+export async function emptyFolder(folderPath: string) {
+  const files = await fs.promises.readdir(folderPath);
+
+  await Promise.all(
+    files.map(async (file) => {
+      const filePath = join(folderPath, file);
+      const stats = await fs.promises.stat(filePath);
+
+      if (stats.isDirectory()) {
+        await emptyFolder(filePath);
+        await fs.promises.rmdir(filePath);
+      } else {
+        await fs.promises.unlink(filePath);
+      }
+    }),
+  );
 }

@@ -1,10 +1,10 @@
 import { parseStringPromise, Builder } from 'xml2js';
 import {
-  readFile, writeFile,
+  readFile, writeFile, readdir, copyFile,
 } from 'fs/promises';
 import { resolve } from 'path';
 import {
-  err, checkPathExists, copyDir, deleteFolderContents,
+  err, checkPathExists, copyDir, deleteFolderContents, emptyFolder,
 } from '../utils.js';
 
 type ChangeBuildGradleOptions = {
@@ -27,6 +27,7 @@ type ConstructorProjectOptions = {
   applicationId?: string;
   versionCode?: number;
   versionName?: string;
+  uniSdkPath?: string;
   signing?: {
     keyAlias: string;
     keyPassword: string;
@@ -56,6 +57,36 @@ export default async function constructorProject(
     storeFile: 'default.keystore',
     storePassword: '123456',
   };
+
+  const UNI_SDK_NAME_LIST = [
+    // 'uniapp-v8-release.aar',
+    'oaid_sdk_1.0.25.aar',
+    'lib.5plus.base-release.aar',
+    'breakpad-build-release.aar',
+    'android-gif-drawable-release@1.2.23.aar',
+  ];
+
+  // 配置uniSdk
+  async function changeUniSdk(
+    uniSdkDir: string,
+  ) {
+    const path = resolve(projectPath, './simpleDemo/libs');
+
+    const sdks = await readdir(uniSdkDir);
+
+    const deficiencySdks = UNI_SDK_NAME_LIST.filter((item) => !sdks.some((sdkName) => sdkName === item));
+
+    if (deficiencySdks.length !== 0) {
+      const N = '\n     ';
+      err(`缺少以下 SDK 文件：${`\n${N}${deficiencySdks.join(N)}`}`, '', 'android');
+    }
+
+    await emptyFolder(path);
+
+    await Promise.all(
+      UNI_SDK_NAME_LIST.map((sdkName) => copyFile(resolve(uniSdkDir, sdkName), resolve(path, sdkName))),
+    );
+  }
 
   // 修改AndroidManifest.xml文件
   async function changeAndroidManifestXml(
@@ -220,6 +251,7 @@ export default async function constructorProject(
       ),
       changeResource(constructorProjectOptions?.appID || DEFAULT_APP_ID),
       changeDcloudControlXml(constructorProjectOptions?.appID || DEFAULT_APP_ID),
+      changeUniSdk(constructorProjectOptions?.uniSdkPath || resolve(projectPath, '../.uniSdk')),
     ]);
   }
 
