@@ -6,10 +6,24 @@ import { resolve } from 'path';
 import {
   err, checkPathExists, copyDir, deleteFolderContents, emptyFolder,
 } from '../utils.js';
+import {
+  JAVA_V,
+  COMPILE_SDK_V,
+  BUIILD_TOOLS_V,
+  DEFAULT_APPLICATION_ID,
+  DEFAULT_APP_ID,
+  DEFAULT_APP_KEY,
+  DEFAULT_VERSION_CODE,
+  DEFAULT_VERSION_NAME,
+  COMMON_TEST_SIGNING,
+  UNI_SDK_NAME_LIST,
+} from './constant.js';
 
 type ChangeBuildGradleOptions = {
-  applicationId: string;
   versionCode: number;
+  compileSdkVersion: number;
+
+  applicationId: string;
   versionName: string;
   keyAlias: string;
   keyPassword: string;
@@ -17,11 +31,10 @@ type ChangeBuildGradleOptions = {
   storePassword: string;
   sourceCompatibility: string;
   targetCompatibility: string;
+  buildToolsVersion: string;
 };
 
 type ConstructorProjectOptions = {
-  javaVersion: string;
-
   appID?: string;
   appKey?: string;
   applicationId?: string;
@@ -36,36 +49,11 @@ type ConstructorProjectOptions = {
   };
 };
 
-export const DEFAULT_APPLICATION_ID = 'com.android.testa';
-
 export default async function constructorProject(
   projectPath: string,
   resourcePath: string,
   constructorProjectOptions: ConstructorProjectOptions,
 ) {
-  const DEFAULT_APP_ID = '__UNI__CA5CB1E';
-
-  const DEFAULT_APP_KEY = '537cba7f932e287fd25900de910bc831';
-
-  const DEFAULT_VERSION_CODE = 1;
-
-  const DEFAULT_VERSION_NAME = '1.0';
-
-  const COMMON_TEST_SIGNING = {
-    keyAlias: 'android',
-    keyPassword: '123456',
-    storeFile: 'default.keystore',
-    storePassword: '123456',
-  };
-
-  const UNI_SDK_NAME_LIST = [
-    'uniapp-v8-release.aar',
-    'oaid_sdk_1.0.25.aar',
-    'lib.5plus.base-release.aar',
-    'breakpad-build-release.aar',
-    'android-gif-drawable-release@1.2.23.aar',
-  ];
-
   // 配置uniSdk
   async function changeUniSdk(
     uniSdkDir?: string,
@@ -263,8 +251,10 @@ export default async function constructorProject(
           keyPassword: constructorProjectOptions?.signing ? constructorProjectOptions.signing.keyPassword : COMMON_TEST_SIGNING.keyPassword,
           storeFile: constructorProjectOptions?.signing ? constructorProjectOptions.signing.storeFile : COMMON_TEST_SIGNING.storeFile,
           storePassword: constructorProjectOptions?.signing ? constructorProjectOptions.signing.storePassword : COMMON_TEST_SIGNING.storePassword,
-          sourceCompatibility: `JavaVersion.${constructorProjectOptions.javaVersion}`,
-          targetCompatibility: `JavaVersion.${constructorProjectOptions.javaVersion}`,
+          sourceCompatibility: JAVA_V,
+          targetCompatibility: JAVA_V,
+          compileSdkVersion: COMPILE_SDK_V,
+          buildToolsVersion: BUIILD_TOOLS_V,
         },
       ),
       changeResource(constructorProjectOptions?.appID || DEFAULT_APP_ID),

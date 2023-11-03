@@ -1,14 +1,13 @@
 import { spawn } from 'child_process';
+import { COMMAND_ADB } from './constant.js';
 
 export default function installApk(
   deviceName: string,
   apkPath: string,
   abdPath: string,
 ): Promise<number | null> {
-  const ADB_COMMAND = process.platform === 'win32' ? 'adb' : './adb';
-
   return new Promise((resolve, reject) => {
-    const adbPs = spawn(ADB_COMMAND, ['-s', deviceName, 'install', apkPath], { cwd: abdPath });
+    const adbPs = spawn(COMMAND_ADB, ['-s', deviceName, 'install', apkPath], { cwd: abdPath });
 
     adbPs.on('error', (err) => {
       reject(err);

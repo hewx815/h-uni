@@ -1,4 +1,5 @@
 import { spawn } from 'child_process';
+import { COMMAND_ADB } from './constant.js';
 
 export default function startApp(
   deviceName: string,
@@ -6,10 +7,8 @@ export default function startApp(
   abdPath: string,
 ) {
   return new Promise((resolve, reject) => {
-    const ADB_COMMAND = process.platform === 'win32' ? 'adb' : './adb';
-
     const ps = spawn(
-      ADB_COMMAND,
+      COMMAND_ADB,
       ['-s', deviceName, 'shell', 'am', 'start', `${applicationId}/io.dcloud.PandoraEntry`],
       { cwd: abdPath },
     );

@@ -4,6 +4,7 @@
   "rules": {
     "import/extensions": "off",
     "node/no-extraneous-import": "off",
-    "prefer-promise-reject-errors": "off"
+    "prefer-promise-reject-errors": "off",
+    "@typescript-eslint/no-misused-promises": "off"
   }
 }
