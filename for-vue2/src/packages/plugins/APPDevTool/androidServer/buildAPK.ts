@@ -1,12 +1,11 @@
 import { spawn } from 'child_process';
-
-const COMMAND = process.platform === 'win32' ? 'gradlew.bat' : './gradlew';
+import { COMMAND_GRADLEW } from './constant.js';
 
 export default function buildAPK(
   projectPath: string,
 ): Promise<number | null> {
   return new Promise((resolve, reject) => {
-    const gradlewPs = spawn(COMMAND, ['assembleDebug'], { cwd: projectPath, shell: true, stdio: 'inherit' });
+    const gradlewPs = spawn(COMMAND_GRADLEW, ['assembleDebug'], { cwd: projectPath, shell: true, stdio: 'inherit' });
 
     gradlewPs.on('error', (err) => {
       reject(err);

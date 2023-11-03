@@ -5,6 +5,9 @@ import {
 } from '../utils.js';
 import { listenKeyPress, clearAllListenKeyPress } from '../common/keyPress.js';
 import type { KeypressCallBack } from '../common/keyPress.js';
+import {
+  COMMAND_ADB, LF, CHOICE_DEVICE_HELP_TEXT, DEVICE_TYPES,
+} from './constant.js';
 
 export type DeviceOptions = {
   deviceName: string;
@@ -14,25 +17,6 @@ export type DeviceOptions = {
 };
 
 export default async function choiceDevice(abdPath: string) {
-  const ADB_COMMAND = process.platform === 'win32' ? 'adb' : './adb';
-
-  const LF = process.platform === 'win32' ? '\r\n' : '\n';
-
-  const DEVICE_TYPES = [
-    {
-      name: '模拟器设备',
-      str: 'product',
-      type: 'emulator',
-    },
-    {
-      name: 'USB设备',
-      str: 'product',
-      type: 'usb',
-    },
-  ];
-
-  const HELP_TEXT = '使用 R 键刷新';
-
   let devicesGetting: boolean = false;
 
   let device = {} as DeviceOptions;
@@ -42,7 +26,7 @@ export default async function choiceDevice(abdPath: string) {
     return new Promise((resolve, reject) => {
       devicesGetting = true;
 
-      const adbPs = spawn(ADB_COMMAND, ['devices', '-l'], { cwd: abdPath });
+      const adbPs = spawn(COMMAND_ADB, ['devices', '-l'], { cwd: abdPath });
 
       adbPs.on('error', (error) => {
         reject(error);
@@ -156,11 +140,11 @@ ${deviceInfoList.splice(2, deviceInfoList.length - 2).join(' ')}`;
     // eslint-disable-next-line no-console
     console.clear();
     if (devices.length === 0) {
-      log(`${HELP_TEXT}
+      log(`${CHOICE_DEVICE_HELP_TEXT}
 
   未搜索到任何设备`);
     } else {
-      log(`${HELP_TEXT}
+      log(`${CHOICE_DEVICE_HELP_TEXT}
 
   搜索设备成功, 共搜索到 ${devices.length} 个设备`);
 

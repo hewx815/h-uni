@@ -1,11 +1,7 @@
 import chokidar from 'chokidar';
 import { log } from '../utils.js';
 import { listenKeyPress, handerBug } from '../common/keyPress.js';
-
-const HELP_TEXT = `
-  - 修改文件自动刷新
-  - 按下 R 键手动刷新
-`;
+import { LISTEN_SERVER_HELP_TEXT, LISTEN_SERVER_DELAY } from './constant.js';
 
 export default function listenServer(
   projectPath: string,
@@ -13,8 +9,6 @@ export default function listenServer(
   resourceDir: string,
   callback: () => void,
 ) {
-  const DELAY = 200;
-
   let timer: NodeJS.Timeout | null = null;
 
   function change() {
@@ -23,7 +17,7 @@ export default function listenServer(
     }
     timer = setTimeout(() => {
       callback();
-    }, DELAY);
+    }, LISTEN_SERVER_DELAY);
   }
 
   function watchFile() {
@@ -62,5 +56,5 @@ export default function listenServer(
 
   log(`服务已启用...
 
-  ${HELP_TEXT}`);
+  ${LISTEN_SERVER_HELP_TEXT}`);
 }

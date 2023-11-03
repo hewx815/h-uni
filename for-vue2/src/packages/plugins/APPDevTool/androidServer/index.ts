@@ -5,10 +5,11 @@ import type { DeviceOptions } from './choiceDevice.js';
 
 import { getConfig, initTemplate, getResourcePath } from '../common/index.js';
 import { err, checkPathExists } from '../utils.js';
+import { DEFAULT_APPLICATION_ID } from './constant.js';
 
 import buildApk from './buildAPK.js';
 import choiceDevice from './choiceDevice.js';
-import constructorProject, { DEFAULT_APPLICATION_ID } from './constructorProject.js';
+import constructorProject from './constructorProject.js';
 import installApk from './installAPK.js';
 import startApp from './startApp.js';
 import listenServer from './listenServer.js';
@@ -59,7 +60,7 @@ export default async function androidServer(argvs: Argvs) {
 
   const apkPath = resolve(projectPath, './simpleDemo/build/outputs/apk/debug/simpleDemo-debug.apk');
 
-  const { javaVersion } = await checkoutDep();
+  await checkoutDep();
 
   await constructorProject(
     projectPath,
@@ -71,7 +72,6 @@ export default async function androidServer(argvs: Argvs) {
       versionCode: userConfig.android?.versionCode,
       versionName: userConfig.android?.versionName,
       signing: userConfig.android?.signing,
-      javaVersion,
     },
   );
 
