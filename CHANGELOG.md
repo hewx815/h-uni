@@ -1,5 +1,17 @@
 # h-uni 更新日志
 h-uni 所有版本的变更记录都记录在此页面 
+## [1.10.0-alpha.3](https://github.com/hewx815/h-uni/compare/v1.10.0-alpha.2...v1.10.0-alpha.3) (2023-11-04)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* .uniSdk 路径效验，/simpleDemo/libs 文件夹效验，`uniapp-v8-release.aar` SDK 必要sdk ([1e464ad](https://github.com/hewx815/h-uni/commit/1e464ad4d2772e459419cdd4b406bacb8a42ff44))
+
+
+### ✨ Features | 新功能
+
+* aPPDevTool 自动检测、下载 Android Sdk 缺少工具 ([fc4ee23](https://github.com/hewx815/h-uni/commit/fc4ee234aa617d952188ac0149d02b074fadd042))
+
 ## [1.10.0-alpha.2](https://github.com/hewx815/h-uni/compare/v1.10.0-alpha.1...v1.10.0-alpha.2) (2023-10-28)
 
 
