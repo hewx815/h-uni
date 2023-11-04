@@ -13,7 +13,6 @@ import constructorProject from './constructorProject.js';
 import installApk from './installAPK.js';
 import startApp from './startApp.js';
 import listenServer from './listenServer.js';
-import checkoutDep from './checkoutDep.js';
 
 let device: DeviceOptions | null = null;
 let running: boolean = false;
@@ -59,8 +58,6 @@ export default async function androidServer(argvs: Argvs) {
   const abdPath = resolve(process.env.ANDROID_SDK_ROOT, './platform-tools');
 
   const apkPath = resolve(projectPath, './simpleDemo/build/outputs/apk/debug/simpleDemo-debug.apk');
-
-  await checkoutDep();
 
   await constructorProject(
     projectPath,
