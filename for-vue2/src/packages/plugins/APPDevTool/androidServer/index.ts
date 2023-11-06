@@ -21,7 +21,7 @@ let listenning: boolean = false;
 export default async function androidServer(argvs: Argvs) {
   running = true;
 
-  const { config: userConfig, path: configPath } = await getConfig(typeof argvs.configPath === 'string' ? argvs.configPath : undefined);
+  const { config: userConfig, path: configPath } = await getConfig(typeof argvs.config === 'string' ? argvs.config : undefined);
 
   const androidSdkPath = userConfig.android?.androidSdkPath;
 
@@ -31,20 +31,22 @@ export default async function androidServer(argvs: Argvs) {
 
   if (javaPath) process.env.JAVA_HOME = javaPath;
 
+  const root = argvs.root === 'string' ? argvs.root : process.cwd();
+
   if (!process.env.ANDROID_SDK_ROOT) return err('未发现 Android SDK 路径', '', 'android');
 
   if (!process.env.JAVA_HOME) return err('未发现 JAVA 路径', '', 'android');
 
   let projectPath = '';
 
-  if (typeof argvs.devPath === 'string') {
-    if (checkPathExists(argvs.devPath)) {
-      projectPath = argvs.devPath;
+  if (typeof argvs.project === 'string') {
+    if (checkPathExists(argvs.project)) {
+      projectPath = resolve(argvs.project, './android');
     } else {
       err('devPath 参数指定的路径不存在', '', 'android');
     }
   } else {
-    const defaultProjectPath = resolve(process.cwd(), './android');
+    const defaultProjectPath = resolve(root, './node_modules/.h-uni/android');
 
     projectPath = defaultProjectPath;
 
@@ -60,6 +62,7 @@ export default async function androidServer(argvs: Argvs) {
   const apkPath = resolve(projectPath, './simpleDemo/build/outputs/apk/debug/simpleDemo-debug.apk');
 
   await constructorProject(
+    root,
     projectPath,
     resourceDir,
     {

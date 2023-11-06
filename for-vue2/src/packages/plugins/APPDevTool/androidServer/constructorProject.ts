@@ -50,6 +50,7 @@ type ConstructorProjectOptions = {
 };
 
 export default async function constructorProject(
+  root: string,
   projectPath: string,
   resourcePath: string,
   constructorProjectOptions: ConstructorProjectOptions,
@@ -59,14 +60,14 @@ export default async function constructorProject(
     uniSdkDir?: string,
   ) {
     if (!uniSdkDir) {
-      if (!checkPathExists(resolve(projectPath, '../.uniSdk'))) {
+      if (!checkPathExists(resolve(root, './.uniSdk'))) {
         err(`缺少uniSdk
 
   uniSdk 下载： https://nativesupport.dcloud.net.cn/AppDocs/download/android.html#
   uniSdk 配置教程： https://h-uni.hewxing.cn/for-vue2/plugins/APPDevTool#uniSdk`, '', 'android');
       } else {
         // eslint-disable-next-line no-param-reassign
-        uniSdkDir = resolve(projectPath, '../.uniSdk');
+        uniSdkDir = resolve(root, './.uniSdk');
       }
     } else if (!checkPathExists(uniSdkDir)) {
       err(`文件夹：${uniSdkDir} 不存在`, '', 'android');
@@ -104,7 +105,7 @@ export default async function constructorProject(
 
       const path = resolve(projectPath, './simpleDemo/src/main/AndroidManifest.xml');
 
-      const oldPath = resolve(projectPath, './simpleDemo/src/main/AndroidManifest_old.xml');
+      const oldPath = resolve(root, './node_modules/.h-uni/cache/AndroidManifest_old.xml');
 
       let xmlStr = await readFile(path, 'utf-8');
 
@@ -112,7 +113,6 @@ export default async function constructorProject(
       if (xmlStr.length === 0 && checkPathExists(oldPath)) {
         xmlStr = await readFile(oldPath, 'utf-8');
       }
-
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const xmlObj = await parseStringPromise(xmlStr);
 
@@ -137,7 +137,7 @@ export default async function constructorProject(
   ) {
     try {
       const path = resolve(projectPath, './simpleDemo/build.gradle');
-      const oldPath = resolve(projectPath, './simpleDemo/build_old.gradle');
+      const oldPath = resolve(root, './node_modules/.h-uni/cache/build_old.gradle');
 
       let gradleStr = await readFile(path, 'utf-8');
 
@@ -210,7 +210,7 @@ export default async function constructorProject(
   ) {
     try {
       const path = resolve(projectPath, './simpleDemo/src/main/assets/data/dcloud_control.xml');
-      const oldPath = resolve(projectPath, './simpleDemo/src/main/assets/data/dcloud_control_old.xml');
+      const oldPath = resolve(root, './node_modules/.h-uni/cache/dcloud_control_old.xml');
 
       let oldXmlStr = await readFile(path, 'utf-8');
 
@@ -237,6 +237,10 @@ export default async function constructorProject(
     }
   }
   async function main() {
+    if (!checkPathExists(resolve(root, './node_modules/.h-uni/cache'))) {
+      await mkdir(resolve(root, './node_modules/.h-uni/cache'));
+    }
+
     await Promise.all([
       changeAndroidManifestXml(
         constructorProjectOptions?.appKey || DEFAULT_APP_KEY,

@@ -13,6 +13,7 @@ import {
   JAVA_V, COMPILE_SDK_V, BUIILD_TOOLS_V, COMMAND_SDKMANAGER, COMMANDLINETOOLS_WIN_URL,
 } from './constant.js';
 
+// 检查项目依赖sdk工具是否安装
 export default async function checkoutDep() {
   function checkoutJavaVersion() {
     const { stderr: stdout, error } = spawnSync(
