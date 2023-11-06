@@ -7,8 +7,9 @@ export interface Argvs {
   dev?: string | true;
   devAndroid?: string | true;
   devIos?: string | true;
-  devPath?: string | true;
-  configPath?: string | true;
+  root?: string | true;
+  config?: string | true;
+  project?: string | true;
   help?: string | true;
 }
 
@@ -22,6 +23,7 @@ async function start() {
     await iosServer(argvs);
     return;
   }
+
   // 启动安卓开发
   if (argvs.devAndroid) {
     await androidServer(argvs);

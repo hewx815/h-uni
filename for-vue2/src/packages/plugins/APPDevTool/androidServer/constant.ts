@@ -62,3 +62,5 @@ export const DEVICE_TYPES: Array<{ name: string, str: string, type: string; }> =
     type: 'usb',
   },
 ];
+
+export const COMMANDLINETOOLS_WIN_URL: string = 'https://dl.google.com/android/repository/commandlinetools-win-6200805_latest.zip'; // v1.0

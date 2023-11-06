@@ -7,6 +7,10 @@ import path, { join } from 'path';
 import {
   readdir, stat, unlink, rmdir,
 } from 'fs/promises';
+import https from 'https';
+import { promisify } from 'util';
+import { pipeline } from 'stream';
+
 /**
  * 控制台输出信息
  * @param message - 要记录的消息。
@@ -189,4 +193,44 @@ export async function emptyFolder(folderPath: string) {
       }
     }),
   );
+}
+
+const pipelineAsync = promisify(pipeline);
+/**
+ * 下载文件
+ * @param url - 要下载的文件的url。
+ * @param destination - 下载文件的路径。
+*/
+export async function downloadFile(url: string, destination: string) {
+  return new Promise((resolve, reject) => {
+    const file = fs.createWriteStream(destination);
+
+    https.get(url, (response) => {
+      const totalBytes = Number(response.headers['content-length']);
+      let receivedBytes = 0;
+
+      response.on('data', (chunk: string) => {
+        receivedBytes += chunk.length;
+
+        const received = receivedBytes;
+        const progress = receivedBytes / totalBytes;
+        // eslint-disable-next-line no-console
+        console.clear();
+        // eslint-disable-next-line no-console
+        console.log(`
+  下载文件：${url}
+  总大小：${(totalBytes / 1024 / 1024).toFixed(2)} MB
+  已下载：${(received / 1024 / 1024).toFixed(2)} MB
+  进度：${(progress * 100).toFixed(2)} %
+  `);
+      });
+
+      pipelineAsync(response, file)
+        .then(() => {
+          log(`下载文件成功：${destination}`);
+          return resolve(undefined);
+        })
+        .catch((e) => reject(e));
+    });
+  });
 }
