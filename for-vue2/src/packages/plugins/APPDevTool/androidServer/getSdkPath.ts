@@ -80,6 +80,10 @@ export default async function getSdkPath(config?: { config: Config, path: string
           return configPath;
         }
         installTools(tools, configPath, sdkManagerPath);
+        return configPath;
+      } else {
+        const;
+
       }
     }
 
