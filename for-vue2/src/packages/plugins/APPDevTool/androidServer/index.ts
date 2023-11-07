@@ -4,7 +4,7 @@ import type { Argvs } from '../index.js';
 import type { DeviceOptions } from './choiceDevice.js';
 
 import { getConfig, initTemplate, getResourcePath } from '../common/index.js';
-import { err, checkPathExists } from '../utils.js';
+import { err, checkPathExists, log } from '../utils.js';
 import { DEFAULT_APPLICATION_ID } from './constant.js';
 
 import buildApk from './buildAPK.js';
@@ -13,6 +13,7 @@ import constructorProject from './constructorProject.js';
 import installApk from './installAPK.js';
 import startApp from './startApp.js';
 import listenServer from './listenServer.js';
+import getJavaPath from './getJavaPath.js';
 
 let device: DeviceOptions | null = null;
 let running: boolean = false;
@@ -27,9 +28,15 @@ export default async function androidServer(argvs: Argvs) {
 
   if (androidSdkPath) process.env.ANDROID_SDK_ROOT = androidSdkPath;
 
-  const javaPath = userConfig.android?.javaPath;
+  const { path: javaPath, version, description } = getJavaPath({ config: userConfig, path: configPath });
 
-  if (javaPath) process.env.JAVA_HOME = javaPath;
+  process.env.JAVA_HOME = javaPath;
+
+  log(`当前使用的 java ：
+
+  版本：${version}
+  路径：${javaPath}
+  来自于：${description}`, 'android');
 
   const root = argvs.root === 'string' ? argvs.root : process.cwd();
 
