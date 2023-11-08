@@ -14,6 +14,7 @@ import installApk from './installAPK.js';
 import startApp from './startApp.js';
 import listenServer from './listenServer.js';
 import getJavaPath from './getJavaPath.js';
+import getSdkPath from './getSdkPath.js';
 
 let device: DeviceOptions | null = null;
 let running: boolean = false;
@@ -24,11 +25,17 @@ export default async function androidServer(argvs: Argvs) {
 
   const { config: userConfig, path: configPath } = await getConfig(typeof argvs.config === 'string' ? argvs.config : undefined);
 
-  const androidSdkPath = userConfig.android?.androidSdkPath;
+  const root = argvs.root === 'string' ? argvs.root : process.cwd();
 
-  if (androidSdkPath) process.env.ANDROID_SDK_ROOT = androidSdkPath;
+  const { path: androidSdkPath, description: androidSdkDes } = await getSdkPath(root, { config: userConfig, path: configPath });
 
-  const { path: javaPath, version, description } = getJavaPath({ config: userConfig, path: configPath });
+  process.env.ANDROID_SDK_ROOT = androidSdkPath;
+
+  log(`当前使用的 Android SDK ：
+  路径：${androidSdkPath}
+  来自于：${androidSdkDes}`, 'android');
+
+  const { path: javaPath, version, description: javaDes } = getJavaPath({ config: userConfig, path: configPath });
 
   process.env.JAVA_HOME = javaPath;
 
@@ -36,13 +43,7 @@ export default async function androidServer(argvs: Argvs) {
 
   版本：${version}
   路径：${javaPath}
-  来自于：${description}`, 'android');
-
-  const root = argvs.root === 'string' ? argvs.root : process.cwd();
-
-  if (!process.env.ANDROID_SDK_ROOT) return err('未发现 Android SDK 路径', '', 'android');
-
-  if (!process.env.JAVA_HOME) return err('未发现 JAVA 路径', '', 'android');
+  来自于：${javaDes}`, 'android');
 
   let projectPath = '';
 
@@ -50,7 +51,7 @@ export default async function androidServer(argvs: Argvs) {
     if (checkPathExists(argvs.project)) {
       projectPath = resolve(argvs.project, './android');
     } else {
-      err('devPath 参数指定的路径不存在', '', 'android');
+      err('--project 参数值指定的路径不存在', '', 'android');
     }
   } else {
     const defaultProjectPath = resolve(root, './node_modules/.h-uni/android');
