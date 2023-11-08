@@ -1,5 +1,12 @@
 # h-uni 更新日志
 h-uni 所有版本的变更记录都记录在此页面 
+## [1.10.0-alpha.4](https://github.com/hewx815/h-uni/compare/v1.10.0-alpha.3...v1.10.0-alpha.4) (2023-11-08)
+
+
+### ✨ Features | 新功能
+
+* 寻找java 路径，安卓sdk 路径 优化，可以自动创建安卓sdk，下载缺少挂工具包 ([8263407](https://github.com/hewx815/h-uni/commit/8263407f3b3d963701b4324cfacdf59cc8ea1726))
+
 ## [1.10.0-alpha.3](https://github.com/hewx815/h-uni/compare/v1.10.0-alpha.2...v1.10.0-alpha.3) (2023-11-04)
 
 
