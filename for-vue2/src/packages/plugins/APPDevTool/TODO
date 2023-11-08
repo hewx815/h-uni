@@ -10,10 +10,6 @@
 
 ## BUG 安装后 `default.keystore` 文件失效
 
-## 寻找路径处理
-### java  config>JAVA_HOME>PATH>默认位置
-### Android Sdk config>ANDROID_SDK_ROOT>默认位置
-
 ## 命令行上色
 
 ## TODO 输出运行应用日志
