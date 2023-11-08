@@ -4,7 +4,7 @@ import type { Argvs } from '../index.js';
 import type { DeviceOptions } from './choiceDevice.js';
 
 import { getConfig, initTemplate, getResourcePath } from '../common/index.js';
-import { err, checkPathExists } from '../utils.js';
+import { err, checkPathExists, log } from '../utils.js';
 import { DEFAULT_APPLICATION_ID } from './constant.js';
 
 import buildApk from './buildAPK.js';
@@ -13,7 +13,8 @@ import constructorProject from './constructorProject.js';
 import installApk from './installAPK.js';
 import startApp from './startApp.js';
 import listenServer from './listenServer.js';
-import checkoutDep from './checkoutDep.js';
+import getJavaPath from './getJavaPath.js';
+import getSdkPath from './getSdkPath.js';
 
 let device: DeviceOptions | null = null;
 let running: boolean = false;
@@ -22,30 +23,38 @@ let listenning: boolean = false;
 export default async function androidServer(argvs: Argvs) {
   running = true;
 
-  const { config: userConfig, path: configPath } = await getConfig(typeof argvs.configPath === 'string' ? argvs.configPath : undefined);
+  const { config: userConfig, path: configPath } = await getConfig(typeof argvs.config === 'string' ? argvs.config : undefined);
 
-  const androidSdkPath = userConfig.android?.androidSdkPath;
+  const root = argvs.root === 'string' ? argvs.root : process.cwd();
 
-  if (androidSdkPath) process.env.ANDROID_SDK_ROOT = androidSdkPath;
+  const { path: androidSdkPath, description: androidSdkDes } = await getSdkPath(root, { config: userConfig, path: configPath });
 
-  const javaPath = userConfig.android?.javaPath;
+  process.env.ANDROID_SDK_ROOT = androidSdkPath;
 
-  if (javaPath) process.env.JAVA_HOME = javaPath;
+  log(`当前使用的 Android SDK ：
+  路径：${androidSdkPath}
+  来自于：${androidSdkDes}`, 'android');
 
-  if (!process.env.ANDROID_SDK_ROOT) return err('未发现 Android SDK 路径', '', 'android');
+  const { path: javaPath, version, description: javaDes } = getJavaPath({ config: userConfig, path: configPath });
 
-  if (!process.env.JAVA_HOME) return err('未发现 JAVA 路径', '', 'android');
+  process.env.JAVA_HOME = javaPath;
+
+  log(`当前使用的 java ：
+
+  版本：${version}
+  路径：${javaPath}
+  来自于：${javaDes}`, 'android');
 
   let projectPath = '';
 
-  if (typeof argvs.devPath === 'string') {
-    if (checkPathExists(argvs.devPath)) {
-      projectPath = argvs.devPath;
+  if (typeof argvs.project === 'string') {
+    if (checkPathExists(argvs.project)) {
+      projectPath = resolve(argvs.project, './android');
     } else {
-      err('devPath 参数指定的路径不存在', '', 'android');
+      err('--project 参数值指定的路径不存在', '', 'android');
     }
   } else {
-    const defaultProjectPath = resolve(process.cwd(), './android');
+    const defaultProjectPath = resolve(root, './node_modules/.h-uni/android');
 
     projectPath = defaultProjectPath;
 
@@ -60,9 +69,8 @@ export default async function androidServer(argvs: Argvs) {
 
   const apkPath = resolve(projectPath, './simpleDemo/build/outputs/apk/debug/simpleDemo-debug.apk');
 
-  await checkoutDep();
-
   await constructorProject(
+    root,
     projectPath,
     resourceDir,
     {

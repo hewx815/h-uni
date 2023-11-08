@@ -43,6 +43,7 @@
     }
   },
   "devDependencies": {
+    "@types/adm-zip": "^0.5.3",
     "@types/columnify": "^1.5.2",
     "@types/inquirer": "^9.0.3",
     "@types/xml2js": "^0.4.12",
@@ -62,6 +63,7 @@
   },
   "dependencies": {
     "@types/inquirer8": "npm:@types/inquirer@8.1.0",
+    "adm-zip": "^0.5.10",
     "chokidar": "^3.5.3",
     "clipboardy": "^3.0.0",
     "columnify": "^1.6.0",

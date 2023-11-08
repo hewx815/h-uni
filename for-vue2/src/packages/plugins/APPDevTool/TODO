@@ -8,3 +8,18 @@
 
 ## BUG 安装后 `gradle-wrapper.jar` 文件失效
 
+## BUG 安装后 `default.keystore` 文件失效
+
+## 命令行上色
+
+## TODO 输出运行应用日志
+
+## TODO 增加功能：是否直接使用默认模拟器自动打开
+
+## BUG config 中相对路径错误
+
+## TODO 热重载功能，原理
+
+## TODO 增加API 调用，用于对接 h-uni-build app 平台
+
+## BUG 配置文件兼容性处理
