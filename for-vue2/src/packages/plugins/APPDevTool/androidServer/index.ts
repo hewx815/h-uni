@@ -63,7 +63,7 @@ export default async function androidServer(argvs: Argvs) {
     }
   }
 
-  const resourceDir = getResourcePath(userConfig);
+  const resourceDir = resolve(configPath, getResourcePath(userConfig));
 
   const abdPath = resolve(process.env.ANDROID_SDK_ROOT, './platform-tools');
 

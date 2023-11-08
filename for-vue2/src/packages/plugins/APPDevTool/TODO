@@ -10,8 +10,6 @@
 
 ## BUG 安装后 `default.keystore` 文件失效
 
-## BUG config 中相对路径错误
-
 ## BUG 配置文件兼容性处理
 
 ## BUG 使用h-uni sdk时 platform-tools 未检测
