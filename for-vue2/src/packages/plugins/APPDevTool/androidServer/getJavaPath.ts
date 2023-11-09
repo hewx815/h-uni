@@ -1,6 +1,6 @@
 import { spawnSync } from 'child_process';
 import { resolve, delimiter } from 'path';
-import type { Config } from 'config.js';
+import type { Config } from '../config.js';
 import { checkPathExists, err } from '../utils.js';
 import { JAVA_V } from './constant.js';
 // 按指定顺序获取java路径，效验是否有效，效验是否为指定版本，选择可用路径，如果没有退出

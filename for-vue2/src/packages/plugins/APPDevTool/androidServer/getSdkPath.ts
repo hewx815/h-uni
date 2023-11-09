@@ -2,11 +2,11 @@
 import AdmZip from 'adm-zip';
 import inquirer from 'inquirer8';
 
-import type { Config } from 'config.js';
 import { spawnSync } from 'child_process';
 import { resolve, dirname } from 'path';
 import { userInfo } from 'os';
 import { readdir, mkdir } from 'fs/promises';
+import type { Config } from '../config.js';
 
 import {
   checkPathExists, downloadFile, err, log, deleteFolderContents,
