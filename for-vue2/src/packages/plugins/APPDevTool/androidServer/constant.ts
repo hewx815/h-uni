@@ -28,7 +28,7 @@ export const LISTEN_SERVER_HELP_TEXT: string = `
   - 修改文件自动刷新
   - 按下 R 键手动刷新
 `;
-export const LISTEN_SERVER_DELAY: number = 200;
+export const LISTEN_SERVER_DELAY: number = 300;
 
 export const COMMON_TEST_SIGNING: {
   keyAlias: string;

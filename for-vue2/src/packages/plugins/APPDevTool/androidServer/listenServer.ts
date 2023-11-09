@@ -1,7 +1,6 @@
 import chokidar from 'chokidar';
-import { log } from '../utils.js';
 import { listenKeyPress, handerBug } from '../common/keyPress.js';
-import { LISTEN_SERVER_HELP_TEXT, LISTEN_SERVER_DELAY } from './constant.js';
+import { LISTEN_SERVER_DELAY } from './constant.js';
 
 export default function listenServer(
   projectPath: string,
@@ -41,10 +40,6 @@ export default function listenServer(
 
     listenKeyPress((name, key) => {
       if (key.name === 'r') {
-        setTimeout(() => {
-          // eslint-disable-next-line no-console
-          console.clear();
-        }, 0);
         change();
       }
     });
@@ -53,8 +48,4 @@ export default function listenServer(
   watchFile();
 
   watchKeyPress();
-
-  log(`服务已启用...
-
-  ${LISTEN_SERVER_HELP_TEXT}`);
 }

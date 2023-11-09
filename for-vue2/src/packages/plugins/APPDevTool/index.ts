@@ -1,6 +1,6 @@
 import iosServer from './iosServer/index.js';
 import androidServer from './androidServer/index.js';
-import { filterArgs } from './utils.js';
+import { filterArgs, log } from './utils.js';
 import { help } from './common/index.js';
 
 export interface Argvs {
@@ -13,10 +13,27 @@ export interface Argvs {
   help?: string | true;
 }
 
-const argvs: Argvs = filterArgs(process.argv);
+export const realArgvs: Argvs = {
+  dev: undefined,
+  devAndroid: undefined,
+  devIos: undefined,
+  root: undefined,
+  config: undefined,
+  project: undefined,
+  help: undefined,
+};
+
+const argvs = filterArgs(process.argv);
 
 async function start() {
   process.env.H_UNI_APPDEVTOOL_ENV = 'development';
+
+  Object.keys(argvs).forEach((key) => {
+    if (!(key in realArgvs)) {
+      log(`未知参数：--${key}`);
+      help();
+    }
+  });
 
   if (argvs.dev) {
     await androidServer(argvs);

@@ -4,8 +4,10 @@ import type { Argvs } from '../index.js';
 import type { DeviceOptions } from './choiceDevice.js';
 
 import { getConfig, initTemplate, getResourcePath } from '../common/index.js';
-import { err, checkPathExists, log } from '../utils.js';
-import { DEFAULT_APPLICATION_ID } from './constant.js';
+import { LISTEN_SERVER_HELP_TEXT, DEFAULT_APPLICATION_ID } from './constant.js';
+import {
+  err, log,
+} from '../utils.js';
 
 import buildApk from './buildAPK.js';
 import choiceDevice from './choiceDevice.js';
@@ -18,7 +20,6 @@ import getSdkPath from './getSdkPath.js';
 
 let device: DeviceOptions | null = null;
 let running: boolean = false;
-let listenning: boolean = false;
 
 export default async function androidServer(argvs: Argvs) {
   running = true;
@@ -45,25 +46,11 @@ export default async function androidServer(argvs: Argvs) {
   路径：${javaPath}
   来自于：${javaDes}`, 'android');
 
-  let projectPath = '';
+  const projectPath = typeof argvs.project === 'string' ? resolve(root, argvs.project, './android') : resolve(root, './node_modules/.h-uni/android');
 
-  if (typeof argvs.project === 'string') {
-    if (checkPathExists(argvs.project)) {
-      projectPath = resolve(argvs.project, './android');
-    } else {
-      err('--project 参数值指定的路径不存在', '', 'android');
-    }
-  } else {
-    const defaultProjectPath = resolve(root, './node_modules/.h-uni/android');
+  await initTemplate(projectPath, 'android');
 
-    projectPath = defaultProjectPath;
-
-    if (!checkPathExists(defaultProjectPath)) {
-      initTemplate(projectPath, 'android');
-    }
-  }
-
-  const resourceDir = resolve(configPath, getResourcePath(userConfig));
+  const resourceDir = resolve(configPath, '../', getResourcePath(userConfig));
 
   const abdPath = resolve(process.env.ANDROID_SDK_ROOT, './platform-tools');
 
@@ -101,15 +88,19 @@ export default async function androidServer(argvs: Argvs) {
     abdPath,
   );
 
-  if (!listenning) {
-    listenServer(projectPath, configPath, resourceDir, () => {
-      if (!running) {
-        listenning = false;
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        androidServer(argvs);
-      }
-    });
-  }
+  listenServer(projectPath, configPath, resourceDir, async () => {
+    if (!running) {
+      await androidServer(argvs);
+    }
+  });
+
+  // eslint-disable-next-line no-console
+  console.clear();
+
+  log(`服务已启用...
+
+  ${LISTEN_SERVER_HELP_TEXT}`);
+
   running = false;
 
   return true;

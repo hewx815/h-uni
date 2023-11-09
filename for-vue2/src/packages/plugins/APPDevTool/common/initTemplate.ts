@@ -1,25 +1,24 @@
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import {
-  log, err, checkPathExists, copyDir,
+  log, err, checkPathExists, copyDir, deleteFolderContents,
 } from '../utils.js';
 
-function initProject(
+async function initProject(
   templatePath: string,
   initPath: string,
 ) {
   if (!checkPathExists(templatePath)) {
     log(`缺少模板文件：${templatePath}`);
   }
-
   if (checkPathExists(initPath)) {
-    log(`${initPath} 目录已存在， 请先删除`);
+    await deleteFolderContents(initPath);
   }
 
   copyDir(templatePath, initPath);
 }
 
-export default function initTemplate(
+export default async function initTemplate(
   projectPath: string,
   platform: 'ios' | 'android' | 'all',
 ) {
@@ -33,16 +32,16 @@ export default function initTemplate(
 
   switch (platform) {
     case 'all':
-      initProject(androidTemplatePath, androidInitPath);
-      initProject(iosTemplatePath, iosInitPath);
+      await initProject(androidTemplatePath, androidInitPath);
+      await initProject(iosTemplatePath, iosInitPath);
       break;
 
     case 'android':
-      initProject(androidTemplatePath, androidInitPath);
+      await initProject(androidTemplatePath, androidInitPath);
       break;
 
     case 'ios':
-      initProject(iosTemplatePath, iosInitPath);
+      await initProject(iosTemplatePath, iosInitPath);
       break;
 
     default:

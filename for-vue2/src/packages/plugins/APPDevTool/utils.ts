@@ -70,7 +70,7 @@ ${stack}
  * @param args - 要过滤的字符串数组。
  * @returns 一个键值对记录。
  */
-export function filterArgs(args: string[]): Record<string, string | true | undefined> {
+export function filterArgs(args: string[]): Record<string, string | true> {
   const result: Record<string, string | true> = {};
   for (let i = 0; i < args.length; i += 1) {
     const arg = args[i];
