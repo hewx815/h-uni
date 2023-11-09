@@ -94,7 +94,7 @@ export default async function getSdkPath(
       installList.push(`"platforms;android-${COMPILE_SDK_V}"`);
     }
 
-    if (!checkPathExists(resolve(platformToolsPath, './adb'))) {
+    if (!checkPathExists(platformToolsPath)) {
       installList.push('"platform-tools"');
     }
 
