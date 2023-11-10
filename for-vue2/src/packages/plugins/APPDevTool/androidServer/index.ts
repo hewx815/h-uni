@@ -26,7 +26,7 @@ export default async function androidServer(argvs: Argvs) {
 
   const { config: userConfig, path: configPath } = await getConfig(typeof argvs.config === 'string' ? argvs.config : undefined);
 
-  const root = argvs.root === 'string' ? argvs.root : process.cwd();
+  const root = typeof argvs.root === 'string' ? argvs.root : process.cwd();
 
   const { path: androidSdkPath, description: androidSdkDes } = await getSdkPath(root, { config: userConfig, path: configPath });
 

@@ -9,10 +9,10 @@ export default {
     const argvs = argv.slice(3).join(' ');
 
     if (env.NODE_ENV === 'development') {
-      const APPDevTool = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../for-vue2/src/packages/plugins/APPDevTool/index.ts');
+      const APPDevTool = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../for-vue2/src/packages/plugins/APPDevTool/run.ts');
       spawnSync(`ts-node ${APPDevTool} ${argvs}`, { shell: true, stdio: 'inherit' });
     } else {
-      const APPDevTool = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../dist/for-vue2/plugins/APPDevTool/index.js');
+      const APPDevTool = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../dist/for-vue2/plugins/APPDevTool/run.js');
       spawnSync(`node ${APPDevTool} ${argvs}`, { shell: true, stdio: 'inherit' });
     }
   },

@@ -1,8 +1,8 @@
 {
-  "resourceDir": "./for-vue2/dist/dev/app-plus",
+  "resourceDir": "./for-vue3/dist/dev/app",
   "android": {
-    "androidSdkPath": "C:\\Users\\admin\\AppData\\Local\\Android\\Sdk",
-    "javaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.382.5-hotspot"
+    // "androidSdkPath": "C:\\Users\\admin\\AppData\\Local\\Android\\Sdk",
+    // "javaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.382.5-hotspot"
     // "AndroidSdkPath": "/Users/hewx/Library/Android/sdk",
     // "JavaPath": "/Users/hewx/Library/Java/JavaVirtualMachines/corretto-1.8.0_382/Contents/Home"
   }
