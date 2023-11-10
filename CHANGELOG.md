@@ -1,5 +1,22 @@
 # h-uni 更新日志
 h-uni 所有版本的变更记录都记录在此页面 
+## [1.10.0-alpha.5](https://github.com/hewx815/h-uni/compare/v1.10.0-alpha.4...v1.10.0-alpha.5) (2023-11-10)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* aPPDevTool 类型导入路径错误 ([a891820](https://github.com/hewx815/h-uni/commit/a89182004f9441b76f0a80f7f46d90368f34e389))
+* aPPDevTool 命令行 --project 选项拷贝项目目录出错 ([af06108](https://github.com/hewx815/h-uni/commit/af0610848657373c69976eef339117d8d65838b0))
+* aPPDevTool platform-tools 未检测到安装 ([5a888e0](https://github.com/hewx815/h-uni/commit/5a888e02a7ff1203c8dbd15cd6416c8fc39d5923))
+* config 文件中的路径解析错误 ([fe78434](https://github.com/hewx815/h-uni/commit/fe78434b6e43e0f74f849bd110b5c1f7f51461e1))
+* vite-plugin-h-uni-build 在不支持 OpenDevTool 的平台上 afterBuild 未执行 ([6654631](https://github.com/hewx815/h-uni/commit/665463138709f364747a4827036a045ab67efec1))
+* vue-cli-plugins-h-uni-build 在不支持 OpenDevTool 的平台上 afterBuild 未执行 ([f2e20ff](https://github.com/hewx815/h-uni/commit/f2e20ffc16f2ae6ed95b33669e05616fddaa3a06))
+
+
+### ✨ Features | 新功能
+
+* aPPDevTool 增加api调用方式启动 ([5ebb956](https://github.com/hewx815/h-uni/commit/5ebb956cc5c8066f36add57b181102cf57dbdcc2))
+
 ## [1.10.0-alpha.4](https://github.com/hewx815/h-uni/compare/v1.10.0-alpha.3...v1.10.0-alpha.4) (2023-11-08)
 
 
