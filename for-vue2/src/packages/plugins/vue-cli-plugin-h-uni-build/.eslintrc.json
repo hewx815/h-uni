@@ -4,6 +4,7 @@
   "globals": {
     "require": "readonly",
     "module": "writable",
-    "exports": "writable"
+    "exports": "writable",
+    "__dirname": "readonly"
   }
 }

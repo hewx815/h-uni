@@ -13,6 +13,9 @@ const huniBuildConfig = defineConfigHuniBuild({
     },
     exitClose: true,
   },
+  afterBuild() {
+    console.log('vue-cli-plugin-h-uni-build afterBuild');
+  },
 });
 
 module.exports = defineConfig({

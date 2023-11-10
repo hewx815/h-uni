@@ -23,8 +23,7 @@ const log = (message) => {
  * @description 获取运行命令文件
  * @return {String}  filePath 获取运行命令文件路径
 */
-const getCommandPath = () => {
-  const platFrom = process.env.UNI_PLATFORM;
+const getCommandPath = (platFrom) => {
   const filePath = path.resolve(__dirname, `./command/${platFrom}.js`);
 
   try {
@@ -32,10 +31,9 @@ const getCommandPath = () => {
     if (stats) {
       return filePath;
     }
-
-    return log(`${platFrom}---暂未支持`);
+    return false;
   } catch (e) {
-    return log(`${platFrom}---暂未支持`);
+    return false;
   }
 };
 
