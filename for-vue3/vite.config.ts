@@ -18,6 +18,9 @@ const config = defineConfigHUniBuild({
       'mp-weixin': 'D:\\wechatDev\\微信web开发者工具',
     },
   },
+  afterBuild() {
+    console.log('vite-plugin-h-uni-build afterBuild');
+  },
 });
 
 export default defineConfig({

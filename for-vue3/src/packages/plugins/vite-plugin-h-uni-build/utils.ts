@@ -25,8 +25,7 @@ export const log = (message: unknown) => {
  * @description 获取运行命令文件
  * @return {String}  filePath 获取运行命令文件路径
 */
-export const getCommandPath = () => {
-  const platFrom = process.env.UNI_PLATFORM;
+export const getCommandPath = (platFrom: string) => {
   const filePath = path.resolve(__dirname, `./command/${platFrom}.js`);
 
   try {
@@ -35,9 +34,9 @@ export const getCommandPath = () => {
       return filePath;
     }
 
-    return log(`${platFrom}---暂未支持`);
+    return false;
   } catch (e) {
-    return log(`${platFrom}---暂未支持`);
+    return false;
   }
 };
 
