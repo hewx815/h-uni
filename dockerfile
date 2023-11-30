@@ -8,5 +8,5 @@ RUN yarn installs
 
 RUN yarn build
 
-RUN cp -r website /website
+RUN cp -r ./website /website
 
