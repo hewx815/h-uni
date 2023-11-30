@@ -7,3 +7,5 @@ COPY . .
 RUN yarn installs
 
 RUN yarn build
+
+CMD tail -f /dev/null
