@@ -8,4 +8,5 @@ RUN yarn installs
 
 RUN yarn build
 
-CMD tail -f /dev/null
+RUN cp -r website /website
+
