@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { spawnSync } from 'child_process';
 import fs from 'fs';
+import { moveSync } from 'fs-extra';
 import {
   copyDirs,
   delDir,
@@ -154,13 +155,13 @@ const startBuild = async (isNpm) => {
     const vue2PackagePath = path.resolve(CurrentPath, '../../for-vue2/node_modules/vue');
     const newVue2PackagePath = path.resolve(CurrentPath, '../../for-vue2/node_modules/vue_old');
     if (fs.existsSync(vue2PackagePath)) {
-      fs.renameSync(vue2PackagePath, newVue2PackagePath);
+      moveSync(vue2PackagePath, newVue2PackagePath, { overwrite: true });
     }
 
     spawnSync('npx vitepress build docs', { shell: true, stdio: 'inherit' });
 
     if (fs.existsSync(newVue2PackagePath)) {
-      fs.renameSync(newVue2PackagePath, vue2PackagePath);
+      moveSync(newVue2PackagePath, vue2PackagePath, { overwrite: true });
     }
     log('文档站点打包成功 ✔');
 
