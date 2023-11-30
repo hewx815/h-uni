@@ -6,7 +6,6 @@ COPY . .
 
 RUN yarn installs
 
-RUN yarn build
+CMD yarn build
 
-RUN cp -r ./website /website
 
