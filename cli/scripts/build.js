@@ -5,7 +5,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { spawnSync } from 'child_process';
 import fs from 'fs';
-import { moveSync } from 'fs-extra';
+// eslint-disable-next-line import/no-unresolved, node/no-missing-import
+import { moveSync } from 'fs-extra/esm';
 import {
   copyDirs,
   delDir,
