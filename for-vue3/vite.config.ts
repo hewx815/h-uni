@@ -24,6 +24,9 @@ const config = defineConfigHUniBuild({
     if (process.env.UNI_PLATFORM === 'app') {
       await startAPPDevTool({ devAndroid: true, root: '../' });
     }
+    if (process.env.UNI_PLATFORM === 'h5' && process.env.NODE_ENV === 'production') {
+      process.exit(0);
+    }
   },
 });
 
