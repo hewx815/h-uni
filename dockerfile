@@ -6,7 +6,9 @@ COPY . .
 
 RUN yarn installs
 
-CMD while true; do sleep 1000; done
+CMD yarn build
+
+# CMD while true; do sleep 1000; done
 
 
 

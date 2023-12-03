@@ -184,7 +184,7 @@ const startBuild = async (isNpm) => {
       srcDir: getPath('../../for-vue3/dist/build/h5'),
       destDir: getPath('../../website/preview-vue3'),
     };
-    spawnSync('cd for-vue3&&yarn build:h5', { shell: true, stdio: 'inherit' });
+    spawnSync('yarn build:h5', { shell: true, stdio: 'inherit', cwd: getPath('../../for-vue3') });
     checkoutDir(vue3H5.destDir);
     delDir(vue3H5.destDir);
     copyDirs(vue3H5.srcDir, vue3H5.destDir);
