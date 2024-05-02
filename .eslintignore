@@ -1,10 +1,1 @@
 /node_modules
-
-!.vitepress
-/.vitepress/cache
-/dist
-/website
-
-/for-vue2/babel.config.js
-/for-vue2/postcss.config.js
-/for-vue2/src/static

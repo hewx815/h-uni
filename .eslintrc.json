@@ -1,7 +1,0 @@
-{
-  "root": true,
-  "extends": ["eslint-config-hewx/node-javascript"],
-  "rules": {
-    "node/no-unsupported-features/es-syntax": [0]
-  }
-}

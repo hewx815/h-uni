@@ -7,28 +7,3 @@ node_modules/
 # editor
 .vscode/
 
-# website
-website/
-
-# dist
-for-vue2/dist
-for-vue3/dist
-dist
-
-# cli storage
-cli/storage/index.json
-
-# vitepress cache
-docs/.vitepress/cache
-
-# yarn error log
-yarn-error.log
-
-# APPDevTool
-android/
-ios/
-.uniSdk/
-
-# APPDevTool template
-!for-vue2/src/packages/plugins/APPDevTool/template/android/
-!for-vue2/src/packages/plugins/APPDevTool/template/ios/

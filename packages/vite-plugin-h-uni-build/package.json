@@ -1,11 +1,8 @@
 {
-  "name": "h-uni",
+  "name": "@h-uni/vite-plugin-h-uni-build",
   "version": "2.0.0",
   "author": "hewx",
   "license": "ISC",
   "devDependencies": {},
-  "dependencies": {},
-  "engines": {
-    "node": ">=20.0.0"
-  }
+  "dependencies": {}
 }
