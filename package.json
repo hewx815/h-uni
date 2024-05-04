@@ -5,7 +5,8 @@
   "license": "ISC",
   "dependencies": {
     "nx": "^18.3.4",
-    "rollup": "^4.17.2"
+    "rollup": "^4.17.2",
+    "typescript": "^5.4.5"
   },
   "scripts": {
     "dev": "nx run-many -t dev"
