@@ -1,9 +1,8 @@
 {
-  "name": "@h-uni/vue-cli-plugin-h-uni-build",
+  "name": "@h-uni/h-uni-build",
   "version": "2.0.0",
   "author": "hewx",
   "license": "ISC",
-  "type": "commonjs",
   "files": [
     "dist"
   ],
@@ -11,7 +10,6 @@
   "scripts": {
     "dev": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch"
   },
-  "dependencies": {
-    "@h-uni/h-uni-build": "workspace:*"
-  }
+  "devDependencies": {},
+  "dependencies": {}
 }
