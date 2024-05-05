@@ -63,6 +63,7 @@
     "@dcloudio/uni-quickapp-webview": "^2.0.2-3080720230703001",
     "@dcloudio/uni-stacktracey": "^2.0.2-3080720230703001",
     "@dcloudio/uni-stat": "^2.0.2-3080720230703001",
+    "@h-uni/vue-cli-plugin-h-uni-build": "workspace:^",
     "@vue/shared": "^3.0.0",
     "core-js": "^3.8.3",
     "flyio": "^0.6.2",
@@ -95,7 +96,6 @@
     "mini-types": "*",
     "miniprogram-api-typings": "*",
     "postcss-comment": "^2.0.0",
-    "vue-template-compiler": ">= 2.6.14 < 2.7",
-    "@h-uni/vue-cli-plugin-h-uni-build": "workspace:*"
+    "vue-template-compiler": ">= 2.6.14 < 2.7"
   }
 }

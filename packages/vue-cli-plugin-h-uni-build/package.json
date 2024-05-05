@@ -5,11 +5,13 @@
   "license": "ISC",
   "type": "commonjs",
   "files": [
-    "dist"
+    "index.js",
+    "index.d.js"
   ],
-  "main": "dist/index.js",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "dev": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch"
+    "dev": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch --bundleConfigAsCjs"
   },
   "dependencies": {
     "@h-uni/h-uni-build": "workspace:*"

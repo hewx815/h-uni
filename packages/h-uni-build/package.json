@@ -4,9 +4,12 @@
   "author": "hewx",
   "license": "ISC",
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
-  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "main": "dist/cjs/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "dev": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch"
   },
