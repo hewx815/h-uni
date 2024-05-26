@@ -14,6 +14,7 @@
     "dev": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch --bundleConfigAsCjs"
   },
   "dependencies": {
+    "@vue/cli-service": ">=5.0.0",
     "@h-uni/h-uni-build": "workspace:*"
   }
 }
