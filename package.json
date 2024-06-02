@@ -5,12 +5,15 @@
   "type": "module",
   "license": "ISC",
   "scripts": {
-    "dev": "nx run-many -t dev"
+    "dev": "nx run-many -t dev",
+    "lint": "nx run-many -t lint"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@stylistic/eslint-plugin": "^2.1.0",
     "@types/node": "20",
     "eslint": "^9.2.0",
     "nx": "^18.3.4",

@@ -1,26 +1,27 @@
-import { defineConfig } from "rollup";
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
+import typescript from "@rollup/plugin-typescript";
+import del from "rollup-plugin-delete";
+import terser from "@rollup/plugin-terser";
 import { dts } from "rollup-plugin-dts";
-import del from 'rollup-plugin-delete';
+import { defineConfig } from "rollup";
 
 export default defineConfig([
+  // code
   {
     plugins: [
-      nodeResolve(),
       typescript(),
-      del({ targets: 'index.js' }),
+      del({ targets: "index.js" }),
+      terser(),
     ],
     input: "./src/index.ts",
     output: {
       file: "./index.js",
       format: "cjs",
-    }
+    },
   },
+
+  // type
   {
     plugins: [
-      nodeResolve(),
-      typescript(),
       dts(),
       del({ targets: "./index.d.ts" }),
     ],

@@ -1,19 +1,26 @@
-/**
- * 启用最严格模式
- * 根据项目实际情况，逐步添加 rules 放宽规则
-*/
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import eslintJs from '@eslint/js';
+import typescriptEslint from 'typescript-eslint';
+import stylisticPlugin from '@stylistic/eslint-plugin';
 
-export default tseslint.config({
-  extends: [
-    eslint.configs.recommended,
-    ...tseslint.configs.strict,
-  ],
-});
+export default typescriptEslint.config(
+  // eslint
+  eslintJs.configs.recommended,
 
-export const rules = {
-  "no-extra-semi": ["error"],
-  "no-console": ["error", { allow: ["warn", "error"] }],
-  "func-style": ["error", "declaration", { allowArrowFunctions: true }],
-};
+  // typescript-eslint
+  ...typescriptEslint.configs.recommended,
+  ...typescriptEslint.configs.stylistic,
+  ...typescriptEslint.configs.strict,
+
+  // @stylistic
+  stylisticPlugin.configs.customize({
+    semi: true,
+    quotes: 'double'
+  }),
+
+  // custom-rules
+  {
+    rules: {
+      // ...
+    }
+  },
+);

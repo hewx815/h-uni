@@ -11,7 +11,8 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "dev": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch --bundleConfigAsCjs"
+    "dev": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch --bundleConfigAsCjs",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@vue/cli-service": ">=5.0.0",

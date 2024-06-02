@@ -1,9 +1,7 @@
 import baseConfig from '../../eslint.config.base.js';
-import { rules } from '../../eslint.config.base.js';
-import tseslint from 'typescript-eslint';
+import typescriptEslint from 'typescript-eslint';
 
-export default tseslint.config({
-  files: ['src/**/*.ts'],
+export default typescriptEslint.config({
+  files: ['src/**/*.ts', "rollup.config.ts"],
   extends: baseConfig,
-  rules,
 });
