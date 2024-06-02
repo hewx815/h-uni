@@ -7,10 +7,13 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config({
   extends: [
-    eslint.configs.all,
+    eslint.configs.recommended,
     ...tseslint.configs.strict,
   ],
-  rules: {
-    "no-extra-semi": ["error"],
-  },
 });
+
+export const rules = {
+  "no-extra-semi": ["error"],
+  "no-console": ["error", { allow: ["warn", "error"] }],
+  "func-style": ["error", "declaration", { allowArrowFunctions: true }],
+};
