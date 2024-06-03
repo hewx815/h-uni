@@ -13,7 +13,8 @@ export type BuildFn = (api: PluginAPI, options: ProjectOptions, args: unknown[])
  * 提供给 vue-cli-service 的插件
  * 在 uni-serve 和 uni-build 之前和之后执行自定义逻辑
 */
-module.exports = function vueCliPluginHUniBuild(api: PluginAPI, options: ProjectOptions) {
+export default function vueCliPluginHUniBuild(api: PluginAPI, options: ProjectOptions) {
+  console.log(1111);
   // uni-serve
   const serve = api.service.commands["uni-serve"];
   const serveFn = serve.fn;

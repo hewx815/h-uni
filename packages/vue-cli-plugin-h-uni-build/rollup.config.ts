@@ -4,11 +4,13 @@ import del from "rollup-plugin-delete";
 import { dts } from "rollup-plugin-dts";
 import { defineConfig } from "rollup";
 import nodeResolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 
 export default defineConfig([
   // code
   {
     plugins: [
+      commonjs(),
       nodeResolve(),
       typescript(),
       del({ targets: "index.js" }),
