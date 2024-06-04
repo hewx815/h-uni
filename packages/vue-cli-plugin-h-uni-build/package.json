@@ -8,10 +8,10 @@
     "index.js",
     "index.d.js"
   ],
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
-    "dev": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch",
+    "dev": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch --bundleConfigAsCjs",
     "lint": "eslint ."
   },
   "dependencies": {

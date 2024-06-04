@@ -20,7 +20,7 @@ export default typescriptEslint.config(
   // custom-rules
   {
     rules: {
-      // ...
+      "no-console": ["warn", { allow: ["warn", "error"] }],
     }
   },
 );

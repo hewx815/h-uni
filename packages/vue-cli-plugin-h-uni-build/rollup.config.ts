@@ -4,21 +4,18 @@ import del from "rollup-plugin-delete";
 import { dts } from "rollup-plugin-dts";
 import { defineConfig } from "rollup";
 import nodeResolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
 
 export default defineConfig([
   // code
   {
     plugins: [
-      commonjs(),
       nodeResolve(),
       typescript(),
-      del({ targets: "index.js" }),
-      // terser(),
+      del({ targets: "./dist/*" }),
     ],
     input: "./src/index.ts",
     output: {
-      file: "./index.js",
+      dir: "./dist",
       format: "cjs",
     },
   },
@@ -27,12 +24,12 @@ export default defineConfig([
   {
     plugins: [
       dts(),
-      del({ targets: "./index.d.ts" }),
+      del({ targets: "./types/*" }),
     ],
     input: "./src/index.ts",
     output: {
-      file: "./index.d.ts",
-      format: "cjs",
+      file: "./types/index.d.ts",
+      format: "es",
     },
   },
 ]);

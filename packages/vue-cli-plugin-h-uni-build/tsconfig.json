@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "module": "CommonJS"
+    "module": "nodenext",
+    "moduleResolution": "nodenext"
   },
   "include": ["src/**/*.ts", "rollup.config.ts"]
 }

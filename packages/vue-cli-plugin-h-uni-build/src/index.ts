@@ -1,6 +1,5 @@
 import { PluginAPI, ProjectOptions } from "@vue/cli-service";
-import beforeBuild from "./beforeBuild";
-import afterBuild from "./afterBuild";
+import { openDevTool } from "@h-uni/h-uni-build";
 
 export interface Config {
   openDevTools?: boolean;
@@ -13,8 +12,11 @@ export type BuildFn = (api: PluginAPI, options: ProjectOptions, args: unknown[])
  * 提供给 vue-cli-service 的插件
  * 在 uni-serve 和 uni-build 之前和之后执行自定义逻辑
 */
-export default function vueCliPluginHUniBuild(api: PluginAPI, options: ProjectOptions) {
-  console.log(1111);
+export default async function vueCliPluginHUniBuild(api: PluginAPI, options: ProjectOptions) {
+  const { beforeBuild } = await import("./beforeBuild.js");
+  const { afterBuild } = await import("./afterBuild.js");
+
+  console.log("---------------vue-cli-plugin-h-uni-build");
   // uni-serve
   const serve = api.service.commands["uni-serve"];
   const serveFn = serve.fn;
