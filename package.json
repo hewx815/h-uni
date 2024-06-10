@@ -5,7 +5,7 @@
   "type": "module",
   "license": "ISC",
   "scripts": {
-    "dev": "nx run-many -t dev",
+    "dev": "nx run-many -t dev ",
     "lint": "nx run-many -t lint"
   },
   "devDependencies": {
@@ -15,6 +15,7 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@stylistic/eslint-plugin": "^2.1.0",
     "@types/node": "20",
+    "chokidar": "^3.6.0",
     "eslint": "^9.2.0",
     "nx": "^18.3.4",
     "rollup": "^4.17.2",
