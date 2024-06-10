@@ -3,12 +3,19 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { spawn } from 'child_process';
 
-function defineAbsolutePaths(metaUrl, relativePaths) {
-  const dirPath = path.dirname(fileURLToPath(metaUrl));
+function defineAbsolutePaths(relativePaths) {
+  const dirPath = path.dirname(fileURLToPath(import.meta.url));
   return path.resolve(dirPath, relativePaths);
 }
 
-const watcher = chokidar.watch(defineAbsolutePaths(import.meta.url, '../node_modules/@h-uni/vue-cli-plugin-h-uni-build/dist/'));
+/**
+ * 监听这些文件变化后重启服务
+*/
+const watchPaths = [
+  defineAbsolutePaths('../node_modules/@h-uni/vue-cli-plugin-h-uni-build/dist/')
+];
+
+const watcher = chokidar.watch(watchPaths);
 
 
 let timer = null;
