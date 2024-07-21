@@ -23,17 +23,21 @@ let ps = null;
 const delay = 300;
 
 function dev() {
-  return spawn('pnpm', ['dev:mp-weixin'], { stdio: 'inherit' });
+  if (ps) {
+    ps.kill('SIGKILL');
+    ps = null;
+    return;
+  }
+  ps = spawn('pnpm', ['dev:mp-weixin'], { stdio: 'inherit', shell: true });
 }
 
 // 监听文件变化, 执行 dev
 watcher.on('ready', () => {
-  ps = dev();
+  dev();
   watcher.on('all', (event, path) => {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-      if (ps) ps.kill();
-      ps = dev();
+      dev();
     }, delay);
   });
 })
