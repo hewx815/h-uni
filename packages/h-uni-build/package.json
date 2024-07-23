@@ -13,6 +13,7 @@
   "scripts": {
     "dev": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch"
   },
-  "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "@h-uni/h-uni-utils": "workspace:^"
+  }
 }

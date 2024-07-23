@@ -1,7 +1,9 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "module": "nodenext",
-    "moduleResolution": "nodenext"
+    "moduleResolution": "nodenext",
+    "lib": ["ESNext"]
   },
   "include": ["src/**/*.ts", "rollup.config.ts"]
 }
