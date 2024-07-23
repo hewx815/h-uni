@@ -5,8 +5,8 @@
   "license": "ISC",
   "type": "commonjs",
   "files": [
-    "index.js",
-    "index.d.js"
+    "dist",
+    "types"
   ],
   "main": "./dist/index.js",
   "types": "./types/index.d.ts",
