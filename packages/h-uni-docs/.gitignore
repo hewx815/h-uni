@@ -1,2 +1,1 @@
-.vitepress/
-!./.vitepress/config.ts
+.vitepress/cache
