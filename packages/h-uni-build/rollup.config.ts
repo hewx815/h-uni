@@ -8,8 +8,6 @@ export default defineConfig([
   // .d.ts
   {
     plugins: [
-      nodeResolve(),
-      typescript(),
       dts(),
       del({ targets: 'types/*' }),
     ],
@@ -29,6 +27,7 @@ export default defineConfig([
       del({ targets: 'dist/*' }),
     ],
     input: "./src/index.ts",
+    external: ["@h-uni/h-uni-utils"],
     output: [
       {
         file: "./dist/es/index.js",
