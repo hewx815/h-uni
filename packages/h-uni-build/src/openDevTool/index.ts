@@ -1,4 +1,4 @@
-import { createLogContent, LogModule, LogType } from "@h-uni/h-uni-utils";
+import { CreateLogContent } from "@h-uni/h-uni-utils";
 
 /** uniapp 编译平台 */
 export enum UNIPlatform {
@@ -13,6 +13,12 @@ export interface Options {
   }[];
 }
 
-export default function (options: Options) {
-  console.log(createLogContent(LogType.ERROR, LogModule.H_UNI_UTILS, "openDevTool"));
+export interface PlatformTask {
+  platform: UNIPlatform;
+  open: () => void;
+  close: () => void;
+}
+
+export function run(options?: Options) {
+  console.log(CreateLogContent.create(CreateLogContent.Levels.ERROR, CreateLogContent.Names.H_UNI_UTILS, "openDevTool"));
 }

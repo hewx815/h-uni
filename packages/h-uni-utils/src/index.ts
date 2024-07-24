@@ -1,1 +1,1 @@
-export * from "./createLogContent";
+export * as CreateLogContent from "./CreateLogConten";

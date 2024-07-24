@@ -1,3 +1,3 @@
-export { default as autoJson } from './autoJson';
-export { default as openDevTool } from './openDevTool';
-export { default as runTask } from './runTask';
+export * as AutoJson from "./AutoJson";
+export * as OpenDevTool from "./OpenDevTool";
+export * as RunTask from "./RunTask";
